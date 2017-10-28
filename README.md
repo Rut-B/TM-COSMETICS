@@ -1,7 +1,7 @@
 # TM COSMETICS.(CAN CHANGE)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jce-il/group_project)
-[![GitHub issues](https://img.shields.io/github/issues/jce-il/se-class.svg?style=flat)](https://github.com/jce-il/TM-COSMETICS/issues)
+[![GitHub issues](https://img.shields.io/github/issues/jce-il/se-class.svg?style=flat)](https://github.com/Rut-B/TM-COSMETICS/issues)
 
 logo for our project! 
 
