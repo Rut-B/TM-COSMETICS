@@ -1,10 +1,12 @@
 # TM COSMETICS.(CAN CHANGE)
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jce-il/group_project)
+[![GitHub issues](https://img.shields.io/github/issues/jce-il/se-class.svg?style=flat)](https://github.com/jce-il/TM-COSMETICS/issues)
 
 logo for our project! 
 
 ![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jce-il/group_project)
+
 
 ## Tools & Practices
 We're trying to use the best tools and practices in order to produce a quality enginneered product.
