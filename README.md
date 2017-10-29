@@ -35,7 +35,7 @@ Please visit our wiki for furthur project info:
 ### [Task Management System](https://github.com/Rut-B/TM-COSMETICS/issues)
 
 ### Project Documents
-- [Project Idea](docs/idea.pdf) ([Presentation](docs/idea-slides.pdf))
+- [Project Idea](https://github.com/jce-il/se-class/blob/master/ideas/2018/TM%20COSMETICS.pptx) ([Presentation](//github.com/jce-il/se-class/blob/master/ideas/2018/TM%20COSMETICS.docx))
 - [Project Inception](../../wiki/inception)
 - [Software Requirements Specification](../../wiki/srs)
 - [Software Design Specification](../../wiki/sds)
