@@ -1,5 +1,5 @@
 
-# TM COSMETICS.(CAN CHANGE)
+# TM COSMETICS
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jce-il/group_project)
 [![GitHub issues](https://img.shields.io/github/issues/jce-il/TM-COSMETICS.svg?style=flat)](https://github.com/Rut-B/TM-COSMETICS/issues)
