@@ -3,13 +3,15 @@
 [![GitHub issues](https://img.shields.io/github/issues/jce-il/TM-COSMETICS.svg?style=flat)](https://github.com/Rut-B/TM-COSMETICS/issues)
 
 # TM COSMETICS
-logo for our project! (chemdi can you do it?)
+logo for our project! 
 abstract :תקציר\חזון הפרויקט – משפט ״מחץ״ או מספר משפטים על הסיבה שלמעשה הפרויקט מפותח (משפט מעלית - ראו למשל שקף 4 במקור 3)
 (chemdi);
-logo(chemdi?)
+
+logo for our project! ;
+logo(chemdi?);
 ![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
 
-
+(chemdi can you do it?)
 ## DATA
 
 קישור למערכת ניהול המשימות (כברירת מחדל בשלב זה מערכת ה- issues המובנית).
