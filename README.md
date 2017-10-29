@@ -6,7 +6,7 @@
 logo for our project! (chemdi can you do it?)
 abstract :תקציר\חזון הפרויקט – משפט ״מחץ״ או מספר משפטים על הסיבה שלמעשה הפרויקט מפותח (משפט מעלית - ראו למשל שקף 4 במקור 3)
 (chemdi);
-
+logo(chemdi?)
 ![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
 
 
