@@ -4,7 +4,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jce-il/group_project)
 [![GitHub issues](https://img.shields.io/github/issues/jce-il/TM-COSMETICS.svg?style=flat)](https://github.com/Rut-B/TM-COSMETICS/issues)
 
-logo for our project! 
+logo for our project! (chemdi can you do it?)
 
 ![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
 
