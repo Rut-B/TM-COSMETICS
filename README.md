@@ -32,7 +32,7 @@ Please visit our wiki for furthur project info:
 ### [User Manual](../../wiki/user-manual) (empty for now)
 
 ### [Team Page](../../wiki/team)
-### [issue page] https://github.com/Rut-B/TM-COSMETICS/issues
+### [issue page](https://github.com/Rut-B/TM-COSMETICS/issues)
 
 ### Project Documents
 - [Project Idea](docs/idea.pdf) ([Presentation](docs/idea-slides.pdf))
