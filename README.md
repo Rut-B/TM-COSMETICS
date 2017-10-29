@@ -11,19 +11,8 @@ logo for our project! ;
 logo(chemdi?);
 ![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
 
-(chemdi can you do it?)
-## DATA
 
-קישור למערכת ניהול המשימות (כברירת מחדל בשלב זה מערכת ה- issues המובנית).
-משפט הבהרה המציין שהפרויקט מבוצע במסגרת קורס הנדסת תוכנה במכללה עם קישור למאגר הקורס.
-קישורים לעמודי מידע ומסמכים נוספים:
-תיעוד למשתמש (להלן)
-עמוד צוות (להלן)
-קישורים למסמכי ושלבי הפרויקט השונים, כרגע רק
-למסמכי הצעת הפרויקט מהמשימה הקודמת (כנ"ל אפשר כרגע לקשר לאתר חיצוני)
-עמוד עבור שלב האתחול (להלן)
-
-## Please visit our [live application](https://demo.reactstarterkit.com/)
+## Please visit our [live application](https://demo.reactstarterkit.com/)(tamark)
 - Alright, currently only a landing page...
 
 
