@@ -12,7 +12,7 @@ logo(chemdi?);
 ![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
 
 
-## Please visit our [live application](https://htmlpreview.github.com/TamarKl/exe1/tree/master/src/index.html)(tamark)
+## Please visit our [live application](https://github.com/TamarKl/exe1/tree/master/src/index.html)
 - Alright, currently only a landing page...
 
 
