@@ -4,11 +4,11 @@
 
 # TM COSMETICS
 
-abstract :תקציר\חזון הפרויקט – משפט ״מחץ״ או מספר משפטים על הסיבה שלמעשה הפרויקט מפותח (משפט מעלית - ראו למשל שקף 4 במקור 3)
-(chemdi);
+In most cosmetic shops, a long time has been taken from the patient for the appointment management run by the cosmetician herself.
 
-logo for our project! ;
-logo(chemdi?);
+Also, Customers bother the beautician outside of the office hours for queuing or trivial questions.
+
+
 ![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
 
 
