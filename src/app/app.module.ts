@@ -34,4 +34,6 @@ import {NavService} from './nav.service'
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}

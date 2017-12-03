@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {NavComponentComponent } from '../nav-component/nav-component.component';
+import {NavService} from '../nav.service'
 @Component({
   selector: 'app-cosmetician-menu',
   templateUrl: './cosmetician-menu.component.html',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CosmeticianMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public navService:NavService) { }
 
   ngOnInit() {
   }
