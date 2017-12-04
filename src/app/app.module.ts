@@ -11,6 +11,9 @@ import { CosmeticianSettingsComponent } from './cosmetician-settings/cosmetician
 import { CosmeticianProductsComponent } from './cosmetician-products/cosmetician-products.component';
 import { NavComponentComponent } from './nav-component/nav-component.component';
 import {NavService} from './nav.service'
+import { appRoutes } from "./app.route";
+import { RouterModule } from "@angular/router";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +25,13 @@ import {NavService} from './nav.service'
     HomeComponent,
     CosmeticianSettingsComponent,
     CosmeticianProductsComponent,
-    NavComponentComponent
+    NavComponentComponent,
+    LoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+
   ],
   providers: [
     NavService

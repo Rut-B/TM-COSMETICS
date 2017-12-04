@@ -1,7 +1,7 @@
 
 .btn_h{
     &:hover{ 
-        opacity: 0.5;
+        opacity: 0.3;
         cursor: pointer;
         }
    
@@ -13,11 +13,6 @@
     //@include bgimage('/assets/cal.png');
     // @include bgimage(#{image});
     margin-top:5%;
-  
-
-
-
-
     width: 100vw;
     height: 100vh;
     background-repeat: no-repeat;

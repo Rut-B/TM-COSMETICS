@@ -1,17 +1,12 @@
  #body{
-background-image: url('/assets/33.gif'); 
+ 
 ime-mode: normal;
 
 width:100vw;
 height: 100vh;
 
  }
- #logo{
-     &:hover{ 
-        opacity: 0.5;
-        cursor: pointer;
-        }
-      
+ #logo{  
      width: 50vw;
      height: 25vh;
      background-repeat: no-repeat;
