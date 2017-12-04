@@ -1,10 +1,14 @@
  #body{
  
 ime-mode: normal;
-
+margin: -2%;
 width:100vw;
 height: 100vh;
 
+ }
+ #header{
+    width:100vw;
+    height: 30vh; 
  }
  #logo{  
      width: 50vw;
@@ -12,22 +16,20 @@ height: 100vh;
      background-repeat: no-repeat;
      background-image: url('/assets/1.png');
      background-size: 50%;
-
+     position: absolute;
+     left: 37%;
  }
 
- #header{
-     
-    width:100vw;
-    height: 20vh;
- }
 
  #btn{
 
-    margin-left: 8%;
-    height: 70vh;
-    
+position: absolute;
+padding-left: 9%;
+left: 8%;
+    width: 80%;
+    height: 70%;
  }
- #calendar{
+ /*#calendar{
     background-image: url('/assets/2.png'); 
  }
  #store{
@@ -44,4 +46,4 @@ height: 100vh;
  }
  #instgrm{
     background-image: url('/assets/ins.png'); 
- }
+ }*/
