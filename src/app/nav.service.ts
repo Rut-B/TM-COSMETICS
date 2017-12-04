@@ -7,19 +7,19 @@ export class NavService {
 constructor() {
   if (myGlobals.customer){
     this.navItems=[
-      new NavItem("settings","settings",'/assets/setting.png'),
-      new NavItem("information","information",'/assets/inf4.png'),
-      new NavItem("store","store",'/assets/store.png'),
-      new NavItem("calendar","calendar",'/assets/cal.png'),
-      new NavItem("about","about",'/assets/about.png'),
+      new NavItem("settings","settings",'/assets/6.png'),
+      new NavItem("information","information",'/assets/2.png'),
+      new NavItem("store","store",'/assets/3.png'),
+      new NavItem("calendar","calendar",'/assets/4.png'),
+      new NavItem("about","about",'/assets/5.png'),
       new NavItem("instagram","instagram",'/assets/ins.png')
     ]
   }
   else{
     this.navItems=[
-      new NavItem("settings","cosmetician-settings",'/assets/setting.png'),
-      new NavItem("store","cosmetician-products",'/assets/store.png'),
-      new NavItem("calendar","calendar",'/assets/cal.png')
+      new NavItem("settings","cosmetician-settings",'/assets/6.png'),
+      new NavItem("store","cosmetician-products",'/assets/3.png'),
+      new NavItem("calendar","calendar",'/assets/4.png')
     ]
   }
 

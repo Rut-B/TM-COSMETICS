@@ -1,61 +1,51 @@
  #body{
 background-image: url('/assets/33.gif'); 
 ime-mode: normal;
-background-size: 50vw 95vh;
-width:33vw;
-height: 95vh;
-margin-left:29%;
+
+width:100vw;
+height: 100vh;
+
  }
  #logo{
-     color: white;
-     font-weight: 700;
-     font-size: 250%;
-     float: left;
-     padding-left:18%;
-     padding-top: 4%;
- }
- #btn_home{
-
-
-    &:hover{ 
+     &:hover{ 
         opacity: 0.5;
         cursor: pointer;
         }
+      
+     width: 50vw;
+     height: 25vh;
+     background-repeat: no-repeat;
+     background-image: url('/assets/1.png');
+     background-size: 50%;
 
-    background-image: url('/assets/back1.png'); 
-    ime-mode: normal;
-    width:3vw;
-    height: 7vh;
-    margin-left:2.5%;
-    margin-top: 5%;
-//background-color: red; 
-}
+ }
+
  #header{
-     padding-top: 10px;;
-    width:100%;
-    height: 25%;
+     
+    width:100vw;
+    height: 20vh;
  }
 
  #btn{
-    margin-top:28%;
+
     margin-left: 8%;
-    height: 75%;
+    height: 70vh;
     
  }
  #calendar{
-    background-image: url('/assets/cal.png'); 
+    background-image: url('/assets/2.png'); 
  }
  #store{
-    background-image: url('/assets/store.png'); 
+    background-image: url('/assets/3.png'); 
  }
  #information{
-    background-image: url('/assets/inf4.png'); 
+    background-image: url('/assets/4.png'); 
  }
  #about{
-    background-image: url('/assets/about.png'); 
+    background-image: url('/assets/5.png'); 
  }
  #setting{
-    background-image: url('/assets/setting.png'); 
+    background-image: url('/assets/6.png'); 
  }
  #instgrm{
     background-image: url('/assets/ins.png'); 
