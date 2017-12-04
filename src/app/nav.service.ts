@@ -8,7 +8,7 @@ constructor() {
   if (myGlobals.customer){
     this.navItems=[
       new NavItem("settings","settings",'/assets/setting.png'),
-      new NavItem("information","information",'/assets/inf4.png'),
+      new NavItem("details","details",'/assets/inf4.png'),
       new NavItem("store","store",'/assets/store.png'),
       new NavItem("calendar","calendar",'/assets/cal.png'),
       new NavItem("about","about",'/assets/about.png'),

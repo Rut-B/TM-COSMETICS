@@ -1,5 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav-component',
   templateUrl: './nav-component.component.html',
@@ -16,5 +16,10 @@ export class NavComponentComponent implements OnInit {
   ngOnInit() {
     console.log(this.image)
   }
-
+  /*btnClick() {
+    this.router.navigate(['/user']);
+  } */
 }
+
+
+
