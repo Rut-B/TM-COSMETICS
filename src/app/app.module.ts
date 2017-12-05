@@ -14,6 +14,9 @@ import {NavService} from './nav.service'
 import { appRoutes } from "./app.route";
 import { RouterModule } from "@angular/router";
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { InfoComponent } from './info/info.component';
+import { SettingComponent } from './setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { LoginComponent } from './login/login.component';
     CosmeticianSettingsComponent,
     CosmeticianProductsComponent,
     NavComponentComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    InfoComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@ constructor() {
       new NavItem("information","information",'/assets/2.png'),
       new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","calendar",'/assets/4.png'),
-      new NavItem("about","about",'/assets/5.png'),
+      new NavItem("profile","profile",'/assets/5.png'),
       new NavItem("instagram","instagram",'/assets/ins.png')
     ]
   }

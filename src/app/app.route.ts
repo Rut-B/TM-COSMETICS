@@ -11,6 +11,10 @@ import { CosmeticianSettingsComponent } from './cosmetician-settings/cosmetician
 import { CosmeticianProductsComponent } from './cosmetician-products/cosmetician-products.component';
 import { NavComponentComponent } from './nav-component/nav-component.component';
 import {NavService} from './nav.service'
+import { SettingComponent } from './setting/setting.component';
+import { ProfileComponent } from './profile/profile.component';
+import { InfoComponent } from './info/info.component';
+
 
 export const appRoutes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
@@ -21,6 +25,9 @@ export const appRoutes: Routes = [
     { path: "cosmetician-products", component: CosmeticianProductsComponent},
     { path: "cosmetician-settings", component: CosmeticianSettingsComponent },
     { path: "details", component: DetailsComponent},
+    { path: "settings", component: SettingComponent},
+    { path: "information", component: InfoComponent},
+    { path: "profile", component: ProfileComponent},
     { path: "**", redirectTo: "home" }
 ];
 
