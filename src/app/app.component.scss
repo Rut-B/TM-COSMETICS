@@ -1,23 +1,27 @@
  #body{
  
 ime-mode: normal;
-margin: 6%;
+margin: -2%;
 width:100vw;
 height: 100vh;
 
  }
  #header{
-    width:100vw;
+    width:100%;
     height: 30vh; 
  }
  #logo{  
-     width: 50vw;
+     width: 25vw;
      height: 25vh;
      background-repeat: no-repeat;
      background-image: url('/assets/1.png');
-     background-size: 50%;
-     position: absolute;
-     left: 37%;
+     background-size: 100%;
+     //position: absolute;
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     
+    // left: 37%;
  }
 
 
