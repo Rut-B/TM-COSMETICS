@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
+
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AboutComponent } from './about/about.component';
@@ -19,6 +21,11 @@ import { InfoComponent } from './info/info.component';
 import { SettingComponent } from './setting/setting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
+
+
+
+
+
 
 @NgModule({
   declarations: [
