@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CalendarEvent, } from "angular-calendar"
 
 @Component({
   selector: 'app-calendar',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor() { }
+ viewDate: Date;
+  events: CalendarEvent[] = [];
+  constructor() {
+    this.viewDate = new Date();
+    let event: CalendarEvent = {
+      start : new Date(),
+      end: new Date(),
+      title: "test",
+      color: {
+        primary: "#00FF00",
+        secondary: "#afafaf"
+      }   
+    };
+    this.events.push(event)
+  }
 
   ngOnInit() {
   }
 
 }
+

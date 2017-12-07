@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { InfoComponent } from './info/info.component';
 import { SettingComponent } from './setting/setting.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { SettingComponent } from './setting/setting.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    CalendarModule.forRoot()
 
   ],
   providers: [
