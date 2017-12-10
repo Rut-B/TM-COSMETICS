@@ -1,6 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+
 
 
 import { AppComponent } from './app.component';
@@ -23,7 +28,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 
 
-
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyBj9XabgD32Wi2qUrKm7AZo4ZjQErXFKRo",
+    authDomain: "tmcosm-48ed4.firebaseapp.com",
+    databaseURL: "https://tmcosm-48ed4.firebaseio.com",
+    projectId: "tmcosm-48ed4",
+    storageBucket: "tmcosm-48ed4.appspot.com",
+    messagingSenderId: "557253961976"
+  }
+};
 
 
 
@@ -47,7 +62,11 @@ import { CalendarModule } from 'angular-calendar';
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [
