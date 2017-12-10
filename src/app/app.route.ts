@@ -14,11 +14,11 @@ import {NavService} from './nav.service'
 import { SettingComponent } from './setting/setting.component';
 import { ProfileComponent } from './profile/profile.component';
 import { InfoComponent } from './info/info.component';
-
+import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
-    { path: "home", component: HomeComponent },
+    { path: "home", component: LoginComponent },
     { path: "calendar", component: CalendarComponent },
     { path: "store", component: StoreComponent},
     { path: "about", component: AboutComponent },

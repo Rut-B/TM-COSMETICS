@@ -1,8 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
-
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AboutComponent } from './about/about.component';
@@ -21,9 +18,13 @@ import { InfoComponent } from './info/info.component';
 import { SettingComponent } from './setting/setting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
-
-
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule, MatInputModule, MatCardModule } from "@angular/material";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from 'angularfire2';
+import { AuthService } from "./auth.service";
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from "angularfire2/firestore";
 
 
 
@@ -44,14 +45,23 @@ import { CalendarModule } from 'angular-calendar';
     SettingComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
+    MatButtonModule,
+    MatInputModule,
+    AngularFireAuthModule,
+    MatCardModule,
+    NoopAnimationsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
+    //AngularFireModule.initializeApp(environment.firebase),
     CalendarModule.forRoot()
 
   ],
   providers: [
-    NavService
+    NavService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
