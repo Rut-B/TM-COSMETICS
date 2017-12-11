@@ -18,7 +18,7 @@ import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
-    { path: "home", component: LoginComponent },
+    { path: "home", component: HomeComponent },
     { path: "calendar", component: CalendarComponent },
     { path: "store", component: StoreComponent},
     { path: "about", component: AboutComponent },
