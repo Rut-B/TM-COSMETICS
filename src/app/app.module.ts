@@ -25,7 +25,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AuthService } from "./auth.service";
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
-
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -53,6 +53,7 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
     AngularFireAuthModule,
     MatCardModule,
     NoopAnimationsModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     //AngularFireModule.initializeApp(environment.firebase),
