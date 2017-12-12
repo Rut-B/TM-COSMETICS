@@ -27,6 +27,17 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { HttpModule } from '@angular/http';
 
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyBj9XabgD32Wi2qUrKm7AZo4ZjQErXFKRo",
+    authDomain: "tmcosm-48ed4.firebaseapp.com",
+    databaseURL: "https://tmcosm-48ed4.firebaseio.com",
+    projectId: "tmcosm-48ed4",
+    storageBucket: "tmcosm-48ed4.appspot.com",
+    messagingSenderId: "557253961976"
+  }
+};
 
 @NgModule({
   declarations: [
@@ -56,7 +67,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    //AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase),
     CalendarModule.forRoot()
 
   ],
