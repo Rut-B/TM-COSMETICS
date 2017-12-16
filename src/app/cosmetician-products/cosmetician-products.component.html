@@ -1,3 +1,17 @@
 <p>
   cosmetician-products works!
+ 
 </p>
+
+<div>
+      
+      <h3>add Products</h3>
+      <input type="text" [(ngModel)]="productName" placeholder="name" >
+      <input type="text" [(ngModel)]="specificName" placeholder="specificName" >
+      <input type="text" [(ngModel)]="code" placeholder="code" >
+      <input type="text" [(ngModel)]="marketer" placeholder="marketer" >
+      <input type="text" [(ngModel)]="price" placeholder="price" >
+      
+      <button (click)="addProducts()">add</button>
+      
+</div>
