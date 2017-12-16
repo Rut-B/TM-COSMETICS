@@ -10,12 +10,28 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth) { }
 
+  public exist_user(email:string,name:string){
+    return true;
+
+    }
 
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()).then(user => {
-        console.log(user);
+        console.log(user.isLogin);
+        var name =user.additionalUserInfo.profile.name;
+        var mail= user.additionalUserInfo.profile.mail;
+       /* if(exist_user(name,mail)){
+          //check if exist:
+         
+        }
+        
+        else{//join to service
+
+        }*/
         this._user = user.user;
+       // console.log(user.user.additionalUserInfo.profile.verified_email);
+        
       });
   }
 

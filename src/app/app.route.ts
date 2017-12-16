@@ -17,8 +17,9 @@ import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
-    { path: "", redirectTo: "home", pathMatch: "full" },
-    { path: "home", component: LoginComponent },
+    { path: "", redirectTo: "login", pathMatch: "full" },
+    { path: "login", component: LoginComponent },
+    { path: "home", component: HomeComponent },
     { path: "calendar", component: CalendarComponent },
     { path: "store", component: StoreComponent},
     { path: "about", component: AboutComponent },
@@ -26,8 +27,8 @@ export const appRoutes: Routes = [
     { path: "cosmetician-settings", component: CosmeticianSettingsComponent },
     { path: "details", component: DetailsComponent},
     { path: "settings", component: SettingComponent},
-    { path: "information", component: InfoComponent},
+    { path: "information", component: DetailsComponent},
     { path: "profile", component: ProfileComponent},
-    { path: "**", redirectTo: "home" }
+    { path: "**", redirectTo: "login" }
 ];
 

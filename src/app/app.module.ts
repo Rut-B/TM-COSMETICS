@@ -19,13 +19,15 @@ import { SettingComponent } from './setting/setting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatButtonModule, MatInputModule, MatCardModule } from "@angular/material";
+import { MatButtonModule, MatTableDataSource,MatFormFieldModule,MatInputModule,MatSelectModule, MatCardModule } from "@angular/material";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AuthService } from "./auth.service";
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { HttpModule } from '@angular/http';
+import {MatTableModule} from '@angular/material/table';
+
 
 export const environment = {
   production: false,
@@ -56,6 +58,9 @@ export const environment = {
     SettingComponent
   ],
   imports: [
+    MatTableModule,
+    MatSelectModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -73,7 +78,8 @@ export const environment = {
   ],
   providers: [
     NavService,
-    AuthService
+    AuthService,
+    
   ],
   bootstrap: [AppComponent]
 })
