@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./cosmetician-settings.component.scss']
 })
 export class CosmeticianSettingsComponent implements OnInit {
+  /*
   public TreatmentType:string;
   public treatmentName:string;
   public treatmentCode:number;//key
@@ -123,7 +124,7 @@ constructor(private afs: AngularFirestore){
             phone:this.managerPhone
           });
         
-        }
+        }*/
   ngOnInit() {
   }
 
