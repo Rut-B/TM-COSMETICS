@@ -74,13 +74,19 @@ export class DatabaseFirebaseService {
     Location: this.appointmentLocation
 }); 
 }
-addProducts(){   
-    this.prodRef.doc(this.productName).set({
-    name: this.specificName,
-    code: this.code, 
-    marketer: this.marketer, 
-    price:this.price
-});
+addProducts(){ 
+    let item={
+      productName: this.productName,
+      name: this.specificName,
+      code: this.code, 
+      marketer: this.marketer, 
+      price:this.price
+    }  
+    this.prodRef.add(item).then(res=>{
+
+    })
+
+
 }
 addTreatment(){
     this.treatmentRef.doc(this.treatmentName).set({
