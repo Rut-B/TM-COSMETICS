@@ -15,6 +15,9 @@ import { SettingComponent } from './setting/setting.component';
 import { ProfileComponent } from './profile/profile.component';
 import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
+import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
+
+
 
 export const appRoutes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -25,6 +28,7 @@ export const appRoutes: Routes = [
     { path: "about", component: AboutComponent },
     { path: "cosmetician-products", component: CosmeticianProductsComponent},
     { path: "cosmetician-settings", component: CosmeticianSettingsComponent },
+    { path: "cosmetician-calendar", component: CosmeticianCalendarComponent },
     { path: "details", component: DetailsComponent},
     { path: "settings", component: SettingComponent},
     { path: "information", component: DetailsComponent},
