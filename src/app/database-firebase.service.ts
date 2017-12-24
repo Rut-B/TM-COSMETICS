@@ -66,13 +66,17 @@ export class DatabaseFirebaseService {
     this.appointmentCosmetician=[];
   }
   addAppointment(){
-    this.appointmentRef.doc(this.appointmentTime).set({
-    customer:this.appointmentCustomer,
-    cosmetician: this.appointmentCosmetician,
-    duration :this.appointmentDuration,
-    price:this.appointmentPrice,
-    Location: this.appointmentLocation
-}); 
+    let appoin={
+      appointmentTime: this.appointmentTime,
+      customer:this.appointmentCustomer,
+      cosmetician: this.appointmentCosmetician,
+      duration :this.appointmentDuration,
+      price:this.appointmentPrice,
+      Location: this.appointmentLocation
+    }
+    this.appointmentRef.add(appoin).then(res=>{
+      
+    })
 }
 addProducts(){ 
     let item={
@@ -89,42 +93,55 @@ addProducts(){
 
 }
 addTreatment(){
-    this.treatmentRef.doc(this.treatmentName).set({
+  let treat={
+    treatmentName:this.treatmentName,
     code:this.treatmentCode,
     price:this.treatmentPrice,
     duration:this.treatmentDuration,
     PossibleCosmetician:this.treatmentPossibleCosmetician
-});
+  }
+    this.treatmentRef.add(treat).then(res=>{
+    })
 }
 addLocation(){
-    this.locationtRef.doc(this.city).set({
+  let loc={
+    city:this.city,    
     address:this.address, 
     phone:this.phone
-});
+  }
+    this.locationtRef.add(loc).then(res=>{
+    })
 } 
 addCustomer(){
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
-    this.customerRef.doc(this.customerId).set({
-    name:this.customerFirstName,
-    lname:this.customerLastName,
-    phone:this.customerPhone,
-    address:this.customerAddress,
-    permissionLevel:this.customerPermissionLevel
-});
+    let cons={
+      customerId:this.customerId,
+      name:this.customerFirstName,
+      lname:this.customerLastName,
+      phone:this.customerPhone,
+      address:this.customerAddress,
+      permissionLevel:this.customerPermissionLevel
+    }
+    this.customerRef.add(cons).then(res=>{
+})
 }
 addCosmetician(){
     this.treatmentPossibleCosmetician.push(this.cosmeticianId);
     this.appointmentCosmetician.push(this.cosmeticianId);
     console.log(this.treatmentPossibleCosmetician);
     console.log(this.appointmentCosmetician);
-    this.cosmeticiansRef.doc(this.cosmeticianId).set({
-    name: this.cosmeticianFirstName,
-    lname: this.cosmeticianLastName,
-    phone:this.cosmeticianPhone,
-    permissionLevel:this.cosmeticianPermissionLevel,
-    availability:this.cosmeticianAvailability
-  });
+    let cosmet={
+      cosmeticianId:this.cosmeticianId,
+      name: this.cosmeticianFirstName,
+      lname: this.cosmeticianLastName,
+      phone:this.cosmeticianPhone,
+      permissionLevel:this.cosmeticianPermissionLevel,
+      availability:this.cosmeticianAvailability
+    }
+    this.cosmeticiansRef.add(cosmet).then(res=>{
+ 
+  })
 }
 addMessageManager(){  
     this.messageManagerRef.doc(this.from).set({
