@@ -8,11 +8,12 @@ import * as firebase from 'firebase';
   styleUrls: ['./cosmetician-settings.component.scss']
 })
 export class CosmeticianSettingsComponent implements OnInit {
-  public TreatmentType:string;
+
   public treatmentName:string;
+  public TreatmentDescription:string;
   public treatmentCode:number;//key
   public treatmentPrice:number;
-  public treatmentDuration:Date;
+  public treatmentDuration:string;
   
   
   public city:string;
@@ -68,11 +69,12 @@ constructor(private afs: AngularFirestore){
     
       //var  treatmentRef = this.afs.collection("treatments");
         
-      this.treatmentRef.doc(this.TreatmentType).set({
-        code:this.treatmentCode,
+      this.treatmentRef.doc(this.treatmentCode).set({
+        description:this.TreatmentDescription,
         price:this.treatmentPrice,
         duration:this.treatmentDuration,
-        name: this.treatmentName, 
+        name: this.treatmentName,
+        code:this.treatmentCode
         });
     
     }
