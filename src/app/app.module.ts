@@ -23,10 +23,11 @@ import { MatButtonModule, MatTableDataSource,MatFormFieldModule,MatInputModule,M
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AuthService } from "./auth.service";
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestoreModule} from "angularfire2/firestore";
 import { HttpModule } from '@angular/http';
 import {MatTableModule} from '@angular/material/table';
+//import { AngularFirestore } from "angularfire2/firestore";
 
 
 export const environment = {
@@ -73,12 +74,13 @@ export const environment = {
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    AngularFirestoreModule
 
   ],
   providers: [
     NavService,
-    AuthService,
+    AuthService
     
   ],
   bootstrap: [AppComponent]
