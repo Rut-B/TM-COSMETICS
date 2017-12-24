@@ -1,17 +1,84 @@
-<p>
-  cosmetician-products works!
- 
-</p>
+<div class="title">store</div>
 
 <div>
-      
       <h3>add Products</h3>
       <input type="text" [(ngModel)]="productName" placeholder="name" >
       <input type="text" [(ngModel)]="specificName" placeholder="specificName" >
       <input type="text" [(ngModel)]="code" placeholder="code" >
       <input type="text" [(ngModel)]="marketer" placeholder="marketer" >
       <input type="text" [(ngModel)]="price" placeholder="price" >
-      
       <button (click)="addProducts()">add</button>
       
-</div>
+      </div>
+      
+      <div>
+      <h3>add Treatment</h3>
+      <input type="text" [(ngModel)]="treatmentName" placeholder="nameTreatment" >
+      <input type="text" [(ngModel)]="treatmentCode" placeholder="code" >
+      <input type="text" [(ngModel)]="treatmentPrice" placeholder="price" >
+      <input type="text" [(ngModel)]="treatmentDuration" placeholder="treatmentDuration" >
+      <!-- <input type="text" [(ngModel)]="treatmentPossibleCosmetician" placeholder="PossibleCosmetician" > -->
+      <button (click)="addTreatment()">add</button>
+      </div>
+      
+      <div>
+      <h3>add location</h3>
+      <input type="text" [(ngModel)]="city" placeholder="city" >
+      <input type="text" [(ngModel)]="address" placeholder="address" >
+      <input type="text" [(ngModel)]="phone" placeholder="phone" >
+      <button (click)="addLocation()">add</button>
+      </div>
+      
+      <div>
+              <h3>add customer</h3>
+              <input type="text" [(ngModel)]="customerId" placeholder="id" >
+              <input type="text" [(ngModel)]="customerFirstName" placeholder="firstName" >
+              <input type="text" [(ngModel)]="customerLastName" placeholder="lastName" >
+              <input type="text" [(ngModel)]="customerPhone" placeholder="phone" >
+              <input type="text" [(ngModel)]="customerAddress" placeholder="address" >
+              <input type="text" [(ngModel)]="customerPermissionLevel" placeholder="PermissionLevel" >
+              <button (click)="addCustomer()">add</button>
+      </div>
+      
+      <div>
+              <h3>add cosmetician</h3>
+              <input type="text" [(ngModel)]="cosmeticianId" placeholder="id" >
+              <input type="text" [(ngModel)]="cosmeticianFirstName" placeholder="firstName" >
+              <input type="text" [(ngModel)]="cosmeticianLastName" placeholder="lastName" >
+              <input type="text" [(ngModel)]="cosmeticianPhone" placeholder="phone" >
+              <input type="text" [(ngModel)]="cosmeticianPermissionLevel" placeholder="PermissionLevel" >
+              <input type="text" [(ngModel)]="cosmeticianAvailability" placeholder="availability" >
+              <button (click)="addCosmetician()">add</button>
+      </div>
+      
+      <div>
+              <h3> add Message Manager</h3>
+              <input type="mail" [(ngModel)]="from" placeholder="from" >
+              <input type="mail" [(ngModel)]="to" placeholder="to" >
+              <input type="text" [(ngModel)]="content" placeholder="content" >
+              <button (click)="addMessageManager()">add</button>
+      </div>
+      <div>
+              <h3>add appointment</h3>
+              <input type="text" [(ngModel)]="appointmentTime" placeholder="time" >
+              <input type="text" [(ngModel)]="appointmentDuration" placeholder="duration" >
+              <input type="text" [(ngModel)]="appointmentPrice" placeholder="price" >
+              <input type="text" [(ngModel)]="appointmentLocation" placeholder="Location" >
+              <button (click)="addAppointment()">add</button>
+      </div>
+      
+    
+      <!--
+      <button (click)="send()">send</button>
+      <button (click)="delete()">delete</button>
+      
+      <div *ngFor="let u of users">
+          {{u.name}} {{u.lname}}
+      
+      </div>
+      
+      <div *ngFor="let u of ob | async">
+             <b> {{u.name}} {{u.lname}}</b>
+          
+      </div>
+      -->

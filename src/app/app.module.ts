@@ -27,6 +27,7 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule} from "angularfire2/firestore";
 import { HttpModule } from '@angular/http';
 import {MatTableModule} from '@angular/material/table';
+import {DatabaseFirebaseService} from './database-firebase.service'
 //import { AngularFirestore } from "angularfire2/firestore";
 
 
@@ -80,7 +81,8 @@ export const environment = {
   ],
   providers: [
     NavService,
-    AuthService
+    AuthService,
+    DatabaseFirebaseService
     
   ],
   bootstrap: [AppComponent]
