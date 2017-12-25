@@ -27,6 +27,10 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule} from "angularfire2/firestore";
 import { HttpModule } from '@angular/http';
 import {MatTableModule} from '@angular/material/table';
+import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
+import { CommonModule } from '@angular/common';
+import{CalendarMessageService}from './calendar-message.service';
+import * as firebase from 'firebase';
 import {DatabaseFirebaseService} from './database-firebase.service'
 //import { AngularFirestore } from "angularfire2/firestore";
 
@@ -57,7 +61,8 @@ export const environment = {
     LoginComponent,
     ProfileComponent,
     InfoComponent,
-    SettingComponent
+    SettingComponent,
+    CosmeticianCalendarComponent
   ],
   imports: [
     MatTableModule,
@@ -74,16 +79,27 @@ export const environment = {
     HttpModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
+<<<<<<< HEAD
+    AngularFireModule.initializeApp(environment.firebase), 
+    AngularFirestoreModule,
+    CalendarModule.forRoot(),
+    CommonModule
+=======
     AngularFireModule.initializeApp(environment.firebase),
     CalendarModule.forRoot(),
     AngularFirestoreModule
+>>>>>>> 3797960188d5beface0ea4d22edc43d779de7105
 
   ],
   providers: [
     NavService,
     AuthService,
+<<<<<<< HEAD
+    CalendarMessageService,
+=======
     DatabaseFirebaseService
     
+>>>>>>> 3797960188d5beface0ea4d22edc43d779de7105
   ],
   bootstrap: [AppComponent]
 })

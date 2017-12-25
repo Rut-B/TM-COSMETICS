@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-cosmetician-settings',
   templateUrl: './cosmetician-settings.component.html',
@@ -53,7 +53,7 @@ public managerRef;
 
 
 
-
+//private
 constructor(private afs: AngularFirestore){
   this.customerRef = this.afs.collection("customer");
   this.treatmentRef = this.afs.collection("treatments");
