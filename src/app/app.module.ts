@@ -36,7 +36,7 @@ import {DatabaseFirebaseService} from './database-firebase.service'
 
 
 export const environment = {
-  production: false,
+  production: false, 
   firebase: {
     apiKey: "AIzaSyBj9XabgD32Wi2qUrKm7AZo4ZjQErXFKRo",
     authDomain: "tmcosm-48ed4.firebaseapp.com",
@@ -84,13 +84,13 @@ export const environment = {
     CalendarModule.forRoot(),
     CommonModule
 
-
   ],
   providers: [
     NavService,
     AuthService,
     CalendarMessageService,
     DatabaseFirebaseService
+    
   ],
   bootstrap: [AppComponent]
 })
