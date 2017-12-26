@@ -12,7 +12,7 @@ export class CalendarComponent implements OnInit {
   
    viewDate: Date = new Date();
   
-    events: CalendarEvent[] = [];
+    events: CalendarEvent[];
   
     clickedDate: Date;
 

@@ -11,7 +11,7 @@ import * as firebase from 'firebase';
 export class CalendarMessageService {
 
   //private subject = new Subject<any>();
-  private myEvents:CalendarEvent[]=[];
+  private myEvents:CalendarEvent[];
   //public name:string;
   //public lname:string; 
   //private itemDoc: AngularFirestoreDocument<any>;
