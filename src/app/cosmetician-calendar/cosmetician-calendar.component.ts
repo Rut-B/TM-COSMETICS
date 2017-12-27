@@ -17,16 +17,15 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CosmeticianCalendarComponent implements OnInit{
  viewDate: Date;
- events: CalendarEvent[];
+ events//: CalendarEvent[];
   view: string = 'day'; 
   private col:AngularFirestoreCollection<any>;
     
   constructor(private afs: AngularFirestore) { 
     this.col=this.afs.collection("events"); 
     this.viewDate = new Date();  
-    this.col.valueChanges().subscribe(res=>{
-      this.events=res;
-    });
+    this.events = this.col.valueChanges();
+    
       //this.ob=this.col.valueChanges();
   }
     // this.cevents=this.messageService.getMessage(); 
