@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarEvent, } from "angular-calendar";
+import { CalendarEvent} from "angular-calendar";
 import {  ChangeDetectionStrategy } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import {CalendarMessageService}from '../calendar-message.service';
+//import {CalendarMessageService}from '../calendar-message.service';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable'; 
 
 
 @Component({
@@ -12,49 +15,28 @@ import {CalendarMessageService}from '../calendar-message.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./cosmetician-calendar.component.css']
 })
-export class CosmeticianCalendarComponent implements OnInit,OnDestroy {
-  message: any;
-  subscription: Subscription;
-
+export class CosmeticianCalendarComponent implements OnInit{
  viewDate: Date;
- events: CalendarEvent[] = [];
-  view: string = 'month'; 
-  constructor(private messageService: CalendarMessageService) {
-   // this.viewDate = new Date();
-    this.viewDate=new Date(); 
-    this.events=messageService.getMessage();
-    /*let event: CalendarEvent = {
-     // start : new Date(),
-     start:new Date(),
-     // end: new Date(),
-      title: "test33",
-      color: {
-        primary: "#00FF00",
-        secondary: "#afafaf"
-      }   
-    }; 
-    this.events.push(event);*/
-      // subscribe to home component messages
-    /*this.subscription = this.messageService.getMessage().subscribe(message => { this.message = message;
-   this.viewDate=new Date();
-   let event: CalendarEvent = {
-    // start : new Date(),
-    start:new Date(),
-    // end: new Date(),
-     title: "test33",
-     color: {
-       primary: "#00FF00",
-       secondary: "#afafaf"
-     }   
-   };
-   this.events.push(event);
-  });*/
+ events: CalendarEvent[];
+  view: string = 'day'; 
+  private col:AngularFirestoreCollection<any>;
+    
+  constructor(private afs: AngularFirestore) { 
+    this.col=this.afs.collection("events"); 
+    this.viewDate = new Date();  
+    this.col.valueChanges().subscribe(res=>{
+      this.events=res;
+    });
+      //this.ob=this.col.valueChanges();
   }
-  ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
-   // this.subscription.unsubscribe();
-}
+    // this.cevents=this.messageService.getMessage(); 
+       //alert("yeah!");
+     // alert(this.format(date));  
 
+/*constructor(private messageService:CalendarMessageService) { 
+ this.viewDate = new Date();  
+ this.events=messageService.getMessage();
+} */
   ngOnInit() {
   }
 }

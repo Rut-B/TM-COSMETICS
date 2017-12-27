@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject'; 
 import { CalendarEvent, } from "angular-calendar";
-
 import { Component } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
@@ -38,7 +37,7 @@ export class CalendarMessageService {
      /* clearMessage() {
           this.subject.next();
       }*/
-      getMessage(){
+      getMessage(){ 
           return this.myEvents;
       }
 

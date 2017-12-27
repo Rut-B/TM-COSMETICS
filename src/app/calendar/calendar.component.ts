@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarEvent, } from "angular-calendar";
 import {CalendarMessageService}from '../calendar-message.service';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
+
 
 @Component({
   selector: 'app-calendar',
@@ -11,21 +14,33 @@ export class CalendarComponent implements OnInit {
   view: string = 'month';
   
    viewDate: Date = new Date();
-  
     events: CalendarEvent[];
-  
-    clickedDate: Date;
+    clickedDate: Date; 
+    private col:AngularFirestoreCollection<any>;
+    
+      
+      constructor(private afs: AngularFirestore,private messageService:CalendarMessageService) {
+       //this.itemDoc =this.afs.doc("events/1"); 
+       this.col=this.afs.collection("events"); 
+       this.viewDate = new Date();  
+       this.col.valueChanges().subscribe(res=>{
+         this.events=res;
+       });
+         //this.ob=this.col.valueChanges();
+     }
 
-  constructor(private messageService:CalendarMessageService) { 
+  /*constructor(private messageService:CalendarMessageService) { 
    this.viewDate = new Date();  
    this.events=messageService.getMessage();
-  } 
+  } */
   dayClicked(){
   this.addEvent(this.clickedDate);
   }
 
   addEvent(date){
-    this.viewDate = new Date(); 
+     date=this.format(date);
+     date=date+" 10:30:00";
+    this.viewDate = new Date();
     let event: CalendarEvent = {
       // start : new Date(),
       start:new Date(date),
@@ -35,11 +50,10 @@ export class CalendarComponent implements OnInit {
          primary: "#00FF00",
          secondary: "#afafaf"
        }   
-     }; 
-     this.messageService.sendMessage(event);
-     this.events=this.messageService.getMessage();  
-     this.events.forEach(item=>alert(item.start));
-    // alert(this.format(date));  
+     };  
+     alert(event.start);
+     this.messageService.sendMessage(event); 
+     //this.events=this.messageService.getMessage(); 
   }
 
   ngOnInit() {
