@@ -38,7 +38,7 @@ export class CalendarComponent implements OnInit {
      }; 
      this.messageService.sendMessage(event);
      this.events=this.messageService.getMessage();  
-     this.events.forEach(item=>alert(item.start));
+    // this.events.forEach(item=>alert(item.start));
     // alert(this.format(date));  
   }
 

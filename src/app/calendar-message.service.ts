@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CalendarEvent, } from "angular-calendar";
-
 import { Component } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
