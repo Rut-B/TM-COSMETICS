@@ -12,7 +12,7 @@ import {CalendarMessageService}from '../calendar-message.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./cosmetician-calendar.component.css']
 })
-export class CosmeticianCalendarComponent implements OnInit,OnDestroy {
+export class CosmeticianCalendarComponent implements OnInit {
   message: any;
   subscription: Subscription;
 
@@ -20,41 +20,10 @@ export class CosmeticianCalendarComponent implements OnInit,OnDestroy {
  events: CalendarEvent[] = [];
   view: string = 'month'; 
   constructor(private messageService: CalendarMessageService) {
-   // this.viewDate = new Date();
     this.viewDate=new Date(); 
     this.events=messageService.getMessage();
-    /*let event: CalendarEvent = {
-     // start : new Date(),
-     start:new Date(),
-     // end: new Date(),
-      title: "test33",
-      color: {
-        primary: "#00FF00",
-        secondary: "#afafaf"
-      }   
-    }; 
-    this.events.push(event);*/
-      // subscribe to home component messages
-    /*this.subscription = this.messageService.getMessage().subscribe(message => { this.message = message;
-   this.viewDate=new Date();
-   let event: CalendarEvent = {
-    // start : new Date(),
-    start:new Date(),
-    // end: new Date(),
-     title: "test33",
-     color: {
-       primary: "#00FF00",
-       secondary: "#afafaf"
-     }   
-   };
-   this.events.push(event);
-  });*/
+    
   }
-  ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
-    this.subscription.unsubscribe();
-}
-
-  ngOnInit() {
+   ngOnInit() {
   }
 }
