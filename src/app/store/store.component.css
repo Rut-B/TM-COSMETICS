@@ -5,3 +5,41 @@
     font-family: Copperplate Gothic Light;
     font-size: 2vw;
 }
+#table
+{
+    color: #CC2572; 
+    background-color: rgb(77, 75, 77);
+    width: 90%;
+    font-family: Copperplate Gothic Light;
+    font-size: 2vw;
+    padding: 5%;
+}
+.row
+{
+    color: #CC2572; 
+    width: 90%;
+    font-family: Copperplate Gothic Light;
+    font-size: 2vw;
+    padding: 5%;
+}
+#r1 
+{
+    background-color: rgb(156, 155, 156);
+}
+#r3
+{
+    background-color: rgb(156, 155, 156);
+}
+#r2
+{
+    background-color: rgb(77, 75, 77);
+}
+#r4
+{
+    background-color: rgb(77, 75, 77);
+}
+span
+{
+    margin: 8%;
+    text-align: center;
+}

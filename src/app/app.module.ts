@@ -5,9 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-
-
-
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AboutComponent } from './about/about.component';
