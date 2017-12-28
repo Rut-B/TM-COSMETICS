@@ -1,0 +1,45 @@
+[debug] [2017-12-25T17:09:03.888Z] ----------------------------------------------------------------------
+[debug] [2017-12-25T17:09:03.891Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\tklor\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-12-25T17:09:03.892Z] CLI Version:   3.14.0
+[debug] [2017-12-25T17:09:03.892Z] Platform:      win32
+[debug] [2017-12-25T17:09:03.892Z] Node Version:  v8.9.3
+[debug] [2017-12-25T17:09:03.894Z] Time:          Mon Dec 25 2017 19:09:03 GMT+0200 (Jerusalem Standard Time)
+[debug] [2017-12-25T17:09:03.894Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-25T17:09:03.913Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-25T17:09:03.915Z] > authorizing via signed-in user
+[debug] [2017-12-25T17:09:03.918Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-25T17:09:03.919Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/zU0J7sQ6jNGV7C7jk8B19Wdz8wayedwNJSpMo019hCU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Dec 25 2017 19:09:03 GMT+0200 (Jerusalem Standard Time)
+[debug] [2017-12-25T17:09:04.556Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T17:09:04.576Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/tester-f3a5c  
+ Mon Dec 25 2017 19:09:04 GMT+0200 (Jerusalem Standard Time)
+[debug] [2017-12-25T17:09:06.187Z] <<< HTTP RESPONSE 404
+[debug] [2017-12-25T17:09:06.187Z] <<< HTTP RESPONSE BODY
+[debug] [2017-12-25T17:09:06.189Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Mon Dec 25 2017 19:09:06 GMT+0200 (Jerusalem Standard Time)
+[debug] [2017-12-25T17:09:07.112Z] <<< HTTP RESPONSE 200
+[info] 
+[warn] !  Your CLI authentication needs to be updated to take advantage of new features.
+[warn] !  Please run firebase login --reauth
+[info] 
+[debug] [2017-12-25T17:09:07.119Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-12-25T17:09:07.120Z] > authorizing via signed-in user
+[debug] [2017-12-25T17:09:07.120Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-25T17:09:07.120Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/zU0J7sQ6jNGV7C7jk8B19Wdz8wayedwNJSpMo019hCU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Dec 25 2017 19:09:07 GMT+0200 (Jerusalem Standard Time)
+[debug] [2017-12-25T17:09:07.507Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T17:09:07.524Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/tester-f3a5c  
+ Mon Dec 25 2017 19:09:07 GMT+0200 (Jerusalem Standard Time)
+[debug] [2017-12-25T17:09:08.579Z] <<< HTTP RESPONSE 404
+[debug] [2017-12-25T17:09:08.579Z] <<< HTTP RESPONSE BODY
+[debug] [2017-12-25T17:09:08.579Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Mon Dec 25 2017 19:09:08 GMT+0200 (Jerusalem Standard Time)

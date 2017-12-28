@@ -4,4 +4,28 @@
     width: 100%;
     font-family: Copperplate Gothic Light;
     font-size: 2vw;
+} 
+#disp{
+    color: #CC2572;
+    text-align:center;
+    font-family:"Comic Sans MS", cursive, sans-serif;
+    font-size: 1vw;
+    font-weight: bold;
+    margin-top:3vh;
+}
+a{
+    font-size: 1.3vw;
+    margin-right:4vw;
+}
+button{ 
+    margin-top:4vh;
+   margin-left:43%;
+    color:rgb(212, 96, 150);
+
+}
+#a1{  
+    font-size: 1.5vw;
+    margin-left:7vw;
+    font-family: Copperplate Gothic Light;
+  
 }

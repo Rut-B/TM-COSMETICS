@@ -1,23 +1,8 @@
-
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 body{
     height: 100vh;
     /*width: 100vw;*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * angular-calendar - A calendar component for angular 4.0+ that can display events on a month, week or day view
@@ -26,6 +11,9 @@ body{
  * @link https://github.com/mattlewis92/angular-calendar#readme
  * @license MIT
  */
+ .mat-card {
+  background: #fff;
+  color: #cc2572;}
  .cal-month-view .cal-header {
     text-align: center;
     font-weight: bolder; }
