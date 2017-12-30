@@ -1,26 +1,61 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { CalendarEvent, } from "angular-calendar";
+import { Component } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
+import * as user_details from './globals';
 import * as firebase from 'firebase/app';
 
 
 @Injectable()
-export class AuthService {
-  private _user;
 
-  constructor(public afAuth: AngularFireAuth) { }
+export class AuthService {
+  public first_name;
+  public last_name;
+  public  email:string;
+  public  status:string;
+  private users_list:AngularFirestoreCollection<any>;
+  
+
+  private _user;
+  private user_colc:AngularFirestoreCollection<any>;
+  private myEvents:CalendarEvent[];
+  
+  constructor(public afAuth: AngularFireAuth,public afs:AngularFirestore) { 
+
+    this.users_list=this.afs.collection("USERS"); 
+    alert(  this.users_list);
+    this.users_list.valueChanges().subscribe(res=>{
+      this.myEvents=res;
+      alert(res);
+    });
+  }
 
   public exist_user(email:string,name:string){
     return true;
-
+    
     }
 
+
   loginWithGoogle() {
-    this.afAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()).then(user => {
-        console.log(user.isLogin);
-        var name =user.additionalUserInfo.profile.name;
-        var mail= user.additionalUserInfo.profile.mail;
+    this.afAuth.auth.signInWithPopup(  
+    new firebase.auth.GoogleAuthProvider()).then(user => {
+    console.log(user.isLogin);
+    var verify= user.additionalUserInfo.profile.verified_email;
+
+    if(verify){
+    this.first_name= user.additionalUserInfo.profile.first_name;
+    this.last_name = user.additionalUserInfo.profile.given_name;
+    this.email = user.additionalUserInfo.profile.mail;
+    
+    //check what the status:
+    
+        }
+        else{
+
+        }
        /* if(exist_user(name,mail)){
           //check if exist:
          
@@ -29,7 +64,7 @@ export class AuthService {
         else{//join to service
 
         }*/
-        this._user = user.user;
+       // this._user = user.user;
        // console.log(user.user.additionalUserInfo.profile.verified_email);
         
       });
