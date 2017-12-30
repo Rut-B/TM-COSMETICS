@@ -36,24 +36,16 @@ constructor(private afs: AngularFirestore) {
   this.col=this.afs.collection<event>("myApointments"); 
   this.col.valueChanges(). subscribe(res=>{
       this.appointments=res;
-    })
-    /*this.weeks = Observable.combineLatest(
-      this.dateFilter).switchMap(([start]) => afs.collection<event>("myApointments", ref => {
-      let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
-      if (start) { query = query.where('start','==', this.currentDate) };
-      return query;
-    }).valueChanges());*/ 
+    });
   }
-  b(){
-     //alert("clicked");  
-     this.myAppointments=[];
+  b(){ 
+     this.myAppointments=[]; 
      for(var i=0,j=0;i<this.appointments.length;i++){
        if(this.appointments[i].userName=="noamijofen"){
         this.myAppointments[j]=this.appointments[i];
         j++;
        }
      }
-   // this.appointments.forEach(item=>alert(item.start));
   }
 
   ngOnInit() {

@@ -1,8 +1,10 @@
 <div class="title">profile</div>
-<!--<div id="disp" *ngFor="let a of appointments">
-{{a.start}}
-</div>-->
 <button *ngIf="appointments!=null" (click)="b()">view my appointments</button>
+<!--<div class="title" id="lo" *ngIf="appointments==null">loading</div>-->
+<marquee  id="lo" *ngIf="appointments==null">
+<!--<img  src="/assets/th2.jpg" >-->
+loading
+</marquee>
 <div  id="disp" *ngFor="let appoi of myAppointments">
         <p>
         <a id="a1">{{ appoi.type}} Appointment</a>
