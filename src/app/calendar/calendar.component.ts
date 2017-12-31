@@ -11,8 +11,7 @@ import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  view: string = 'month';
-  
+  view: string = 'month'; 
    viewDate: Date = new Date();
     events: CalendarEvent[];
     clickedDate: Date; 
@@ -68,4 +67,5 @@ if(mm<10){
 var today = mm+'/'+dd+'/'+yyyy;
 return today;
 }
+
 }

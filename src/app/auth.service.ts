@@ -15,20 +15,21 @@ export class AuthService {
   public first_name;
   public last_name;
   public  email:string;
-  public  status:string;
+ 
+
   private users_list:AngularFirestoreCollection<any>;
   
 
   private _user;
   private user_colc:AngularFirestoreCollection<any>;
-  private myEvents:CalendarEvent[];
+  private users_details:USER[];
   
   constructor(public afAuth: AngularFireAuth,public afs:AngularFirestore) { 
 
     this.users_list=this.afs.collection("USERS"); 
-    alert(  this.users_list);
+    alert( this.users_list);
     this.users_list.valueChanges().subscribe(res=>{
-      this.myEvents=res;
+      this.users_details=res;
       alert(res);
     });
   }
@@ -96,4 +97,15 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut();
   }
+}
+
+
+
+export interface USER {
+  first_name: string;
+  last_name: string;
+  email: string;
+  address:string;
+  phone:number;
+  is_cosmetic:boolean;
 }
