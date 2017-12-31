@@ -30,15 +30,50 @@
   justify-content: center;
 }
 
-
-/* Column Widths */
-.mat-column-price,
-.mat-column-code {
-  max-width: 12%;
+#header{
+  display: flex;
+  flex-direction: row;
+  max-height: 500px;
+  min-width: 300px;
+  position: relative;
+  width:80vw;
 }
-.mat-column-treatment,
-.mat-column-duration{
-    max-width: 17%;
+.tuple{
+  display:flex;
+  position: relative;
+  width:80vw;
+}
+#content{
+  display: flex;
+  position: relative;
+  width:80vw;
+}
+/* Column Widths */
+.price{
+  width: 12vw;
+  float: left;
+
+  flex-direction: row;
+}
+.code {
+  display: block;
+  width: 12vw;
+   /*float: right;
+ display: flex;
+  flex-direction: row;*/
+}
+.treatment,
+.duration{
+    width: 17vw;
+    float: left;
+    display: flex;
+    flex-direction: row;
+}
+.description{
+  float: left;
+  width:42vw;
+  display: flex;
+  flex-direction: row;
 }
 
 

@@ -1,33 +1,9 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
-
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-//import{AngularFireModule}from "angularfire2/"
-
-
-@Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
-})
-export class DetailsComponent implements OnInit {
- 
-  constructor() { }
-  ngOnInit() {
-  }
-}
-=======
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {MatTableModule} from '@angular/material';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { _document } from '@angular/platform-browser/src/browser';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -35,18 +11,57 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DetailsComponent {
   public treatmentRef;
+  public code;
+  public price;
+  public description;
+  public duration;
+  public treatment;
   public treatmentDescription;
   public ELEMENT_DATA: Element[];
+  //@ViewChild('dataSource') dataSource: MatTableDataSource;
   public dataSource: MatTableDataSource < Element > ;
   constructor(private afs: AngularFirestore){
+
     this.treatmentRef = this.afs.collection("treatments");
     this.treatmentRef.valueChanges().subscribe(res=>{
       console.log(res);
       this.ELEMENT_DATA=res;
-      this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    });
-  }
 
+      for (let i=0;i<this.ELEMENT_DATA.length;i++){
+        //this.createTuple(i);
+      }
+     // this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    });
+   /* this.ELEMENT_DATA=this.treatmentRef.valueChanges();
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);*/
+  }
+public createTuple(iter:number){
+  let table=document.getElementById("content");
+  let tuple=document.createElement('div');
+  tuple.className="tuple";
+  var code=document.createElement('div');
+  code.className="code";
+  code.innerText=this.ELEMENT_DATA[iter].code.toString();
+  var treatment=document.createElement('div');
+  treatment.className="treatment";
+  treatment.innerText=this.ELEMENT_DATA[iter].name;
+  var description=document.createElement('div');
+  description.className="description";
+  description.innerText=this.ELEMENT_DATA[iter].description;
+  var duration=document.createElement('div');
+  duration.className="duration";
+  duration.innerText=this.ELEMENT_DATA[iter].duration;
+  var price=document.createElement('div');
+  price.className="price";
+  price.innerText=this.ELEMENT_DATA[iter].price.toString();
+  tuple.appendChild(code);
+  tuple.appendChild(treatment);
+  tuple.appendChild(description);
+  tuple.appendChild(duration);
+  tuple.appendChild(price);
+  table.appendChild(tuple);
+
+}
  
   
    displayedColumns = ['code', 'treatment', 'description', 'duration','price'];
@@ -63,4 +78,3 @@ export class DetailsComponent {
     code:number;
     price:number;
 }
->>>>>>> 2c101cec8598bdd1296722f57e6e824b29006b9b
