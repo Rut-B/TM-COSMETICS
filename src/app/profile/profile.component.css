@@ -20,7 +20,8 @@ a{
 button{ 
     margin-top:4vh;
    margin-left:43%;
-    color:rgb(212, 96, 150);
+    color:rgb(212, 96, 150); 
+    font-size:1.2vw;
 
 }
 #a1{  
@@ -28,4 +29,16 @@ button{
     margin-left:7vw;
     font-family: Copperplate Gothic Light;
   
+}
+
+#lo{   
+     width:35vw;
+    margin-top: 6vw;
+    margin-left: 25.5vw; 
+    font-family:"Comic Sans MS", cursive, sans-serif;
+    color:rgb(214, 133, 171); 
+    font-size:2vw; border-style: solid;
+    border-color:rgb(212, 96, 150); 
+    background-color:rgb(247, 228, 236); 
+
 }
