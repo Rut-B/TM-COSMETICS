@@ -18,7 +18,6 @@ import { LoginComponent } from './login/login.component';
 import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
 
 
-
 export const appRoutes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
     { path: "login", component: LoginComponent },
