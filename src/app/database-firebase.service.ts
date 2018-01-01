@@ -3,6 +3,8 @@ import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection }
 import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class DatabaseFirebaseService {
+public selected: string[]=[];
+
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -152,8 +154,6 @@ addMessageManager(){
 }
 
 }
-
-
 
 
 
