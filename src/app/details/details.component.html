@@ -1,13 +1,28 @@
+<div id="table">
+<div id="header_table">
+  <div class="code">code</div>
+  <div class="treatment">treatment</div>
+  <div class="description">description</div>
+  <div class="duration">duration</div>
+  <div class="price">price</div>
+</div>
+<div id="content">
+</div>
+</div>
+<!--
+
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-
+</div>
   <mat-table #table [dataSource]="dataSource" class="example-table">
+  </mat-table>
 
-    <ng-container matColumnDef="code" id="code">
+  
+   <ng-container matColumnDef="code" id="code">
       <mat-header-cell *matHeaderCellDef> code </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
     </ng-container>
@@ -34,8 +49,8 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div>
+
+ -->
 
   
   <!-- Copyright 2017 Google Inc. All Rights Reserved.
