@@ -7,39 +7,50 @@
 }
 #table
 {
-    color: #CC2572; 
-    background-color: rgb(77, 75, 77);
-    width: 90%;
+    color: rgb(207, 37, 122); 
+    background-color:  rgb(236, 218, 232);
+    width: 65vw;
     font-family: Copperplate Gothic Light;
     font-size: 2vw;
-    padding: 5%;
+    padding:2vw;
+    border-radius: 1%;
+    border-color: rgb(161, 32, 75); 
+    border-style:solid;
+    font-weight:bolder; 
+    margin-left:8vw; 
+    margin-top:4vw;
 }
 .row
 {
     color: #CC2572; 
-    width: 90%;
+    width: 65vw;
+    margin-left:8vw;
     font-family: Copperplate Gothic Light;
-    font-size: 2vw;
-    padding: 5%;
+    font-size: 1.5vw;
+    padding:2vw; 
+    border-radius: 1%;
+    border-color: rgb(161, 32, 75); 
+    border-style:double; 
+    margin-top: 0.4vh;
+   
 }
 #r1 
 {
-    background-color: rgb(156, 155, 156);
+    background-color: rgb(247, 232, 243);
 }
 #r3
 {
-    background-color: rgb(156, 155, 156);
+    background-color:  rgb(247, 232, 243);
 }
-#r2
-{
-    background-color: rgb(77, 75, 77);
+#r2{
+    background-color:  rgb(236, 218, 232);
 }
 #r4
 {
-    background-color: rgb(77, 75, 77);
+    background-color: rgb(236, 218, 232);
 }
 span
 {
-    margin: 8%;
+    margin:5vw;
     text-align: center;
 }

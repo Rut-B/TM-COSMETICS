@@ -29,37 +29,74 @@
   align-items: center;
   justify-content: center;
 }
+.title{
+  color: #CC2572;
+  text-align: center;
+  width: 100%;
+  font-family: Copperplate Gothic Light;
+  font-size: 2vw;
+}
 
-#header{
+.row
+{
+  color: #CC2572; 
+  width: 65vw;
+  margin-left:8vw;
+  font-family: Copperplate Gothic Light;
+  font-size: 1.5vw;
+  padding:2vw; 
+  border-radius: 1%;
+  border-color: rgb(161, 32, 75); 
+  border-style:double; 
+  margin-top: 0.4vh;
+ 
+}
+#header_table{
+  color:lightgrey;
+  background-color:#CC2572;
   display: flex;
   flex-direction: row;
   max-height: 500px;
   min-width: 300px;
   position: relative;
   width:80vw;
+  font-family: Copperplate Gothic Light;
+  font-size: 2vw;
+  margin-top:0vw;
 }
+
 .tuple{
   display:flex;
   position: relative;
   width:80vw;
+  margin:1vh;
 }
-#content{
-  display: flex;
+
+#table{
   position: relative;
   width:80vw;
+  color: rgb(207, 37, 122); 
+  background-color:  rgb(236, 218, 232);
+  font-family: Copperplate Gothic Light;
+  font-size: 2vw;
+  padding:2vw;
+  border-radius: 1%;
+  border-color: rgb(161, 32, 75); 
+  border-style:solid;
+  font-weight:bolder;  
+ /* margin-top:4vw;*/
 }
 /* Column Widths */
 .price{
   width: 12vw;
   float: left;
-
   flex-direction: row;
 }
 .code {
   display: block;
   width: 12vw;
-   /*float: right;
- display: flex;
+  float: right;
+ /* display: flex;
   flex-direction: row;*/
 }
 .treatment,
