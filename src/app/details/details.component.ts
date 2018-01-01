@@ -92,9 +92,10 @@ public selectTreatment(event) {
     let tups=document.getElementsByClassName("tuple");
     let total_duration=0;
     for (let i=0;i<tups.length;i++){
-      if(tups[i].style.backgroundColor=="grey"){
+      let tup_iter=document.getElementById(i.toString());
+      if(tup_iter.style.backgroundColor=="grey"){
         this.selectedTreatments.push(tups[i].firstElementChild.innerHTML);
-        let dur=tups[i].firstElementChild.nextSibling.nextSibling.nextSibling.innerHTML;
+        let dur=tup_iter.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
         if (dur.indexOf(" ")!=-1){
           let SnumDur=dur.split(" ")[0];
           let numDur=parseInt(SnumDur);
@@ -103,6 +104,7 @@ public selectTreatment(event) {
       }
     }
     alert(this.selectedTreatments);
+    alert(total_duration);
   }
   }
   export interface Element {
