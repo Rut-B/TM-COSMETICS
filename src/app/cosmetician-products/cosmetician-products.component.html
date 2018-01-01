@@ -12,10 +12,10 @@
       </div>
       <div>
       <h3>add Treatment</h3>
-      <input type="text" [(ngModel)]="databaseFirebase.treatmentName" placeholder="nameTreatment" >
+      <input type="text" [(ngModel)]="databaseFirebase.treatmentName" placeholder="treatment name" >
       <input type="text" [(ngModel)]="databaseFirebase.treatmentCode" placeholder="code" >
       <input type="text" [(ngModel)]="databaseFirebase.treatmentPrice" placeholder="price" >
-      <input type="text" [(ngModel)]="databaseFirebase.treatmentDuration" placeholder="treatmentDuration" >
+      <input type="text" [(ngModel)]="databaseFirebase.treatmentDuration" placeholder="treatment Duration in minutes" >
       <!-- <input type="text" [(ngModel)]="treatmentPossibleCosmetician" placeholder="PossibleCosmetician" > -->
       <button (click)="addTreatment()">add</button>
       </div>

@@ -96,10 +96,10 @@ addProducts(){
 }
 addTreatment(){
   let treat={
-    treatmentName:this.treatmentName,
+    name:this.treatmentName,
     code:this.treatmentCode,
     price:this.treatmentPrice,
-    duration:this.treatmentDuration,
+    duration:this.treatmentDuration+" minutes",
     PossibleCosmetician:this.treatmentPossibleCosmetician
   }
     this.treatmentRef.add(treat).then(res=>{
