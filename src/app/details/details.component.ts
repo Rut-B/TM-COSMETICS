@@ -91,6 +91,7 @@ public selectTreatment(event) {
   public selectTime(){
     let tups=document.getElementsByClassName("tuple");
     let total_duration=0;
+    this.selectedTreatments=[];
     for (let i=0;i<tups.length;i++){
       let tup_iter=document.getElementById(i.toString());
       if(tup_iter.style.backgroundColor=="grey"){
@@ -99,6 +100,7 @@ public selectTreatment(event) {
         if (dur.indexOf(" ")!=-1){
           let SnumDur=dur.split(" ")[0];
           let numDur=parseInt(SnumDur);
+          alert(numDur);
           total_duration+=numDur;
         }
       }
