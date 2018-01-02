@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase';
 import {DatabaseFirebaseService} from '../database-firebase.service'
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-cosmetician-settings',

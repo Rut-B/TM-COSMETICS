@@ -36,6 +36,18 @@
   font-family: Copperplate Gothic Light;
   font-size: 2vw;
 }
+#button{
+  color: white;
+  text-align: center;
+  background-color:#CC2572;
+  width:13vw;
+  font-family:Copperplate Gothic Light;
+  font-size:1.5vw;
+  font-weight: 900;
+  margin-left: 71.1vw;
+  height:7vh;
+
+}
 
 .row
 {
@@ -76,6 +88,10 @@
 }
 
 .tuple{
+  &:hover{ 
+    opacity: 0.9;
+    cursor: pointer;
+    }
   display:flex;
   position: relative;
   width:80vw;

@@ -3,6 +3,8 @@ import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection }
 import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class DatabaseFirebaseService {
+public selected: string[]=[];
+
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -10,6 +12,7 @@ export class DatabaseFirebaseService {
   public locationtRef;
   public cosmeticiansRef;
   public messageManagerRef;
+  public settingDayRef;
 
   public specificName:string;
   public productName:string;
@@ -51,6 +54,33 @@ export class DatabaseFirebaseService {
   public appointmentDuration:Date;
   public appointmentPrice:number;
   public appointmentLocation:string;
+
+ 
+
+
+  public Sunday:string;
+  public sundayMorning:string;
+  public sundayEvening:string;
+
+  public Monday:string;
+  public mondayMorning:string;
+  public mondayEvening:string;
+
+  public Tuesday:string;
+  public tuesdayMorning:string;
+  public tuesdayEvening:string;
+
+  public Wednesday:string;
+  public wednesdayMorning:string;
+  public wednesdayEvening:string;
+
+  public Thursday:string;
+  public thursdayMorning:string;
+  public thursdayEvening:string;
+
+  public Friday:string;
+  public fridayMorning:string;
+  public fridayEvening:string;
   
   constructor(private afs: AngularFirestore){
     this.appointmentRef = this.afs.collection("appointment");
@@ -60,10 +90,17 @@ export class DatabaseFirebaseService {
     this.locationtRef = this.afs.collection("locations");
     this.cosmeticiansRef = this.afs.collection("cosmeticians");
     this.messageManagerRef = this.afs.collection("messageManager");
+    this.settingDayRef=this.afs.collection("Setting Days")
     this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
     this.cosmeticianAvailability=[];
     this.appointmentCustomer=[];
     this.appointmentCosmetician=[];
+    this.Sunday="Sunday";
+    this.Monday="Monday";
+    this.Tuesday="Tuesday";
+    this.Wednesday="Wednesday";
+    this.Thursday="Thursday";
+    this.Friday="Friday";
   }
   addAppointment(){
     let appoin={
@@ -87,17 +124,14 @@ addProducts(){
       price:this.price
     }  
     this.prodRef.add(item).then(res=>{
-
     })
-
-
 }
 addTreatment(){
   let treat={
-    treatmentName:this.treatmentName,
+    name:this.treatmentName,
     code:this.treatmentCode,
     price:this.treatmentPrice,
-    duration:this.treatmentDuration,
+    duration:this.treatmentDuration+" minutes",
     PossibleCosmetician:this.treatmentPossibleCosmetician
   }
     this.treatmentRef.add(treat).then(res=>{
@@ -150,10 +184,54 @@ addMessageManager(){
     content:this.content
   });
 }
+addSettingDay(){ 
+  let hoursSunday={
+    date: this.Sunday,
+    hoursMorning: this.sundayMorning,
+    hoursEvning:this.sundayEvening
+  }  
+  this.settingDayRef.add(hoursSunday).then(res=>{
+  })
+  let hoursMonday={
+    date: this.Monday,
+    hoursMorning: this.mondayMorning,
+    hoursEvning:this.mondayEvening
+  }  
+  this.settingDayRef.add(hoursMonday).then(res=>{
+  })
+  
+  let hoursTuesday={
+    date: this.Tuesday,
+    hoursMorning: this.tuesdayMorning,
+    hoursEvning:this.tuesdayEvening
+  }  
+  this.settingDayRef.add(hoursTuesday).then(res=>{
+  })
+  let hoursWednesday={
+    date: this.Wednesday,
+    hoursMorning: this.wednesdayMorning,
+    hoursEvning:this.wednesdayEvening
+  }  
+  this.settingDayRef.add(hoursWednesday).then(res=>{
+  })
+  let hoursThursday={
+    date: this.Thursday,
+    hoursMorning: this.thursdayMorning,
+    hoursEvning:this.thursdayEvening
+  }  
+  this.settingDayRef.add(hoursThursday).then(res=>{
+  })
+  let hoursFriday={
+    date: this.Friday,
+    hoursMorning: this.fridayMorning,
+    hoursEvning:this.fridayEvening
+  }  
+  this.settingDayRef.add(hoursFriday).then(res=>{
+  })
 
 }
 
-
+}
 
 
 
