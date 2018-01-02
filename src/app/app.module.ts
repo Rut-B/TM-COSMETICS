@@ -31,7 +31,8 @@ import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician
 import { CommonModule } from '@angular/common';
 import{CalendarMessageService}from './calendar-message.service';
 import * as firebase from 'firebase';
-import {DatabaseFirebaseService} from './database-firebase.service'
+import {DatabaseFirebaseService} from './database-firebase.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 //import { AngularFirestore } from "angularfire2/firestore";
 
 
@@ -82,7 +83,8 @@ export const environment = {
     AngularFireModule.initializeApp(environment.firebase), 
     AngularFirestoreModule,
     CalendarModule.forRoot(),
-    CommonModule
+    CommonModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [

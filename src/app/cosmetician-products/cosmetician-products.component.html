@@ -1,5 +1,5 @@
 <div class="title">store</div>
-
+<mat-card id="main">
 <div>
       <h3>add Products</h3>
       <input type="text" [(ngModel)]="databaseFirebase.productName" placeholder="name" >
@@ -8,8 +8,8 @@
       <input type="text" [(ngModel)]="databaseFirebase.marketer" placeholder="marketer" >
       <input type="text" [(ngModel)]="databaseFirebase.price" placeholder="price" >
       <button (click)="addProducts()">add</button>
-      
       </div>
+
       <div>
       <h3>add Treatment</h3>
       <input type="text" [(ngModel)]="databaseFirebase.treatmentName" placeholder="treatment name" >
@@ -38,6 +38,7 @@
               <input type="text" [(ngModel)]="databaseFirebase.customerPermissionLevel" placeholder="PermissionLevel" >
               <button (click)="addCustomer()">add</button>
       </div>
+
       
     <!--  <div>
               <h3>add cosmetician</h3>
@@ -65,6 +66,7 @@
               <input type="text" [(ngModel)]="databaseFirebase.appointmentLocation" placeholder="Location" >
               <button (click)="addAppointment()">add</button>
       </div>
+</mat-card>
       
     
       <!--
