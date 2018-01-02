@@ -1,8 +1,8 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { AboutComponent } from './about/about.component';
 import { StoreComponent } from './store/store.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
@@ -14,7 +14,6 @@ import { appRoutes } from "./app.route";
 import { RouterModule } from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { InfoComponent } from './info/info.component';
 import { SettingComponent } from './setting/setting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
@@ -34,7 +33,7 @@ import * as firebase from 'firebase';
 import {DatabaseFirebaseService} from './database-firebase.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 //import { AngularFirestore } from "angularfire2/firestore";
-
+import {GuardAuthGuard}from './guard-auth.guard'
 
 export const environment = {
   production: false, 
@@ -52,7 +51,6 @@ export const environment = {
   declarations: [
     AppComponent,
     CalendarComponent,
-    AboutComponent,
     StoreComponent,
     DetailsComponent,
     HomeComponent,
@@ -61,7 +59,6 @@ export const environment = {
     NavComponentComponent,
     LoginComponent,
     ProfileComponent,
-    InfoComponent,
     SettingComponent,
     CosmeticianCalendarComponent
   ],
@@ -91,11 +88,12 @@ export const environment = {
     NavService,
     AuthService,
     CalendarMessageService,
-    DatabaseFirebaseService
-    
+    DatabaseFirebaseService,
+    GuardAuthGuard
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
+
 
 }

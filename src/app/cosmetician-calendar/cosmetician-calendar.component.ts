@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
  // changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./cosmetician-calendar.component.scss']
 })
+
 export class CosmeticianCalendarComponent implements OnInit{
  viewDate: Date;
  events//: CalendarEvent[];
@@ -36,5 +37,6 @@ export class CosmeticianCalendarComponent implements OnInit{
     this.events = this.col.valueChanges();
   }
   ngOnInit() {
+
   }
 }
