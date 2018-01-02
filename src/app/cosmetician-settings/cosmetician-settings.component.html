@@ -1,5 +1,5 @@
 
-    <div>
+    <!-- <div>
         <h3>add Treatment</h3>
         <input type="text" [(ngModel)]="TreatmentDescription" placeholder="TreatmentDescription" >
         <input type="text" [(ngModel)]="treatmentName" placeholder="nameTreatment" >
@@ -47,5 +47,34 @@
             <input type="text" [(ngModel)]="managerLastName" placeholder="lastName" >
             <input type="text" [(ngModel)]="managerPhone" placeholder="phone" >
             <button (click)="addManager()">add</button>
-    </div>
+    </div> -->
+    
 
+    <div>
+        <h3>Sunday:</h3>
+        <!-- <input type="text" [(ngModel)]="databaseFirebase.Sunday" placeholder="date" > -->
+        <input type="text" [(ngModel)]="databaseFirebase.sundayMorning" placeholder="duringHoursMorning" >
+        <input type="text" [(ngModel)]="databaseFirebase.sundayEvening" placeholder="duringHoursEvening" >  
+       <h3>Monday:</h3>
+        <!-- <input type="text" [(ngModel)]="databaseFirebase.Monday" placeholder="date" > -->
+        <input type="text" [(ngModel)]="databaseFirebase.mondayMorning" placeholder="duringHoursMorning" >
+        <input type="text" [(ngModel)]="databaseFirebase.mondayEvening" placeholder="duringHoursEvening" >   
+        <h3>Tuesday:</h3>
+        <!-- <input type="text" [(ngModel)]="databaseFirebase.Tuesday" placeholder="date" > -->
+        <input type="text" [(ngModel)]="databaseFirebase.tuesdayMorning" placeholder="duringHoursMorning" >
+        <input type="text" [(ngModel)]="databaseFirebase.tuesdayEvening" placeholder="duringHoursEvening" > 
+        <h3>Wednesday:</h3>
+        <!-- <input type="text" [(ngModel)]="databaseFirebase.Wednesday" placeholder="date" > -->
+        <input type="text" [(ngModel)]="databaseFirebase.wednesdayMorning" placeholder="duringHoursMorning" >
+        <input type="text" [(ngModel)]="databaseFirebase.wednesdayEvening" placeholder="duringHoursEvening" >  
+        <h3>Thursday:</h3> 
+        <!-- <input type="text" [(ngModel)]="databaseFirebase.Thursday" placeholder="date" > -->
+        <input type="text" [(ngModel)]="databaseFirebase.thursdayMorning" placeholder="duringHoursMorning" >
+        <input type="text" [(ngModel)]="databaseFirebase.thursdayEvening" placeholder="duringHoursEvening" >  
+        <h3>Friday:</h3> 
+        <!-- <input type="text" [(ngModel)]="databaseFirebase.Friday" placeholder="date" > -->
+        <input type="text" [(ngModel)]="databaseFirebase.fridayMorning" placeholder="duringHoursMorning" >
+        <input type="text" [(ngModel)]="databaseFirebase.fridayEvening" placeholder="duringHoursEvening" >  
+        <br> 
+        <button (click)="addSettingDay()">add</button>
+</div>

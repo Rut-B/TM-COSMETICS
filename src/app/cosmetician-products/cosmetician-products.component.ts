@@ -9,37 +9,30 @@ import {DatabaseFirebaseService} from '../database-firebase.service'
 })
 export class CosmeticianProductsComponent implements OnInit {
 
-  
-  
-  
 constructor(public databaseFirebase: DatabaseFirebaseService ) {   
-
-
 }
-
-
-  ngOnInit() {
-  }
- public addProducts(){
-  this.databaseFirebase.addProducts();
- }
- public addTreatment(){
-  this.databaseFirebase.addTreatment();
- }
- public addLocation(){
-  this.databaseFirebase.addLocation();
- }
- public addCustomer()
-{
-  this.databaseFirebase.addCustomer();  
-}
-public addCosmetician(){
-  this.databaseFirebase.addCosmetician();
-}
-public addMessageManager(){
-  this.databaseFirebase.addMessageManager();
-}
-public addAppointment(){
-  this.databaseFirebase.addAppointment();
-}
+        ngOnInit() {
+        }
+      public addProducts(){
+        this.databaseFirebase.addProducts();
+      }
+      public addTreatment(){
+        this.databaseFirebase.addTreatment();
+      }
+      public addLocation(){
+        this.databaseFirebase.addLocation();
+      }
+      public addCustomer()
+      {
+        this.databaseFirebase.addCustomer();  
+      }
+      public addCosmetician(){
+        this.databaseFirebase.addCosmetician();
+      }
+      public addMessageManager(){
+        this.databaseFirebase.addMessageManager();
+      }
+      public addAppointment(){
+        this.databaseFirebase.addAppointment();
+      }
 }
