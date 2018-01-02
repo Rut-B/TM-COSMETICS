@@ -11,27 +11,19 @@ import * as firebase from 'firebase';
 })
 export class CosmeticianSettingsComponent implements OnInit {
 
-
-
-  
-  
-  constructor(public databaseFirebase: DatabaseFirebaseService ) {   
-    
-    
+  constructor(public databaseFirebase: DatabaseFirebaseService ) {
     }
-    
-    
-      ngOnInit() {
-      }
+    ngOnInit() {
+    }
      public addProducts(){
       this.databaseFirebase.addProducts();
-     }
+    }
      public addTreatment(){
       this.databaseFirebase.addTreatment();
-     }
+    }
      public addLocation(){
       this.databaseFirebase.addLocation();
-     }
+    }
      public addCustomer()
     {
       this.databaseFirebase.addCustomer();  
@@ -45,6 +37,4 @@ export class CosmeticianSettingsComponent implements OnInit {
     public addAppointment(){
       this.databaseFirebase.addAppointment();
     }
-
-
 }
