@@ -60,7 +60,7 @@ export class AuthService {
   }
 
 
-  loginWithGoogle() {
+  public loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(  
     new firebase.auth.GoogleAuthProvider()).then(user => {
     console.log(user.isLogin);
@@ -72,20 +72,23 @@ export class AuthService {
     var last_name = user.additionalUserInfo.profile.family_name;
     var email = user.additionalUserInfo.profile.email;
     alert("in login"+first_name+last_name+email);
-    if(!this.exist_user(email,first_name,last_name))
+    if(this.exist_user(email,first_name,last_name))
     {
+    isLogin= true;
 
-    
+    alert("exist");
+    this.router.navigate(["home"]);
+    return true;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
     //add new user.
     //this.router.navigate(["add_customer"]);
     }
     else{
-    isLogin= true;
-    navs.viewNavs();
+    return false;
     }
   
       }  
       });
+      return true;
   }
 
   public loginWIthEmail(email: string, password: string) {
@@ -93,6 +96,7 @@ export class AuthService {
       .then(user => {
 
       });
+      
   }
 
   public signupWithEmail(email: string, password: string){
