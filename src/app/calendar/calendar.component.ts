@@ -28,8 +28,9 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
   this.addEvent(this.clickedDate);
+   
   }
-
+  
   addEvent(date){
      date=this.format(date);
      date=date+" 10:30:00";
@@ -44,9 +45,12 @@ export class CalendarComponent implements OnInit {
          secondary: "#afafaf"
        }   
 
-     };  
+     }; 
+
+     
      alert(event.start);
-     this.messageService.sendMessage(event); 
+     this.messageService.sendMessage(event);
+     
      //this.events=this.messageService.getMessage(); 
 
   }

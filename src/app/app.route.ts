@@ -16,7 +16,6 @@ import { LoginComponent } from './login/login.component';
 import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
 import {GuardAuthGuard}from './guard-auth.guard'
 
-
 export const appRoutes: Routes = [
 
    
