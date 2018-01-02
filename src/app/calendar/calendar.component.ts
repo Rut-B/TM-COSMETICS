@@ -17,7 +17,6 @@ export class CalendarComponent implements OnInit {
     events: CalendarEvent[];
     clickedDate: Date; 
     private col:AngularFirestoreCollection<any>;
-    
       
       constructor(private afs: AngularFirestore,private messageService:CalendarMessageService) {
        //this.itemDoc =this.afs.doc("events/1"); 
@@ -26,13 +25,8 @@ export class CalendarComponent implements OnInit {
        this.col.valueChanges().subscribe(res=>{
          this.events=res;
        });
-         //this.ob=this.col.valueChanges();
      }
 
-  /*constructor(private messageService:CalendarMessageService) { 
-   this.viewDate = new Date();  
-   this.events=messageService.getMessage();
-  } */
   dayClicked(){
   this.addEvent(this.clickedDate);
   }

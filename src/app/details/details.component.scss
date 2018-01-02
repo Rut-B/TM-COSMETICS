@@ -1,0 +1,132 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+  position: relative;
+
+}
+
+
+.example-header {
+      min-height: 64px;
+      padding: 8px 24px 0;
+}
+
+.example-table {
+  overflow: auto;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title{
+  color: #CC2572;
+  text-align: center;
+  width: 100%;
+  font-family: Copperplate Gothic Light;
+  font-size: 2vw;
+}
+#button{
+  color: white;
+  text-align: center;
+  background-color:#CC2572;
+  width:13vw;
+  font-family:Copperplate Gothic Light;
+  font-size:1.5vw;
+  font-weight: 900;
+  margin-left: 71.1vw;
+  height:7vh;
+
+}
+
+.row
+{
+  color: #CC2572; 
+  width: 65vw;
+  margin-left:8vw;
+  font-family: Copperplate Gothic Light;
+  font-size: 1.5vw;
+  padding:2vw; 
+  border-radius: 1%;
+  border-color: rgb(161, 32, 75); 
+  border-style:double; 
+  margin-top: 0.4vh;
+ 
+}
+#header_table{
+  color:lightgrey;
+  background-color:#CC2572;
+  display: flex;
+  flex-direction: row;
+  max-height: 500px;
+  min-width: 300px;
+  position: relative;
+  width:80vw;
+  font-family: Copperplate Gothic Light;
+  font-size: 2vw;
+  margin-top:0vw;
+}
+
+.tuple{
+  &:hover{ 
+    opacity: 0.9;
+    cursor: pointer;
+    }
+  display:flex;
+  position: relative;
+  width:80vw;
+  margin:1vh;
+}
+
+#table{
+  position: relative;
+  width:80vw;
+  color: rgb(207, 37, 122); 
+  background-color:  rgb(236, 218, 232);
+  font-family: Copperplate Gothic Light;
+  font-size: 2vw;
+  padding:2vw;
+  border-radius: 1%;
+  border-color: rgb(161, 32, 75); 
+  border-style:solid;
+  font-weight:bolder;  
+ /* margin-top:4vw;*/
+}
+/* Column Widths */
+.price{
+  width: 12vw;
+  float: left;
+  flex-direction: row;
+}
+.code {
+  display: block;
+  width: 12vw;
+  float: right;
+ /* display: flex;
+  flex-direction: row;*/
+}
+.treatment,
+.duration{
+    width: 17vw;
+    float: left;
+    display: flex;
+    flex-direction: row;
+}
+.description{
+  float: left;
+  width:42vw;
+  display: flex;
+  flex-direction: row;
+}
+
+

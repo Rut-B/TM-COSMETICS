@@ -3,6 +3,8 @@ import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection }
 import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class DatabaseFirebaseService {
+public selected: string[]=[];
+
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -126,10 +128,10 @@ addProducts(){
 }
 addTreatment(){
   let treat={
-    treatmentName:this.treatmentName,
+    name:this.treatmentName,
     code:this.treatmentCode,
     price:this.treatmentPrice,
-    duration:this.treatmentDuration,
+    duration:this.treatmentDuration+" minutes",
     PossibleCosmetician:this.treatmentPossibleCosmetician
   }
     this.treatmentRef.add(treat).then(res=>{
@@ -230,8 +232,6 @@ addSettingDay(){
 }
 
 }
-
-
 
 
 
