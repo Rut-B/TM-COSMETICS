@@ -13,7 +13,7 @@ constructor()
 // while(!users.isLogin);
  var exist=true;
  users.USER.prototype.is_customer
-  if (/*users.AuthService.prototype.corrent_user.is_customer*/exist)
+  if (/*users.AuthService.prototype.corrent_user.is_customer*/myGlobals.customer)
   {
     this.navItems=[
       new NavItem("settings","settings",'/assets/6.png'),
