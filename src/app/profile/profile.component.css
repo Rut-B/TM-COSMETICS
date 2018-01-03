@@ -30,16 +30,13 @@ button{
     font-family: Copperplate Gothic Light;
   
 }
-
-#lo{   
-     width:35vw;
-   height: 45px;
-    margin-top: 6vw;
-    margin-left: 25.5vw; 
-    font-family: 'Yantramanav', sans-serif;
-    color:rgb(214, 133, 171); 
-    font-size:2vw; border-style: solid;
-    border-color:rgb(212, 96, 150); 
-    background-color:rgb(247, 228, 236); 
-
+#load{
+width:20vw; 
+ height:30vh;
+margin-left:30.5vw;
+margin-top:3vw;   background-color: rgb(250, 241, 245);
+} 
+.spin{
+     margin-top:4vw;
+   margin-left: 6vw;
 }
