@@ -33,6 +33,7 @@ import * as firebase from 'firebase';
 import {DatabaseFirebaseService} from './database-firebase.service'
 //import { AngularFirestore } from "angularfire2/firestore";
 import {GuardAuthGuard}from './guard-auth.guard'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 export const environment = {
   production: false, 
@@ -79,7 +80,8 @@ export const environment = {
     AngularFireModule.initializeApp(environment.firebase), 
     AngularFirestoreModule,
     CalendarModule.forRoot(),
-    CommonModule
+    CommonModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [
