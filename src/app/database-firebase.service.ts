@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+//import { ProfileComponent } from '../profile.component.';
+
+
+
+
 @Injectable()
 export class DatabaseFirebaseService {
 public selected: string[]=[];
@@ -240,6 +245,17 @@ addSettingDay(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
   
     //this.col=this.afs.collection('users');
     //this.prod=this.afs.collection('products');
@@ -276,4 +292,7 @@ addSettingDay(){
   //   //alert(this.name + ", " + this.lname);
   //  })
   // }
+
+
+
 

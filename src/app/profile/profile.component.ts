@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
 import { app } from 'firebase/app';
 import { Data } from '@angular/router/src/config';
+import { DatabaseFirebaseService } from '../database-firebase.service';
 
 export interface event{
   userName: string;
@@ -51,17 +52,9 @@ constructor(private afs: AngularFirestore) {
        }
      }
   }
-  getTurnByCosmetician()
-  {
-    this.myAppointments=[];
-    for(var i=0,j=0;i<this.appointments.length;i++){
-      if(this.appointments[i].cosmeticianName=="Eti"){
-       this.myAppointments[j]=this.appointments[i];
-       j++;
-      }
-    }
-  }
-  
+ 
+
+
   /*getTurnByTime()
   {
     this.myAppointments=[];
@@ -89,9 +82,9 @@ constructor(private afs: AngularFirestore) {
   {
     this.myAppointments=[];
     var date1=new Date();
-    alert(this.appointments.length);
+   // alert(this.appointments.length);
     for(var i=0,j=0;i<this.appointments.length;i++){
-      alert(this.appointments[i].start.getDate());
+      //alert(this.appointments[i].start.getDate());
       var date2=(this.appointments[i].start.getDate()) +"/"+ (this.appointments[i].start.getMonth()+1)+ "/"+ (this.appointments[i].start.getFullYear());
       if(date2=="31/12/2017"){
        this.myAppointments[j]=this.appointments[i];
@@ -99,7 +92,17 @@ constructor(private afs: AngularFirestore) {
       }
     }
   }
-  
+  getTurnByCosmetician()
+  {
+    this.myAppointments=[];
+    for(var i=0,j=0;i<this.appointments.length;i++){
+      if(this.appointments[i].cosmeticianName=="Eti"){
+       this.myAppointments[j]=this.appointments[i];
+       j++;
+      }
+    }
+  }
+    
 
   ngOnInit() {
   }
