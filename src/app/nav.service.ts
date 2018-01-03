@@ -11,7 +11,7 @@ constructor()
 //alert("in con of nav");
  
 // while(!users.isLogin);
- var exist=true;
+ var exist=false;
  users.USER.prototype.is_customer
   if (/*users.AuthService.prototype.corrent_user.is_customer*/exist)
   {
