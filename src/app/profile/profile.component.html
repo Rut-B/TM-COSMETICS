@@ -1,20 +1,10 @@
 <div class="title">profile</div>
 <button *ngIf="appointments!=null" (click)="b()">view my appointments</button>
 <mat-card id="load"*ngIf="appointments==null">
- <h2 class="spin">loading</h2>
-<mat-spinner class="spin" >
-</mat-spinner>
-</mat-card>
-<!--button *ngIf="appointments!=null" (click)="getTurnByTime()">view my appointments by time</button>
-<input type="Date" id="choseDate" [(ngModel)]="d"/>
-<button *ngIf="appointments!=null" (click)="getTurnByCosmetician()">view my appointments by Cosmetician</button>-->
-
-<!--<div class="title" id="lo" *ngIf="appointments==null">loading</div>-->
-<!--<marquee  id="lo" *ngIf="appointments==null">-->
-  
-<!--<img  src="/assets/th2.jpg" >
-loading
-</marquee>-->
+        <a id="he" class="spin">loading</a>
+       <mat-spinner class="spin" >
+       </mat-spinner>
+       </mat-card>
 <div  id="disp" *ngFor="let appoi of myAppointments">
         <p>
         <a id="a1">{{ appoi.type}} Appointment</a>
