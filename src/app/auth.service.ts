@@ -28,7 +28,7 @@ export class AuthService {
   private _user;
   private users_details:USER[];
   public current_user:USER;
-  private isLogin:boolean= false;
+  private isLogin:boolean= true;
 
   constructor(public afAuth: AngularFireAuth,public afs:AngularFirestore, public router: Router) {  
     this.users_list=this.afs.collection("USERS"); 
