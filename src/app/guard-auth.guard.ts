@@ -10,14 +10,15 @@ export class GuardAuthGuard implements CanActivate {
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     console.log(this.auth.login_success);
-   if(this.auth.login_success)
+    return true;
+   /*if(this.auth.login_success)
    {
-     console.log("888888888");
-    this.router.navigate(['/home']);
+    this.router.navigate(["home"]);
     return true;
   }
 
-return false;
+  return false;*/
+
   /* else
    this.router.navigate(['/add user']);
     //git push origin HEAD:master*/

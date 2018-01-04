@@ -28,7 +28,7 @@ export class AuthService {
   private _user;
   private users_details:USER[];
   public current_user:USER;
-  private isLogin:boolean= true;
+  private isLogin:boolean= false;
 
   constructor(public afAuth: AngularFireAuth,public afs:AngularFirestore, public router: Router) {  
     this.users_list=this.afs.collection("USERS"); 
@@ -71,18 +71,18 @@ export class AuthService {
     if(this.exist_user(email))
     {
     this.isLogin= true;
-    alert("exist");
+    return;
     }
     else{
       this.isLogin= false;
-    
+    return;
     }
   }
       
       });
   }
-  get login_success(){
-    console.log("888");
+ public  get login_success(){
+    console.log("get login"+this.isLogin);
     return this.isLogin;
   }
 
