@@ -8,7 +8,16 @@ export class NavService
   
 constructor(private auth:AuthService) 
 {
+<<<<<<< HEAD
   if (auth.current_user.is_customer)
+=======
+//alert("in con of nav");
+ 
+// while(!users.isLogin);
+ var exist=true;
+ users.USER.prototype.is_customer
+  if (/*users.AuthService.prototype.corrent_user.is_customer*/myGlobals.customer)
+>>>>>>> 9bbdabd83be184fb03f2ce586ac69bd9117838e5
   {
     this.navItems=[
       new NavItem("settings","settings",'/assets/6.png'),

@@ -1,7 +1,6 @@
 <div class="title">store</div>
-<mat-card id="main">
-<div>
-      <h3>add Products</h3>
+    <!--  <div>
+    <h3>add Products</h3>
       <input type="text" [(ngModel)]="databaseFirebase.productName" placeholder="name" >
       <input type="text" [(ngModel)]="databaseFirebase.specificName" placeholder="specificName" >
       <input type="text" [(ngModel)]="databaseFirebase.code" placeholder="code" >
@@ -16,7 +15,6 @@
       <input type="text" [(ngModel)]="databaseFirebase.treatmentCode" placeholder="code" >
       <input type="text" [(ngModel)]="databaseFirebase.treatmentPrice" placeholder="price" >
       <input type="text" [(ngModel)]="databaseFirebase.treatmentDuration" placeholder="treatment Duration in minutes" >
-      <!-- <input type="text" [(ngModel)]="treatmentPossibleCosmetician" placeholder="PossibleCosmetician" > -->
       <button (click)="addTreatment()">add</button>
       </div>
       
@@ -38,6 +36,15 @@
               <input type="text" [(ngModel)]="databaseFirebase.customerPermissionLevel" placeholder="PermissionLevel" >
               <button (click)="addCustomer()">add</button>
       </div>
+      <div>
+        <h3>add appointment</h3>
+        <input type="text" [(ngModel)]="databaseFirebase.appointmentTime" placeholder="time" >
+        <input type="text" [(ngModel)]="databaseFirebase.appointmentDuration" placeholder="duration" >
+        <input type="text" [(ngModel)]="databaseFirebase.appointmentPrice" placeholder="price" >
+        <input type="text" [(ngModel)]="databaseFirebase.appointmentLocation" placeholder="Location" >
+        <button (click)="addAppointment()">add</button>
+</div>-->
+
 
       
     <!--  <div>
@@ -58,28 +65,4 @@
               <input type="text" [(ngModel)]="databaseFirebase.content" placeholder="content" >
               <button (click)="addMessageManager()">add</button>
       </div>-->
-      <div>
-              <h3>add appointment</h3>
-              <input type="text" [(ngModel)]="databaseFirebase.appointmentTime" placeholder="time" >
-              <input type="text" [(ngModel)]="databaseFirebase.appointmentDuration" placeholder="duration" >
-              <input type="text" [(ngModel)]="databaseFirebase.appointmentPrice" placeholder="price" >
-              <input type="text" [(ngModel)]="databaseFirebase.appointmentLocation" placeholder="Location" >
-              <button (click)="addAppointment()">add</button>
-      </div>
-</mat-card>
-      
-    
-      <!--
-      <button (click)="send()">send</button>
-      <button (click)="delete()">delete</button>
-      
-      <div *ngFor="let u of users">
-          {{u.name}} {{u.lname}}
-      
-      </div>
-      
-      <div *ngFor="let u of ob | async">
-             <b> {{u.name}} {{u.lname}}</b>
-          
-      </div>
-      -->
+  
