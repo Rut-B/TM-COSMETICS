@@ -20,7 +20,7 @@ export const appRoutes: Routes = [
 
    
     { path: "", redirectTo: "login", pathMatch: "full" },
- //   { path: "home", canActivate: [GuardAuthGuard], component:HomeComponent },
+    { path: "home", canActivate: [GuardAuthGuard], component:HomeComponent },
     { path: "login", component: LoginComponent },
     { path: "home", component: HomeComponent },
     { path: "calendar", component: CalendarComponent },

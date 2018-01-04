@@ -9,8 +9,18 @@ export class GuardAuthGuard implements CanActivate {
   constructor(private auth:AuthService,private router:Router){}
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-   this.router.navigate(['/home']);
-    return true;// this.auth.loginWithGoogle();
+    console.log(this.auth.login_success);
+   if(this.auth.login_success)
+   {
+     console.log("888888888");
+    this.router.navigate(['/home']);
+    return true;
+  }
+
+return false;
+  /* else
+   this.router.navigate(['/add user']);
+    //git push origin HEAD:master*/
   }
   
 }

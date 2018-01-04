@@ -19,14 +19,16 @@ export class USER {
   is_customer:boolean;
 }
 
-export var isLogin:boolean = false;
-export var corrent_user:USER;
+
+
 
 @Injectable()
 export class AuthService {
   private users_list:AngularFirestoreCollection<any>;
   private _user;
   private users_details:USER[];
+  public current_user:USER;
+  private isLogin:boolean= false;
 
   constructor(public afAuth: AngularFireAuth,public afs:AngularFirestore, public router: Router) {  
     this.users_list=this.afs.collection("USERS"); 
@@ -35,22 +37,22 @@ export class AuthService {
     });
   }
 
-   public exist_user(email:string,first_name:string,last_name:string)
+   public exist_user(email:string)
   {
 
-    for(var i=0;i<this.users_details.length;i++)
+    for(let i=0;i<this.users_details.length;i++)
     {
-        if((this.users_details[i].email==email)&&(this.users_details[i].first_name==first_name)&&(this.users_details[i].last_name==last_name))
+        if((this.users_details[i].email==email))
         {
          //if exist create public user
          //? how do new corrent_user?
-          corrent_user = new USER();
-          corrent_user.address=this.users_details[i].address;
-          corrent_user.first_name=this.users_details[i].first_name;
-          corrent_user.last_name=this.users_details[i].last_name;
-          corrent_user.email=this.users_details[i].email;
-          corrent_user.is_customer=this.users_details[i].is_customer;
-          corrent_user.phone=this.users_details[i].phone;
+          this.current_user = new USER;
+          this.current_user.address=this.users_details[i].address;
+          this.current_user.first_name=this.users_details[i].first_name;
+          this.current_user.last_name=this.users_details[i].last_name;
+          this.current_user.email=this.users_details[i].email;
+          this.current_user.is_customer=this.users_details[i].is_customer;
+          this.current_user.phone=this.users_details[i].phone;
           
           return true;
         }
@@ -63,32 +65,25 @@ export class AuthService {
   public loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(  
     new firebase.auth.GoogleAuthProvider()).then(user => {
-    console.log(user.isLogin);
-    var verify= user.additionalUserInfo.profile.verified_email;
-
+    let verify= user.additionalUserInfo.profile.verified_email;
     if(verify){
-      
-    var first_name= user.additionalUserInfo.profile.given_name;
-    var last_name = user.additionalUserInfo.profile.family_name;
-    var email = user.additionalUserInfo.profile.email;
-    alert("in login"+first_name+last_name+email);
-    if(this.exist_user(email,first_name,last_name))
+    let email = user.additionalUserInfo.profile.email;
+    if(this.exist_user(email))
     {
-    isLogin= true;
-
+    this.isLogin= true;
     alert("exist");
-    this.router.navigate(["home"]);
-    return true;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-    //add new user.
-    //this.router.navigate(["add_customer"]);
     }
     else{
-    return false;
+      this.isLogin= false;
+    
     }
-  
-      }  
+  }
+      
       });
-      return true;
+  }
+  get login_success(){
+    console.log("888");
+    return this.isLogin;
   }
 
   public loginWIthEmail(email: string, password: string) {
@@ -106,10 +101,10 @@ export class AuthService {
     })
   }
 
-  public isLogin() {
+  /*public isLogin() {
     console.log(!!this.afAuth.auth.currentUser)
     return !!this.afAuth.auth.currentUser;
-  }
+  }*/
 
   public get nameAndFname() {
     return this._user ? this._user.displayName : "guest";
