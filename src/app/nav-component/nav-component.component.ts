@@ -9,7 +9,7 @@ import * as isLogin from '../auth.service';
 })
 
 export class NavComponentComponent implements OnInit {
-  public login=isLogin.isLogin;
+  
   @Input() text:string;
   @Input() url:string;
   @Input() image:string;
