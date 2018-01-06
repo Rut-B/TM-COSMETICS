@@ -36,5 +36,8 @@ export class CosmeticianSettingsComponent implements OnInit {
     }
     public addAppointment(){
       this.databaseFirebase.addAppointment();
+    }  
+    public addSettingDay(){
+      this.databaseFirebase.addSettingDay()
     }
 }
