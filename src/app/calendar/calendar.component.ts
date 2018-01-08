@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarEvent, } from "angular-calendar";
-import {CalendarMessageService}from '../calendar-message.service';
+//import {CalendarMessageService}from '../calendar-message.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
 
@@ -17,7 +17,7 @@ export class CalendarComponent implements OnInit {
     clickedDate: Date; 
     private col:AngularFirestoreCollection<any>;
       
-      constructor(private afs: AngularFirestore,private messageService:CalendarMessageService) {
+      constructor(private afs: AngularFirestore/*,private messageService:CalendarMessageService*/) {
        //this.itemDoc =this.afs.doc("events/1"); 
        this.col=this.afs.collection("events"); 
        this.viewDate = new Date();  
@@ -28,7 +28,6 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
   this.addEvent(this.clickedDate);
-   
   }
   
   addEvent(date){
@@ -44,15 +43,12 @@ export class CalendarComponent implements OnInit {
          primary: "#00FF00",
          secondary: "#afafaf"
        }   
-
      }; 
-
-     
-     alert(event.start);
-     this.messageService.sendMessage(event);
-     
-     //this.events=this.messageService.getMessage(); 
-
+     //alert(event.start);
+    // this.messageService.sendMessage(event);
+    this.col.add(event).then(res => {
+    })
+    alert(event.start);
   }
 
   ngOnInit() {
