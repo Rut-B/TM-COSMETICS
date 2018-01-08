@@ -3,6 +3,11 @@
     border-radius:5px;  
     height:5vh;
     font-weight: bolder;
-}  #s{
+} 
+ #s{
 margin-left:2vw;
+}
+.clickDate{
+    background-color: red;
+
 }

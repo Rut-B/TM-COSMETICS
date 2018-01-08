@@ -41,7 +41,7 @@
   text-align: center;
   background-color:#CC2572;
   width:13vw;
-  font-family:Copperplate Gothic Light;
+  font-family: 'Yantramanav', sans-serif;
   font-size:1.5vw;
   font-weight: 900;
   margin-left: 71.1vw;
@@ -54,17 +54,23 @@
   color: #CC2572; 
   width: 65vw;
   margin-left:8vw;
-  font-family: Copperplate Gothic Light;
+  font-weight:initial; 
+  font-family: 'Yantramanav', sans-serif;
   font-size: 1.5vw;
-  padding:2vw; 
+  
   border-radius: 1%;
   border-color: rgb(161, 32, 75); 
   border-style:double; 
   margin-top: 0.4vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  
+  
  
 }
 #header_table{
-  color:lightgrey;
+  
+  color:rgb(255, 255, 255);
   background-color:#CC2572;
   display: flex;
   flex-direction: row;
@@ -72,31 +78,43 @@
   min-width: 300px;
   position: relative;
   width:80vw;
-  font-family: Copperplate Gothic Light;
-  font-size: 2vw;
+  font-weight: lighter;
+  font-family: 'Yantramanav', sans-serif;
+  font-size:2vw;
   margin-top:0vw;
+  padding-left: 2vw;
+  
+ 
 }
 
 .tuple{
   &:hover{ 
-    opacity: 0.9;
+    opacity: 0.7;
     cursor: pointer;
     }
   display:flex;
   position: relative;
-  width:80vw;
+  width:77vw;
   margin:1vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 
 #table{
-  position: relative;
+
+  margin-left: auto;
+  margin-right: auto;
+  
   width:80vw;
   color: rgb(207, 37, 122); 
   background-color:  rgb(236, 218, 232);
-  font-family: Copperplate Gothic Light;
-  font-size: 2vw;
-  padding:2vw;
-  border-radius: 1%;
+  font-weight:10; 
+  font-family: 'Yantramanav', sans-serif;
+  font-size: 1.5vw;
+  
+  /*padding:2vw;*/
+  padding-right: 2vw;
+  
   border-color: rgb(161, 32, 75); 
   border-style:solid;
   font-weight:bolder;  
@@ -104,9 +122,11 @@
 }
 /* Column Widths */
 .price{
+  
   width: 12vw;
   float: left;
   flex-direction: row;
+  
 }
 .code {
   display: block;
@@ -127,6 +147,9 @@
   width:42vw;
   display: flex;
   flex-direction: row;
+
 }
+
+
 
 

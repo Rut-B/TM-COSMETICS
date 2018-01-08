@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
+import {AuthService} from './auth.service';
 import * as myGlobals from './globals';
 @Injectable()
-export class NavService {
+export class NavService 
+{
     public navItems: NavItem[];
   
-constructor() {
-  if (myGlobals.customer){
+constructor(private auth:AuthService) 
+{
+  let tmp =false;//Eran this is trmp that have to delete...
+  if (tmp/*auth.current_user.is_customer*/)
+  {
     this.navItems=[
       new NavItem("settings","settings",'/assets/6.png'),
       new NavItem("information","information",'/assets/2.png'),
@@ -15,18 +20,20 @@ constructor() {
       new NavItem("instagram","instagram",'/assets/ins.png'),
     ]
   }
-  else{
+  else
+  {
     this.navItems=[
       new NavItem("settings","cosmetician-settings",'/assets/6.png'),
       new NavItem("store","cosmetician-products",'/assets/3.png'),
       new NavItem("calendar","cosmetician-calendar",'/assets/4.png')
     ]
   }
-
-   }
+ }
 }
-  export class NavItem{
-    constructor(public text:string, public url:string, public image:string){
+  export class NavItem
+  {
+    constructor(public text:string, public url:string, public image:string)
+    {
     }
   
   }

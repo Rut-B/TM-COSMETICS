@@ -13,6 +13,7 @@ public selected: string[]=[];
   public locationtRef;
   public cosmeticiansRef;
   public messageManagerRef;
+  public settingDayRef;
 
   public quantity:number;
   public productName:string;
@@ -35,7 +36,10 @@ public selected: string[]=[];
   public to:string;
   public content:string;
 
-  public customerId:string;//key
+
+
+
+  public customerId:string;//key--email
   public customerFirstName:string;
   public customerLastName:string;
   public customerPhone:number;
@@ -54,19 +58,53 @@ public selected: string[]=[];
   public appointmentDuration:Date;
   public appointmentPrice:number;
   public appointmentLocation:string;
+
+ 
+
+
+  public Sunday:string;
+  public sundayMorning:string;
+  public sundayEvening:string;
+
+  public Monday:string;
+  public mondayMorning:string;
+  public mondayEvening:string;
+
+  public Tuesday:string;
+  public tuesdayMorning:string;
+  public tuesdayEvening:string;
+
+  public Wednesday:string;
+  public wednesdayMorning:string;
+  public wednesdayEvening:string;
+
+  public Thursday:string;
+  public thursdayMorning:string;
+  public thursdayEvening:string;
+
+  public Friday:string;
+  public fridayMorning:string;
+  public fridayEvening:string;
   
   constructor(private afs: AngularFirestore){
     this.appointmentRef = this.afs.collection("appointment");
-    this.customerRef = this.afs.collection("customer");
+    this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
     this.prodRef = this.afs.collection("products");
     this.locationtRef = this.afs.collection("locations");
     this.cosmeticiansRef = this.afs.collection("cosmeticians");
     this.messageManagerRef = this.afs.collection("messageManager");
+    this.settingDayRef=this.afs.collection("Setting Days")
     this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
     this.cosmeticianAvailability=[];
     this.appointmentCustomer=[];
     this.appointmentCosmetician=[];
+    this.Sunday="Sunday";
+    this.Monday="Monday";
+    this.Tuesday="Tuesday";
+    this.Wednesday="Wednesday";
+    this.Thursday="Thursday";
+    this.Friday="Friday";
   }
   addAppointment(){
     let appoin={
@@ -90,10 +128,7 @@ addProducts(){
       supplier:this.supplier
     }  
     this.prodRef.add(item).then(res=>{
-
     })
-
-
 }
 addTreatment(){
   let treat={
@@ -115,16 +150,23 @@ addLocation(){
     this.locationtRef.add(loc).then(res=>{
     })
 } 
+/*first_name: string;
+  last_name: string;
+  email: string;
+  address:string;
+  phone:number;
+  is_customer:boolean;*/
+
 addCustomer(){
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
     let cons={
-      customerId:this.customerId,
-      name:this.customerFirstName,
-      lname:this.customerLastName,
+      email:this.customerId,
+      first_name:this.customerFirstName,
+      last_name:this.customerLastName,
       phone:this.customerPhone,
       address:this.customerAddress,
-      permissionLevel:this.customerPermissionLevel
+      is_customer:true
     }
     this.customerRef.add(cons).then(res=>{
 })

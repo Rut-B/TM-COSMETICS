@@ -1,0 +1,60 @@
+.title{
+    color: #CC2572;
+    text-align: center;
+    width: 100%;
+    font-family: Copperplate Gothic Light;
+    font-size: 2vw;
+} 
+#date{
+    text-align:center;
+    font-size:2vw;
+    font-weight: bold;
+    background-color: rgb(255, 188, 233);
+    margin-top:1vw;
+    color: #CC2572;
+    font-family: 'Yantramanav', sans-serif;
+    
+    
+} 
+#a1{
+color:#CC2572;
+float:left;
+margin-top:0.25vw;
+margin-left:0.5vw;
+font-size:1vw;
+
+} #aa{
+     margin-left:2vw;
+}
+#a2{
+    margin-left:11vw;
+    margin-right:1vw;  
+    margin-top:0.4%;
+    float:right;
+}
+ .btn{
+        font-size: 1.2vw; 
+        border: solid;
+        color:rgb(255, 238, 251);
+        background-color:#CC2572;
+        border-color: #CC2572;
+        border-width: 0.5px;
+        width:160px;
+        display: block;
+        cursor:pointer;
+        font-family: 'Yantramanav', sans-serif;
+    &:hover{  
+        color:#CC2572;
+        background-color:rgb(255, 238, 251);
+        border: solid;
+        border-color: #CC2572;
+        border-width: 0.5px;
+        cursor:pointer;
+        } ; 
+}
+#b1{
+    margin-left:1vw;
+    float:left;
+    margin-top:0.4%; 
+  
+}

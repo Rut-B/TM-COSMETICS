@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs/Observable';
 import { _document } from '@angular/platform-browser/src/browser';
 import {DatabaseFirebaseService} from '../database-firebase.service'
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -18,7 +19,7 @@ export class DetailsComponent {
   public ELEMENT_DATA: Element[];
   public selectedTreatments :string[]=[];
   public dataSource: MatTableDataSource < Element > ;
-  constructor(private afs: AngularFirestore, public databaseFirebase: DatabaseFirebaseService){
+  constructor(private afs: AngularFirestore, public databaseFirebase: DatabaseFirebaseService,public router: Router){
 
     this.treatmentRef = this.afs.collection("treatments");
     let res=this.treatmentRef.valueChanges().subscribe(res=>{
@@ -102,6 +103,7 @@ public selectTreatment(event) {
     }
     alert(this.selectedTreatments);
     alert(total_duration);
+    this.router.navigate(["calendar"]);
   }
   }
   export interface Element {
