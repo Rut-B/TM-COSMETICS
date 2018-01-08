@@ -1,0 +1,26 @@
+
+  <mat-card id="add_new_card">
+   <div id="txt">Wellcome! 
+   <br/><br/>
+   thank you for joining.
+   <br/>
+   please enter your detalis to system.
+  </div>
+  </mat-card>
+<mat-card id="add_new_card">
+
+  <div>
+          <h3>Your details.</h3>
+          
+          <input type="email" required [(ngModel)]="databaseFirebase.customerId" placeholder="email" >
+          <input type="text"required  [(ngModel)]="databaseFirebase.customerFirstName" placeholder="firstName" >
+          <input type="text" required [(ngModel)]="databaseFirebase.customerLastName" placeholder="lastName" >
+          <input type="number" required [(ngModel)]="databaseFirebase.customerPhone" placeholder="phone" >
+          <input type="text" required [(ngModel)]="databaseFirebase.customerAddress" placeholder="address" >
+          <button (click)="addCustomer()">add</button>
+        
+  </div>
+  
+  
+
+  </mat-card>

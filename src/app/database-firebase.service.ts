@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+
 @Injectable()
 export class DatabaseFirebaseService {
 public selected: string[]=[];
@@ -35,7 +36,10 @@ public selected: string[]=[];
   public to:string;
   public content:string;
 
-  public customerId:string;//key
+
+
+
+  public customerId:string;//key--email
   public customerFirstName:string;
   public customerLastName:string;
   public customerPhone:number;
@@ -84,7 +88,7 @@ public selected: string[]=[];
   
   constructor(private afs: AngularFirestore){
     this.appointmentRef = this.afs.collection("appointment");
-    this.customerRef = this.afs.collection("customer");
+    this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
     this.prodRef = this.afs.collection("products");
     this.locationtRef = this.afs.collection("locations");
@@ -146,16 +150,23 @@ addLocation(){
     this.locationtRef.add(loc).then(res=>{
     })
 } 
+/*first_name: string;
+  last_name: string;
+  email: string;
+  address:string;
+  phone:number;
+  is_customer:boolean;*/
+
 addCustomer(){
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
     let cons={
-      customerId:this.customerId,
-      name:this.customerFirstName,
-      lname:this.customerLastName,
+      email:this.customerId,
+      first_name:this.customerFirstName,
+      last_name:this.customerLastName,
       phone:this.customerPhone,
       address:this.customerAddress,
-      permissionLevel:this.customerPermissionLevel
+      is_customer:true
     }
     this.customerRef.add(cons).then(res=>{
 })

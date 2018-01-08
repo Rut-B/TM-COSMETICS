@@ -30,12 +30,12 @@
     
     <div>
             <h3>add customer</h3>
-            <input type="text" [(ngModel)]="databaseFirebase.customerId" placeholder="id" >
+            <input type="text" [(ngModel)]="databaseFirebase.customerId" placeholder="email" >
             <input type="text" [(ngModel)]="databaseFirebase.customerFirstName" placeholder="firstName" >
             <input type="text" [(ngModel)]="databaseFirebase.customerLastName" placeholder="lastName" >
             <input type="text" [(ngModel)]="databaseFirebase.customerPhone" placeholder="phone" >
             <input type="text" [(ngModel)]="databaseFirebase.customerAddress" placeholder="address" >
-            <input type="text" [(ngModel)]="databaseFirebase.customerPermissionLevel" placeholder="PermissionLevel" >
+            <!--<input type="text" [(ngModel)]="databaseFirebase.customerPermissionLevel" placeholder="PermissionLevel" >-->
             <button (click)="addCustomer()">add</button>
     </div>
     

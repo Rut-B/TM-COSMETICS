@@ -15,7 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
 import {GuardAuthGuard}from './guard-auth.guard'
-
+import{AddNewComponent}from './add-new/add-new.component'
 export const appRoutes: Routes = [
 
    
@@ -25,7 +25,7 @@ export const appRoutes: Routes = [
     { path: "calendar", component: CalendarComponent },
     { path: "store", component: StoreComponent},
     { path: "cosmetician-products", component: CosmeticianProductsComponent},
-    { path: "cosmetician-settings", component: CosmeticianSettingsComponent },
+    { path: "cosmetician-settings", component: AddNewComponent },
     { path: "cosmetician-calendar", component: CosmeticianCalendarComponent },
     { path: "details", component: DetailsComponent},
     { path: "settings", component: SettingComponent},
