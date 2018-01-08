@@ -15,13 +15,14 @@ export class GuardAuthGuard implements CanActivate {
    {
     this.router.navigate(["home"]);
     return true;
-  }
+   }
+   else
+   {
+   this.router.navigate(["add_user"]);
+   }
+  return true;*/
 
-  return false;*/
-
-  /* else
-   this.router.navigate(['/add user']);
-    //git push origin HEAD:master*/
+  
   }
   
 }
