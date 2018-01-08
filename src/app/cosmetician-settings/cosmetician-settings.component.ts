@@ -42,6 +42,10 @@ export class CosmeticianSettingsComponent implements OnInit {
     public addMessageManager(){
       this.databaseFirebase.addMessageManager();
     }
+    public addSettingDay(){
+      this.databaseFirebase.addSettingDay();
+    }
+    
     public addAppointment(){
       this.databaseFirebase.addAppointment();
     }

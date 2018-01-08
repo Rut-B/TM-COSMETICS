@@ -150,12 +150,7 @@ addLocation(){
     this.locationtRef.add(loc).then(res=>{
     })
 } 
-/*first_name: string;
-  last_name: string;
-  email: string;
-  address:string;
-  phone:number;
-  is_customer:boolean;*/
+
 
 addCustomer(){
     this.appointmentCustomer.push(this.customerId);
