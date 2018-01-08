@@ -42,4 +42,8 @@ public addMessageManager(){
 public addAppointment(){
   this.databaseFirebase.addAppointment();
 }
+
+public uploadImage(image, options) {
+  let res=this.databaseFirebase.uploadImage(image, options);
+}
 }
