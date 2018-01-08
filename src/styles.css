@@ -159,7 +159,7 @@ body{
     position: relative;
     top: 2px; }
   
-  .cal-month-view .cal-event-title {
+  .cal-month-view .cal-event-title {background-color: rgb(43, 0, 161);
     color: white; }
   
   .cal-month-view .cal-out-month .cal-day-badge,
@@ -259,7 +259,7 @@ body{
       content: '\A0'; }
     .cal-day-view .cal-hour:not(:last-child) .cal-hour-segment,
     .cal-day-view .cal-hour:last-child :not(:last-child) .cal-hour-segment {
-      border-bottom: thin dashed #e1e1e1; }
+      border-bottom: thin dashed #ffbddb; }
     .cal-day-view .cal-time {
       font-weight: bold;
       padding-top: 5px;
@@ -269,7 +269,7 @@ body{
       display: none; }
     .cal-day-view .cal-hour-segment:hover,
     .cal-day-view .cal-drag-over .cal-hour-segment {
-      background-color: #ededed; }
+      background-color: #fce6f0; }
     .cal-day-view .cal-event-container {
       position: absolute; }
     .cal-day-view .cal-event {
