@@ -28,12 +28,12 @@ import { HttpModule } from '@angular/http';
 import {MatTableModule} from '@angular/material/table';
 import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
 import { CommonModule } from '@angular/common';
-import{CalendarMessageService}from './calendar-message.service';
 import * as firebase from 'firebase';
 import {DatabaseFirebaseService} from './database-firebase.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 //import { AngularFirestore } from "angularfire2/firestore";
-import {GuardAuthGuard}from './guard-auth.guard'
+import {GuardAuthGuard}from './guard-auth.guard';
+import { DataService } from './data.service';
 
 export const environment = {
   production: false, 
@@ -87,9 +87,9 @@ export const environment = {
   providers: [
     NavService,
     AuthService,
-    CalendarMessageService,
     DatabaseFirebaseService,
-    GuardAuthGuard
+    GuardAuthGuard,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

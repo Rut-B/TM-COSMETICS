@@ -9,7 +9,7 @@ export class NavService
 constructor(private auth:AuthService) 
 {
   let tmp =false;//Eran this is trmp that have to delete...
-  if (tmp/*auth.current_user.is_customer*/)
+  if (myGlobals.customer/*auth.current_user.is_customer*/)
   {
     this.navItems=[
       new NavItem("settings","settings",'/assets/6.png'),

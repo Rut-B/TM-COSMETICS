@@ -9,11 +9,11 @@
     text-align:center;
     font-size:2vw;
     font-weight: bold;
-    background-color: lightblue;
+    background-color: lightgray;
     margin-top:1vw;
 } 
 #a1{
-color:rgb(51, 162, 187);
+color:rgb(202, 69, 131);//rgb(51, 162, 187);
 float:left;
 margin-top:0.25vw;
 margin-left:0.5vw;
@@ -29,11 +29,11 @@ font-size:1vw;
     float:right;
 }
  .btn{
-    color:black;
+    color: rgb(202, 69, 131);//black;
     font-size: 1.5vw; 
     padding-left:0.2vw; 
     padding-right:0.2vw;
-    background-color: rgb(170, 217, 236);
+    background-color:lightgrey;// rgb(170, 217, 236);
     border-color:rgba(77, 70, 70, 0.26);
     border-style: solid;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
