@@ -16,11 +16,6 @@ import {Router} from "@angular/router";
 })
 export class DetailsComponent {
   public treatmentRef;
-  public code;
-  public price;
-  public description;
-  public duration;
-  public treatment;
   public treatmentDescription;
   public ELEMENT_DATA: Element[];
   public selectedTreatments :string[]=[];
