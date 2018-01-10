@@ -7,7 +7,8 @@
     color: #CC2572;
 }  
  h3{
-   color:white
+   color:#CC2572;
+
 } 
 .mat-input-element {
     color: white;
@@ -16,15 +17,28 @@
     color: white;
 }
 
+#main{
+    max-width: 98%;
+    width:25vw;  
+    min-width: 240px; 
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(245, 216, 216);
+    font-family: 'Yantramanav', sans-serif;
+    text-align: center;
+    
+ }
+
 
 
 #txt{
     margin-top:2%;
-    height: 5vh;
-    color: white;
+   
+  
     font-size: 1.17em;
     font-weight: bold;
-    width:97%;
+   
 }
 button {
 color:#CC2572;
@@ -32,6 +46,7 @@ background-color:white;
 font-size:1vw;
 font-weight: bold;
 } 
+/*
 #add_new_card{
     height: 15vh;
     margin-top:1.5%;
@@ -39,4 +54,25 @@ font-weight: bold;
     align-content: center;
    //border-style:double;
    background-color: #CC2572;
+}
+*/
+.wel{
+    color: #CC2572;
+
+}
+
+
+.box{
+    height: 280px;
+    width: 14vw;  
+    min-width: 230px; 
+    background-color: rgb(255, 221, 237);
+    box-shadow: 0px 0px 1px 1px #CC2572;
+    float: left;
+
+    position: absolute;
+ 
+    margin-left: 30px;
+    margin-top: 3vh;
+    
 }
