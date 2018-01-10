@@ -117,4 +117,11 @@ if(this.viewDate.getMonth()==month&&this.viewDate.getFullYear()==year){
 }
 }
 }
+public scheduleTime(day:Date, duration:number):boolean{
+return false;
+}
+public getAvailability(day:Date):string[]{
+  
+return ['start','end'];
+}
 }
