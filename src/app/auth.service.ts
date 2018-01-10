@@ -1,38 +1,89 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { CalendarEvent, } from "angular-calendar";
+import { Component } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
+import {Router} from "@angular/router";
 import * as firebase from 'firebase/app';
+import * as navs from './nav.service';
+
+
+export class USER {
+  first_name: string;
+  last_name: string;
+  email: string;
+  address:string;
+  phone:number;
+  is_customer:boolean;
+}
+
+
 
 
 @Injectable()
 export class AuthService {
+  private users_list:AngularFirestoreCollection<any>;
   private _user;
+  private users_details:USER[];
+  public current_user:USER;
+  private isLogin:boolean= false;
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth,public afs:AngularFirestore, public router: Router) {  
+    this.users_list=this.afs.collection("USERS"); 
+    this.users_list.valueChanges().subscribe(res=>{
+      this.users_details=res;
+    });
+  }
 
-  public exist_user(email:string,name:string){
-    return true;
+   public exist_user(email:string)
+  {
+
+    for(let i=0;i<this.users_details.length;i++)
+    {
+        if((this.users_details[i].email==email))
+        {
+         //if exist create public user
+         //? how do new corrent_user?
+          this.current_user = new USER;
+          this.current_user.address=this.users_details[i].address;
+          this.current_user.first_name=this.users_details[i].first_name;
+          this.current_user.last_name=this.users_details[i].last_name;
+          this.current_user.email=this.users_details[i].email;
+          this.current_user.is_customer=this.users_details[i].is_customer;
+          this.current_user.phone=this.users_details[i].phone;
+          
+          return true;
+        }
 
     }
+    return false;
+  }
 
-  loginWithGoogle() {
-    this.afAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()).then(user => {
-        console.log(user.isLogin);
-        var name =user.additionalUserInfo.profile.name;
-        var mail= user.additionalUserInfo.profile.mail;
-       /* if(exist_user(name,mail)){
-          //check if exist:
-         
-        }
-        
-        else{//join to service
 
-        }*/
-        this._user = user.user;
-       // console.log(user.user.additionalUserInfo.profile.verified_email);
-        
+  public loginWithGoogle() {
+    this.afAuth.auth.signInWithPopup(  
+    new firebase.auth.GoogleAuthProvider()).then(user => {
+    let verify= user.additionalUserInfo.profile.verified_email;
+    if(verify){
+    let email = user.additionalUserInfo.profile.email;
+    if(this.exist_user(email))
+    {
+    this.isLogin= true;
+    return;
+    }
+    else{
+      this.isLogin= false;
+    return;
+    }
+  }
+      
       });
+  }
+ public  get login_success(){
+    console.log("get login"+this.isLogin);
+    return this.isLogin;
   }
 
   public loginWIthEmail(email: string, password: string) {
@@ -40,6 +91,7 @@ export class AuthService {
       .then(user => {
 
       });
+      
   }
 
   public signupWithEmail(email: string, password: string){
@@ -49,10 +101,10 @@ export class AuthService {
     })
   }
 
-  public isLogin() {
+  /*public isLogin() {
     console.log(!!this.afAuth.auth.currentUser)
     return !!this.afAuth.auth.currentUser;
-  }
+  }*/
 
   public get nameAndFname() {
     return this._user ? this._user.displayName : "guest";
@@ -62,3 +114,7 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 }
+
+
+
+

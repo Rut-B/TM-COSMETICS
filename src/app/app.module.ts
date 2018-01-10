@@ -1,8 +1,8 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { AboutComponent } from './about/about.component';
 import { StoreComponent } from './store/store.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
@@ -14,7 +14,6 @@ import { appRoutes } from "./app.route";
 import { RouterModule } from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { InfoComponent } from './info/info.component';
 import { SettingComponent } from './setting/setting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
@@ -29,11 +28,13 @@ import { HttpModule } from '@angular/http';
 import {MatTableModule} from '@angular/material/table';
 import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
 import { CommonModule } from '@angular/common';
-import{CalendarMessageService}from './calendar-message.service';
 import * as firebase from 'firebase';
-import {DatabaseFirebaseService} from './database-firebase.service'
-//import { AngularFirestore } from "angularfire2/firestore";
-
+import {DatabaseFirebaseService} from './database-firebase.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AngularFirestore } from "angularfire2/firestore";
+import {GuardAuthGuard}from './guard-auth.guard';
+import { DataService } from './data.service';
+import { AddNewComponent } from './add-new/add-new.component'
 
 export const environment = {
   production: false, 
@@ -51,7 +52,6 @@ export const environment = {
   declarations: [
     AppComponent,
     CalendarComponent,
-    AboutComponent,
     StoreComponent,
     DetailsComponent,
     HomeComponent,
@@ -60,9 +60,9 @@ export const environment = {
     NavComponentComponent,
     LoginComponent,
     ProfileComponent,
-    InfoComponent,
     SettingComponent,
-    CosmeticianCalendarComponent
+    CosmeticianCalendarComponent,
+    AddNewComponent
   ],
   imports: [
     MatTableModule,
@@ -82,18 +82,20 @@ export const environment = {
     AngularFireModule.initializeApp(environment.firebase), 
     AngularFirestoreModule,
     CalendarModule.forRoot(),
-    CommonModule
+    CommonModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [
     NavService,
     AuthService,
-    CalendarMessageService,
-    DatabaseFirebaseService
-    
+    DatabaseFirebaseService,
+    GuardAuthGuard,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
+
 
 }

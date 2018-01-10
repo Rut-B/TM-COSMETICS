@@ -1,8 +1,13 @@
 #head{
-    background-color:lightblue;
+    background-color:lightgrey;
     border-radius:5px;  
     height:5vh;
     font-weight: bolder;
-}  #s{
+} 
+ #s{
 margin-left:2vw;
+}
+.clickDate{
+    background-color: rgb(216, 197, 197);
+
 }

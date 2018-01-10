@@ -1,6 +1,6 @@
  #body{
 ime-mode: normal;
-padding: 6%;
+padding: 0%;
 //width:100vw;
 height: 100vh;
 
@@ -10,8 +10,9 @@ height: 100vh;
     height: 30vh; 
  }
  #logo{  
-     width: 25vw;
-     height: 25vh;
+     width: 380px;
+     margin-top: -8px;
+     height:192px;
      background-repeat: no-repeat;
      background-image: url('/assets/1.png');
      background-size: 100%;
@@ -19,7 +20,6 @@ height: 100vh;
      display: block;
      margin-left: auto;
      margin-right: auto;
-     
     // left: 37%;
  }
 

@@ -1,2 +1,127 @@
 .selectdemoBasicUsage md-input-container {
     margin-right: 10px; }
+.title{
+    color: #CC2572;
+    text-align: center;
+    width: 100%;
+   
+    font-size: 2vw;
+}  
+ h3{
+   color:#CC2572;
+   text-align: center; 
+  
+} 
+h2{
+    color:#CC2572;
+    text-align: center;
+      margin-top: 10%;    
+ } 
+button {
+color:rgb(255, 238, 251);
+background-color:#CC2572;
+border-color: #CC2572;
+border-width: 0.5px;
+margin-left: 12%;
+margin-top: 2px;
+width:160px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+cursor:pointer;
+} 
+button:hover{
+    color:#CC2572;
+    background-color:rgb(255, 238, 251);
+    border: solid;
+    border-color: #CC2572;
+    border-width: 0.5px;
+    cursor:pointer;
+    
+}
+#main{
+   max-width: 98%;
+   width: 51vw;  
+   min-width: 240px; 
+   height: 60%;
+   margin-left: auto;
+   margin-right: auto;
+   
+   font-family: 'Yantramanav', sans-serif;
+   
+}
+#main div{
+    height: 280px;
+    width: 14vw;  
+    min-width: 230px; 
+    background-color: rgb(255, 221, 237);
+    box-shadow: 0px 0px 1px 1px #CC2572;
+    float: left;
+    display: inline;
+    margin-right:1vw;
+    margin-left: 1vw;
+    margin-top: 3vh;
+    
+}
+#main input{
+    margin-bottom: 1vh;
+display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid;
+    border-width: 0.5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;    
+    border-bottom-color: #CC2572;
+    text-align: center;
+    
+}
+
+input::placeholder {
+    color:#CC2572 ;
+    opacity: 0.7;
+  }
+
+
+.days{
+clear: both;
+max-width: 98%;
+   width: 51vw;  
+   min-width: 238px; 
+   height: 60%;
+   margin-top: 18%;
+   margin-left: auto;
+   margin-right: auto;
+   
+   font-family: 'Yantramanav', sans-serif;
+}
+
+.days div{
+    height: 160px;
+    width: 14vw;  
+    min-width: 230px; 
+    background-color: rgb(255, 221, 237);
+    box-shadow: 0px 0px 1px 1px #CC2572;
+    float: left;
+    display: inline;
+    margin-right:1vw;
+    margin-left: 1vw;
+    margin-top: 3vh;
+    
+}
+.days input{
+    margin-bottom: 1vh;
+display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 0.5px;    
+    border-top: none;
+    border-left: none;
+    border-right: none;    
+    border-bottom-color: #CC2572;
+    text-align: center;
+}
+
+
+

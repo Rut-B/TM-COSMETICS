@@ -7,6 +7,8 @@ export interface event{
   hoursEvning:string;
  }
  @Injectable() 
+import * as firebase from 'firebase';
+@Injectable()
 export class DatabaseFirebaseService {
 public selected: string[]=[];
 
@@ -19,11 +21,11 @@ public selected: string[]=[];
   public messageManagerRef;
   public settingDayRef;
 
-  public specificName:string;
+  public quantity:number;
   public productName:string;
   public code:number;
-  public marketer:string;
   public price:number;
+  public supplier: string;
 
   public city:string;
   public address:string;
@@ -40,7 +42,10 @@ public selected: string[]=[];
   public to:string;
   public content:string;
 
-  public customerId:string;//key
+
+
+
+  public customerId:string;//key--email
   public customerFirstName:string;
   public customerLastName:string;
   public customerPhone:number;
@@ -98,7 +103,7 @@ public selected: string[]=[];
 
   constructor(private afs: AngularFirestore){
     this.appointmentRef = this.afs.collection("appointment");
-    this.customerRef = this.afs.collection("customer");
+    this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
     this.prodRef = this.afs.collection("products");
     this.locationtRef = this.afs.collection("locations");
@@ -133,13 +138,14 @@ public selected: string[]=[];
       
     })
 }
-addProducts(){ 
+addProducts(url){ 
     let item={
       productName: this.productName,
-      name: this.specificName,
+      quantity: this.quantity,
       code: this.code, 
-      marketer: this.marketer, 
-      price:this.price
+      price:this.price,
+      supplier:this.supplier,
+      pic:url
     }  
     this.prodRef.add(item).then(res=>{
     })
@@ -164,16 +170,23 @@ addLocation(){
     this.locationtRef.add(loc).then(res=>{
     })
 } 
+/*first_name: string;
+  last_name: string;
+  email: string;
+  address:string;
+  phone:number;
+  is_customer:boolean;*/
+
 addCustomer(){
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
     let cons={
-      customerId:this.customerId,
-      name:this.customerFirstName,
-      lname:this.customerLastName,
+      email:this.customerId,
+      first_name:this.customerFirstName,
+      last_name:this.customerLastName,
       phone:this.customerPhone,
       address:this.customerAddress,
-      permissionLevel:this.customerPermissionLevel
+      is_customer:true
     }
     this.customerRef.add(cons).then(res=>{
 })
@@ -272,6 +285,10 @@ addSettingDay(){
 
 
 
+uploadImage(image) {
+  let storageRef = firebase.storage().ref();
+  return storageRef.put(image);
+}
 
 
 

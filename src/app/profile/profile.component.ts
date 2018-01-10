@@ -12,10 +12,11 @@ import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
 import { app } from 'firebase/app';
 import { Data } from '@angular/router/src/config';
 
+
 export interface event{
-  userName: string;
-  cosmeticianName:string;
-  type:string;
+   userName: string;
+   //cosmeticianName:string;
+   type:string;
    start:Date;
    end:Date;
  }
@@ -52,7 +53,7 @@ constructor(private afs: AngularFirestore) {
        }
      }
   }
-  getTurnByCosmetician()
+  /* getTurnByCosmetician()
   {
     this.myAppointments=[];
     for(var i=0,j=0;i<this.appointments.length;i++){
@@ -63,7 +64,7 @@ constructor(private afs: AngularFirestore) {
     }
   }
   
-  /*getTurnByTime()
+ getTurnByTime()
   {
     this.myAppointments=[];
     
