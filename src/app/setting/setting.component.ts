@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -7,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit() {
   }
-
 }

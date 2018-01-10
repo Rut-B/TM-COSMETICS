@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { _document } from '@angular/platform-browser/src/browser';
 import {DatabaseFirebaseService} from '../database-firebase.service'
 import {Router} from "@angular/router";
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -15,15 +16,11 @@ import {Router} from "@angular/router";
 })
 export class DetailsComponent {
   public treatmentRef;
-  public code;
-  public price;
-  public description;
-  public duration;
-  public treatment;
   public treatmentDescription;
   public ELEMENT_DATA: Element[];
   public selectedTreatments :string[]=[];
   public dataSource: MatTableDataSource < Element > ;
+  message:string;
   constructor(private afs: AngularFirestore, public databaseFirebase: DatabaseFirebaseService,public router: Router){
 
     this.treatmentRef = this.afs.collection("treatments");
@@ -42,12 +39,15 @@ public createTuple(iter:number){
   let tuple=document.createElement('div');
   tuple.className= "tuple";
   var code=document.createElement('div');
-  code.className= "code";
-  code.innerText=this.ELEMENT_DATA[iter].code.toString();
-  tuple.id=iter.toString();
+
   var treatment=document.createElement('div');
   treatment.className= "treatment";
   treatment.innerText=this.ELEMENT_DATA[iter].name;
+
+  code.className= "code";
+  code.innerText=this.ELEMENT_DATA[iter].code.toString();
+  tuple.id=iter.toString();
+ 
   var description=document.createElement('div');
   description.className= "description";
   description.innerText=this.ELEMENT_DATA[iter].description;
@@ -57,8 +57,11 @@ public createTuple(iter:number){
   var price=document.createElement('div');
   price.className= "price";
   price.innerText=this.ELEMENT_DATA[iter].price.toString();
-  tuple.appendChild(code);
+
   tuple.appendChild(treatment);
+
+  tuple.appendChild(code);
+ 
   tuple.appendChild(description);
   tuple.appendChild(duration);
   tuple.appendChild(price);
@@ -96,18 +99,22 @@ public selectTreatment(event) {
     for (let i=0;i<tups.length;i++){
       let tup_iter=document.getElementById(i.toString());
       if(tup_iter.style.backgroundColor=="grey"){
-        this.selectedTreatments.push(tups[i].firstElementChild.innerHTML);
+       this.selectedTreatments.push(tups[i].firstElementChild.innerHTML);
         let dur=tup_iter.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
         if (dur.indexOf(" ")!=-1){
           let SnumDur=dur.split(" ")[0];
           let numDur=parseInt(SnumDur);
-          alert(numDur);
+         // alert(numDur);
           total_duration+=numDur;
         }
       }
     }
-    alert(this.selectedTreatments);
+    this.selectedTreatments.forEach(i=>{alert(i);
+  }
+  );
+ // this.data.setTreatment(this.selectedTreatments);
     alert(total_duration);
+    //this.data.setDuration(total_duration);
     this.router.navigate(["calendar"]);
   }
   }
