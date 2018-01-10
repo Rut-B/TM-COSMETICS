@@ -4,12 +4,14 @@ import { CalendarEvent, } from "angular-calendar";
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
 import { query } from '@angular/core/src/animation/dsl';
+import {DataService} from '../data.service'
 
-export class appointment{
+/*export class appointment{
   event:CalendarEvent;
   userName:string;
   treatment:string;
-}
+}*/
+
 
 @Component({
   selector: 'app-calendar',
@@ -29,11 +31,10 @@ export class CalendarComponent implements OnInit {
   //appoi:appointment;
     private col:AngularFirestoreCollection<any>;
       
-      constructor(private afs: AngularFirestore/*,private messageService:CalendarMessageService*/) {
-       //this.itemDoc =this.afs.doc("events/1");
-     //  this.appoi=new appointment();
-       this.col=this.afs.collection(/*"BookedAppointments");*/ "events"); 
-       this.viewDate = new Date();   
+      constructor(private afs: AngularFirestore ,private dataService:DataService) {
+       //this.itemDoc =this.afs.doc("events/1"); 
+       this.col=this.afs.collection("events"); 
+       this.viewDate = new Date();  
        this.col.valueChanges().subscribe(res=>{
        /*  this.apps=res;
         for(var i=0;i<res.length;i++){
@@ -46,6 +47,8 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
   this.addEvent(this.clickedDate);
+  alert(this.dataService.totalDuration)
+  alert(this.dataService.selected_treatments);
   }
   
   addEvent(date){

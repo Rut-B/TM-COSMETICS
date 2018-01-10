@@ -1,12 +1,24 @@
+<mat-card id="load"*ngIf="ELEMENT_DATA==null">
+                <a id="he" class="spin">loading</a>
+               <mat-spinner class="spin" >
+               </mat-spinner>
+</mat-card>
 <div id="table">
-        our products:
+     <!--   our products:
         <div id="header_table">
                 <div class="productName">product name</div>
                 <div class="price">price</div>
                 <div class="quantity">quantity</div>
                 <div class="pic">picture</div>
-        </div>
+        </div>-->
         <div id="content">
+                <div class="tuple" *ngFor="let prod of ELEMENT_DATA"  >
+                        <div class="productName">{{prod.productName}}</div>
+                        <div class="price">{{prod.price}} NIS</div>
+                        <div class="quantity">{{prod.quantity.toString()}}</div>
+                        <div class="pic" [ngStyle]="{'background-image': 'url(' + prod.pic +')', 'background-repeat': 'no-repeat'}">
+                        </div>  
+                </div>
         </div>          
 </div>
                     
