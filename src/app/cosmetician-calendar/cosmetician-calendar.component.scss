@@ -9,7 +9,7 @@
     text-align:center;
     font-size:2vw;
     font-weight: bold;
-    background-color: rgb(255, 188, 233);
+    background-color: lightgray;
     margin-top:1vw;
     color: #CC2572;
     font-family: 'Yantramanav', sans-serif;
@@ -17,7 +17,7 @@
     
 } 
 #a1{
-color:#CC2572;
+color:rgb(202, 69, 131);//rgb(51, 162, 187);
 float:left;
 margin-top:0.25vw;
 margin-left:0.5vw;
@@ -33,16 +33,14 @@ font-size:1vw;
     float:right;
 }
  .btn{
-        font-size: 1.2vw; 
-        border: solid;
-        color:rgb(255, 238, 251);
-        background-color:#CC2572;
-        border-color: #CC2572;
-        border-width: 0.5px;
-        width:160px;
-        display: block;
-        cursor:pointer;
-        font-family: 'Yantramanav', sans-serif;
+    color: rgb(202, 69, 131);//black;
+    font-size: 1.5vw; 
+    padding-left:0.2vw; 
+    padding-right:0.2vw;
+    background-color:lightgrey;// rgb(170, 217, 236);
+    border-color:rgba(77, 70, 70, 0.26);
+    border-style: solid;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     &:hover{  
         color:#CC2572;
         background-color:rgb(255, 238, 251);

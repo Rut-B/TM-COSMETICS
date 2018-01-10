@@ -4,7 +4,19 @@
     width: 100%;
     font-family: Copperplate Gothic Light;
     font-size: 2vw;
-}
+  }
+  #button{
+    color: white;
+    text-align: center;
+    background-color:#CC2572;
+    width:13vw;
+    font-family:Copperplate Gothic Light;
+    font-size:1.5vw;
+    font-weight: 900;
+    margin-left: 71.1vw;
+    height:7vh;
+  
+  }
 #table
 {
     color: rgb(207, 37, 122); 
@@ -33,24 +45,61 @@
     border-style:double; 
     margin-top: 0.4vh;
    
-}
-#r1 
-{
-    background-color: rgb(247, 232, 243);
-}
-#r3
-{
-    background-color:  rgb(247, 232, 243);
-}
-#r2{
+  }
+  #header_table{
+    color:lightgrey;
+    background-color:#CC2572;
+    display: flex;
+    flex-direction: row;
+    max-height: 500px;
+    min-width: 300px;
+    position: relative;
+    width:80vw;
+    font-family: Copperplate Gothic Light;
+    font-size: 2vw;
+    margin-top:0vw;
+  }
+  
+  .tuple{
+    display:flex;
+    position: relative;
+    width:80vw;
+    margin:1vh;
+  }
+  
+  #table{
+    position: relative;
+    width:80vw;
+    color: rgb(207, 37, 122); 
     background-color:  rgb(236, 218, 232);
-}
-#r4
-{
-    background-color: rgb(236, 218, 232);
-}
-span
-{
-    margin:5vw;
+    font-family: Copperplate Gothic Light;
+    font-size: 2vw;
+    padding:2vw;
+    border-radius: 1%;
+    border-color: rgb(161, 32, 75); 
+    border-style:solid;
+    font-weight:bolder;  
+   /* margin-top:4vw;*/
+  }
+  /* Column Widths */
+  .quantity,
+  .price{
+    width: 12vw;
+    float: left;
+    flex-direction: row;
     text-align: center;
-}
+  }
+  .productName {
+    display: block;
+    width: 24vw;
+    float: right;
+   /* display: flex;
+    flex-direction: row;*/
+  }
+  .pic{
+    float: left;
+    width:42vw;
+    display: flex;
+    flex-direction: row;
+  }
+  

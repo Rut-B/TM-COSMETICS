@@ -7,6 +7,8 @@
     <input type="text" [(ngModel)]="databaseFirebase.code" placeholder=" code" >
     <input type="text" [(ngModel)]="databaseFirebase.marketer" placeholder=" marketer" >
     <input type="text" [(ngModel)]="databaseFirebase.price" placeholder=" price" >
+    <input name="upload_image" type="file"  class="upload_input" placeholder="image" (change)="uploadImage($event.target?.files)" accept="image/*"/>
+    <button (click)="addProducts()">add picture</button>
     <button (click)="addProducts()" >add</button>
     
     </div>

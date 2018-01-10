@@ -14,5 +14,4 @@ export class SettingComponent implements OnInit {
   ngOnInit() {
     
   }
-
 }
