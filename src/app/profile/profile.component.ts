@@ -42,10 +42,11 @@ constructor(private afs: AngularFirestore) {
       this.appointments=res;
     });
   }
-  b(){ 
+  b()
+  { 
      this.myAppointments=[]; 
      for(var i=0,j=0;i<this.appointments.length;i++){
-       if(this.appointments[i].userName=="noamijofen"){
+       if(this.appointments[i].userName=="tamarkl"){
         this.myAppointments[j]=this.appointments[i];
         j++;
        }

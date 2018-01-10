@@ -10,10 +10,16 @@ import * as firebase from 'firebase';
 })
 export class CosmeticianSettingsComponent implements OnInit {
   constructor(public databaseFirebase: DatabaseFirebaseService ) {   
+
   }
   ngOnInit() {
   }
   public addSettingDay(){
     this.databaseFirebase.addSettingDay();
   }
+
+  // public addOtherDate(){
+  //   this.databaseFirebase.addOtherDate();
+  // }
 }
+

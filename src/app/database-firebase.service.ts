@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-@Injectable()
+export interface event{
+  date: string;
+  hoursMorning:string;
+  hoursEvning:string;
+ }
+ @Injectable() 
 export class DatabaseFirebaseService {
 public selected: string[]=[];
 
@@ -81,7 +86,16 @@ public selected: string[]=[];
   public Friday:string;
   public fridayMorning:string;
   public fridayEvening:string;
-  
+
+  public other:string;
+  public otherMorning:string;
+  public otherEvening:string;
+
+  private col:AngularFirestoreCollection<any>;
+  public days:event[];
+  public myDay:event[];
+
+
   constructor(private afs: AngularFirestore){
     this.appointmentRef = this.afs.collection("appointment");
     this.customerRef = this.afs.collection("customer");
@@ -101,6 +115,10 @@ public selected: string[]=[];
     this.Wednesday="Wednesday";
     this.Thursday="Thursday";
     this.Friday="Friday";
+    this.col=this.afs.collection<event>("myApointments"); 
+    this.col.valueChanges(). subscribe(res=>{
+        this.days=res;
+      });
   }
   addAppointment(){
     let appoin={
@@ -185,54 +203,91 @@ addMessageManager(){
   });
 }
 addSettingDay(){ 
-  let hoursSunday={
-    date: this.Sunday,
-    hoursMorning: this.sundayMorning,
-    hoursEvning:this.sundayEvening
-  }  
-  this.settingDayRef.add(hoursSunday).then(res=>{
-  })
-  let hoursMonday={
-    date: this.Monday,
-    hoursMorning: this.mondayMorning,
-    hoursEvning:this.mondayEvening
-  }  
-  this.settingDayRef.add(hoursMonday).then(res=>{
-  })
+  // this.myDay=[]; 
+  // for(var i=0,j=0;i<this.days.length;i++){
+  //   document.getElementById("selectDay").value == "banana";
+    
+  //   if(this.days[i].date=="tamarkl"){
+  //    this.myDay[j]=this.myDay[i];
+  //    j++;
+  //   }
+  // }
+}
+}
+//   let hoursSunday={
+//     date: this.Sunday,
+//     hoursMorning: this.sundayMorning,
+//     hoursEvning:this.sundayEvening
+//   }  
+//   this.settingDayRef.add(hoursSunday).then(res=>{
+//   })
+//   let hoursMonday={
+//     date: this.Monday,
+//     hoursMorning: this.mondayMorning,
+//     hoursEvning:this.mondayEvening
+//   }  
+//   this.settingDayRef.add(hoursMonday).then(res=>{
+//   })
   
-  let hoursTuesday={
-    date: this.Tuesday,
-    hoursMorning: this.tuesdayMorning,
-    hoursEvning:this.tuesdayEvening
-  }  
-  this.settingDayRef.add(hoursTuesday).then(res=>{
-  })
-  let hoursWednesday={
-    date: this.Wednesday,
-    hoursMorning: this.wednesdayMorning,
-    hoursEvning:this.wednesdayEvening
-  }  
-  this.settingDayRef.add(hoursWednesday).then(res=>{
-  })
-  let hoursThursday={
-    date: this.Thursday,
-    hoursMorning: this.thursdayMorning,
-    hoursEvning:this.thursdayEvening
-  }  
-  this.settingDayRef.add(hoursThursday).then(res=>{
-  })
-  let hoursFriday={
-    date: this.Friday,
-    hoursMorning: this.fridayMorning,
-    hoursEvning:this.fridayEvening
-  }  
-  this.settingDayRef.add(hoursFriday).then(res=>{
-  })
+//   let hoursTuesday={
+//     date: this.Tuesday,
+//     hoursMorning: this.tuesdayMorning,
+//     hoursEvning:this.tuesdayEvening
+//   }  
+//   this.settingDayRef.add(hoursTuesday).then(res=>{
+//   })
+//   let hoursWednesday={
+//     date: this.Wednesday,
+//     hoursMorning: this.wednesdayMorning,
+//     hoursEvning:this.wednesdayEvening
+//   }  
+//   this.settingDayRef.add(hoursWednesday).then(res=>{
+//   })
+//   let hoursThursday={
+//     date: this.Thursday,
+//     hoursMorning: this.thursdayMorning,
+//     hoursEvning:this.thursdayEvening
+//   }  
+//   this.settingDayRef.add(hoursThursday).then(res=>{
+//   })
+//   let hoursFriday={
+//     date: this.Friday,
+//     hoursMorning: this.fridayMorning,
+//     hoursEvning:this.fridayEvening
+//   }  
+//   this.settingDayRef.add(hoursFriday).then(res=>{
+//   })
 
-}
+// }
+// addOtherDate()
+// {
+//   let hoursOther={
+//     date: this.other,
+//     hoursMorning: this.otherMorning,
+//     hoursEvning:this.otherEvening
+//   }  
+//   this.settingDayRef.add(hoursOther).then(res=>{
+//   })
+// }
 
-}
 
+
+
+
+
+
+// export class ProfileComponent implements OnInit {
+ 
+
+//  public myCosmetician:event[];
+//  public d:Date;
+//  public weeks; 
+//  public currentDate=new Date();
+//  dateFilter: BehaviorSubject<string | null>;
+
+// constructor(private afs: AngularFirestore) { 
+  
+//   }
 
 
 
