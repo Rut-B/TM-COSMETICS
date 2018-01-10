@@ -9,11 +9,13 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-cosmetician-calendar',
   templateUrl: './cosmetician-calendar.component.html',
  // changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./cosmetician-calendar.component.css']
+  styleUrls: ['./cosmetician-calendar.component.scss']
 })
+
 export class CosmeticianCalendarComponent implements OnInit{
  viewDate: Date;
  events//: CalendarEvent[];
+ newDate:Date;
   view: string = 'day'; 
   private col:AngularFirestoreCollection<any>;
     
@@ -22,6 +24,19 @@ export class CosmeticianCalendarComponent implements OnInit{
     this.viewDate = new Date();  
     this.events = this.col.valueChanges();
   }
+  change(){ 
+    if( this.newDate==null){
+      alert("you must select a date!");
+     return;
+    }
+    this.viewDate=new Date(this.newDate);
+    this.events = this.col.valueChanges();
+  }
+  tomorrow(){
+    this.viewDate.setDate(this.viewDate.getDate()+1);
+    this.events = this.col.valueChanges();
+  }
   ngOnInit() {
+
   }
 }

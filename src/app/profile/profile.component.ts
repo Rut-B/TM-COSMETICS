@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewEncapsulation} from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable'; 
@@ -13,10 +13,11 @@ import { app } from 'firebase/app';
 import { Data } from '@angular/router/src/config';
 import { DatabaseFirebaseService } from '../database-firebase.service';
 
+
 export interface event{
-  userName: string;
-  cosmeticianName:string;
-  type:string;
+   userName: string;
+   cosmeticianName:string;
+   type:string;
    start:Date;
    end:Date;
  }
@@ -32,12 +33,27 @@ export class ProfileComponent implements OnInit {
  public appointments:event[];
  public myAppointments:event[];
  public myCosmetician:event[];
+ public myAppointmentsRef;
  public d:Date;
  public weeks; 
  public currentDate=new Date();
+ public CosmeticianName:string;
+ public choosedDate:Date;
  dateFilter: BehaviorSubject<string | null>;
 
-constructor(private afs: AngularFirestore) { 
+constructor(private afs: AngularFirestore) {
+  this.myAppointmentsRef = this.afs.collection("myApointments"); 
+  let res=this.myAppointmentsRef.valueChanges().subscribe(res=>{
+    console.log(res);
+    /*this.ELEMENT_DATA=res;
+    var table_curr=document.getElementById("content");
+    table_curr.innerHTML='';
+    for (let i=0;i<this.ELEMENT_DATA.length;i++){
+      this.createTuple(i);
+    }*/
+  });
+  
+
   this.col=this.afs.collection<event>("myApointments"); 
   this.col.valueChanges(). subscribe(res=>{
       this.appointments=res;
@@ -52,10 +68,18 @@ constructor(private afs: AngularFirestore) {
        }
      }
   }
- 
-
-
-  /*getTurnByTime()
+  getTurnByCosmetician()
+  {
+    this.myAppointments=[];
+    for(var i=0,j=0;i<this.appointments.length;i++){      
+      if(this.appointments[i].cosmeticianName==this.CosmeticianName){
+       this.myAppointments[j]=this.appointments[i];
+       j++;
+      }
+    }
+  }
+  /*
+ getTurnByTime()
   {
     this.myAppointments=[];
     
@@ -76,10 +100,11 @@ constructor(private afs: AngularFirestore) {
        j++;
       }
     }
-  }*/
+  } */
   
   getTurnByTime()
   {
+    alert(this.choosedDate)
     this.myAppointments=[];
     var date1=new Date();
    // alert(this.appointments.length);
@@ -91,7 +116,7 @@ constructor(private afs: AngularFirestore) {
        j++;
       }
     }
-  }
+  }/*
   getTurnByCosmetician()
   {
     this.myAppointments=[];
@@ -101,7 +126,7 @@ constructor(private afs: AngularFirestore) {
        j++;
       }
     }
-  }
+  }*/
     
 
   ngOnInit() {

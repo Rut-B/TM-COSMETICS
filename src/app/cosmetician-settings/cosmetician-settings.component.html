@@ -1,5 +1,6 @@
 
-<div>
+<mat-card id="main">
+    <div>
     <h3>add Products</h3>
     <input type="text" [(ngModel)]="databaseFirebase.productName" placeholder="name" >
     <input type="text" [(ngModel)]="databaseFirebase.specificName" placeholder="specificName" >
@@ -86,4 +87,5 @@
         <input type="text" [(ngModel)]="databaseFirebase.fridayEvening" placeholder="duringHoursEvening" >  
         <br> 
         <button (click)="addSettingDay()">add</button>
-</div>
+        </div>
+    </mat-card>

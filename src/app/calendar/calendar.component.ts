@@ -11,8 +11,7 @@ import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  view: string = 'month';
-  
+  view: string = 'month'; 
    viewDate: Date = new Date();
     events: CalendarEvent[];
     clickedDate: Date; 
@@ -45,11 +44,15 @@ export class CalendarComponent implements OnInit {
          primary: "#00FF00",
          secondary: "#afafaf"
        }   
+
      }; 
+
+     
      alert(event.start);
      this.messageService.sendMessage(event);
      
      //this.events=this.messageService.getMessage(); 
+
   }
 
   ngOnInit() {
@@ -68,4 +71,5 @@ if(mm<10){
 var today = mm+'/'+dd+'/'+yyyy;
 return today;
 }
+
 }
