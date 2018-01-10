@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation, Input } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import {DatabaseFirebaseService} from '../database-firebase.service'
 import {MatTableDataSource} from '@angular/material';
@@ -9,12 +9,8 @@ import {MatTableDataSource} from '@angular/material';
   encapsulation: ViewEncapsulation.None
 })
 
-
-
-
-
-
 export class StoreComponent {
+  @Input() image: string;
   public productRef;
   public ELEMENT_DATA: Element_P[];
   public dataSource: MatTableDataSource < Element_P > ;
@@ -24,38 +20,36 @@ export class StoreComponent {
     let res=this.productRef.valueChanges().subscribe(res=>{
       console.log(res);
       this.ELEMENT_DATA=res;
-      var table_curr=document.getElementById("content");
-      table_curr.innerHTML='';
-      for (let i=0;i<this.ELEMENT_DATA.length;i++){
-        this.createTuple(i);
-      }
+      var table_s=document.getElementById("table");
+      table_s.style.display="block";
+      let cont=document.getElementById("content");
+     // while(cont.firstElementChild==null){
+        //let cont=document.getElementById("content");
+       // alert(this.ELEMENT_DATA);
+     // for (let i=0;i<this.ELEMENT_DATA.length;i++){
+     //   this.createTuple(0);
+    //    this.show_pic("https://cdn.shopify.com/s/files/1/0600/2197/products/Menchie_grande.jpg?v=1508794752");
+     // }
+    //}
+    //this.createTuple(0);
     });
+    //while(this.ELEMENT_DATA==null);
+
   }
+
   public createTuple(iter:number){
     let table1=document.getElementById("content");
-    let tuple=document.createElement('div');
-    tuple.className= "tuple";
-    var name=document.createElement('div');
-    name.className= "productName";
-    name.innerText=this.ELEMENT_DATA[iter].productName;
-    tuple.id=iter.toString();
-    var price=document.createElement('div');
-    price.className= "price";
-    price.innerText=this.ELEMENT_DATA[iter].price+" NIS";
-    var quantity=document.createElement('div');
-    quantity.className= "quantity";
-    quantity.innerText=this.ELEMENT_DATA[iter].quantity.toString();
-    var pic=document.createElement('div');
-    pic.className= "pic";
-   // pic.innerText=this.ELEMENT_DATA[iter];
-    tuple.appendChild(name);
-    tuple.appendChild(price);
-    tuple.appendChild(quantity);
-    tuple.appendChild(pic);
+    alert(table1.firstElementChild);
+    let rows=table1.firstElementChild;
+    if(rows!=null){
+    alert(rows);
     if(iter%2==1){
-      tuple.style.backgroundColor="white";
+      //rows[iter].style.backgroundColor="white";
     }
-    table1.appendChild(tuple);
+  }
+  }
+  public show_pic(imgUrl): void{
+    document.execCommand('insertimage', false, imgUrl);
   }
 }
 export interface Element_P {

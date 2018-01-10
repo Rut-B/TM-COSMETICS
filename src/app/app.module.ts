@@ -31,7 +31,7 @@ import { CommonModule } from '@angular/common';
 import * as firebase from 'firebase';
 import {DatabaseFirebaseService} from './database-firebase.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-//import { AngularFirestore } from "angularfire2/firestore";
+import { AngularFirestore } from "angularfire2/firestore";
 import {GuardAuthGuard}from './guard-auth.guard';
 import { DataService } from './data.service';
 import { AddNewComponent } from './add-new/add-new.component'

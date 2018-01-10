@@ -119,13 +119,14 @@ public selected: string[]=[];
       
     })
 }
-addProducts(){ 
+addProducts(url){ 
     let item={
       productName: this.productName,
       quantity: this.quantity,
       code: this.code, 
       price:this.price,
-      supplier:this.supplier
+      supplier:this.supplier,
+      pic:url
     }  
     this.prodRef.add(item).then(res=>{
     })
@@ -190,9 +191,9 @@ addMessageManager(){
     content:this.content
   });
 }
-uploadImage(image, options) {
+uploadImage(image) {
   let storageRef = firebase.storage().ref();
-  return storageRef.put(image, options);
+  return storageRef.put(image);
 }
 
 }
