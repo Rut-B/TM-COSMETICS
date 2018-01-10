@@ -121,7 +121,7 @@ public scheduleTime(day:Date, duration:number):boolean{
 return false;
 }
 public getAvailability(day:Date):string[]{
-  
+
 return ['start','end'];
 }
 }
