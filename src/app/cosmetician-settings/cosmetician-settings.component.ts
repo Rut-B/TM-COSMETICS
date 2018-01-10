@@ -45,21 +45,37 @@ public res_im;
     public addAppointment(){
       this.databaseFirebase.addAppointment();
     }  
-    /*public addSettingDay(){
-      this.databaseFirebase.addSettingDay()
-    }*/
- 
+    public addSettingSunDay(){
+      this.databaseFirebase.addSettingSunDay()
+    }
+    public addSettingMondayDay(){
+      this.databaseFirebase.addSettingMondayDay()
+    }
+    public addSettingTuesdayDay(){
+      this.databaseFirebase.addSettingTuesdayDay()
+    }
+    
+    public addSettingWednesdayDay(){
+      this.databaseFirebase.addSettingWednesdayDay()
+    }
+    
+    public addSettingThursdayDay(){
+      this.databaseFirebase.addSettingThursdayDay()
+    }
+    public addSettingFridayDay(){
+      this.databaseFirebase.addSettingFridayDay()
+    }
+    
+// public uploadImage(image) {
+//   //this.res_im=this.databaseFirebase.uploadImage(image);
+//   if (image.length!=0){
+//   this.databaseFirebase.uploadImage(image).then(res => {
+//     this.res_im = res.downloadURL;
+//   });
+//   }
 
-public uploadImage(image) {
-  //this.res_im=this.databaseFirebase.uploadImage(image);
-  if (image.length!=0){
-  this.databaseFirebase.uploadImage(image).then(res => {
-    this.res_im = res.downloadURL;
-  });
-  }
-
-  // public addOtherDate(){
-  //   this.databaseFirebase.addOtherDate();
-  // }
-}
+//   // public addOtherDate(){
+//   //   this.databaseFirebase.addOtherDate();
+//   // }
+// }
 }

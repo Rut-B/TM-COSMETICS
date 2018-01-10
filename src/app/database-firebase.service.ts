@@ -6,12 +6,12 @@ export interface event{
   hoursMorning:string;
   hoursEvning:string;
  }
- @Injectable() 
-import * as firebase from 'firebase';
+//  @Injectable() 
+// import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseFirebaseService {
 public selected: string[]=[];
-
+public flag:number;
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -99,6 +99,7 @@ public selected: string[]=[];
   private col:AngularFirestoreCollection<any>;
   public days:event[];
   public myDay:event[];
+  public itemdoc:AngularFirestoreDocument<any>;
 
 
   constructor(private afs: AngularFirestore){
@@ -120,8 +121,11 @@ public selected: string[]=[];
     this.Wednesday="Wednesday";
     this.Thursday="Thursday";
     this.Friday="Friday";
-    this.col=this.afs.collection<event>("myApointments"); 
-    this.col.valueChanges(). subscribe(res=>{
+    this.myDay=new Array(); 
+    this.days=new Array(); 
+    this.flag=0;
+    this.col=this.afs.collection<event>("Setting Days"); 
+    this.col.valueChanges().subscribe(res=>{
         this.days=res;
       });
   }
@@ -215,61 +219,198 @@ addMessageManager(){
     content:this.content
   });
 }
-addSettingDay(){ 
-  // this.myDay=[]; 
-  // for(var i=0,j=0;i<this.days.length;i++){
-  //   document.getElementById("selectDay").value == "banana";
-    
-  //   if(this.days[i].date=="tamarkl"){
-  //    this.myDay[j]=this.myDay[i];
-  //    j++;
-  //   }
-  // }
+addSettingSunDay(){ 
+  this.myDay=[];  
+  for(var i=0,j=0;i<this.days.length;i++){    
+    if(this.days[i].date=="Sunday"){
+      this.flag=1;
+     this.myDay[j]=this.days[i];
+     j++;
+    }
+  }
+  let hoursSunday={
+    date: this.Sunday,
+    hoursMorning: this.sundayMorning,
+    hoursEvning:this.sundayEvening
+  } 
+  if(this.flag==0)
+  {
+      this.settingDayRef.add(hoursSunday);
+  }
+  else{
+    console.log("hhhhiii");
+    console.log(this.myDay); 
+    // this.settingDayRef.set(hoursSunday.hoursMorning);
+     this.myDay[0].hoursEvning=hoursSunday.hoursEvning;
+     this.myDay[0].hoursMorning=hoursSunday.hoursMorning;
+    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+    console.log(this.myDay); 
+  }
+this.flag=0;
+}
+addSettingMondayDay()
+{
+    this.myDay=[];  
+    for(var i=0,j=0;i<this.days.length;i++){    
+      if(this.days[i].date=="Monday"){
+        this.flag=1;
+      this.myDay[j]=this.days[i];
+      j++;
+      }
+    }
+  let hoursMonday={
+    date: this.Monday,
+    hoursMorning: this.mondayMorning,
+    hoursEvning:this.mondayEvening
+  }    
+    if(this.flag==0)
+    {
+        this.settingDayRef.add(hoursMonday).then(res=>{
+            })
+    }
+    else{
+      console.log("hhhhiii");
+      console.log(this.myDay); 
+      // this.settingDayRef.set(hoursSunday.hoursMorning);
+      this.myDay[0].hoursEvning=hoursMonday.hoursEvning;
+      this.myDay[0].hoursMorning=hoursMonday.hoursMorning;
+      //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+      console.log(this.myDay); 
+    }
+  this.flag=0;
+}
+addSettingTuesdayDay()
+{
+              this.myDay=[];  
+              for(var i=0,j=0;i<this.days.length;i++){    
+                if(this.days[i].date=="Tuesday"){
+                  this.flag=1;
+                this.myDay[j]=this.days[i];
+                j++;
+                }
+              }
+              let hoursTuesday={
+                date: this.Tuesday,
+                hoursMorning: this.tuesdayMorning,
+                hoursEvning:this.tuesdayEvening
+              }  
+              if(this.flag==0)
+              {
+                  this.settingDayRef.add(hoursTuesday).then(res=>{
+                      })
+              }
+              else{
+                console.log("hhhhiii");
+                console.log(this.myDay); 
+                // this.settingDayRef.set(hoursSunday.hoursMorning);
+                this.myDay[0].hoursEvning=hoursTuesday.hoursEvning;
+                this.myDay[0].hoursMorning=hoursTuesday.hoursMorning;
+                //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+                console.log(this.myDay); 
+              }
+            this.flag=0;
+}
+addSettingWednesdayDay()
+{
+  this.myDay=[];  
+  for(var i=0,j=0;i<this.days.length;i++){    
+    if(this.days[i].date=="Wednesday"){
+      this.flag=1;
+    this.myDay[j]=this.days[i];
+    j++;
+    }
+  }
+    let hoursWednesday={
+    date: this.Wednesday,
+    hoursMorning: this.wednesdayMorning,
+    hoursEvning:this.wednesdayEvening
+  }  
+  if(this.flag==0)
+  {
+      this.settingDayRef.add(hoursWednesday).then(res=>{
+          })
+  }
+  else{
+    console.log("hhhhiii");
+    console.log(this.myDay); 
+    // this.settingDayRef.set(hoursSunday.hoursMorning);
+    this.myDay[0].hoursEvning=hoursWednesday.hoursEvning;
+    this.myDay[0].hoursMorning=hoursWednesday.hoursMorning;
+    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+    console.log(this.myDay); 
+  }
+this.flag=0;
+}
+addSettingThursdayDay()
+{
+  this.myDay=[];  
+  for(var i=0,j=0;i<this.days.length;i++){    
+    if(this.days[i].date=="Thursday"){
+      this.flag=1;
+    this.myDay[j]=this.days[i];
+    j++;
+    }
+  }
+    let hoursThursday={
+    date: this.Thursday,
+    hoursMorning: this.thursdayMorning,
+    hoursEvning:this.thursdayEvening
+  }  
+  if(this.flag==0)
+  {
+      this.settingDayRef.add(hoursThursday).then(res=>{
+          })
+  }
+  else{
+    console.log("hhhhiii");
+    console.log(this.myDay); 
+    // this.settingDayRef.set(hoursThursday.hoursMorning);
+    this.myDay[0].hoursEvning=hoursThursday.hoursEvning;
+    this.myDay[0].hoursMorning=hoursThursday.hoursMorning;
+    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+    console.log(this.myDay); 
+  }
+this.flag=0;
+}
+addSettingFridayDay()
+{
+this.myDay=[];  
+for(var i=0,j=0;i<this.days.length;i++){    
+  if(this.days[i].date=="Friday"){
+    this.flag=1;
+  this.myDay[j]=this.days[i];
+  j++;
+  }
+}
+
+  let hoursFriday={
+    date: this.Friday,
+    hoursMorning: this.fridayMorning,
+    hoursEvning:this.fridayEvening
+  } 
+if(this.flag==0)
+{
+    this.settingDayRef.add(hoursFriday).then(res=>{
+        })
+}
+else{
+  console.log("hhhhiii");
+  console.log(this.myDay); 
+  // this.settingDayRef.set(hoursFriday.hoursMorning);
+  this.myDay[0].hoursEvning=hoursFriday.hoursEvning;
+  this.myDay[0].hoursMorning=hoursFriday.hoursMorning;
+  //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+  console.log(this.myDay); 
+}
+this.flag=0; 
 }
 }
-//   let hoursSunday={
-//     date: this.Sunday,
-//     hoursMorning: this.sundayMorning,
-//     hoursEvning:this.sundayEvening
-//   }  
-//   this.settingDayRef.add(hoursSunday).then(res=>{
-//   })
-//   let hoursMonday={
-//     date: this.Monday,
-//     hoursMorning: this.mondayMorning,
-//     hoursEvning:this.mondayEvening
-//   }  
-//   this.settingDayRef.add(hoursMonday).then(res=>{
-//   })
+
+
   
-//   let hoursTuesday={
-//     date: this.Tuesday,
-//     hoursMorning: this.tuesdayMorning,
-//     hoursEvning:this.tuesdayEvening
-//   }  
-//   this.settingDayRef.add(hoursTuesday).then(res=>{
-//   })
-//   let hoursWednesday={
-//     date: this.Wednesday,
-//     hoursMorning: this.wednesdayMorning,
-//     hoursEvning:this.wednesdayEvening
-//   }  
-//   this.settingDayRef.add(hoursWednesday).then(res=>{
-//   })
-//   let hoursThursday={
-//     date: this.Thursday,
-//     hoursMorning: this.thursdayMorning,
-//     hoursEvning:this.thursdayEvening
-//   }  
-//   this.settingDayRef.add(hoursThursday).then(res=>{
-//   })
-//   let hoursFriday={
-//     date: this.Friday,
-//     hoursMorning: this.fridayMorning,
-//     hoursEvning:this.fridayEvening
-//   }  
-//   this.settingDayRef.add(hoursFriday).then(res=>{
-//   })
+
+
+
 
 // }
 // addOtherDate()
@@ -285,10 +426,10 @@ addSettingDay(){
 
 
 
-uploadImage(image) {
-  let storageRef = firebase.storage().ref();
-  return storageRef.put(image);
-}
+// uploadImage(image) {
+//   let storageRef = firebase.storage().ref();
+//   return storageRef.put(image);
+// }
 
 
 
