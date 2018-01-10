@@ -11,7 +11,18 @@ import {DataService} from '../data.service'
   userName:string;
   treatment:string;
 }*/
+export class appoi{
+  userName: string;
+  type:string;
+  start:Date;
+  end:Date;
+}
+export interface aDay{
+  date:string;
+  hoursEvning:string;
+  hoursMorning:string;
 
+}
 
 @Component({
   selector: 'app-calendar',
@@ -26,11 +37,15 @@ export class CalendarComponent implements OnInit {
   /*treatment:string;
   userName:string; 
   apps:appointment[];*/
-  
+  myAppois:appoi[]; 
+  mySpecDays:aDay[];
+  myDays:aDay[];
   clickedDate: Date;  
   //appoi:appointment;
     private col:AngularFirestoreCollection<any>;
-      
+    private myAppCol:AngularFirestoreCollection<any>;
+    private mySpeDays:AngularFirestoreCollection<any>;
+    private mySettDays:AngularFirestoreCollection<any>;
       constructor(private afs: AngularFirestore ,private dataService:DataService) {
        //this.itemDoc =this.afs.doc("events/1"); 
        this.col=this.afs.collection("events"); 
@@ -41,8 +56,21 @@ export class CalendarComponent implements OnInit {
           this.events[i]=res[i].event;
         }*/
         this.events=res; 
+       });  
+       this.myAppCol=this.afs.collection("myApointments");
+       this.myAppCol.valueChanges().subscribe(res=>{
+        this.myAppois=res;
+       });
+       this.mySpeDays=this.afs.collection("specificDays");
+       this.mySpeDays.valueChanges().subscribe(res=>{
+        this.mySpecDays=res;
+       });
+       this.mySettDays=this.afs.collection("Setting Days");
+       this.mySettDays.valueChanges().subscribe(res=>{
+        this.myDays=res;
+       });
        
-       }); 
+
      }
 
   dayClicked(){
