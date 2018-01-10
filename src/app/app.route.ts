@@ -15,16 +15,16 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { CosmeticianCalendarComponent } from './cosmetician-calendar/cosmetician-calendar.component';
 import {GuardAuthGuard}from './guard-auth.guard'
-
+import{AddNewComponent}from './add-new/add-new.component'
 export const appRoutes: Routes = [
 
    
     { path: "", redirectTo: "login", pathMatch: "full" },
- //   { path: "home", canActivate: [GuardAuthGuard], component:HomeComponent },
+    { path: "home", canActivate: [GuardAuthGuard], component:HomeComponent },
     { path: "login", component: LoginComponent },
-    { path: "home", component: HomeComponent },
     { path: "calendar", component: CalendarComponent },
     { path: "store", component: StoreComponent},
+    { path: "add_user", component: AddNewComponent},
     { path: "cosmetician-products", component: CosmeticianProductsComponent},
     { path: "cosmetician-settings", component: CosmeticianSettingsComponent },
     { path: "cosmetician-calendar", component: CosmeticianCalendarComponent },

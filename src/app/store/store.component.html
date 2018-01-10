@@ -1,20 +1,24 @@
-<div class="title">store</div>
-
-<div>
-    <div id="table">
-        <span>Product Name</span>     <span>Price</span>   <span>Quantity</span>
-    </div>
-    <div class="row" id="r1">
-            <span>Cosmetics Peeling</span>     <span>125</span>   <span>30</span>
-    </div>
-    <div class="row" id="r2">
-            <span>Polygene Mask</span>     <span>175</span>   <span>25</span>
-    </div>
-    <div class="row" id="r3">
-            <span>Forte Foot Cream</span>     <span>89</span>   <span>20</span>
-    </div>
-    <div class="row" id="r4">
-            <span>Purete Thermale</span>     <span>99</span>   <span>15</span>
-    </div>
+<mat-card id="load"*ngIf="ELEMENT_DATA==null">
+                <a id="he" class="spin">loading</a>
+               <mat-spinner class="spin" >
+               </mat-spinner>
+</mat-card>
+<div id="table">
+     <!--   our products:
+        <div id="header_table">
+                <div class="productName">product name</div>
+                <div class="price">price</div>
+                <div class="quantity">quantity</div>
+                <div class="pic">picture</div>
+        </div>-->
+        <div id="content">
+                <div class="tuple" *ngFor="let prod of ELEMENT_DATA"  >
+                        <div class="productName">{{prod.productName}}</div>
+                        <div class="price">{{prod.price}} NIS</div>
+                        <div class="quantity">{{prod.quantity.toString()}}</div>
+                        <div class="pic" [ngStyle]="{'background-image': 'url(' + prod.pic +')', 'background-repeat': 'no-repeat'}">
+                        </div>  
+                </div>
+        </div>          
 </div>
-
+                    

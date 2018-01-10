@@ -8,6 +8,11 @@ export var var1:string = 'a';
   styleUrls: ['./app.component.scss']
 })
 
+
+
+
+
+
 export class AppComponent {
   title = 'app';
 public user_login;

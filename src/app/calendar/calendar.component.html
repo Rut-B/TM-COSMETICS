@@ -1,29 +1,10 @@
-<!--<button (click)="add()">add event</button>
-<div id="div1">
-    <input type="date">
-</div>
-<mwl-calendar-month-view
-[viewDate]="viewDate"
-[events]="events"
-(dayClicked)="clickedDate = $event.day.date">>
-</mwl-calendar-month-view>
-<mwl-demo-utils-calendar-header
-[(view)]="view"
-[(viewDate)]="viewDate">
-</mwl-demo-utils-calendar-header>-->
 
+<button (click)="trying()" *ngIf="events">try....</button>
 <div class="alert alert-info" id="head">
 Click on a day on the view.
 <strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
 </div>
-
 <div [ngSwitch]="view">
-<!--<mwl-calendar-month-view
-  *ngSwitchCase="'month'"
-  [viewDate]="viewDate"
-  [events]="events"
-  (dayClicked)="clickedDate = $event.day.date">
-</mwl-calendar-month-view>-->
 <mwl-calendar-month-view
 *ngSwitchCase="'month'"
 [(viewDate)]="viewDate"

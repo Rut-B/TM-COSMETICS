@@ -9,8 +9,9 @@ import {DatabaseFirebaseService} from '../database-firebase.service'
   styleUrls: ['./cosmetician-products.component.scss']
 })
 export class CosmeticianProductsComponent implements OnInit {
+ constructor(public databaseFirebase:DatabaseFirebaseService ){
 
+ }
   ngOnInit() {
   }
-  
 }

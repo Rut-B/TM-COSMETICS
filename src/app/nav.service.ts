@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import * as users from './auth.service';
+import {AuthService} from './auth.service';
 import * as myGlobals from './globals';
 @Injectable()
 export class NavService 
 {
     public navItems: NavItem[];
   
-constructor() 
+constructor(private auth:AuthService) 
 {
-//alert("in con of nav");
- 
-// while(!users.isLogin);
- var exist=true;
- users.USER.prototype.is_customer
-  if (/*users.AuthService.prototype.corrent_user.is_customer*/myGlobals.customer)
+  let tmp =false;//Eran this is trmp that have to delete...
+  if (myGlobals.customer/*auth.current_user.is_customer*/)
   {
     this.navItems=[
       new NavItem("settings","settings",'/assets/6.png'),
@@ -41,9 +37,3 @@ constructor()
     }
   
   }
-export function viewNavs(){
- 
-  var exist=true;
-  
-
-}

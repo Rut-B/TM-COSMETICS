@@ -4,19 +4,27 @@ import { Observable } from 'rxjs/Observable';
 import {DatabaseFirebaseService} from '../database-firebase.service'
 import * as firebase from 'firebase';
 
+
+
+
+
+
 @Component({
   selector: 'app-cosmetician-settings',
   templateUrl: './cosmetician-settings.component.html',
   styleUrls: ['./cosmetician-settings.component.scss']
 })
-export class CosmeticianSettingsComponent implements OnInit {
 
+
+
+export class CosmeticianSettingsComponent implements OnInit {
+public res_im;
   constructor(public databaseFirebase: DatabaseFirebaseService ) {
     }
     ngOnInit() {
     }
      public addProducts(){
-      this.databaseFirebase.addProducts();
+      this.databaseFirebase.addProducts(this.res_im);
     }
      public addTreatment(){
       this.databaseFirebase.addTreatment();
@@ -36,5 +44,17 @@ export class CosmeticianSettingsComponent implements OnInit {
     }
     public addAppointment(){
       this.databaseFirebase.addAppointment();
-    }
+    }  
+    /*public addSettingDay(){
+      this.databaseFirebase.addSettingDay()
+    }*/
+
+public uploadImage(image) {
+  //this.res_im=this.databaseFirebase.uploadImage(image);
+  if (image.length!=0){
+  this.databaseFirebase.uploadImage(image).then(res => {
+    this.res_im = res.downloadURL;
+  });
+  }
+}
 }
