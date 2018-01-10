@@ -1,5 +1,5 @@
 
-
+<button (click)="trying()" *ngIf="events">try....</button>
 <div class="alert alert-info" id="head">
 Click on a day on the view.
 <strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
