@@ -3,7 +3,7 @@ import { CalendarEvent, } from "angular-calendar";
 //import {CalendarMessageService}from '../calendar-message.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
-
+import {DataService} from '../data.service'
 
 @Component({
   selector: 'app-calendar',
@@ -17,7 +17,7 @@ export class CalendarComponent implements OnInit {
     clickedDate: Date; 
     private col:AngularFirestoreCollection<any>;
       
-      constructor(private afs: AngularFirestore/*,private messageService:CalendarMessageService*/) {
+      constructor(private afs: AngularFirestore ,private dataService:DataService) {
        //this.itemDoc =this.afs.doc("events/1"); 
        this.col=this.afs.collection("events"); 
        this.viewDate = new Date();  
@@ -28,6 +28,8 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
   this.addEvent(this.clickedDate);
+  alert(this.dataService.totalDuration)
+  alert(this.dataService.selected_treatments);
   }
   
   addEvent(date){

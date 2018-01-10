@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { _document } from '@angular/platform-browser/src/browser';
 import {DatabaseFirebaseService} from '../database-firebase.service'
 import {Router} from "@angular/router";
-
+import {DataService} from '../data.service'
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -21,7 +21,7 @@ export class DetailsComponent {
   public selectedTreatments :string[]=[];
   public dataSource: MatTableDataSource < Element > ;
   message:string;
-  constructor(private afs: AngularFirestore, public databaseFirebase: DatabaseFirebaseService,public router: Router){
+  constructor(private afs: AngularFirestore, public databaseFirebase: DatabaseFirebaseService,public router: Router, public dataService:DataService){
 
     this.treatmentRef = this.afs.collection("treatments");
     let res=this.treatmentRef.valueChanges().subscribe(res=>{
@@ -95,11 +95,10 @@ public selectTreatment(event) {
   public selectTime(){
     let tups=document.getElementsByClassName("tuple");
     let total_duration=0;
-    this.selectedTreatments=[];
     for (let i=0;i<tups.length;i++){
       let tup_iter=document.getElementById(i.toString());
       if(tup_iter.style.backgroundColor=="grey"){
-       this.selectedTreatments.push(tups[i].firstElementChild.innerHTML);
+        this.dataService.selected_treatments.push(tups[i].firstElementChild.innerHTML);
         let dur=tup_iter.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
         if (dur.indexOf(" ")!=-1){
           let SnumDur=dur.split(" ")[0];
@@ -109,11 +108,9 @@ public selectTreatment(event) {
         }
       }
     }
-    this.selectedTreatments.forEach(i=>{alert(i);
-  }
-  );
+    this.dataService.totalDuration=total_duration;
  // this.data.setTreatment(this.selectedTreatments);
-    alert(total_duration);
+    //alert(total_duration);
     //this.data.setDuration(total_duration);
     this.router.navigate(["calendar"]);
   }
