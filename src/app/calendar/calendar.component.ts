@@ -145,11 +145,66 @@ if(this.viewDate.getMonth()==month&&this.viewDate.getFullYear()==year){
 }
 }
 }
-public scheduleTime(day:Date, duration:number):boolean{
-return false;
-}
+
 public getAvailability(day:Date):string[]{
   
 return ['start','end'];
 }
+
+public parseTime(time:string):number[]{//return hours and min.
+  return null;
+}
+
+public getDist(startTime:number[],endTime:number[]):number{
+return 0;
+}
+
+
+
+/*********************************************************** 
+* this function return boolean paramter to paint the scechule..
+*************************************************************/
+/*
+public scheduleTime(day:Date, duration:number):boolean
+{
+
+if (duration == 0)
+{
+  return true;
+}
+let timeToWork:string[];
+timeToWork= this.getAvailability(day);//get array of start:end,start:end
+let startMorning=timeToWork[0];
+let endMorning=timeToWork[1];
+let startEvening=timeToWork[2];
+let endtEvening=timeToWork[3];
+let durationA = this.getDist(this.parseTime(endMorning),this.parseTime(startMorning));
+let durationB = this.getDist(this.parseTime(endtEvening),this.parseTime(startEvening));
+
+if ((duration >durationA)&&
+   (duration >durationB))
+   {
+     return false;
+   }
+  
+  let appointmensArray:appoi[]; 
+  SVGLength
+  this.myAppCol=this.afs.collection("myApointments");
+  this.myAppCol.valueChanges().subscribe(res=>{
+    appointmensArray=res;
+  });
+for(let i=0; i<appointmensArray.length;i++)
+{
+  
+}
+return false;
+}
+/*
+export class appoi{
+  userName: string;
+  type:string;
+  start:Date;
+  end:Date;
+}*/
+
 }

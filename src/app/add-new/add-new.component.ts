@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DatabaseFirebaseService} from '../database-firebase.service';
+import { DatabaseFirebaseService } from '../database-firebase.service';
 import { Router } from "@angular/router";
 
 @Component({
@@ -9,13 +9,14 @@ import { Router } from "@angular/router";
 })
 export class AddNewComponent implements OnInit {
 
-  constructor(public databaseFirebase: DatabaseFirebaseService,private router:Router ) {
+  constructor(public databaseFirebase: DatabaseFirebaseService, private router: Router) {
   }
   ngOnInit() {
   }
-  public addCustomer()
-  {
-    this.databaseFirebase.addCustomer();  
-    this.router.navigate(["home"]);
+  public addCustomer() {
+    if (this.databaseFirebase.IsNotEmpty()) {
+      this.databaseFirebase.addCustomer();
+      this.router.navigate(["home"]);
+    }
   }
 }
