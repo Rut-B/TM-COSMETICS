@@ -320,6 +320,24 @@ addSettingThursdayDay()
 }
 addSettingFridayDay()
 {
+
+}
+}
+
+
+/*getTurnByTime()
+{
+  this.myAppointments=[];
+  var date1=new Date();
+ // alert(this.appointments.length);
+  for(var i=0,j=0;i<this.appointments.length;i++){
+    //alert(this.appointments[i].start.getDate());
+    var date2=(this.appointments[i].start.getDate()) +"/"+ (this.appointments[i].start.getMonth()+1)+ "/"+ (this.appointments[i].start.getFullYear());
+    if(date2=="31/12/2017"){
+     this.myAppointments[j]=this.appointments[i];
+     j++;
+    }
+  }
   let hoursFriday={
     date: this.Friday,
     hoursMorning: this.fridayMorning,
@@ -337,6 +355,16 @@ addSettingFridayDay()
  
 }
 }
+getTurnByCosmetician()
+{
+  this.myAppointments=[];
+  for(var i=0,j=0;i<this.appointments.length;i++){
+    if(this.appointments[i].cosmeticianName=="Eti"){
+     this.myAppointments[j]=this.appointments[i];
+     j++;
+    }
+  }
+}*/
 
 
   

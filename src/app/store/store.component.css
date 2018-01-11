@@ -83,6 +83,7 @@
     display: block;
     width: 10vw;
     height:30%;
+
    /* float: right;
     display: flex;
     flex-direction: row;*/
@@ -109,3 +110,12 @@
         font-weight: bold;
         color:#CC2572;
     }
+ul
+{
+    list-style-type:none;
+}
+li
+{
+   /* padding: 1%;*/
+    margin: 10%;
+}
