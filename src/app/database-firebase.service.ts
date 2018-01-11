@@ -99,7 +99,6 @@ public flag:number;
   private col:AngularFirestoreCollection<any>;
   public days:event[];
   public myDay:event[];
-  public itemdoc:AngularFirestoreDocument<any>;
 
 
   constructor(private afs: AngularFirestore){
@@ -127,7 +126,7 @@ public flag:number;
     this.col=this.afs.collection<event>("Setting Days"); 
     this.col.valueChanges().subscribe(res=>{
         this.days=res;
-      });
+      });      
   }
   addAppointment(){
     let appoin={
@@ -220,189 +219,122 @@ addMessageManager(){
   });
 }
 addSettingSunDay(){ 
-  this.myDay=[];  
-  for(var i=0,j=0;i<this.days.length;i++){    
-    if(this.days[i].date=="Sunday"){
-      this.flag=1;
-     this.myDay[j]=this.days[i];
-     j++;
-    }
-  }
+  // this.myDay=[];  
+  // for(var i=0,j=0;i<this.days.length;i++){    
+  //   if(this.days[i].date=="Sunday"){
+  //     this.flag=1;
+  //    this.myDay[j]=this.days[i];
+  //    j++;
+  //   }
+  // }
   let hoursSunday={
     date: this.Sunday,
     hoursMorning: this.sundayMorning,
     hoursEvning:this.sundayEvening
   } 
-  if(this.flag==0)
-  {
-      this.settingDayRef.add(hoursSunday);
-  }
-  else{
-    console.log("hhhhiii");
-    console.log(this.myDay); 
-    // this.settingDayRef.set(hoursSunday.hoursMorning);
-     this.myDay[0].hoursEvning=hoursSunday.hoursEvning;
-     this.myDay[0].hoursMorning=hoursSunday.hoursMorning;
-    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
-    console.log(this.myDay); 
-  }
-this.flag=0;
+  // if(this.flag==0)
+  // {
+  //   console.log("not");
+  //     this.settingDayRef.doc(this.Sunday).set(hoursSunday);
+  // }
+  // else{
+       this.settingDayRef.doc(this.Sunday).set(hoursSunday);
+        this.settingDayRef=this.afs.doc("Setting Days/" +this.Sunday);           
+        this.settingDayRef.valueChanges().subscribe(res=>{
+        this.Sunday=res.Sunday;
+        this.sundayEvening=res.sundayEvening;
+        this.sundayMorning=res.sundayMorning;
+      });
+      this.settingDayRef=this.afs.collection("Setting Days");      
+  // }
+// this.flag=0;
 }
 addSettingMondayDay()
 {
-    this.myDay=[];  
-    for(var i=0,j=0;i<this.days.length;i++){    
-      if(this.days[i].date=="Monday"){
-        this.flag=1;
-      this.myDay[j]=this.days[i];
-      j++;
-      }
-    }
   let hoursMonday={
     date: this.Monday,
     hoursMorning: this.mondayMorning,
     hoursEvning:this.mondayEvening
-  }    
-    if(this.flag==0)
-    {
-        this.settingDayRef.add(hoursMonday).then(res=>{
-            })
-    }
-    else{
-      console.log("hhhhiii");
-      console.log(this.myDay); 
-      // this.settingDayRef.set(hoursSunday.hoursMorning);
-      this.myDay[0].hoursEvning=hoursMonday.hoursEvning;
-      this.myDay[0].hoursMorning=hoursMonday.hoursMorning;
-      //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
-      console.log(this.myDay); 
-    }
-  this.flag=0;
+    }    
+      this.settingDayRef.doc(this.Monday).set(hoursMonday);
+      this.settingDayRef=this.afs.doc("Setting Days/" +this.Monday);                     
+      this.settingDayRef.valueChanges().subscribe(res=>{
+      this.Monday=res.Monday;
+      this.sundayEvening=res.sundayEvening;
+      this.sundayMorning=res.sundayMorning;
+    });
+    this.settingDayRef=this.afs.collection("Setting Days");    
 }
 addSettingTuesdayDay()
 {
-              this.myDay=[];  
-              for(var i=0,j=0;i<this.days.length;i++){    
-                if(this.days[i].date=="Tuesday"){
-                  this.flag=1;
-                this.myDay[j]=this.days[i];
-                j++;
-                }
-              }
               let hoursTuesday={
                 date: this.Tuesday,
                 hoursMorning: this.tuesdayMorning,
                 hoursEvning:this.tuesdayEvening
               }  
-              if(this.flag==0)
-              {
-                  this.settingDayRef.add(hoursTuesday).then(res=>{
-                      })
-              }
-              else{
-                console.log("hhhhiii");
-                console.log(this.myDay); 
-                // this.settingDayRef.set(hoursSunday.hoursMorning);
-                this.myDay[0].hoursEvning=hoursTuesday.hoursEvning;
-                this.myDay[0].hoursMorning=hoursTuesday.hoursMorning;
-                //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
-                console.log(this.myDay); 
-              }
-            this.flag=0;
+              
+                  this.settingDayRef.doc(this.Tuesday).set(hoursTuesday);
+                  this.settingDayRef=this.afs.doc("Setting Days/" +this.Tuesday);           
+                  this.settingDayRef.valueChanges().subscribe(res=>{
+                  this.Tuesday=res.Monday;
+                  this.sundayEvening=res.sundayEvening;
+                  this.sundayMorning=res.sundayMorning;
+                });
+                this.settingDayRef=this.afs.collection("Setting Days")
+                
 }
 addSettingWednesdayDay()
 {
-  this.myDay=[];  
-  for(var i=0,j=0;i<this.days.length;i++){    
-    if(this.days[i].date=="Wednesday"){
-      this.flag=1;
-    this.myDay[j]=this.days[i];
-    j++;
-    }
-  }
-    let hoursWednesday={
-    date: this.Wednesday,
-    hoursMorning: this.wednesdayMorning,
-    hoursEvning:this.wednesdayEvening
-  }  
-  if(this.flag==0)
-  {
-      this.settingDayRef.add(hoursWednesday).then(res=>{
-          })
-  }
-  else{
-    console.log("hhhhiii");
-    console.log(this.myDay); 
-    // this.settingDayRef.set(hoursSunday.hoursMorning);
-    this.myDay[0].hoursEvning=hoursWednesday.hoursEvning;
-    this.myDay[0].hoursMorning=hoursWednesday.hoursMorning;
-    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
-    console.log(this.myDay); 
-  }
-this.flag=0;
+            let hoursWednesday={
+            date: this.Wednesday,
+            hoursMorning: this.wednesdayMorning,
+            hoursEvning:this.wednesdayEvening
+          }  
+         
+            this.settingDayRef.doc(this.Wednesday).set(hoursWednesday);
+            this.settingDayRef=this.afs.doc("Setting Days/" +this.Wednesday);           
+            this.settingDayRef.valueChanges().subscribe(res=>{
+            this.Wednesday=res.Monday;
+            this.sundayEvening=res.sundayEvening;
+            this.sundayMorning=res.sundayMorning;
+          });
+                    this.settingDayRef=this.afs.collection("Setting Days");
 }
 addSettingThursdayDay()
 {
-  this.myDay=[];  
-  for(var i=0,j=0;i<this.days.length;i++){    
-    if(this.days[i].date=="Thursday"){
-      this.flag=1;
-    this.myDay[j]=this.days[i];
-    j++;
-    }
-  }
     let hoursThursday={
     date: this.Thursday,
     hoursMorning: this.thursdayMorning,
     hoursEvning:this.thursdayEvening
   }  
-  if(this.flag==0)
-  {
-      this.settingDayRef.add(hoursThursday).then(res=>{
-          })
-  }
-  else{
-    console.log("hhhhiii");
-    console.log(this.myDay); 
-    // this.settingDayRef.set(hoursThursday.hoursMorning);
-    this.myDay[0].hoursEvning=hoursThursday.hoursEvning;
-    this.myDay[0].hoursMorning=hoursThursday.hoursMorning;
-    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
-    console.log(this.myDay); 
-  }
-this.flag=0;
+
+    this.settingDayRef.doc(this.Thursday).set(hoursThursday);
+    this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
+    this.settingDayRef.valueChanges().subscribe(res=>{
+    this.Thursday=res.Monday;
+    this.sundayEvening=res.sundayEvening;
+    this.sundayMorning=res.sundayMorning;
+  });
+  this.settingDayRef=this.afs.collection("Setting Days");
+  
 }
 addSettingFridayDay()
 {
-this.myDay=[];  
-for(var i=0,j=0;i<this.days.length;i++){    
-  if(this.days[i].date=="Friday"){
-    this.flag=1;
-  this.myDay[j]=this.days[i];
-  j++;
-  }
-}
-
   let hoursFriday={
     date: this.Friday,
     hoursMorning: this.fridayMorning,
     hoursEvning:this.fridayEvening
   } 
-if(this.flag==0)
-{
-    this.settingDayRef.add(hoursFriday).then(res=>{
-        })
-}
-else{
-  console.log("hhhhiii");
-  console.log(this.myDay); 
-  // this.settingDayRef.set(hoursFriday.hoursMorning);
-  this.myDay[0].hoursEvning=hoursFriday.hoursEvning;
-  this.myDay[0].hoursMorning=hoursFriday.hoursMorning;
-  //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
-  console.log(this.myDay); 
-}
-this.flag=0; 
+ 
+   this.settingDayRef.doc(this.Friday).set(hoursFriday);
+   this.settingDayRef=this.afs.doc("Setting Days/" +this.Friday);           
+   this.settingDayRef.valueChanges().subscribe(res=>{
+   this.Friday=res.Monday;
+   this.sundayEvening=res.sundayEvening;
+   this.sundayMorning=res.sundayMorning;
+ });
+ this.settingDayRef=this.afs.collection("Setting Days");
+ 
 }
 }
 
