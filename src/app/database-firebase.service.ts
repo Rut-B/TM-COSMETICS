@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase';
+export interface event{
+  date: string;
+  hoursMorning:string;
+  hoursEvning:string;
+ }
+//  @Injectable() 
+// import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseFirebaseService {
 public selected: string[]=[];
-
+public flag:number;
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -85,7 +91,16 @@ public selected: string[]=[];
   public Friday:string;
   public fridayMorning:string;
   public fridayEvening:string;
-  
+
+  public other:string;
+  public otherMorning:string;
+  public otherEvening:string;
+
+  private col:AngularFirestoreCollection<any>;
+  public days:event[];
+  public myDay:event[];
+
+
   constructor(private afs: AngularFirestore){
     this.appointmentRef = this.afs.collection("appointment");
     this.customerRef = this.afs.collection("USERS");
@@ -105,6 +120,13 @@ public selected: string[]=[];
     this.Wednesday="Wednesday";
     this.Thursday="Thursday";
     this.Friday="Friday";
+    this.myDay=new Array(); 
+    this.days=new Array(); 
+    this.flag=0;
+    this.col=this.afs.collection<event>("Setting Days"); 
+    this.col.valueChanges().subscribe(res=>{
+        this.days=res;
+      });      
   }
   addAppointment(){
     let appoin={
@@ -196,10 +218,235 @@ addMessageManager(){
     content:this.content
   });
 }
-uploadImage(image) {
-  let storageRef = firebase.storage().ref();
-  return storageRef.put(image);
+addSettingSunDay(){ 
+  // this.myDay=[];  
+  // for(var i=0,j=0;i<this.days.length;i++){    
+  //   if(this.days[i].date=="Sunday"){
+  //     this.flag=1;
+  //    this.myDay[j]=this.days[i];
+  //    j++;
+  //   }
+  // }
+  let hoursSunday={
+    date: this.Sunday,
+    hoursMorning: this.sundayMorning,
+    hoursEvning:this.sundayEvening
+  } 
+  // if(this.flag==0)
+  // {
+  //   console.log("not");
+  //     this.settingDayRef.doc(this.Sunday).set(hoursSunday);
+  // }
+  // else{
+       this.settingDayRef.doc(this.Sunday).set(hoursSunday);
+        this.settingDayRef=this.afs.doc("Setting Days/" +this.Sunday);           
+        this.settingDayRef.valueChanges().subscribe(res=>{
+        this.Sunday=res.Sunday;
+        this.sundayEvening=res.sundayEvening;
+        this.sundayMorning=res.sundayMorning;
+      });
+      this.settingDayRef=this.afs.collection("Setting Days");      
+  // }
+// this.flag=0;
 }
+addSettingMondayDay()
+{
+  let hoursMonday={
+    date: this.Monday,
+    hoursMorning: this.mondayMorning,
+    hoursEvning:this.mondayEvening
+    }    
+      this.settingDayRef.doc(this.Monday).set(hoursMonday);
+      this.settingDayRef=this.afs.doc("Setting Days/" +this.Monday);                     
+      this.settingDayRef.valueChanges().subscribe(res=>{
+      this.Monday=res.Monday;
+      this.sundayEvening=res.sundayEvening;
+      this.sundayMorning=res.sundayMorning;
+    });
+    this.settingDayRef=this.afs.collection("Setting Days");    
+}
+addSettingTuesdayDay()
+{
+              let hoursTuesday={
+                date: this.Tuesday,
+                hoursMorning: this.tuesdayMorning,
+                hoursEvning:this.tuesdayEvening
+              }  
+              
+                  this.settingDayRef.doc(this.Tuesday).set(hoursTuesday);
+                  this.settingDayRef=this.afs.doc("Setting Days/" +this.Tuesday);           
+                  this.settingDayRef.valueChanges().subscribe(res=>{
+                  this.Tuesday=res.Monday;
+                  this.sundayEvening=res.sundayEvening;
+                  this.sundayMorning=res.sundayMorning;
+                });
+                this.settingDayRef=this.afs.collection("Setting Days")
+                
+}
+addSettingWednesdayDay()
+{
+            let hoursWednesday={
+            date: this.Wednesday,
+            hoursMorning: this.wednesdayMorning,
+            hoursEvning:this.wednesdayEvening
+          }  
+         
+            this.settingDayRef.doc(this.Wednesday).set(hoursWednesday);
+            this.settingDayRef=this.afs.doc("Setting Days/" +this.Wednesday);           
+            this.settingDayRef.valueChanges().subscribe(res=>{
+            this.Wednesday=res.Monday;
+            this.sundayEvening=res.sundayEvening;
+            this.sundayMorning=res.sundayMorning;
+          });
+                    this.settingDayRef=this.afs.collection("Setting Days");
+}
+addSettingThursdayDay()
+{
+    let hoursThursday={
+    date: this.Thursday,
+    hoursMorning: this.thursdayMorning,
+    hoursEvning:this.thursdayEvening
+  }  
+
+    this.settingDayRef.doc(this.Thursday).set(hoursThursday);
+    this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
+    this.settingDayRef.valueChanges().subscribe(res=>{
+    this.Thursday=res.Monday;
+    this.sundayEvening=res.sundayEvening;
+    this.sundayMorning=res.sundayMorning;
+  });
+  this.settingDayRef=this.afs.collection("Setting Days");
+  
+}
+addSettingFridayDay()
+{
 
 }
+}
+
+
+/*getTurnByTime()
+{
+  this.myAppointments=[];
+  var date1=new Date();
+ // alert(this.appointments.length);
+  for(var i=0,j=0;i<this.appointments.length;i++){
+    //alert(this.appointments[i].start.getDate());
+    var date2=(this.appointments[i].start.getDate()) +"/"+ (this.appointments[i].start.getMonth()+1)+ "/"+ (this.appointments[i].start.getFullYear());
+    if(date2=="31/12/2017"){
+     this.myAppointments[j]=this.appointments[i];
+     j++;
+    }
+  }
+  let hoursFriday={
+    date: this.Friday,
+    hoursMorning: this.fridayMorning,
+    hoursEvning:this.fridayEvening
+  } 
+ 
+   this.settingDayRef.doc(this.Friday).set(hoursFriday);
+   this.settingDayRef=this.afs.doc("Setting Days/" +this.Friday);           
+   this.settingDayRef.valueChanges().subscribe(res=>{
+   this.Friday=res.Monday;
+   this.sundayEvening=res.sundayEvening;
+   this.sundayMorning=res.sundayMorning;
+ });
+ this.settingDayRef=this.afs.collection("Setting Days");
+ 
+}
+}
+getTurnByCosmetician()
+{
+  this.myAppointments=[];
+  for(var i=0,j=0;i<this.appointments.length;i++){
+    if(this.appointments[i].cosmeticianName=="Eti"){
+     this.myAppointments[j]=this.appointments[i];
+     j++;
+    }
+  }
+}*/
+
+
+  
+
+
+
+
+// }
+// addOtherDate()
+// {
+//   let hoursOther={
+//     date: this.other,
+//     hoursMorning: this.otherMorning,
+//     hoursEvning:this.otherEvening
+//   }  
+//   this.settingDayRef.add(hoursOther).then(res=>{
+//   })
+// }
+
+
+
+// uploadImage(image) {
+//   let storageRef = firebase.storage().ref();
+//   return storageRef.put(image);
+// }
+
+
+
+
+// export class ProfileComponent implements OnInit {
+ 
+
+//  public myCosmetician:event[];
+//  public d:Date;
+//  public weeks; 
+//  public currentDate=new Date();
+//  dateFilter: BehaviorSubject<string | null>;
+
+// constructor(private afs: AngularFirestore) { 
+  
+//   }
+
+
+
+
+
+
+
+  
+    //this.col=this.afs.collection('users');
+    //this.prod=this.afs.collection('products');
+    //this.prod.valueChanges().subscribe(res=>{
+//this.product=res;
+  //  });
+
+    //this.col=this.afs.collection('')
+    //this.col.valueChanges().subscribe(res=>{
+    //  console.log(res);
+    //  this.users=res;
+   // });
+  // this.ob=this.col.valueChanges();
+  
+ /* 
+  constructor(private afs: AngularFirestore){
+    this.itemDoc = this.afs.doc('users/1');
+    let item = this.itemDoc.valueChanges().subscribe(res=>{
+      this.name = res.name
+    });
+  }
+*/
+// delete(){
+//   this.afs.collection('users').doc('ZKLtTI9ie5P4jXusU6tT').delete().then(function() {
+//     console.log("Document successfully deleted!");
+// }).catch(function(error) {
+//     console.error("Error removing document: ", error);
+// });
+// }
+  // send(){
+  //   //this.pushProducts('face cream','mmt','123','uriel');
+  //   this.col.add({name: this.name, lname: this.lname}).then(res=>{
+  //   //  alert(res);
+  //   //alert(this.name + ", " + this.lname);
+  //  })
+  // }
 

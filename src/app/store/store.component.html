@@ -13,11 +13,20 @@
         </div>-->
         <div id="content">
                 <div class="tuple" *ngFor="let prod of ELEMENT_DATA"  >
-                        <div class="productName">{{prod.productName}}</div>
-                        <div class="price">{{prod.price}} NIS</div>
-                        <div class="quantity">{{prod.quantity.toString()}}</div>
-                        <div class="pic" [ngStyle]="{'background-image': 'url(' + prod.pic +')', 'background-repeat': 'no-repeat'}">
-                        </div>  
+                    <ul >
+                        <li>
+                            <div class="productName">{{prod.productName}}</div>
+                        </li>
+                        <li>
+                                <div class="price">{{prod.price}} NIS</div>
+                        </li>
+                        <li>
+                                <div class="quantity">{{prod.quantity.toString()}}</div>
+                        </li>                       
+                    </ul>
+                    <div
+                        class="pic" [ngStyle]="{'background-image': 'url(' + prod.pic +')', 'background-repeat': 'no-repeat'}">
+                    </div>  
                 </div>
         </div>          
 </div>
