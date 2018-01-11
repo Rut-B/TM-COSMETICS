@@ -104,7 +104,7 @@ constructor(private afs: AngularFirestore) {
   
   getTurnByTime()
   {
-    alert(this.choosedDate)
+    alert(this.choosedDate);
     this.myAppointments=[];
     var date1=new Date();
    // alert(this.appointments.length);

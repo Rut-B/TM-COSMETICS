@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-<<<<<<< HEAD
-//import { ProfileComponent } from '../profile.component.';
-
-
-
-
-=======
 import * as firebase from 'firebase';
->>>>>>> b09c2b7ae520b5f3060d64a20de96ba62caa26f4
 @Injectable()
 export class DatabaseFirebaseService {
 public selected: string[]=[];
@@ -204,59 +196,13 @@ addMessageManager(){
     content:this.content
   });
 }
-<<<<<<< HEAD
-addSettingDay(){ 
-  let hoursSunday={
-    date: this.Sunday,
-    hoursMorning: this.sundayMorning,
-    hoursEvning:this.sundayEvening
-  }  
-  this.settingDayRef.add(hoursSunday).then(res=>{
-  })
-  let hoursMonday={
-    date: this.Monday,
-    hoursMorning: this.mondayMorning,
-    hoursEvning:this.mondayEvening
-  }  
-  this.settingDayRef.add(hoursMonday).then(res=>{
-  })
-  
-  let hoursTuesday={
-    date: this.Tuesday,
-    hoursMorning: this.tuesdayMorning,
-    hoursEvning:this.tuesdayEvening
-  }  
-  this.settingDayRef.add(hoursTuesday).then(res=>{
-  })
-  let hoursWednesday={
-    date: this.Wednesday,
-    hoursMorning: this.wednesdayMorning,
-    hoursEvning:this.wednesdayEvening
-  }  
-  this.settingDayRef.add(hoursWednesday).then(res=>{
-  })
-  let hoursThursday={
-    date: this.Thursday,
-    hoursMorning: this.thursdayMorning,
-    hoursEvning:this.thursdayEvening
-  }  
-  this.settingDayRef.add(hoursThursday).then(res=>{
-  })
-  let hoursFriday={
-    date: this.Friday,
-    hoursMorning: this.fridayMorning,
-    hoursEvning:this.fridayEvening
-  }  
-  this.settingDayRef.add(hoursFriday).then(res=>{
-   
-  })
-=======
 uploadImage(image) {
   let storageRef = firebase.storage().ref();
   return storageRef.put(image);
->>>>>>> b09c2b7ae520b5f3060d64a20de96ba62caa26f4
 }
 }
+
+
 /*getTurnByTime()
 {
   this.myAppointments=[];
@@ -280,65 +226,5 @@ getTurnByCosmetician()
      j++;
     }
   }
-}
+}*/
 
-<<<<<<< HEAD
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    //this.col=this.afs.collection('users');
-    //this.prod=this.afs.collection('products');
-    //this.prod.valueChanges().subscribe(res=>{
-//this.product=res;
-  //  });
-
-    //this.col=this.afs.collection('')
-    //this.col.valueChanges().subscribe(res=>{
-    //  console.log(res);
-    //  this.users=res;
-   // });
-  // this.ob=this.col.valueChanges();
-  
- /* 
-  constructor(private afs: AngularFirestore){
-    this.itemDoc = this.afs.doc('users/1');
-    let item = this.itemDoc.valueChanges().subscribe(res=>{
-      this.name = res.name
-    });
-  }
-*/
-// delete(){
-//   this.afs.collection('users').doc('ZKLtTI9ie5P4jXusU6tT').delete().then(function() {
-//     console.log("Document successfully deleted!");
-// }).catch(function(error) {
-//     console.error("Error removing document: ", error);
-// });
-// }
-  // send(){
-  //   //this.pushProducts('face cream','mmt','123','uriel');
-  //   this.col.add({name: this.name, lname: this.lname}).then(res=>{
-  //   //  alert(res);
-  //   //alert(this.name + ", " + this.lname);
-  //  })
-  // }
-
-
-
-
-=======
->>>>>>> b09c2b7ae520b5f3060d64a20de96ba62caa26f4
