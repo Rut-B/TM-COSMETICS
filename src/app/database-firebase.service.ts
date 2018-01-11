@@ -20,6 +20,7 @@ public flag:number;
   public cosmeticiansRef;
   public messageManagerRef;
   public settingDayRef;
+  public specificOfDate;
 
   public quantity:number;
   public productName:string;
@@ -109,7 +110,8 @@ public flag:number;
     this.locationtRef = this.afs.collection("locations");
     this.cosmeticiansRef = this.afs.collection("cosmeticians");
     this.messageManagerRef = this.afs.collection("messageManager");
-    this.settingDayRef=this.afs.collection("Setting Days")
+    this.settingDayRef=this.afs.collection("Setting Days");
+    this.specificOfDate=this.afs.collection("specificDays");
     this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
     this.cosmeticianAvailability=[];
     this.appointmentCustomer=[];
@@ -120,6 +122,7 @@ public flag:number;
     this.Wednesday="Wednesday";
     this.Thursday="Thursday";
     this.Friday="Friday";
+    this.other="";
     this.myDay=new Array(); 
     this.days=new Array(); 
     this.flag=0;
@@ -335,6 +338,17 @@ addSettingFridayDay()
   });
   this.settingDayRef=this.afs.collection("Setting Days");
 }
+addOtherDate()
+      {
+        let hoursOther={
+          date: this.other,
+          hoursMorning: this.otherMorning,
+          hoursEvning:this.otherEvening
+          }  
+          this.specificOfDate.add(hoursOther).then(res=>{
+          });
+      
+      }
 }
 
 

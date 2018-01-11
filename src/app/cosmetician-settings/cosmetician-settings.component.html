@@ -102,6 +102,14 @@
         <input type="text" [(ngModel)]="databaseFirebase.fridayEvening" placeholder="duringHoursEvening" >  
         <button (click)="addSettingFridayDay()">update</button>        
         </div>
+        <div>
+        <h3>other date:</h3> 
+        <input type="text" [(ngModel)]="databaseFirebase.other" placeholder="date" >        
+        <input type="text" [(ngModel)]="databaseFirebase.otherMorning" placeholder="duringHoursMorning" >
+        <input type="text" [(ngModel)]="databaseFirebase.otherEvening" placeholder="duringHoursEvening" >  
+        <button (click)="addOtherDate()">update</button>        
+        </div>
+      
         <!-- <br>  -->
         <!-- <button (click)="addSettingDay()">add setting days</button>
         <input type="text" [(ngModel)]="databaseFirebase.otherMorning" placeholder="duringHoursMorning" >

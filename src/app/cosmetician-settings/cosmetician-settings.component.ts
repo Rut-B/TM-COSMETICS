@@ -65,7 +65,9 @@ public res_im;
     public addSettingFridayDay(){
       this.databaseFirebase.addSettingFridayDay()
     }
-    
+    public addOtherDate(){
+      this.databaseFirebase.addOtherDate();
+    }
 // public uploadImage(image) {
 //   //this.res_im=this.databaseFirebase.uploadImage(image);
 //   if (image.length!=0){
