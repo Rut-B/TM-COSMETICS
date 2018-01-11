@@ -140,10 +140,10 @@ public scheduleTime(day:Date, duration:number):boolean{
 return false;
 }
 public getAvailability(day:Date):string[]{
+//this function gets a specific date and returns the hours the cosmetician works on that day.
   this.mySpecDays[0];
   this.myDays[0];
   let dayInTheWeek:string;
- // alert(day.getDay());
   switch(day.getDay()){
     case 0:
     dayInTheWeek="Sunday";
@@ -200,8 +200,7 @@ public getAvailability(day:Date):string[]{
       }
     }
   }
- // console.log(dayInTheWeek);
-return ['0','0'];
+  return ['0','0'];
 }
 public split_hours(hour:string):string[]{
   let range=hour.split("-");
