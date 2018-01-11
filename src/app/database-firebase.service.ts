@@ -329,7 +329,7 @@ addSettingFridayDay()
     this.settingDayRef.doc(this.Friday).set(hoursFriday);
     this.settingDayRef=this.afs.doc("Setting Days/" +this.Friday);           
     this.settingDayRef.valueChanges().subscribe(res=>{
-    this.Thursday=res.Monday;
+    this.Friday=res.Friday;
     this.fridayMorning=res.fridayMorning;
     this.fridayEvening=res.fridayEvening;
   });
