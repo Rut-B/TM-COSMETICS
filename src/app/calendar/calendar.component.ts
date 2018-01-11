@@ -4,7 +4,8 @@ import { CalendarEvent, } from "angular-calendar";
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
 import { query } from '@angular/core/src/animation/dsl';
-import {DataService} from '../data.service'
+import {DataService} from '../data.service';
+import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
 
 /*export class appointment{
   event:CalendarEvent;
@@ -92,18 +93,8 @@ export class CalendarComponent implements OnInit {
          secondary: "#afafaf"
        }   
      };  
- /*this.userName="noamijofen";
- this.treatment="laser";
-    let appoi: appointment={
-      event:cevent,
-     userName:this.userName,
-     treatment:this.treatment
-    }*/
-    
-  // this.messageService.sendMessage(event);
     this.col.add(event).then(res => {
     })
- // alert("!!");
   }
 
   ngOnInit() {
@@ -149,7 +140,86 @@ public scheduleTime(day:Date, duration:number):boolean{
 return false;
 }
 public getAvailability(day:Date):string[]{
-
-return ['start','end'];
+  this.mySpecDays[0];
+  this.myDays[0];
+  let dayInTheWeek:string;
+ // alert(day.getDay());
+  switch(day.getDay()){
+    case 0:
+    dayInTheWeek="Sunday";
+    break;
+    case 1:
+    dayInTheWeek="Monday";
+    break;
+    case 2:
+    dayInTheWeek="Tuesday";
+    break;
+    case 3:
+    dayInTheWeek="Wednesday";
+    break;
+    case 4:
+    dayInTheWeek="Thursday";
+    break;
+    case 5:
+    dayInTheWeek="Friday";
+    break;
+  }
+  console.log(this.myDays);
+  let spec_date;
+  let res=[];
+  for(let j=0;j<this.mySpecDays.length;j++){
+    spec_date=new Date(this.mySpecDays[j].date);
+    let is_same=this.compareDates(spec_date,day);
+    if(is_same){
+      let start=this.split_hours(this.mySpecDays[j].hoursMorning);
+      let end=this.split_hours(this.mySpecDays[j].hoursEvning);
+      if ((start.length==2)&&(end.length==2)){
+        res.push(start);
+        res.push(end);
+        return res;
+      }
+      else{
+        console.log("wrong value in DB!");
+        return['0','0'];
+      }
+      
+    }
+  }
+  for(let i=0;i<this.myDays.length;i++){
+    if(this.myDays[i].date==dayInTheWeek){
+      let start=this.split_hours(this.myDays[i].hoursMorning);
+      let end=this.split_hours(this.myDays[i].hoursEvning);
+      if ((start.length==2)&&(end.length==2)){
+        res.push(start);
+        res.push(end);
+        return res;
+      }
+      else{
+        console.log("wrong value in DB!");
+        return ['0','0'];
+      }
+    }
+  }
+ // console.log(dayInTheWeek);
+return ['0','0'];
+}
+public split_hours(hour:string):string[]{
+  let range=hour.split("-");
+  if(range.length==2){
+    return [range[0],range[1]];
+  }
+  if (range[0]=="vacation"){
+    return ['0','0'];
+}
+return ['false'];
+}
+public compareDates(date1:Date, date2:Date):boolean{
+  if (date1.getFullYear()!=date2.getFullYear())
+    return false;
+  if(date1.getMonth()!==date2.getMonth())
+    return false;
+  if (date1.getDate()!=date2.getDate())
+    return false;
+  return true;
 }
 }
