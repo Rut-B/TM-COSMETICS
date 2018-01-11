@@ -26,16 +26,13 @@ public flag:number;
   public productName:string;
   public code:number;
   public price:number;
-  public supplier: string;
+  // public supplier: string;
 
   public city:string;
   public address:string;
   public phone:number;
 
-  public cosmeticianId:string;
   public cosmeticianFirstName:string;
-  public cosmeticianLastName:string;
-  public cosmeticianPhone:number;
   public cosmeticianPermissionLevel:number;
   public  cosmeticianAvailability:string[];
 
@@ -54,6 +51,7 @@ public flag:number;
   public customerPermissionLevel:number;
 
   public treatmentName:string;
+  public treatmentDescription:string
   public treatmentCode:number;//key
   public treatmentPrice:number;
   public treatmentDuration:Date;
@@ -150,7 +148,7 @@ addProducts(url){
       quantity: this.quantity,
       code: this.code, 
       price:this.price,
-      supplier:this.supplier,
+      // supplier:this.supplier,
       pic:url
     }  
     this.prodRef.add(item).then(res=>{
@@ -161,11 +159,12 @@ addTreatment(){
     name:this.treatmentName,
     code:this.treatmentCode,
     price:this.treatmentPrice,
+    Description:this.treatmentDescription,
     duration:this.treatmentDuration+" minutes",
     PossibleCosmetician:this.treatmentPossibleCosmetician
   }
     this.treatmentRef.add(treat).then(res=>{
-    })
+    });
 }
 addLocation(){
   let loc={
@@ -198,15 +197,12 @@ addCustomer(){
 })
 }
 addCosmetician(){
-    this.treatmentPossibleCosmetician.push(this.cosmeticianId);
-    this.appointmentCosmetician.push(this.cosmeticianId);
+    // this.treatmentPossibleCosmetician.push(this.cosmeticianId);
+    // this.appointmentCosmetician.push(this.cosmeticianId);
     console.log(this.treatmentPossibleCosmetician);
     console.log(this.appointmentCosmetician);
     let cosmet={
-      cosmeticianId:this.cosmeticianId,
       name: this.cosmeticianFirstName,
-      lname: this.cosmeticianLastName,
-      phone:this.cosmeticianPhone,
       permissionLevel:this.cosmeticianPermissionLevel,
       availability:this.cosmeticianAvailability
     }
