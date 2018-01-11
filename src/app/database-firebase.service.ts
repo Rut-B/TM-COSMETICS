@@ -260,8 +260,8 @@ addSettingMondayDay()
       this.settingDayRef=this.afs.doc("Setting Days/" +this.Monday);                     
       this.settingDayRef.valueChanges().subscribe(res=>{
       this.Monday=res.Monday;
-      this.sundayEvening=res.sundayEvening;
-      this.sundayMorning=res.sundayMorning;
+      this.mondayMorning=res.mondayMorning;
+      this.mondayEvening=res.mondayEvening;
     });
     this.settingDayRef=this.afs.collection("Setting Days");    
 }
@@ -276,9 +276,9 @@ addSettingTuesdayDay()
                   this.settingDayRef.doc(this.Tuesday).set(hoursTuesday);
                   this.settingDayRef=this.afs.doc("Setting Days/" +this.Tuesday);           
                   this.settingDayRef.valueChanges().subscribe(res=>{
-                  this.Tuesday=res.Monday;
-                  this.sundayEvening=res.sundayEvening;
-                  this.sundayMorning=res.sundayMorning;
+                  this.Tuesday=res.Tuesday;
+                  this.tuesdayMorning=res.tuesdayMorning;
+                  this.tuesdayMorning=res.tuesdayMorning;
                 });
                 this.settingDayRef=this.afs.collection("Setting Days")
                 
@@ -294,9 +294,9 @@ addSettingWednesdayDay()
             this.settingDayRef.doc(this.Wednesday).set(hoursWednesday);
             this.settingDayRef=this.afs.doc("Setting Days/" +this.Wednesday);           
             this.settingDayRef.valueChanges().subscribe(res=>{
-            this.Wednesday=res.Monday;
-            this.sundayEvening=res.sundayEvening;
-            this.sundayMorning=res.sundayMorning;
+            this.Wednesday=res.Wednesday;
+            this.wednesdayMorning=res.wednesdayMorning;
+            this.wednesdayEvening=res.wednesdayEvening;
           });
                     this.settingDayRef=this.afs.collection("Setting Days");
 }
@@ -311,16 +311,29 @@ addSettingThursdayDay()
     this.settingDayRef.doc(this.Thursday).set(hoursThursday);
     this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
     this.settingDayRef.valueChanges().subscribe(res=>{
-    this.Thursday=res.Monday;
-    this.sundayEvening=res.sundayEvening;
-    this.sundayMorning=res.sundayMorning;
+    this.Thursday=res.Thursday;
+    this.thursdayEvening=res.thursdayEvening;
+    this.thursdayMorning=res.thursdayMorning;
   });
   this.settingDayRef=this.afs.collection("Setting Days");
   
 }
 addSettingFridayDay()
 {
+    let hoursFriday={
+    date: this.Friday,
+    hoursMorning: this.fridayMorning,
+    hoursEvning:this.fridayEvening
+  }  
 
+    this.settingDayRef.doc(this.Friday).set(hoursFriday);
+    this.settingDayRef=this.afs.doc("Setting Days/" +this.Friday);           
+    this.settingDayRef.valueChanges().subscribe(res=>{
+    this.Thursday=res.Monday;
+    this.fridayMorning=res.fridayMorning;
+    this.fridayEvening=res.fridayEvening;
+  });
+  this.settingDayRef=this.afs.collection("Setting Days");
 }
 }
 
