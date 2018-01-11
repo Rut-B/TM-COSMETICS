@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase';
+export interface event{
+  date: string;
+  hoursMorning:string;
+  hoursEvning:string;
+ }
+//  @Injectable() 
+// import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseFirebaseService {
 public selected: string[]=[];
-
+public flag:number;
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -85,7 +91,17 @@ public selected: string[]=[];
   public Friday:string;
   public fridayMorning:string;
   public fridayEvening:string;
-  
+
+  public other:string;
+  public otherMorning:string;
+  public otherEvening:string;
+
+  private col:AngularFirestoreCollection<any>;
+  public days:event[];
+  public myDay:event[];
+  public itemdoc:AngularFirestoreDocument<any>;
+
+
   constructor(private afs: AngularFirestore){
     this.appointmentRef = this.afs.collection("appointment");
     this.customerRef = this.afs.collection("USERS");
@@ -105,6 +121,13 @@ public selected: string[]=[];
     this.Wednesday="Wednesday";
     this.Thursday="Thursday";
     this.Friday="Friday";
+    this.myDay=new Array(); 
+    this.days=new Array(); 
+    this.flag=0;
+    this.col=this.afs.collection<event>("Setting Days"); 
+    this.col.valueChanges().subscribe(res=>{
+        this.days=res;
+      });
   }
   addAppointment(){
     let appoin={
@@ -196,13 +219,173 @@ addMessageManager(){
     content:this.content
   });
 }
-uploadImage(image) {
-  let storageRef = firebase.storage().ref();
-  return storageRef.put(image);
+addSettingSunDay(){ 
+  this.myDay=[];  
+  for(var i=0,j=0;i<this.days.length;i++){    
+    if(this.days[i].date=="Sunday"){
+      this.flag=1;
+     this.myDay[j]=this.days[i];
+     j++;
+    }
+  }
+  let hoursSunday={
+    date: this.Sunday,
+    hoursMorning: this.sundayMorning,
+    hoursEvning:this.sundayEvening
+  } 
+  if(this.flag==0)
+  {
+      this.settingDayRef.add(hoursSunday);
+  }
+  else{
+    console.log("hhhhiii");
+    console.log(this.myDay); 
+    // this.settingDayRef.set(hoursSunday.hoursMorning);
+     this.myDay[0].hoursEvning=hoursSunday.hoursEvning;
+     this.myDay[0].hoursMorning=hoursSunday.hoursMorning;
+    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+    console.log(this.myDay); 
+  }
+this.flag=0;
+}
+addSettingMondayDay()
+{
+    this.myDay=[];  
+    for(var i=0,j=0;i<this.days.length;i++){    
+      if(this.days[i].date=="Monday"){
+        this.flag=1;
+      this.myDay[j]=this.days[i];
+      j++;
+      }
+    }
+  let hoursMonday={
+    date: this.Monday,
+    hoursMorning: this.mondayMorning,
+    hoursEvning:this.mondayEvening
+  }    
+    if(this.flag==0)
+    {
+        this.settingDayRef.add(hoursMonday).then(res=>{
+            })
+    }
+    else{
+      console.log("hhhhiii");
+      console.log(this.myDay); 
+      // this.settingDayRef.set(hoursSunday.hoursMorning);
+      this.myDay[0].hoursEvning=hoursMonday.hoursEvning;
+      this.myDay[0].hoursMorning=hoursMonday.hoursMorning;
+      //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+      console.log(this.myDay); 
+    }
+  this.flag=0;
+}
+addSettingTuesdayDay()
+{
+              this.myDay=[];  
+              for(var i=0,j=0;i<this.days.length;i++){    
+                if(this.days[i].date=="Tuesday"){
+                  this.flag=1;
+                this.myDay[j]=this.days[i];
+                j++;
+                }
+              }
+              let hoursTuesday={
+                date: this.Tuesday,
+                hoursMorning: this.tuesdayMorning,
+                hoursEvning:this.tuesdayEvening
+              }  
+              if(this.flag==0)
+              {
+                  this.settingDayRef.add(hoursTuesday).then(res=>{
+                      })
+              }
+              else{
+                console.log("hhhhiii");
+                console.log(this.myDay); 
+                // this.settingDayRef.set(hoursSunday.hoursMorning);
+                this.myDay[0].hoursEvning=hoursTuesday.hoursEvning;
+                this.myDay[0].hoursMorning=hoursTuesday.hoursMorning;
+                //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+                console.log(this.myDay); 
+              }
+            this.flag=0;
+}
+addSettingWednesdayDay()
+{
+  this.myDay=[];  
+  for(var i=0,j=0;i<this.days.length;i++){    
+    if(this.days[i].date=="Wednesday"){
+      this.flag=1;
+    this.myDay[j]=this.days[i];
+    j++;
+    }
+  }
+    let hoursWednesday={
+    date: this.Wednesday,
+    hoursMorning: this.wednesdayMorning,
+    hoursEvning:this.wednesdayEvening
+  }  
+  if(this.flag==0)
+  {
+      this.settingDayRef.add(hoursWednesday).then(res=>{
+          })
+  }
+  else{
+    console.log("hhhhiii");
+    console.log(this.myDay); 
+    // this.settingDayRef.set(hoursSunday.hoursMorning);
+    this.myDay[0].hoursEvning=hoursWednesday.hoursEvning;
+    this.myDay[0].hoursMorning=hoursWednesday.hoursMorning;
+    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+    console.log(this.myDay); 
+  }
+this.flag=0;
+}
+addSettingThursdayDay()
+{
+  this.myDay=[];  
+  for(var i=0,j=0;i<this.days.length;i++){    
+    if(this.days[i].date=="Thursday"){
+      this.flag=1;
+    this.myDay[j]=this.days[i];
+    j++;
+    }
+  }
+    let hoursThursday={
+    date: this.Thursday,
+    hoursMorning: this.thursdayMorning,
+    hoursEvning:this.thursdayEvening
+  }  
+  if(this.flag==0)
+  {
+      this.settingDayRef.add(hoursThursday).then(res=>{
+          })
+  }
+  else{
+    console.log("hhhhiii");
+    console.log(this.myDay); 
+    // this.settingDayRef.set(hoursThursday.hoursMorning);
+    this.myDay[0].hoursEvning=hoursThursday.hoursEvning;
+    this.myDay[0].hoursMorning=hoursThursday.hoursMorning;
+    //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+    console.log(this.myDay); 
+  }
+this.flag=0;
+}
+addSettingFridayDay()
+{
+this.myDay=[];  
+for(var i=0,j=0;i<this.days.length;i++){    
+  if(this.days[i].date=="Friday"){
+    this.flag=1;
+  this.myDay[j]=this.days[i];
+  j++;
+  }
 }
 }
 
 
+<<<<<<< HEAD
 /*getTurnByTime()
 {
   this.myAppointments=[];
@@ -216,6 +399,29 @@ uploadImage(image) {
      j++;
     }
   }
+=======
+  let hoursFriday={
+    date: this.Friday,
+    hoursMorning: this.fridayMorning,
+    hoursEvning:this.fridayEvening
+  } 
+if(this.flag==0)
+{
+    this.settingDayRef.add(hoursFriday).then(res=>{
+        })
+}
+else{
+  console.log("hhhhiii");
+  console.log(this.myDay); 
+  // this.settingDayRef.set(hoursFriday.hoursMorning);
+  this.myDay[0].hoursEvning=hoursFriday.hoursEvning;
+  this.myDay[0].hoursMorning=hoursFriday.hoursMorning;
+  //  this.settingDayRef.doc('Sunday').update(hoursSunday.hoursEvning);
+  console.log(this.myDay); 
+}
+this.flag=0; 
+}
+>>>>>>> cec3212d3a9c1f134bde1c29e27fe718b380173d
 }
 getTurnByCosmetician()
 {
@@ -227,4 +433,88 @@ getTurnByCosmetician()
     }
   }
 }*/
+
+
+  
+
+
+
+
+// }
+// addOtherDate()
+// {
+//   let hoursOther={
+//     date: this.other,
+//     hoursMorning: this.otherMorning,
+//     hoursEvning:this.otherEvening
+//   }  
+//   this.settingDayRef.add(hoursOther).then(res=>{
+//   })
+// }
+
+
+
+// uploadImage(image) {
+//   let storageRef = firebase.storage().ref();
+//   return storageRef.put(image);
+// }
+
+
+
+
+// export class ProfileComponent implements OnInit {
+ 
+
+//  public myCosmetician:event[];
+//  public d:Date;
+//  public weeks; 
+//  public currentDate=new Date();
+//  dateFilter: BehaviorSubject<string | null>;
+
+// constructor(private afs: AngularFirestore) { 
+  
+//   }
+
+
+
+
+
+
+
+  
+    //this.col=this.afs.collection('users');
+    //this.prod=this.afs.collection('products');
+    //this.prod.valueChanges().subscribe(res=>{
+//this.product=res;
+  //  });
+
+    //this.col=this.afs.collection('')
+    //this.col.valueChanges().subscribe(res=>{
+    //  console.log(res);
+    //  this.users=res;
+   // });
+  // this.ob=this.col.valueChanges();
+  
+ /* 
+  constructor(private afs: AngularFirestore){
+    this.itemDoc = this.afs.doc('users/1');
+    let item = this.itemDoc.valueChanges().subscribe(res=>{
+      this.name = res.name
+    });
+  }
+*/
+// delete(){
+//   this.afs.collection('users').doc('ZKLtTI9ie5P4jXusU6tT').delete().then(function() {
+//     console.log("Document successfully deleted!");
+// }).catch(function(error) {
+//     console.error("Error removing document: ", error);
+// });
+// }
+  // send(){
+  //   //this.pushProducts('face cream','mmt','123','uriel');
+  //   this.col.add({name: this.name, lname: this.lname}).then(res=>{
+  //   //  alert(res);
+  //   //alert(this.name + ", " + this.lname);
+  //  })
+  // }
 
