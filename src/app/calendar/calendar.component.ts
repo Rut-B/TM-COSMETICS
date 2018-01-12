@@ -4,7 +4,8 @@ import { CalendarEvent, } from "angular-calendar";
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
 import { query } from '@angular/core/src/animation/dsl';
-import {DataService} from '../data.service'
+import {DataService} from '../data.service';
+import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
 
 /*export class appointment{
   event:CalendarEvent;
@@ -92,18 +93,8 @@ export class CalendarComponent implements OnInit {
          secondary: "#afafaf"
        }   
      };  
- /*this.userName="noamijofen";
- this.treatment="laser";
-    let appoi: appointment={
-      event:cevent,
-     userName:this.userName,
-     treatment:this.treatment
-    }*/
-    
-  // this.messageService.sendMessage(event);
     this.col.add(event).then(res => {
     })
- // alert("!!");
   }
 
   ngOnInit() {
@@ -122,37 +113,85 @@ var today = mm+'/'+dd+'/'+yyyy;
 return today;
 }
 
-trying(){
-  var day=this.events[0].start.getDate().toString();
-  var month=this.events[0].start.getMonth();
-  var year=this.events[0].start.getFullYear();
-  alert(day+", "+month+" ,"+year);
-if(this.viewDate.getMonth()==month&&this.viewDate.getFullYear()==year){
-   var cc=document.getElementsByClassName("cal-cell");
-  for(var i=7;i<42;i++){ 
-   if(cc[i].getElementsByTagName("span")[1]!=null){
-     if(cc[i].getElementsByTagName("span")[1].innerText==day){
-     alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[1].innerText);
-    cc[i].className="a";
+public iterate(){  
+  var cc=document.getElementsByClassName("cal-cell");
+  var cmonth=this.viewDate.getMonth();
+  var cyear=this.viewDate.getFullYear();
+  var daysInMonth=new Date(cyear, cmonth, 0).getDate();
+  for(var i=7;i<38;i++){
+    if(cc[i].getElementsByTagName("span")[1]!=null){
+      if(cc[i].getElementsByTagName("span")[1].innerText=="1"){
+    break;
+    }
+  }
+    else if (cc[i].getElementsByTagName("span")[0].innerText=="1"){
+    break;
+    }
+  }
+
+  var dontDays=[];
+  var t=i;
+  var l=0;
+for(i;i<=t+daysInMonth;i++){ 
+   for(var j=0;j<this.mySpecDays.length;j++){
+     var curr=new Date(this.mySpecDays[j].date);
+     if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){
+       var cday=curr.getDate().toString(); 
+      if(cc[i].getElementsByTagName("span")[1]!=null){
+        if(cc[i].getElementsByTagName("span")[1].innerText==cday){
+      //  alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[1].innerText);
+        dontDays[l]=cday;
+        l++;
+       cc[i].className="a";
+      }
+     }
+     else{
+       if(cc[i].getElementsByTagName("span")[0].innerText==cday){
+       // alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[0].innerText);
+        dontDays[l]=cday;
+        l++;
+        cc[i].className="a";
+     }   
+    }
    }
+   }//end for mySpecDays 
+   if(this.mySpecDays.length==dontDays.length){
+     break;
+   }
+ }
+ var cc=document.getElementsByClassName("cal-cell");
+ var n; 
+ var s=[];
+ n=0;
+ var m;
+ for( i=0,m=0;m<daysInMonth-dontDays.length;m++,i++){
+   if(cc[(i+t)].getElementsByTagName("span")[1]!=null){
+    n=cc[(i+t)].getElementsByTagName("span")[1].innerText;
   }
   else{
-    if(cc[i].getElementsByTagName("span")[0].innerText==day){
-      alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[0].innerText);
-     cc[i].className="a";
-  }
+   n=cc[(i+t)].getElementsByTagName("span")[0].innerText;
+  }  
+  s.push(n);
+ // s.push(i+" "+n+"bb ");
+  var d=new Date(cyear,cmonth,n); 
+  for(var k=0;k<this.myDays.length;k++){ 
+    //s.push(i+" "+k+" "+n);  
+    var now=this.myDays[k].date;  
+   if(this.check(d.getDay())==now){
+    //console.log(this.check(d.getDay())+","+now+" "+i);
+    cc[(i+t)].className="a2";
+    i--;
+     break;
+   // alert(this.check(d.getDay())+" "+i);
+   }
+  }//end k
+}//end cc
 }
+ public check(i){
+  var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  return(arr[i]);
 }
-}
-}
-/***********************************************/
-/* aother:Tamar */
-public getAvailability(day:Date):appoi[]
-{
-//I assume there is two parametrs in this array.
-  
-return null;
-}
+
 /* aother:Rut */
 public getDist(startTime:Date,endTime:Date):number
 {
@@ -185,7 +224,7 @@ let valid_time_array: appoi[]=null;
 
 //check if cosmetician cam work in this day..
 let timeToWork: appoi[];
-    timeToWork= this.getAvailability(time);//get array of start:end,start:end
+  //  timeToWork= this.getAvailability(time);//get array of start:end,start:end
     let startMorning=timeToWork[0].start;
     let endMorning=timeToWork[0].end;
     let startEvening=timeToWork[1].start;
@@ -245,5 +284,88 @@ let appointmensArray:appoi[];
     }
 
     return valid_time_array;
+}
+
+public getAvailability(day:Date):string[]{
+//this function gets a specific date and returns the hours the cosmetician works on that day.
+  this.mySpecDays[0];
+  this.myDays[0];
+  let dayInTheWeek:string;
+  switch(day.getDay()){
+    case 0:
+    dayInTheWeek="Sunday";
+    break;
+    case 1:
+    dayInTheWeek="Monday";
+    break;
+    case 2:
+    dayInTheWeek="Tuesday";
+    break;
+    case 3:
+    dayInTheWeek="Wednesday";
+    break;
+    case 4:
+    dayInTheWeek="Thursday";
+    break;
+    case 5:
+    dayInTheWeek="Friday";
+    break;
+  }
+  console.log(this.myDays);
+  let spec_date;
+  let res=[];
+  for(let j=0;j<this.mySpecDays.length;j++){
+    spec_date=new Date(this.mySpecDays[j].date);
+    let is_same=this.compareDates(spec_date,day);
+    if(is_same){
+      let start=this.split_hours(this.mySpecDays[j].hoursMorning);
+      let end=this.split_hours(this.mySpecDays[j].hoursEvning);
+      if ((start.length==2)&&(end.length==2)){
+        res.push(start);
+        res.push(end);
+        return res;
+      }
+      else{
+        console.log("wrong value in DB!");
+        return['0','0'];
+      }
+      
+    }
+  }
+  for(let i=0;i<this.myDays.length;i++){
+    if(this.myDays[i].date==dayInTheWeek){
+      let start=this.split_hours(this.myDays[i].hoursMorning);
+      let end=this.split_hours(this.myDays[i].hoursEvning);
+      if ((start.length==2)&&(end.length==2)){
+        res.push(start);
+        res.push(end);
+        return res;
+      }
+      else{
+        console.log("wrong value in DB!");
+        return ['0','0'];
+      }
+    }
+  }
+  return ['0','0'];
+}
+public split_hours(hour:string):string[]{
+  let range=hour.split("-");
+  if(range.length==2){
+    return [range[0],range[1]];
+  }
+  if (range[0]=="vacation"){
+    return ['0','0'];
+}
+return ['false'];
+}
+public compareDates(date1:Date, date2:Date):boolean{
+  if (date1.getFullYear()!=date2.getFullYear())
+    return false;
+  if(date1.getMonth()!==date2.getMonth())
+    return false;
+  if (date1.getDate()!=date2.getDate())
+    return false;
+  return true;
 }
 }
