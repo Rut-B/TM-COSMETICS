@@ -145,66 +145,105 @@ if(this.viewDate.getMonth()==month&&this.viewDate.getFullYear()==year){
 }
 }
 }
-
-public getAvailability(day:Date):string[]{
+/***********************************************/
+/* aother:Tamar */
+public getAvailability(day:Date):appoi[]
+{
+//I assume there is two parametrs in this array.
   
-return ['start','end'];
+return null;
+}
+/* aother:Rut */
+public getDist(startTime:Date,endTime:Date):number
+{
+  var diff = endTime.getTime() - startTime.getTime();
+//return duration in --->min<----.endTIme-startTime
+return (diff / 60000);
 }
 
-public parseTime(time:string):number[]{//return hours and min.
-  return null;
-}
-
-public getDist(startTime:number[],endTime:number[]):number{
-return 0;
+public sortTime(arrayAppoi:appoi[]):appoi[]{
+return null; 
 }
 
 
+/***********************************************************
+* this function return array of the time that can make appoinmtments.
 
-/*********************************************************** 
-* this function return boolean paramter to paint the scechule..
+Assumption: duration in min. 
 *************************************************************/
-/*
-public scheduleTime(day:Date, duration:number):boolean
-{
 
-if (duration == 0)
+public scheduleTime(time:Date, duration:number):appoi[]
 {
-  return true;
-}
-let timeToWork:string[];
-timeToWork= this.getAvailability(day);//get array of start:end,start:end
-let startMorning=timeToWork[0];
-let endMorning=timeToWork[1];
-let startEvening=timeToWork[2];
-let endtEvening=timeToWork[3];
-let durationA = this.getDist(this.parseTime(endMorning),this.parseTime(startMorning));
-let durationB = this.getDist(this.parseTime(endtEvening),this.parseTime(startEvening));
+let valid_time_array: appoi[]=null;
+//validation
 
-if ((duration >durationA)&&
-   (duration >durationB))
-   {
-     return false;
-   }
-  
-  let appointmensArray:appoi[]; 
-  SVGLength
-  this.myAppCol=this.afs.collection("myApointments");
-  this.myAppCol.valueChanges().subscribe(res=>{
-    appointmensArray=res;
-  });
-for(let i=0; i<appointmensArray.length;i++)
-{
-  
-}
-return false;
-}
-/*
-export class appoi{
-  userName: string;
-  type:string;
-  start:Date;
-  end:Date;
-}*/
+    if (duration <= 0)
+    {
+        return valid_time_array;//true;
+    }
 
+
+//check if cosmetician cam work in this day..
+let timeToWork: appoi[];
+    timeToWork= this.getAvailability(time);//get array of start:end,start:end
+    let startMorning=timeToWork[0].start;
+    let endMorning=timeToWork[0].end;
+    let startEvening=timeToWork[1].start;
+    let endtEvening=timeToWork[1].end;
+    let durationWorkA = this.getDist(startMorning,endMorning);
+    let durationWorkB = this.getDist(startEvening,endtEvening);
+
+    if ((duration >durationWorkA)&&
+            (duration >durationWorkB))
+    {
+        return null;
+    }
+
+let appoi_in_time:appoi[];
+let sort_appoi:appoi[];
+let appointmensArray:appoi[];
+
+    this.myAppCol=this.afs.collection("myApointments");
+    this.myAppCol.valueChanges().subscribe(res=> {
+        appointmensArray=res;
+    });
+    let j=0;
+    if(appointmensArray.length == 0)
+    {
+      let newValidApp =new appoi();
+      newValidApp.start = startMorning;
+      newValidApp.end   = endMorning;
+      valid_time_array.push(newValidApp);
+      return valid_time_array;
+    }
+    for(let i=0; i<appointmensArray.length; i++)
+    {
+        let appoi_time =appointmensArray[i].start;
+        let appoi_date_start=appointmensArray[i].start.getDay;
+        let appoi_date_end=appointmensArray[i].end.getDay;
+        if(  (appoi_date_end==appoi_date_start)&&
+                (appoi_date_start==time.getDay)&&
+                (appoi_time.getMonth==time.getMonth)&&
+                (appoi_time.getFullYear==time.getFullYear))
+        {
+            appoi_in_time[j]=appointmensArray[i];
+            j++;
+        }
+
+    }
+    sort_appoi=this.sortTime(appoi_in_time);
+    for(let i=1; i<sort_appoi.length; i++) { //run startB-endA>=duration->push to array of times..
+        if((this.getDist(sort_appoi[i-1].end,sort_appoi[i].start) >=duration)&&
+           (sort_appoi[i].start != startEvening))
+         {
+            let newValidApp =new appoi();
+            newValidApp.start =sort_appoi[i-1].end;
+            newValidApp.end =sort_appoi[i].start;
+            valid_time_array.push(newValidApp);
+        }
+
+    }
+
+    return valid_time_array;
+}
 }
