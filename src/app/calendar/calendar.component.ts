@@ -13,8 +13,8 @@ import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module'
   treatment:string;
 }*/
 export class appoi{
-  cosmeticianName:string;
-  userName: string;
+  cosmeticianName:string;//Rut added according DB
+  email: string;//replace to Email
   type:string;
   start:Date;
   end:Date;
@@ -196,7 +196,7 @@ for(i;i<=t+daysInMonth;i++){
 /* aother:Rut */
 
 public getDist(startTime:Date,endTime:Date):number
-{//return duration in --->min<----.endTIme-startTime
+{//return duration in --->min<----.endTIme-startTime-->it work,
  
   var diff = endTime.getTime() - startTime.getTime();
   return (diff / 60000);
@@ -210,7 +210,7 @@ public sortFunction(  a: appoi,b: appoi ){
 
 public sortTime(arrayAppoi:appoi[]):appoi[]{
 arrayAppoi.sort(this.sortFunction);​
-return null; 
+return arrayAppoi; 
 }
 
 
@@ -236,8 +236,7 @@ let valid_time_array: appoi[]=null;
 
 //check if cosmetician cam work in this day..
 let timeToWork: appoi[];
- // 
- 
+
   //  timeToWork= this.getAvailability(time);//get array of start:end,start:end
     let startMorning=timeToWork[0].start;
     let endMorning=timeToWork[0].end;

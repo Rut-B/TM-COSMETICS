@@ -39,6 +39,12 @@ public flag:number;
   public cosmeticianPermissionLevel: number;
   public cosmeticianAvailability: string[];
 
+
+  public managerId;
+  public managerFirstName;
+  public managerLastName;
+  public managerPhone;
+
   public from: string;
   public to: string;
   public content: string;

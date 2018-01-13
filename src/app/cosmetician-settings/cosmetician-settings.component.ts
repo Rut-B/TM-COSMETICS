@@ -69,7 +69,9 @@ public res_im;
     public addOtherDate(){
       this.databaseFirebase.addOtherDate();
     }
-// public uploadImage(image) {
+
+  public  addManager(){}
+ public uploadImage(image) {
 //   //this.res_im=this.databaseFirebase.uploadImage(image);
 //   if (image.length!=0){
 //   this.databaseFirebase.uploadImage(image).then(res => {
@@ -80,6 +82,6 @@ public res_im;
 //   // public addOtherDate(){
 //   //   this.databaseFirebase.addOtherDate();
 //   // }
-// }
+}
 }
   
