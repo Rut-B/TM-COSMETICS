@@ -8,7 +8,7 @@ export class NavService
   
 constructor(private auth:AuthService) 
 {
-  let tmp =true;//Eran this is trmp that have to delete...
+  
   if (auth.current_user.is_customer)
   {
     this.navItems=[

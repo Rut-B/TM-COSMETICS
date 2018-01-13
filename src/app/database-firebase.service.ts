@@ -51,7 +51,7 @@ public flag:number;
   public customerLastName: string="";
   public customerPhone: number=null;
   public customerAddress: string="";
-  public customerPermissionLevel: number;
+  public customer_rank: boolean;
 
   public treatmentName: string;
   public treatmentCode: number;//key

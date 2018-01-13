@@ -10,7 +10,7 @@ import * as firebase from 'firebase/app';
 import * as navs from './nav.service';
 
 
-export class USER {
+export  class USER {
   first_name: string;
   last_name: string;
   email: string;
@@ -28,9 +28,10 @@ export class AuthService {
   private _user;
   private users_details: USER[];
   public current_user: USER;
-  private isLogin: boolean = false;
+  public isLogin: boolean = false;
 
   constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore, public router: Router) {
+    this.current_user = new USER;
     this.users_list = this.afs.collection("USERS");
     this.users_list.valueChanges().subscribe(res => {
       this.users_details = res;
@@ -43,7 +44,7 @@ export class AuthService {
       if ((this.users_details[i].email == email)) {
         //if exist create public user
         //? how do new corrent_user?
-        this.current_user = new USER;
+        
         this.current_user.address = this.users_details[i].address;
         this.current_user.first_name = this.users_details[i].first_name;
         this.current_user.last_name = this.users_details[i].last_name;
