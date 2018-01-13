@@ -15,7 +15,8 @@
           
               
         <br/>
-          <input type="email"  [(ngModel)]="databaseFirebase.customerId" placeholder="email" required>
+       
+          <input type="text"  [(ngModel)]="databaseFirebase.customerId" value="{{auth.current_user.email}}"  >
           <input type="text"required  [(ngModel)]="databaseFirebase.customerFirstName" placeholder="firstName" >
           <input type="text" required [(ngModel)]="databaseFirebase.customerLastName" placeholder="lastName" >
           <input type="number" required [(ngModel)]="databaseFirebase.customerPhone" placeholder="phone" >

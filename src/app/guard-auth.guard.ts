@@ -14,11 +14,13 @@ export class GuardAuthGuard implements CanActivate {
    if(this.auth.login_success)
    {
     // this.router.navigate(["home"]);
+    
     return true;
    }
    else
    {
    this.router.navigate(["add_user"]);
+
    return false;
    }
   
