@@ -13,6 +13,7 @@ import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module'
   treatment:string;
 }*/
 export class appoi{
+  cosmeticianName:string;
   userName: string;
   type:string;
   start:Date;
@@ -193,16 +194,27 @@ for(i;i<=t+daysInMonth;i++){
 }
 
 /* aother:Rut */
+
 public getDist(startTime:Date,endTime:Date):number
-{
+{//return duration in --->min<----.endTIme-startTime
+ 
   var diff = endTime.getTime() - startTime.getTime();
-//return duration in --->min<----.endTIme-startTime
-return (diff / 60000);
+  return (diff / 60000);
+}
+
+public sortFunction(  a: appoi,b: appoi ){  
+  var dateA = new Date(a.start).getTime();
+  var dateB = new Date(b.start).getTime();
+  return dateA > dateB ? 1 : -1;  
 }
 
 public sortTime(arrayAppoi:appoi[]):appoi[]{
+arrayAppoi.sort(this.sortFunction);​
 return null; 
 }
+
+
+
 
 
 /***********************************************************
@@ -224,6 +236,8 @@ let valid_time_array: appoi[]=null;
 
 //check if cosmetician cam work in this day..
 let timeToWork: appoi[];
+ // 
+ 
   //  timeToWork= this.getAvailability(time);//get array of start:end,start:end
     let startMorning=timeToWork[0].start;
     let endMorning=timeToWork[0].end;
@@ -240,13 +254,8 @@ let timeToWork: appoi[];
 
 let appoi_in_time:appoi[];
 let sort_appoi:appoi[];
-let appointmensArray:appoi[];
-
-    this.myAppCol=this.afs.collection("myApointments");
-    this.myAppCol.valueChanges().subscribe(res=> {
-        appointmensArray=res;
-    });
-    let j=0;
+let appointmensArray=this.myAppois;
+let j=0;
     if(appointmensArray.length == 0)
     {
       let newValidApp =new appoi();
@@ -285,6 +294,14 @@ let appointmensArray:appoi[];
 
     return valid_time_array;
 }
+
+
+
+
+
+
+
+
 
 public getAvailability(day:Date):string[]{
 //this function gets a specific date and returns the hours the cosmetician works on that day.
