@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "tester-f3a5c"
+    "default": "tmcosm-48ed4",
+    "staging": "tmcosm-48ed4"
   }
 }

@@ -3,7 +3,7 @@
 <div id="b1" class="btn" (click)="change()">view date</div>
 <input type="date" id="a1" [(ngModel)]="newDate" /> 
 <a id="aa">{{viewDate.getDate()}}/{{viewDate.getMonth()+1}}</a>
-<div  id="a2" class="btn" (click)=" tomorrow()">view tomorrow</div>
+<div  id="a2" class="btn" (click)=" tomorrow()">view tomorrow </div>
 </div>
 <mwl-calendar-day-view 
 [viewDate]="viewDate"

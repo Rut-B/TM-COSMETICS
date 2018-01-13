@@ -14,30 +14,4 @@ export class CosmeticianProductsComponent implements OnInit {
  }
   ngOnInit() {
   }
- public addProducts(){
-  this.databaseFirebase.addProducts();
- }
- public addTreatment(){
-  this.databaseFirebase.addTreatment();
- }
- public addLocation(){
-  this.databaseFirebase.addLocation();
- }
- public addCustomer()
-{
-  this.databaseFirebase.addCustomer();  
-}
-public addCosmetician(){
-  this.databaseFirebase.addCosmetician();
-}
-public addMessageManager(){
-  this.databaseFirebase.addMessageManager();
-}
-public addAppointment(){
-  this.databaseFirebase.addAppointment();
-}
-
-public uploadImage(image, options) {
-  let res=this.databaseFirebase.uploadImage(image, options);
-}
 }
