@@ -195,6 +195,10 @@ addMessageManager(){
     content:this.content
   });
 }
+addSettingDay(){
+  
+}
+
 uploadImage(image, options) {
   let storageRef = firebase.storage().ref();
   return storageRef.put(image, options);
