@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 export interface event{
   date: string;
@@ -28,27 +28,27 @@ public flag:number;
   public price:number;
   // public supplier: string;
 
-  public city:string;
-  public address:string;
-  public phone:number;
+  public city: string;
+  public address: string;
+  public phone: number;
 
   public cosmeticianFirstName:string;
   public cosmeticianPermissionLevel:number;
   public  cosmeticianAvailability:string[];
 
-  public from:string;
-  public to:string;
-  public content:string;
+  public from: string;
+  public to: string;
+  public content: string;
 
 
 
 
-  public customerId:string;//key--email
-  public customerFirstName:string;
-  public customerLastName:string;
-  public customerPhone:number;
-  public customerAddress:string;
-  public customerPermissionLevel:number;
+  public customerId: string="";//key--email
+  public customerFirstName: string="";
+  public customerLastName: string="";
+  public customerPhone: number=null;
+  public customerAddress: string="";
+  public customer_rank: boolean;
 
   public treatmentName:string;
   public treatmentDescription:string
@@ -57,36 +57,36 @@ public flag:number;
   public treatmentDuration:Date;
   public treatmentPossibleCosmetician:string[];
 
-  public appointmentCustomer:string[];
-  public appointmentTime:Date;
-  public appointmentCosmetician:string[];
-  public appointmentDuration:Date;
-  public appointmentPrice:number;
-  public appointmentLocation:string;
-
- 
+  public appointmentCustomer: string[];
+  public appointmentTime: Date;
+  public appointmentCosmetician: string[];
+  public appointmentDuration: Date;
+  public appointmentPrice: number;
+  public appointmentLocation: string;
 
 
-  public Sunday:string;
-  public sundayMorning:string;
-  public sundayEvening:string;
 
-  public Monday:string;
-  public mondayMorning:string;
-  public mondayEvening:string;
 
-  public Tuesday:string;
-  public tuesdayMorning:string;
-  public tuesdayEvening:string;
+  public Sunday: string;
+  public sundayMorning: string;
+  public sundayEvening: string;
 
-  public Wednesday:string;
-  public wednesdayMorning:string;
-  public wednesdayEvening:string;
+  public Monday: string;
+  public mondayMorning: string;
+  public mondayEvening: string;
 
-  public Thursday:string;
-  public thursdayMorning:string;
-  public thursdayEvening:string;
+  public Tuesday: string;
+  public tuesdayMorning: string;
+  public tuesdayEvening: string;
 
+  public Wednesday: string;
+  public wednesdayMorning: string;
+  public wednesdayEvening: string;
+
+  public Thursday: string;
+  public ThursdayMorning: string;
+  public ThursdayEvening: string;
+  
   public Friday:string;
   public fridayMorning:string;
   public fridayEvening:string;
@@ -129,21 +129,21 @@ public flag:number;
         this.days=res;
       });      
   }
-  addAppointment(){
-    let appoin={
+  addAppointment() {
+    let appoin = {
       appointmentTime: this.appointmentTime,
-      customer:this.appointmentCustomer,
+      customer: this.appointmentCustomer,
       cosmetician: this.appointmentCosmetician,
-      duration :this.appointmentDuration,
-      price:this.appointmentPrice,
+      duration: this.appointmentDuration,
+      price: this.appointmentPrice,
       Location: this.appointmentLocation
     }
-    this.appointmentRef.add(appoin).then(res=>{
-      
+    this.appointmentRef.add(appoin).then(res => {
+
     })
-}
-addProducts(url){ 
-    let item={
+  }
+  addProducts(url) {
+    let item = {
       productName: this.productName,
       quantity: this.quantity,
       code: this.code, 
@@ -166,32 +166,28 @@ addTreatment(){
     this.treatmentRef.add(treat).then(res=>{
     });
 }
-addLocation(){
-  let loc={
-    city:this.city,    
-    address:this.address, 
-    phone:this.phone
-  }
-    this.locationtRef.add(loc).then(res=>{
-    })
-} 
-/*first_name: string;
-  last_name: string;
-  email: string;
-  address:string;
-  phone:number;
-  is_customer:boolean;*/
 
-addCustomer(){
+  addLocation() {
+    let loc = {
+      city: this.city,
+      address: this.address,
+      phone: this.phone
+    }
+    this.locationtRef.add(loc).then(res => {
+    })
+  }
+
+
+  addCustomer() {
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
-    let cons={
-      email:this.customerId,
-      first_name:this.customerFirstName,
-      last_name:this.customerLastName,
-      phone:this.customerPhone,
-      address:this.customerAddress,
-      is_customer:true
+    let cons = {
+      email: this.customerId,
+      first_name: this.customerFirstName,
+      last_name: this.customerLastName,
+      phone: this.customerPhone,
+      address: this.customerAddress,
+      is_customer: true
     }
     this.customerRef.add(cons).then(res=>{
 })
@@ -206,17 +202,36 @@ addCosmetician(){
       permissionLevel:this.cosmeticianPermissionLevel,
       availability:this.cosmeticianAvailability
     }
-    this.cosmeticiansRef.add(cosmet).then(res=>{
- 
-  })
-}
-addMessageManager(){  
+    this.cosmeticiansRef.add(cosmet).then(res => {
+
+    })
+  }
+  addMessageManager() {
     this.messageManagerRef.doc(this.from).set({
-    from: this.from,
-    to: this.to,
-    content:this.content
-  });
-}
+      from: this.from,
+      to: this.to,
+      content: this.content
+    });
+  }
+  /*
+  uploadImage(image) {
+    let storageRef = firebase.storage().ref();
+    return storageRef.put(image);
+  }*/
+
+  public IsNotEmpty(){
+   if((this.customerId!="")     && 
+   (this.customerFirstName!="") &&
+   (this.customerLastName!="")  &&
+   (this.customerPhone!=null)   &&
+   (this.customerAddress!=""))
+   {
+     return true;
+   }
+   return false;
+  }
+   
+
 addSettingSunDay(){ 
   // this.myDay=[];  
   // for(var i=0,j=0;i<this.days.length;i++){    
@@ -231,12 +246,6 @@ addSettingSunDay(){
     hoursMorning: this.sundayMorning,
     hoursEvning:this.sundayEvening
   } 
-  // if(this.flag==0)
-  // {
-  //   console.log("not");
-  //     this.settingDayRef.doc(this.Sunday).set(hoursSunday);
-  // }
-  // else{
        this.settingDayRef.doc(this.Sunday).set(hoursSunday);
         this.settingDayRef=this.afs.doc("Setting Days/" +this.Sunday);           
         this.settingDayRef.valueChanges().subscribe(res=>{
@@ -244,9 +253,7 @@ addSettingSunDay(){
         this.sundayEvening=res.sundayEvening;
         this.sundayMorning=res.sundayMorning;
       });
-      this.settingDayRef=this.afs.collection("Setting Days");      
-  // }
-// this.flag=0;
+      this.settingDayRef=this.afs.collection("Setting Days");    
 }
 addSettingMondayDay()
 {
@@ -303,16 +310,16 @@ addSettingThursdayDay()
 {
     let hoursThursday={
     date: this.Thursday,
-    hoursMorning: this.thursdayMorning,
-    hoursEvning:this.thursdayEvening
+    hoursMorning: this.ThursdayMorning,
+    hoursEvning:this.ThursdayEvening
   }  
 
     this.settingDayRef.doc(this.Thursday).set(hoursThursday);
     this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
     this.settingDayRef.valueChanges().subscribe(res=>{
     this.Thursday=res.Thursday;
-    this.thursdayEvening=res.thursdayEvening;
-    this.thursdayMorning=res.thursdayMorning;
+    this.ThursdayEvening=res.thursdayEvening;
+    this.ThursdayMorning=res.thursdayMorning;
   });
   this.settingDayRef=this.afs.collection("Setting Days");
   
@@ -343,11 +350,8 @@ addOtherDate()
           }  
           this.specificOfDate.add(hoursOther).then(res=>{
           });
-      
       }
-}
-
-
+    }
 /*getTurnByTime()
 {
   this.myAppointments=[];
@@ -377,8 +381,7 @@ addOtherDate()
  this.settingDayRef=this.afs.collection("Setting Days");
  
 }
-}
-getTurnByCosmetician()
+/*getTurnByCosmetician()
 {
   this.myAppointments=[];
   for(var i=0,j=0;i<this.appointments.length;i++){

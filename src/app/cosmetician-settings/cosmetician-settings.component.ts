@@ -42,6 +42,7 @@ public res_im;
     public addMessageManager(){
       this.databaseFirebase.addMessageManager();
     }
+  
     public addAppointment(){
       this.databaseFirebase.addAppointment();
     }  
@@ -81,3 +82,4 @@ public res_im;
 //   // }
 // }
 }
+  

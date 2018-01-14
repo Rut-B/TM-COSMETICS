@@ -9,19 +9,20 @@ export class GuardAuthGuard implements CanActivate {
   constructor(private auth:AuthService,private router:Router){}
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log(this.auth.login_success);
-    return true;
-   /*if(this.auth.login_success)
+    // console.log(this.auth.login_success);
+    // return true;
+   if(this.auth.login_success)
    {
-    this.router.navigate(["home"]);
+    // this.router.navigate(["home"]);
+    
     return true;
    }
    else
    {
    this.router.navigate(["add_user"]);
-   }
-  return true;*/
 
+   return false;
+   }
   
   }
   
