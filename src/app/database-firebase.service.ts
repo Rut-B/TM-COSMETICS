@@ -374,32 +374,16 @@ this.flag=0;
 }
 addSettingFridayDay()
 {
-this.myDay=[];  
-for(var i=0,j=0;i<this.days.length;i++){    
-  if(this.days[i].date=="Friday"){
-    this.flag=1;
-  this.myDay[j]=this.days[i];
-  j++;
-  }
-}
-}
-
-
-<<<<<<< HEAD
-/*getTurnByTime()
-{
-  this.myAppointments=[];
-  var date1=new Date();
- // alert(this.appointments.length);
-  for(var i=0,j=0;i<this.appointments.length;i++){
-    //alert(this.appointments[i].start.getDate());
-    var date2=(this.appointments[i].start.getDate()) +"/"+ (this.appointments[i].start.getMonth()+1)+ "/"+ (this.appointments[i].start.getFullYear());
-    if(date2=="31/12/2017"){
-     this.myAppointments[j]=this.appointments[i];
-     j++;
+  this.myDay=[];  
+  for(var i=0,j=0;i<this.days.length;i++){    
+    if(this.days[i].date=="Friday"){
+      this.flag=1;
+    this.myDay[j]=this.days[i];
+    j++;
     }
   }
-=======
+
+
   let hoursFriday={
     date: this.Friday,
     hoursMorning: this.fridayMorning,
@@ -421,9 +405,7 @@ else{
 }
 this.flag=0; 
 }
->>>>>>> cec3212d3a9c1f134bde1c29e27fe718b380173d
-}
-getTurnByCosmetician()
+/*getTurnByCosmetician()
 {
   this.myAppointments=[];
   for(var i=0,j=0;i<this.appointments.length;i++){
