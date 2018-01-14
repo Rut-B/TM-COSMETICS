@@ -352,15 +352,6 @@ addSettingFridayDay()
   });
   this.settingDayRef=this.afs.collection("Setting Days");
 }
-<<<<<<< HEAD
-addSettingDay(){
-  
-}
-
-uploadImage(image, options) {
-  let storageRef = firebase.storage().ref();
-  return storageRef.put(image, options);
-=======
 addOtherDate()
       {
         let hoursOther={
@@ -372,7 +363,6 @@ addOtherDate()
           });
       
       }
->>>>>>> a287ee80eb729a79a91d1d69e34c4d24c1dc2014
 }
 
 
