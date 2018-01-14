@@ -18,6 +18,7 @@
 <div id="allUsers" >
 <div *ngFor="let appoi of myUsers">
     <p  >
+  <img src="{{ picture}}" class="photos" />
     <a>name:{{ appoi.first_name}}</a><br/>
     <a>last name:{{ appoi.last_name}}</a><br/>
     <a>email:{{ appoi.email}}</a><br/>
