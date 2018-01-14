@@ -45,7 +45,7 @@ public flag:number;
   public treatmentCode:number;//key
   public treatmentPrice:number;
   public treatmentDuration:Date;
-  public treatmentPossibleCosmetician:string[];
+  // public treatmentPossibleCosmetician:string[];
 
   public appointmentCustomer: string[];
   public appointmentTime: Date;
@@ -100,7 +100,7 @@ public managerPhone:number;
     this.managerRef = this.afs.collection("manager");
     this.settingDayRef=this.afs.collection("Setting Days");
     this.specificOfDate=this.afs.collection("specificDays");
-    this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
+    // this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
     // this.cosmeticianAvailability=[];
     this.appointmentCustomer=[];
     this.appointmentCosmetician=[];
@@ -151,7 +151,7 @@ addTreatment(){
     price:this.treatmentPrice,
     Description:this.treatmentDescription,
     duration:this.treatmentDuration+" minutes",
-    PossibleCosmetician:this.treatmentPossibleCosmetician
+    // PossibleCosmetician:this.treatmentPossibleCosmetician
   }
     this.treatmentRef.add(treat).then(res=>{
     });
@@ -195,7 +195,7 @@ addTreatment(){
   }
   
   // uploadImage(image) {
-  //   let storageRef = firebase.storage().ref();
+  //    let storageRef = firebase.storage().ref();
   //   return storageRef.put(image);
   // }
 
@@ -207,6 +207,7 @@ addTreatment(){
    (this.customerAddress!=""))
    {
      return true;
+
    }
    return false;
   }
@@ -264,7 +265,7 @@ addSettingTuesdayDay()
                   this.settingDayRef.valueChanges().subscribe(res=>{
                   this.Tuesday=res.Tuesday;
                   this.tuesdayMorning=res.tuesdayMorning;
-                  this.tuesdayMorning=res.tuesdayMorning;
+                  this.tuesdayEvening=res.tuesdayEvening;
                 });
                 this.settingDayRef=this.afs.collection("Setting Days")
                 
@@ -288,21 +289,19 @@ addSettingWednesdayDay()
 }
 addSettingThursdayDay()
 {
-    let hoursThursday={
+  let hoursThursday={
     date: this.Thursday,
     hoursMorning: this.ThursdayMorning,
     hoursEvning:this.ThursdayEvening
   }  
-
-    this.settingDayRef.doc(this.Thursday).set(hoursThursday);
+  this.settingDayRef.doc(this.Thursday).set( hoursThursday);  
     this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
     this.settingDayRef.valueChanges().subscribe(res=>{
     this.Thursday=res.Thursday;
-    this.ThursdayEvening=res.thursdayEvening;
-    this.ThursdayMorning=res.thursdayMorning;
+    this.ThursdayMorning=res.ThursdayMorning;
+    this.ThursdayEvening=res.ThursdayEvening;
   });
   this.settingDayRef=this.afs.collection("Setting Days");
-  
 }
 addSettingFridayDay()
 {
