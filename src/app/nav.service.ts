@@ -35,7 +35,7 @@ constructor(private auth:AuthService)
 
 
  public create_nav(){
- if (this.auth.current_user.is_customer)
+ if (!this.auth.current_user.is_customer)
   {
     this.navItems=[
       new NavItem("settings","settings",'/assets/6.png'),

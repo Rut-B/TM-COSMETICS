@@ -16,9 +16,8 @@ public flag:number;
   public customerRef;
   public treatmentRef;
   public prodRef;
-  public locationtRef;
   public cosmeticiansRef;
-  public messageManagerRef;
+  public managerRef;
   public settingDayRef;
   public specificOfDate;
 
@@ -28,21 +27,12 @@ public flag:number;
   public price:number;
   // public supplier: string;
 
-  public city: string;
-  public address: string;
-  public phone: number;
 
-  public cosmeticianFirstName:string;
-  public cosmeticianPermissionLevel:number;
-  public  cosmeticianAvailability:string[];
+  // public cosmeticianFirstName:string;
+  // public cosmeticianPermissionLevel:number;
+  // public  cosmeticianAvailability:string[];
 
-  public from: string;
-  public to: string;
-  public content: string;
-
-
-
-
+ 
   public customerId: string="";//key--email
   public customerFirstName: string="";
   public customerLastName: string="";
@@ -64,8 +54,9 @@ public flag:number;
   public appointmentPrice: number;
   public appointmentLocation: string;
 
-
-
+public managerFirstName:string;
+public managerLastName:string;
+public managerPhone:number;
 
   public Sunday: string;
   public sundayMorning: string;
@@ -105,13 +96,12 @@ public flag:number;
     this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
     this.prodRef = this.afs.collection("products");
-    this.locationtRef = this.afs.collection("locations");
-    this.cosmeticiansRef = this.afs.collection("cosmeticians");
-    this.messageManagerRef = this.afs.collection("messageManager");
+    // this.cosmeticiansRef = this.afs.collection("cosmeticians");
+    this.managerRef = this.afs.collection("manager");
     this.settingDayRef=this.afs.collection("Setting Days");
     this.specificOfDate=this.afs.collection("specificDays");
     this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
-    this.cosmeticianAvailability=[];
+    // this.cosmeticianAvailability=[];
     this.appointmentCustomer=[];
     this.appointmentCosmetician=[];
     this.Sunday="Sunday";
@@ -166,18 +156,6 @@ addTreatment(){
     this.treatmentRef.add(treat).then(res=>{
     });
 }
-
-  addLocation() {
-    let loc = {
-      city: this.city,
-      address: this.address,
-      phone: this.phone
-    }
-    this.locationtRef.add(loc).then(res => {
-    })
-  }
-
-
   addCustomer() {
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
@@ -192,32 +170,34 @@ addTreatment(){
     this.customerRef.add(cons).then(res=>{
 })
 }
-addCosmetician(){
-    // this.treatmentPossibleCosmetician.push(this.cosmeticianId);
-    // this.appointmentCosmetician.push(this.cosmeticianId);
-    console.log(this.treatmentPossibleCosmetician);
-    console.log(this.appointmentCosmetician);
-    let cosmet={
-      name: this.cosmeticianFirstName,
-      permissionLevel:this.cosmeticianPermissionLevel,
-      availability:this.cosmeticianAvailability
-    }
-    this.cosmeticiansRef.add(cosmet).then(res => {
+// addCosmetician(){
+//     // this.treatmentPossibleCosmetician.push(this.cosmeticianId);
+//     // this.appointmentCosmetician.push(this.cosmeticianId);
+//     console.log(this.treatmentPossibleCosmetician);
+//     console.log(this.appointmentCosmetician);
+//     let cosmet={
+//       name: this.cosmeticianFirstName,
+//       permissionLevel:this.cosmeticianPermissionLevel,
+//       availability:this.cosmeticianAvailability
+//     }
+//     this.cosmeticiansRef.add(cosmet).then(res => {
 
-    })
+//     })
+//   }
+  addManager() {
+    let manage= {
+      name:this.managerFirstName,
+      lname:this.managerLastName,
+      phone:this.managerPhone
+    }
+    this.managerRef.add(manage).then(res => { 
+          });
   }
-  addMessageManager() {
-    this.messageManagerRef.doc(this.from).set({
-      from: this.from,
-      to: this.to,
-      content: this.content
-    });
-  }
-  /*
-  uploadImage(image) {
-    let storageRef = firebase.storage().ref();
-    return storageRef.put(image);
-  }*/
+  
+  // uploadImage(image) {
+  //   let storageRef = firebase.storage().ref();
+  //   return storageRef.put(image);
+  // }
 
   public IsNotEmpty(){
    if((this.customerId!="")     && 

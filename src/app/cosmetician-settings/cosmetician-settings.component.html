@@ -20,14 +20,7 @@
         <input type="text" [(ngModel)]="databaseFirebase.treatmentDuration" placeholder="treatment Duration in minutes" >
         <button (click)="addTreatment()">add</button>
         </div>
-        
-        <div>
-        <h3>add location</h3>
-        <input type="text" [(ngModel)]="databaseFirebase.city" placeholder="city" >
-        <input type="text" [(ngModel)]="databaseFirebase.address" placeholder="address" >
-        <input type="text" [(ngModel)]="databaseFirebase.phone" placeholder="phone" >
-        <button (click)="addLocation()">add</button>
-        </div>
+
         
         <div>
                 <h3>add customer</h3>
@@ -47,22 +40,22 @@
           <input type="text" [(ngModel)]="databaseFirebase.appointmentLocation" placeholder="Location" >
           <button (click)="addAppointment()">add</button>
           </div>
-            <div>
+            <!-- <div>
             <h3>add cosmetician</h3>
-            <!-- <input type="text" [(ngModel)]="cosmeticianId" placeholder="id" > -->
+            <input type="text" [(ngModel)]="cosmeticianId" placeholder="id" >
             <input type="text" [(ngModel)]="databaseFirebase.cosmeticianFirstName" placeholder="Name" >
             <input type="text" [(ngModel)]="databaseFirebase.cosmeticianPermissionLevel" placeholder="permissionLevel" >
             <input type="text" [(ngModel)]="databaseFirebase.cosmeticianAvailability" placeholder="availability" >
-            <!-- <input type="text" [(ngModel)]="cosmeticianPhone" placeholder="phone" > -->
+            <input type="text" [(ngModel)]="cosmeticianPhone" placeholder="phone" >
             <button (click)="addCosmetician()">add</button>
-             </div>
+             </div> -->
     
             <div>
             <h3>add manager</h3>
-            <input type="text" [(ngModel)]="managerId" placeholder="id" >
-            <input type="text" [(ngModel)]="managerFirstName" placeholder="firstName" >
-            <input type="text" [(ngModel)]="managerLastName" placeholder="lastName" >
-            <input type="text" [(ngModel)]="managerPhone" placeholder="phone" >
+            <!-- <input type="text" [(ngModel)]="managerId" placeholder="id" > -->
+            <input type="text" [(ngModel)]="databaseFirebase.managerFirstName" placeholder="firstName" >
+            <input type="text" [(ngModel)]="databaseFirebase.managerLastName" placeholder="lastName" >
+            <input type="text" [(ngModel)]="databaseFirebase.managerPhone" placeholder="phone" >
             <button (click)="addManager()">add</button>
             </div> 
 

@@ -29,18 +29,15 @@ public res_im;
      public addTreatment(){
       this.databaseFirebase.addTreatment();
     }
-     public addLocation(){
-      this.databaseFirebase.addLocation();
-    }
      public addCustomer()
     {
       this.databaseFirebase.addCustomer();  
     }
-    public addCosmetician(){
-      this.databaseFirebase.addCosmetician();
-    }
-    public addMessageManager(){
-      this.databaseFirebase.addMessageManager();
+    // public addCosmetician(){
+    //   this.databaseFirebase.addCosmetician();
+    // }
+    public addManager(){
+      this.databaseFirebase.addManager();
     }
   
     public addAppointment(){
@@ -69,17 +66,13 @@ public res_im;
     public addOtherDate(){
       this.databaseFirebase.addOtherDate();
     }
-// public uploadImage(image) {
-//   //this.res_im=this.databaseFirebase.uploadImage(image);
-//   if (image.length!=0){
-//   this.databaseFirebase.uploadImage(image).then(res => {
-//     this.res_im = res.downloadURL;
-//   });
-//   }
-
-//   // public addOtherDate(){
-//   //   this.databaseFirebase.addOtherDate();
-//   // }
-// }
+    //  public uploadImage(image) {
+    //   this.res_im=this.databaseFirebase.uploadImage(image);
+    //   if (image.length!=0){
+    //   this.databaseFirebase.uploadImage(image).then(res => {
+    //     this.res_im = res.downloadURL;
+    //   });
+    //   }
+    // }
 }
   
