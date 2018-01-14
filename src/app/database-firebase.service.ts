@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-export interface event{
+import{AuthService} from './auth.service';
+export interface event {
   date: string;
-  hoursMorning:string;
-  hoursEvning:string;
- }
+  hoursMorning: string;
+  hoursEvning: string;
+}
 //  @Injectable() 
 // import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseFirebaseService {
-public selected: string[]=[];
-public flag:number;
+  public selected: string[] = [];
+  public flag: number;
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -52,11 +53,11 @@ public flag:number;
 
 
 
-  public customerId: string="";//key--email
-  public customerFirstName: string="";
-  public customerLastName: string="";
-  public customerPhone: number=null;
-  public customerAddress: string="";
+  public customerId: string = this.auth.current_user.email;//key--email
+  public customerFirstName: string = "";
+  public customerLastName: string = "";
+  public customerPhone: number = null;
+  public customerAddress: string = "";
   public customer_rank: boolean;
 
   public treatmentName: string;
@@ -94,21 +95,21 @@ public flag:number;
   public Thursday: string;
   public ThursdayMorning: string;
   public ThursdayEvening: string;
-  
-  public Friday:string;
-  public fridayMorning:string;
-  public fridayEvening:string;
 
-  public other:string;
-  public otherMorning:string;
-  public otherEvening:string;
+  public Friday: string;
+  public fridayMorning: string;
+  public fridayEvening: string;
 
-  private col:AngularFirestoreCollection<any>;
-  public days:event[];
-  public myDay:event[];
+  public other: string;
+  public otherMorning: string;
+  public otherEvening: string;
+
+  private col: AngularFirestoreCollection<any>;
+  public days: event[];
+  public myDay: event[];
 
 
-  constructor(private afs: AngularFirestore){
+  constructor(private afs: AngularFirestore,public auth:AuthService) {
     this.appointmentRef = this.afs.collection("appointment");
     this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
@@ -116,26 +117,26 @@ public flag:number;
     this.locationtRef = this.afs.collection("locations");
     this.cosmeticiansRef = this.afs.collection("cosmeticians");
     this.messageManagerRef = this.afs.collection("messageManager");
-    this.settingDayRef=this.afs.collection("Setting Days");
-    this.specificOfDate=this.afs.collection("specificDays");
-    this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
-    this.cosmeticianAvailability=[];
-    this.appointmentCustomer=[];
-    this.appointmentCosmetician=[];
-    this.Sunday="Sunday";
-    this.Monday="Monday";
-    this.Tuesday="Tuesday";
-    this.Wednesday="Wednesday";
-    this.Thursday="Thursday";
-    this.Friday="Friday";
-    this.other="";
-    this.myDay=new Array(); 
-    this.days=new Array(); 
-    this.flag=0;
-    this.col=this.afs.collection<event>("Setting Days"); 
-    this.col.valueChanges().subscribe(res=>{
-        this.days=res;
-      });      
+    this.settingDayRef = this.afs.collection("Setting Days");
+    this.specificOfDate = this.afs.collection("specificDays");
+    this.treatmentPossibleCosmetician = [];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
+    this.cosmeticianAvailability = [];
+    this.appointmentCustomer = [];
+    this.appointmentCosmetician = [];
+    this.Sunday = "Sunday";
+    this.Monday = "Monday";
+    this.Tuesday = "Tuesday";
+    this.Wednesday = "Wednesday";
+    this.Thursday = "Thursday";
+    this.Friday = "Friday";
+    this.other = "";
+    this.myDay = new Array();
+    this.days = new Array();
+    this.flag = 0;
+    this.col = this.afs.collection<event>("Setting Days");
+    this.col.valueChanges().subscribe(res => {
+      this.days = res;
+    });
   }
   addAppointment() {
     let appoin = {
@@ -228,147 +229,140 @@ public flag:number;
     return storageRef.put(image);
   }*/
 
-  public IsNotEmpty(){
-   if((this.customerId!="")     && 
-   (this.customerFirstName!="") &&
-   (this.customerLastName!="")  &&
-   (this.customerPhone!=null)   &&
-   (this.customerAddress!=""))
-   {
-     return true;
-   }
-   return false;
+  public IsNotEmpty() {
+    if ((this.customerId != "") &&
+      (this.customerFirstName != "") &&
+      (this.customerLastName != "") &&
+      (this.customerPhone != null) &&
+      (this.customerAddress != "")) {
+      return true;
+    }
+    return false;
   }
-   
 
-addSettingSunDay(){ 
-  // this.myDay=[];  
-  // for(var i=0,j=0;i<this.days.length;i++){    
-  //   if(this.days[i].date=="Sunday"){
-  //     this.flag=1;
-  //    this.myDay[j]=this.days[i];
-  //    j++;
-  //   }
-  // }
-  let hoursSunday={
-    date: this.Sunday,
-    hoursMorning: this.sundayMorning,
-    hoursEvning:this.sundayEvening
-  } 
-  // if(this.flag==0)
-  // {
-  //   console.log("not");
-  //     this.settingDayRef.doc(this.Sunday).set(hoursSunday);
-  // }
-  // else{
-       this.settingDayRef.doc(this.Sunday).set(hoursSunday);
-        this.settingDayRef=this.afs.doc("Setting Days/" +this.Sunday);           
-        this.settingDayRef.valueChanges().subscribe(res=>{
-        this.Sunday=res.Sunday;
-        this.sundayEvening=res.sundayEvening;
-        this.sundayMorning=res.sundayMorning;
-      });
-      this.settingDayRef=this.afs.collection("Setting Days");      
-  // }
-// this.flag=0;
-}
-addSettingMondayDay()
-{
-  let hoursMonday={
-    date: this.Monday,
-    hoursMorning: this.mondayMorning,
-    hoursEvning:this.mondayEvening
-    }    
-      this.settingDayRef.doc(this.Monday).set(hoursMonday);
-      this.settingDayRef=this.afs.doc("Setting Days/" +this.Monday);                     
-      this.settingDayRef.valueChanges().subscribe(res=>{
-      this.Monday=res.Monday;
-      this.mondayMorning=res.mondayMorning;
-      this.mondayEvening=res.mondayEvening;
+
+  addSettingSunDay() {
+    // this.myDay=[];  
+    // for(var i=0,j=0;i<this.days.length;i++){    
+    //   if(this.days[i].date=="Sunday"){
+    //     this.flag=1;
+    //    this.myDay[j]=this.days[i];
+    //    j++;
+    //   }
+    // }
+    let hoursSunday = {
+      date: this.Sunday,
+      hoursMorning: this.sundayMorning,
+      hoursEvning: this.sundayEvening
+    }
+    // if(this.flag==0)
+    // {
+    //   console.log("not");
+    //     this.settingDayRef.doc(this.Sunday).set(hoursSunday);
+    // }
+    // else{
+    this.settingDayRef.doc(this.Sunday).set(hoursSunday);
+    this.settingDayRef = this.afs.doc("Setting Days/" + this.Sunday);
+    this.settingDayRef.valueChanges().subscribe(res => {
+      this.Sunday = res.Sunday;
+      this.sundayEvening = res.sundayEvening;
+      this.sundayMorning = res.sundayMorning;
     });
-    this.settingDayRef=this.afs.collection("Setting Days");    
-}
-addSettingTuesdayDay()
-{
-              let hoursTuesday={
-                date: this.Tuesday,
-                hoursMorning: this.tuesdayMorning,
-                hoursEvning:this.tuesdayEvening
-              }  
-              
-                  this.settingDayRef.doc(this.Tuesday).set(hoursTuesday);
-                  this.settingDayRef=this.afs.doc("Setting Days/" +this.Tuesday);           
-                  this.settingDayRef.valueChanges().subscribe(res=>{
-                  this.Tuesday=res.Tuesday;
-                  this.tuesdayMorning=res.tuesdayMorning;
-                  this.tuesdayMorning=res.tuesdayMorning;
-                });
-                this.settingDayRef=this.afs.collection("Setting Days")
-                
-}
-addSettingWednesdayDay()
-{
-            let hoursWednesday={
-            date: this.Wednesday,
-            hoursMorning: this.wednesdayMorning,
-            hoursEvning:this.wednesdayEvening
-          }  
-         
-            this.settingDayRef.doc(this.Wednesday).set(hoursWednesday);
-            this.settingDayRef=this.afs.doc("Setting Days/" +this.Wednesday);           
-            this.settingDayRef.valueChanges().subscribe(res=>{
-            this.Wednesday=res.Wednesday;
-            this.wednesdayMorning=res.wednesdayMorning;
-            this.wednesdayEvening=res.wednesdayEvening;
-          });
-                    this.settingDayRef=this.afs.collection("Setting Days");
-}
-addSettingThursdayDay()
-{
-    let hoursThursday={
-    date: this.Thursday,
-    hoursMorning: this.ThursdayMorning,
-    hoursEvning:this.ThursdayEvening
-  }  
+    this.settingDayRef = this.afs.collection("Setting Days");
+    // }
+    // this.flag=0;
+  }
+  addSettingMondayDay() {
+    let hoursMonday = {
+      date: this.Monday,
+      hoursMorning: this.mondayMorning,
+      hoursEvning: this.mondayEvening
+    }
+    this.settingDayRef.doc(this.Monday).set(hoursMonday);
+    this.settingDayRef = this.afs.doc("Setting Days/" + this.Monday);
+    this.settingDayRef.valueChanges().subscribe(res => {
+      this.Monday = res.Monday;
+      this.mondayMorning = res.mondayMorning;
+      this.mondayEvening = res.mondayEvening;
+    });
+    this.settingDayRef = this.afs.collection("Setting Days");
+  }
+  addSettingTuesdayDay() {
+    let hoursTuesday = {
+      date: this.Tuesday,
+      hoursMorning: this.tuesdayMorning,
+      hoursEvning: this.tuesdayEvening
+    }
+
+    this.settingDayRef.doc(this.Tuesday).set(hoursTuesday);
+    this.settingDayRef = this.afs.doc("Setting Days/" + this.Tuesday);
+    this.settingDayRef.valueChanges().subscribe(res => {
+      this.Tuesday = res.Tuesday;
+      this.tuesdayMorning = res.tuesdayMorning;
+      this.tuesdayMorning = res.tuesdayMorning;
+    });
+    this.settingDayRef = this.afs.collection("Setting Days")
+
+  }
+  addSettingWednesdayDay() {
+    let hoursWednesday = {
+      date: this.Wednesday,
+      hoursMorning: this.wednesdayMorning,
+      hoursEvning: this.wednesdayEvening
+    }
+
+    this.settingDayRef.doc(this.Wednesday).set(hoursWednesday);
+    this.settingDayRef = this.afs.doc("Setting Days/" + this.Wednesday);
+    this.settingDayRef.valueChanges().subscribe(res => {
+      this.Wednesday = res.Wednesday;
+      this.wednesdayMorning = res.wednesdayMorning;
+      this.wednesdayEvening = res.wednesdayEvening;
+    });
+    this.settingDayRef = this.afs.collection("Setting Days");
+  }
+  addSettingThursdayDay() {
+    let hoursThursday = {
+      date: this.Thursday,
+      hoursMorning: this.ThursdayMorning,
+      hoursEvning: this.ThursdayEvening
+    }
 
     this.settingDayRef.doc(this.Thursday).set(hoursThursday);
-    this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
-    this.settingDayRef.valueChanges().subscribe(res=>{
-    this.Thursday=res.Thursday;
-    this.ThursdayEvening=res.thursdayEvening;
-    this.ThursdayMorning=res.thursdayMorning;
-  });
-  this.settingDayRef=this.afs.collection("Setting Days");
-  
-}
-addSettingFridayDay()
-{
-    let hoursFriday={
-    date: this.Friday,
-    hoursMorning: this.fridayMorning,
-    hoursEvning:this.fridayEvening
-  }  
+    this.settingDayRef = this.afs.doc("Setting Days/" + this.Thursday);
+    this.settingDayRef.valueChanges().subscribe(res => {
+      this.Thursday = res.Thursday;
+      this.ThursdayEvening = res.thursdayEvening;
+      this.ThursdayMorning = res.thursdayMorning;
+    });
+    this.settingDayRef = this.afs.collection("Setting Days");
+
+  }
+  addSettingFridayDay() {
+    let hoursFriday = {
+      date: this.Friday,
+      hoursMorning: this.fridayMorning,
+      hoursEvning: this.fridayEvening
+    }
 
     this.settingDayRef.doc(this.Friday).set(hoursFriday);
-    this.settingDayRef=this.afs.doc("Setting Days/" +this.Friday);           
-    this.settingDayRef.valueChanges().subscribe(res=>{
-    this.Friday=res.Friday;
-    this.fridayMorning=res.fridayMorning;
-    this.fridayEvening=res.fridayEvening;
-  });
-  this.settingDayRef=this.afs.collection("Setting Days");
-}
-addOtherDate()
-      {
-        let hoursOther={
-          date: this.other,
-          hoursMorning: this.otherMorning,
-          hoursEvning:this.otherEvening
-          }  
-          this.specificOfDate.add(hoursOther).then(res=>{
-          });
-      
-      }
+    this.settingDayRef = this.afs.doc("Setting Days/" + this.Friday);
+    this.settingDayRef.valueChanges().subscribe(res => {
+      this.Friday = res.Friday;
+      this.fridayMorning = res.fridayMorning;
+      this.fridayEvening = res.fridayEvening;
+    });
+    this.settingDayRef = this.afs.collection("Setting Days");
+  }
+  addOtherDate() {
+    let hoursOther = {
+      date: this.other,
+      hoursMorning: this.otherMorning,
+      hoursEvning: this.otherEvening
+    }
+    this.specificOfDate.add(hoursOther).then(res => {
+    });
+
+  }
 }
 
 
@@ -414,7 +408,7 @@ getTurnByCosmetician()
 }*/
 
 
-  
+
 
 
 
@@ -442,7 +436,7 @@ getTurnByCosmetician()
 
 
 // export class ProfileComponent implements OnInit {
- 
+
 
 //  public myCosmetician:event[];
 //  public d:Date;
@@ -451,7 +445,7 @@ getTurnByCosmetician()
 //  dateFilter: BehaviorSubject<string | null>;
 
 // constructor(private afs: AngularFirestore) { 
-  
+
 //   }
 
 
@@ -460,7 +454,7 @@ getTurnByCosmetician()
 
 
 
-  
+
     //this.col=this.afs.collection('users');
     //this.prod=this.afs.collection('products');
     //this.prod.valueChanges().subscribe(res=>{
@@ -473,7 +467,7 @@ getTurnByCosmetician()
     //  this.users=res;
    // });
   // this.ob=this.col.valueChanges();
-  
+
  /* 
   constructor(private afs: AngularFirestore){
     this.itemDoc = this.afs.doc('users/1');
