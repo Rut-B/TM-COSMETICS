@@ -193,9 +193,101 @@ for(i;i<=t+daysInMonth;i++){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   return(arr[i]);
 }
-public scheduleTime(day:Date, duration:number):boolean{
-return false;
+
+/* aother:Rut */
+public getDist(startTime:Date,endTime:Date):number
+{
+  var diff = endTime.getTime() - startTime.getTime();
+//return duration in --->min<----.endTIme-startTime
+return (diff / 60000);
 }
+
+public sortTime(arrayAppoi:appoi[]):appoi[]{
+return null; 
+}
+
+
+/***********************************************************
+* this function return array of the time that can make appoinmtments.
+
+Assumption: duration in min. 
+*************************************************************/
+
+public scheduleTime(time:Date, duration:number):appoi[]
+{
+let valid_time_array: appoi[]=null;
+//validation
+
+    if (duration <= 0)
+    {
+        return valid_time_array;//true;
+    }
+
+
+//check if cosmetician cam work in this day..
+let timeToWork: appoi[];
+  //  timeToWork= this.getAvailability(time);//get array of start:end,start:end
+    let startMorning=timeToWork[0].start;
+    let endMorning=timeToWork[0].end;
+    let startEvening=timeToWork[1].start;
+    let endtEvening=timeToWork[1].end;
+    let durationWorkA = this.getDist(startMorning,endMorning);
+    let durationWorkB = this.getDist(startEvening,endtEvening);
+
+    if ((duration >durationWorkA)&&
+            (duration >durationWorkB))
+    {
+        return null;
+    }
+
+let appoi_in_time:appoi[];
+let sort_appoi:appoi[];
+let appointmensArray:appoi[];
+
+    this.myAppCol=this.afs.collection("myApointments");
+    this.myAppCol.valueChanges().subscribe(res=> {
+        appointmensArray=res;
+    });
+    let j=0;
+    if(appointmensArray.length == 0)
+    {
+      let newValidApp =new appoi();
+      newValidApp.start = startMorning;
+      newValidApp.end   = endMorning;
+      valid_time_array.push(newValidApp);
+      return valid_time_array;
+    }
+    for(let i=0; i<appointmensArray.length; i++)
+    {
+        let appoi_time =appointmensArray[i].start;
+        let appoi_date_start=appointmensArray[i].start.getDay;
+        let appoi_date_end=appointmensArray[i].end.getDay;
+        if(  (appoi_date_end==appoi_date_start)&&
+                (appoi_date_start==time.getDay)&&
+                (appoi_time.getMonth==time.getMonth)&&
+                (appoi_time.getFullYear==time.getFullYear))
+        {
+            appoi_in_time[j]=appointmensArray[i];
+            j++;
+        }
+
+    }
+    sort_appoi=this.sortTime(appoi_in_time);
+    for(let i=1; i<sort_appoi.length; i++) { //run startB-endA>=duration->push to array of times..
+        if((this.getDist(sort_appoi[i-1].end,sort_appoi[i].start) >=duration)&&
+           (sort_appoi[i].start != startEvening))
+         {
+            let newValidApp =new appoi();
+            newValidApp.start =sort_appoi[i-1].end;
+            newValidApp.end =sort_appoi[i].start;
+            valid_time_array.push(newValidApp);
+        }
+
+    }
+
+    return valid_time_array;
+}
+
 public getAvailability(day:Date):string[]{
 //this function gets a specific date and returns the hours the cosmetician works on that day.
   this.mySpecDays[0];

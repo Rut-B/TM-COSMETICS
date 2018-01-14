@@ -27,21 +27,6 @@ export class CosmeticianSettingsComponent implements OnInit {
   public addProducts() {
     this.databaseFirebase.addProducts(this.res_im);
   }
-  public addTreatment() {
-    this.databaseFirebase.addTreatment();
-  }
-  public addLocation() {
-    this.databaseFirebase.addLocation();
-  }
-  public addCustomer() {
-    this.databaseFirebase.addCustomer();
-  }
-  public addCosmetician() {
-    this.databaseFirebase.addCosmetician();
-  }
-  public addMessageManager() {
-    this.databaseFirebase.addMessageManager();
-  }
   public addAppointment() {
     this.databaseFirebase.addAppointment();
   }
@@ -84,4 +69,19 @@ export class CosmeticianSettingsComponent implements OnInit {
     //   //   this.databaseFirebase.addOtherDate();
     //   // }
     // }
+    public addOtherDate(){
+      this.databaseFirebase.addOtherDate();
+    }
   }
+
+
+  
+    //  public uploadImage(image) {
+    //   this.res_im=this.databaseFirebase.uploadImage(image);
+    //   if (image.length!=0){
+    //   this.databaseFirebase.uploadImage(image).then(res => {
+    //     this.res_im = res.downloadURL;
+    //   });
+    //   }
+    // }
+  

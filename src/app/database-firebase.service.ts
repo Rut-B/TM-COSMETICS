@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from "firebase";
 
@@ -18,78 +18,68 @@ public flag:number;
   public customerRef;
   public treatmentRef;
   public prodRef;
-  public locationtRef;
   public cosmeticiansRef;
-  public messageManagerRef;
+  public managerRef;
   public settingDayRef;
+  public specificOfDate;
 
   public quantity:number;
   public productName:string;
   public code:number;
   public price:number;
-  public supplier: string;
-
-  public city:string;
-  public address:string;
-  public phone:number;
-
-  public cosmeticianId:string;
-  public cosmeticianFirstName:string;
-  public cosmeticianLastName:string;
-  public cosmeticianPhone:number;
-  public cosmeticianPermissionLevel:number;
-  public  cosmeticianAvailability:string[];
-
-  public from:string;
-  public to:string;
-  public content:string;
+  // public supplier: string;
 
 
+  // public cosmeticianFirstName:string;
+  // public cosmeticianPermissionLevel:number;
+  // public  cosmeticianAvailability:string[];
 
-
-  public customerId:string;//key--email
-  public customerFirstName:string;
-  public customerLastName:string;
-  public customerPhone:number;
-  public customerAddress:string;
-  public customerPermissionLevel:number;
+ 
+  public customerId: string="";//key--email
+  public customerFirstName: string="";
+  public customerLastName: string="";
+  public customerPhone: number=null;
+  public customerAddress: string="";
+  public customer_rank: boolean;
 
   public treatmentName:string;
+  public treatmentDescription:string
   public treatmentCode:number;//key
   public treatmentPrice:number;
   public treatmentDuration:Date;
   public treatmentPossibleCosmetician:string[];
 
-  public appointmentCustomer:string[];
-  public appointmentTime:Date;
-  public appointmentCosmetician:string[];
-  public appointmentDuration:Date;
-  public appointmentPrice:number;
-  public appointmentLocation:string;
+  public appointmentCustomer: string[];
+  public appointmentTime: Date;
+  public appointmentCosmetician: string[];
+  public appointmentDuration: Date;
+  public appointmentPrice: number;
+  public appointmentLocation: string;
 
- 
+public managerFirstName:string;
+public managerLastName:string;
+public managerPhone:number;
 
+  public Sunday: string;
+  public sundayMorning: string;
+  public sundayEvening: string;
 
-  public Sunday:string;
-  public sundayMorning:string;
-  public sundayEvening:string;
+  public Monday: string;
+  public mondayMorning: string;
+  public mondayEvening: string;
 
-  public Monday:string;
-  public mondayMorning:string;
-  public mondayEvening:string;
+  public Tuesday: string;
+  public tuesdayMorning: string;
+  public tuesdayEvening: string;
 
-  public Tuesday:string;
-  public tuesdayMorning:string;
-  public tuesdayEvening:string;
+  public Wednesday: string;
+  public wednesdayMorning: string;
+  public wednesdayEvening: string;
 
-  public Wednesday:string;
-  public wednesdayMorning:string;
-  public wednesdayEvening:string;
-
-  public Thursday:string;
-  public thursdayMorning:string;
-  public thursdayEvening:string;
-
+  public Thursday: string;
+  public ThursdayMorning: string;
+  public ThursdayEvening: string;
+  
   public Friday:string;
   public fridayMorning:string;
   public fridayEvening:string;
@@ -108,12 +98,12 @@ public flag:number;
     this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
     this.prodRef = this.afs.collection("products");
-    this.locationtRef = this.afs.collection("locations");
-    this.cosmeticiansRef = this.afs.collection("cosmeticians");
-    this.messageManagerRef = this.afs.collection("messageManager");
-    this.settingDayRef=this.afs.collection("Setting Days")
+    // this.cosmeticiansRef = this.afs.collection("cosmeticians");
+    this.managerRef = this.afs.collection("manager");
+    this.settingDayRef=this.afs.collection("Setting Days");
+    this.specificOfDate=this.afs.collection("specificDays");
     this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
-    this.cosmeticianAvailability=[];
+    // this.cosmeticianAvailability=[];
     this.appointmentCustomer=[];
     this.appointmentCosmetician=[];
     this.Sunday="Sunday";
@@ -122,6 +112,7 @@ public flag:number;
     this.Wednesday="Wednesday";
     this.Thursday="Thursday";
     this.Friday="Friday";
+    this.other="";
     this.myDay=new Array(); 
     this.days=new Array(); 
     this.flag=0;
@@ -130,26 +121,26 @@ public flag:number;
         this.days=res;
       });      
   }
-  addAppointment(){
-    let appoin={
+  addAppointment() {
+    let appoin = {
       appointmentTime: this.appointmentTime,
-      customer:this.appointmentCustomer,
+      customer: this.appointmentCustomer,
       cosmetician: this.appointmentCosmetician,
-      duration :this.appointmentDuration,
-      price:this.appointmentPrice,
+      duration: this.appointmentDuration,
+      price: this.appointmentPrice,
       Location: this.appointmentLocation
     }
-    this.appointmentRef.add(appoin).then(res=>{
-      
+    this.appointmentRef.add(appoin).then(res => {
+
     })
-}
-addProducts(url){ 
-    let item={
+  }
+  addProducts(url) {
+    let item = {
       productName: this.productName,
       quantity: this.quantity,
       code: this.code, 
       price:this.price,
-      supplier:this.supplier,
+      // supplier:this.supplier,
       pic:url
     }  
     this.prodRef.add(item).then(res=>{
@@ -160,66 +151,69 @@ addTreatment(){
     name:this.treatmentName,
     code:this.treatmentCode,
     price:this.treatmentPrice,
+    Description:this.treatmentDescription,
     duration:this.treatmentDuration+" minutes",
     PossibleCosmetician:this.treatmentPossibleCosmetician
   }
     this.treatmentRef.add(treat).then(res=>{
-    })
+    });
 }
-addLocation(){
-  let loc={
-    city:this.city,    
-    address:this.address, 
-    phone:this.phone
-  }
-    this.locationtRef.add(loc).then(res=>{
-    })
-} 
-/*first_name: string;
-  last_name: string;
-  email: string;
-  address:string;
-  phone:number;
-  is_customer:boolean;*/
-
-addCustomer(){
+  addCustomer() {
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
-    let cons={
-      email:this.customerId,
-      first_name:this.customerFirstName,
-      last_name:this.customerLastName,
-      phone:this.customerPhone,
-      address:this.customerAddress,
-      is_customer:true
+    let cons = {
+      email: this.customerId,
+      first_name: this.customerFirstName,
+      last_name: this.customerLastName,
+      phone: this.customerPhone,
+      address: this.customerAddress,
+      is_customer: true
     }
     this.customerRef.add(cons).then(res=>{
 })
 }
-addCosmetician(){
-    this.treatmentPossibleCosmetician.push(this.cosmeticianId);
-    this.appointmentCosmetician.push(this.cosmeticianId);
-    console.log(this.treatmentPossibleCosmetician);
-    console.log(this.appointmentCosmetician);
-    let cosmet={
-      cosmeticianId:this.cosmeticianId,
-      name: this.cosmeticianFirstName,
-      lname: this.cosmeticianLastName,
-      phone:this.cosmeticianPhone,
-      permissionLevel:this.cosmeticianPermissionLevel,
-      availability:this.cosmeticianAvailability
+// addCosmetician(){
+//     // this.treatmentPossibleCosmetician.push(this.cosmeticianId);
+//     // this.appointmentCosmetician.push(this.cosmeticianId);
+//     console.log(this.treatmentPossibleCosmetician);
+//     console.log(this.appointmentCosmetician);
+//     let cosmet={
+//       name: this.cosmeticianFirstName,
+//       permissionLevel:this.cosmeticianPermissionLevel,
+//       availability:this.cosmeticianAvailability
+//     }
+//     this.cosmeticiansRef.add(cosmet).then(res => {
+
+//     })
+//   }
+  addManager() {
+    let manage= {
+      name:this.managerFirstName,
+      lname:this.managerLastName,
+      phone:this.managerPhone
     }
-    this.cosmeticiansRef.add(cosmet).then(res=>{
- 
-  })
-}
-addMessageManager(){  
-    this.messageManagerRef.doc(this.from).set({
-    from: this.from,
-    to: this.to,
-    content:this.content
-  });
-}
+    this.managerRef.add(manage).then(res => { 
+          });
+  }
+  
+  // uploadImage(image) {
+  //   let storageRef = firebase.storage().ref();
+  //   return storageRef.put(image);
+  // }
+
+  public IsNotEmpty(){
+   if((this.customerId!="")     && 
+   (this.customerFirstName!="") &&
+   (this.customerLastName!="")  &&
+   (this.customerPhone!=null)   &&
+   (this.customerAddress!=""))
+   {
+     return true;
+   }
+   return false;
+  }
+   
+
 addSettingSunDay(){ 
   // this.myDay=[];  
   // for(var i=0,j=0;i<this.days.length;i++){    
@@ -234,12 +228,6 @@ addSettingSunDay(){
     hoursMorning: this.sundayMorning,
     hoursEvning:this.sundayEvening
   } 
-  // if(this.flag==0)
-  // {
-  //   console.log("not");
-  //     this.settingDayRef.doc(this.Sunday).set(hoursSunday);
-  // }
-  // else{
        this.settingDayRef.doc(this.Sunday).set(hoursSunday);
         this.settingDayRef=this.afs.doc("Setting Days/" +this.Sunday);           
         this.settingDayRef.valueChanges().subscribe(res=>{
@@ -247,9 +235,7 @@ addSettingSunDay(){
         this.sundayEvening=res.sundayEvening;
         this.sundayMorning=res.sundayMorning;
       });
-      this.settingDayRef=this.afs.collection("Setting Days");      
-  // }
-// this.flag=0;
+      this.settingDayRef=this.afs.collection("Setting Days");    
 }
 addSettingMondayDay()
 {
@@ -262,8 +248,8 @@ addSettingMondayDay()
       this.settingDayRef=this.afs.doc("Setting Days/" +this.Monday);                     
       this.settingDayRef.valueChanges().subscribe(res=>{
       this.Monday=res.Monday;
-      this.sundayEvening=res.sundayEvening;
-      this.sundayMorning=res.sundayMorning;
+      this.mondayMorning=res.mondayMorning;
+      this.mondayEvening=res.mondayEvening;
     });
     this.settingDayRef=this.afs.collection("Setting Days");    
 }
@@ -278,9 +264,9 @@ addSettingTuesdayDay()
                   this.settingDayRef.doc(this.Tuesday).set(hoursTuesday);
                   this.settingDayRef=this.afs.doc("Setting Days/" +this.Tuesday);           
                   this.settingDayRef.valueChanges().subscribe(res=>{
-                  this.Tuesday=res.Monday;
-                  this.sundayEvening=res.sundayEvening;
-                  this.sundayMorning=res.sundayMorning;
+                  this.Tuesday=res.Tuesday;
+                  this.tuesdayMorning=res.tuesdayMorning;
+                  this.tuesdayMorning=res.tuesdayMorning;
                 });
                 this.settingDayRef=this.afs.collection("Setting Days")
                 
@@ -296,9 +282,9 @@ addSettingWednesdayDay()
             this.settingDayRef.doc(this.Wednesday).set(hoursWednesday);
             this.settingDayRef=this.afs.doc("Setting Days/" +this.Wednesday);           
             this.settingDayRef.valueChanges().subscribe(res=>{
-            this.Wednesday=res.Monday;
-            this.sundayEvening=res.sundayEvening;
-            this.sundayMorning=res.sundayMorning;
+            this.Wednesday=res.Wednesday;
+            this.wednesdayMorning=res.wednesdayMorning;
+            this.wednesdayEvening=res.wednesdayEvening;
           });
                     this.settingDayRef=this.afs.collection("Setting Days");
 }
@@ -306,23 +292,36 @@ addSettingThursdayDay()
 {
     let hoursThursday={
     date: this.Thursday,
-    hoursMorning: this.thursdayMorning,
-    hoursEvning:this.thursdayEvening
+    hoursMorning: this.ThursdayMorning,
+    hoursEvning:this.ThursdayEvening
   }  
 
     this.settingDayRef.doc(this.Thursday).set(hoursThursday);
     this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
     this.settingDayRef.valueChanges().subscribe(res=>{
-    this.Thursday=res.Monday;
-    this.sundayEvening=res.sundayEvening;
-    this.sundayMorning=res.sundayMorning;
+    this.Thursday=res.Thursday;
+    this.ThursdayEvening=res.thursdayEvening;
+    this.ThursdayMorning=res.thursdayMorning;
   });
   this.settingDayRef=this.afs.collection("Setting Days");
   
 }
 addSettingFridayDay()
 {
+    let hoursFriday={
+    date: this.Friday,
+    hoursMorning: this.fridayMorning,
+    hoursEvning:this.fridayEvening
+  }  
 
+    this.settingDayRef.doc(this.Friday).set(hoursFriday);
+    this.settingDayRef=this.afs.doc("Setting Days/" +this.Friday);           
+    this.settingDayRef.valueChanges().subscribe(res=>{
+    this.Friday=res.Friday;
+    this.fridayMorning=res.fridayMorning;
+    this.fridayEvening=res.fridayEvening;
+  });
+  this.settingDayRef=this.afs.collection("Setting Days");
 }
 public uploadImage(image) {
   let storageRef = firebase.storage().ref();
@@ -330,7 +329,19 @@ public uploadImage(image) {
     console.log(img)
   });
 }
+
+addOtherDate()
+      {
+        let hoursOther={
+          date: this.other,
+          hoursMorning: this.otherMorning,
+          hoursEvning:this.otherEvening
+          }  
+          this.specificOfDate.add(hoursOther).then(res=>{
+          });
+      }
 }
+
 
 
 /*getTurnByTime()
@@ -362,8 +373,7 @@ public uploadImage(image) {
  this.settingDayRef=this.afs.collection("Setting Days");
  
 }
-}
-getTurnByCosmetician()
+/*getTurnByCosmetician()
 {
   this.myAppointments=[];
   for(var i=0,j=0;i<this.appointments.length;i++){
