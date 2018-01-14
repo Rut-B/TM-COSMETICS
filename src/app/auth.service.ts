@@ -51,7 +51,6 @@ export class AuthService {
         this.current_user.email = this.users_details[i].email;
         this.current_user.is_customer = this.users_details[i].is_customer;
         this.current_user.phone = this.users_details[i].phone;
-
         return true;
       }
 
@@ -73,6 +72,7 @@ export class AuthService {
             }
             else {
               this.isLogin = false;
+
               res(false);
             }
           }
@@ -113,7 +113,4 @@ export class AuthService {
     this.afAuth.auth.signOut();
   }
 }
-
-
-
 
