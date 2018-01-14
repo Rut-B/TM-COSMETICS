@@ -1,3 +1,38 @@
-<div class="title">settings</div>
-<!--<button (click)="show()"> show message</button>-->
+<div id="titleSetting">
+
+  Hellow {{auth.current_user.first_name}},{{ auth.current_user.last_name}}
+
+</div>
+<mat-card id="setting_page">
+    <div class="txt">
+        
+        your setting in the system:
+        <br/>
+        please press on "change" buttom to change  your detalis,
+    </div>
+   <div class="txt">  
+           first name : 
+           
+           <input type="txt"  placeholder={{auth.current_user.first_name}} >
+           <br/>last name :
+          
+           <input type="txt"  placeholder={{auth.current_user.last_name}} >
+           <br/>
+           your email :
+           
+           <label  >{{auth.current_user.email}} </label>
+           <br/>
+           phone :
+           
+           <input type="txt"  placeholder={{auth.current_user.phone}} >
+           <br/>
+           address:
+           
+           <input type="txt"  placeholder={{auth.current_user.address}} >
+           
+        </div>
+   
+    </mat-card>
+ 
+
 <div class="alert alert-success">{{this.message}}</div>
