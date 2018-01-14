@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import * as firebase from "firebase";
+
 export interface event{
   date: string;
   hoursMorning:string;
@@ -322,6 +324,12 @@ addSettingFridayDay()
 {
 
 }
+public uploadImage(image) {
+  let storageRef = firebase.storage().ref();
+  return storageRef.put(image).then(img=>{
+    console.log(img)
+  });
+}
 }
 
 
@@ -386,10 +394,7 @@ getTurnByCosmetician()
 
 
 
-// uploadImage(image) {
-//   let storageRef = firebase.storage().ref();
-//   return storageRef.put(image);
-// }
+
 
 
 
