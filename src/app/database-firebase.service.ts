@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import * as firebase from "firebase";
+
 export interface event{
   date: string;
   hoursMorning:string;
@@ -320,6 +322,13 @@ addSettingFridayDay()
   });
   this.settingDayRef=this.afs.collection("Setting Days");
 }
+public uploadImage(image) {
+  let storageRef = firebase.storage().ref();
+  return storageRef.put(image).then(img=>{
+    console.log(img)
+  });
+}
+
 addOtherDate()
       {
         let hoursOther={
@@ -330,7 +339,10 @@ addOtherDate()
           this.specificOfDate.add(hoursOther).then(res=>{
           });
       }
-    }
+}
+
+
+
 /*getTurnByTime()
 {
   this.myAppointments=[];
@@ -391,10 +403,7 @@ addOtherDate()
 
 
 
-// uploadImage(image) {
-//   let storageRef = firebase.storage().ref();
-//   return storageRef.put(image);
-// }
+
 
 
 

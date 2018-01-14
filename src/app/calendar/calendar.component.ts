@@ -76,6 +76,8 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
   this.addEvent(this.clickedDate);
+  let yu=this.getAvailability(new Date());
+  console.log(yu);
   alert(this.dataService.totalDuration)
   alert(this.dataService.selected_treatments);
   }
@@ -291,38 +293,26 @@ public getAvailability(day:Date):string[]{
   this.mySpecDays[0];
   this.myDays[0];
   let dayInTheWeek:string;
-  switch(day.getDay()){
-    case 0:
-    dayInTheWeek="Sunday";
-    break;
-    case 1:
-    dayInTheWeek="Monday";
-    break;
-    case 2:
-    dayInTheWeek="Tuesday";
-    break;
-    case 3:
-    dayInTheWeek="Wednesday";
-    break;
-    case 4:
-    dayInTheWeek="Thursday";
-    break;
-    case 5:
-    dayInTheWeek="Friday";
-    break;
-  }
-  console.log(this.myDays);
+  dayInTheWeek=this.check(day.getDay())
+  console.log(this.mySpecDays);
   let spec_date;
   let res=[];
   for(let j=0;j<this.mySpecDays.length;j++){
     spec_date=new Date(this.mySpecDays[j].date);
     let is_same=this.compareDates(spec_date,day);
+    console.log("is same= "+is_same);
     if(is_same){
       let start=this.split_hours(this.mySpecDays[j].hoursMorning);
       let end=this.split_hours(this.mySpecDays[j].hoursEvning);
       if ((start.length==2)&&(end.length==2)){
-        res.push(start);
-        res.push(end);
+        let start_time=new Date(this.convert_to_date(start[0],spec_date));
+        res.push(start_time);
+        let end_time=new Date(this.convert_to_date(start[1],spec_date));
+        res.push(end_time);
+        let start_time_ev=new Date(this.convert_to_date(end[0],spec_date));
+        res.push(start_time_ev);
+        let end_time_ev=new Date(this.convert_to_date(end[1],spec_date));
+        res.push(end_time_ev);
         return res;
       }
       else{
@@ -337,8 +327,14 @@ public getAvailability(day:Date):string[]{
       let start=this.split_hours(this.myDays[i].hoursMorning);
       let end=this.split_hours(this.myDays[i].hoursEvning);
       if ((start.length==2)&&(end.length==2)){
-        res.push(start);
-        res.push(end);
+        let start_time=new Date(this.convert_to_date(start[0],day));
+        res.push(start_time);
+        let end_time=new Date(this.convert_to_date(start[1],day));
+        res.push(end_time);
+        let start_time_ev=new Date(this.convert_to_date(end[0],day));
+        res.push(start_time_ev);
+        let end_time_ev=new Date(this.convert_to_date(end[1],day));
+        res.push(end_time_ev);
         return res;
       }
       else{
@@ -348,6 +344,19 @@ public getAvailability(day:Date):string[]{
     }
   }
   return ['0','0'];
+}
+public convert_to_date(time_working:string, date:Date):Date{
+  let time=time_working.split(":");
+  if(time.length!=2){
+    console.log("error in time format");
+    return;
+  }
+  console.log("time to convetr: "+time_working);
+  let hour=parseInt(time[0]);
+  let minutes=parseInt(time[1]);
+  date.setHours(hour, minutes, 0);
+  console.log("converted "+date);
+  return date;
 }
 public split_hours(hour:string):string[]{
   let range=hour.split("-");
@@ -360,10 +369,13 @@ public split_hours(hour:string):string[]{
 return ['false'];
 }
 public compareDates(date1:Date, date2:Date):boolean{
+  console.log("year: "+date1.getFullYear() +"=?"+date2.getFullYear());
   if (date1.getFullYear()!=date2.getFullYear())
     return false;
+  console.log("month: "+date1.getMonth() +"=?"+date2.getMonth());
   if(date1.getMonth()!==date2.getMonth())
     return false;
+  console.log("day: "+date1.getDate() +"=?"+date2.getDate());
   if (date1.getDate()!=date2.getDate())
     return false;
   return true;

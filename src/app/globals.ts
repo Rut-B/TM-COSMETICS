@@ -1,3 +1,3 @@
 'use strict';
 
-export const customer=false;
+export const customer=true;
