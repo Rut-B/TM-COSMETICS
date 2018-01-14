@@ -6,27 +6,21 @@
         <input type="text" [(ngModel)]="databaseFirebase.quantity" placeholder="quantity" >
         <input type="text" [(ngModel)]="databaseFirebase.code" placeholder="code" >
         <input type="text" [(ngModel)]="databaseFirebase.price" placeholder="price" >
-        <input type="text" [(ngModel)]="databaseFirebase.supplier" placeholder="supplier" >   
+        <!-- <input type="text" [(ngModel)]="databaseFirebase.supplier" placeholder="supplier" >    -->
         <input name="upload_image" type="file"  class="upload_input" placeholder="image" (change)="uploadImage($event.target?.files)" accept="image/*"/>
         <button (click)="addProducts()">add</button>
         </div>
   
         <div>
-        <h3>add Treatment</h3>
+        <h3>add Treatment</h3>        
         <input type="text" [(ngModel)]="databaseFirebase.treatmentName" placeholder="treatment name" >
         <input type="text" [(ngModel)]="databaseFirebase.treatmentCode" placeholder="code" >
         <input type="text" [(ngModel)]="databaseFirebase.treatmentPrice" placeholder="price" >
+        <input type="text" [(ngModel)]="databaseFirebase.treatmentDescription" placeholder="description" > 
         <input type="text" [(ngModel)]="databaseFirebase.treatmentDuration" placeholder="treatment Duration in minutes" >
         <button (click)="addTreatment()">add</button>
         </div>
-        
-        <div>
-        <h3>add location</h3>
-        <input type="text" [(ngModel)]="databaseFirebase.city" placeholder="city" >
-        <input type="text" [(ngModel)]="databaseFirebase.address" placeholder="address" >
-        <input type="text" [(ngModel)]="databaseFirebase.phone" placeholder="phone" >
-        <button (click)="addLocation()">add</button>
-        </div>
+
         
         <div>
                 <h3>add customer</h3>
@@ -46,20 +40,19 @@
           <input type="text" [(ngModel)]="databaseFirebase.appointmentLocation" placeholder="Location" >
           <button (click)="addAppointment()">add</button>
           </div>
-    
-            <div>
+            <!-- <div>
             <h3>add cosmetician</h3>
-            <input type="text" [(ngModel)]="databaseFirebase.cosmeticianId" placeholder="id" >
+            <input type="text" [(ngModel)]="cosmeticianId" placeholder="id" >
             <input type="text" [(ngModel)]="databaseFirebase.cosmeticianFirstName" placeholder="Name" >
             <input type="text" [(ngModel)]="databaseFirebase.cosmeticianPermissionLevel" placeholder="permissionLevel" >
             <input type="text" [(ngModel)]="databaseFirebase.cosmeticianAvailability" placeholder="availability" >
-            <input type="text" [(ngModel)]="databaseFirebase.cosmeticianPhone" placeholder="phone" >
+            <input type="text" [(ngModel)]="cosmeticianPhone" placeholder="phone" >
             <button (click)="addCosmetician()">add</button>
-             </div>
+             </div> -->
     
             <div>
             <h3>add manager</h3>
-            <input type="text" [(ngModel)]="databaseFirebase.managerId" placeholder="id" >
+            <!-- <input type="text" [(ngModel)]="managerId" placeholder="id" > -->
             <input type="text" [(ngModel)]="databaseFirebase.managerFirstName" placeholder="firstName" >
             <input type="text" [(ngModel)]="databaseFirebase.managerLastName" placeholder="lastName" >
             <input type="text" [(ngModel)]="databaseFirebase.managerPhone" placeholder="phone" >
@@ -69,7 +62,7 @@
         <div>
         <h3>Sunday:</h3>
         <input type="text" [(ngModel)]="databaseFirebase.sundayMorning" placeholder="duringHoursMorning" >
-        <input type="text" [(ngModel)]="databaseFirebase.sundayEvening" placeholder="duringHoursEvening" >  
+        <input type="text" [(ngModel)]="databaseFirebase.sundayEvening" placeholder="duringHoursEvening" > 
         <button (click)="addSettingSunDay()">update</button>
         </div>
         <div>
