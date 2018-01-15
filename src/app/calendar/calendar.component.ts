@@ -79,7 +79,7 @@ export class CalendarComponent implements OnInit {
   dayClicked(){
   this.addEvent(this.clickedDate);
   let yu=this.getAvailability(new Date());
-  console.log(yu);
+  //console.log(yu);
   alert(this.dataService.totalDuration)
   alert(this.dataService.selected_treatments);
   }
@@ -146,10 +146,12 @@ for(i;i<=t+daysInMonth;i++){
       //  alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[1].innerText);
         dontDays[l]=cday;
         l++; 
-       /* this.available=this.scheduleTime(curr,this.dataService.totalDuration);
+        console.log("*******:)****");
+        this.available=this.scheduleTime(curr,this.dataService.totalDuration);
+       console.log("***"+this.available);
         if(this.available!=null){
        cc[i].className="a";
-        }*/
+        }
         cc[i].className="a";
       }
      }
@@ -190,7 +192,7 @@ for(i;i<=t+daysInMonth;i++){
     //s.push(i+" "+k+" "+n);  
     var now=this.myDays[k].date;  
    if(this.check(d.getDay())==now){
-    //console.log(this.check(d.getDay())+","+now+" "+i);
+    ////console.log(this.check(d.getDay())+","+now+" "+i);
     cc[(i+t)].className="a2";
     i--;
      break;
@@ -244,7 +246,7 @@ let valid_time_array: appoi[]=null;
         return valid_time_array;//true;
     }
 
-
+console.log("i am here");
 //check if cosmetician cam work in this day..
 let timeToWork: appoi[];
 let ansToWork:Date[];
@@ -341,13 +343,13 @@ public getAvailability(day:Date):Date[]{
   this.myDays[0];
   let dayInTheWeek:string;
   dayInTheWeek=this.check(day.getDay())
-  console.log(this.mySpecDays);
+  //console.log(this.mySpecDays);
   let spec_date;
   let res=[];
   for(let j=0;j<this.mySpecDays.length;j++){
     spec_date=new Date(this.mySpecDays[j].date);
     let is_same=this.compareDates(spec_date,day);
-    console.log("is same= "+is_same);
+    ////console.log("is same= "+is_same);
     if(is_same){
       let start=this.split_hours(this.mySpecDays[j].hoursMorning);
       let end=this.split_hours(this.mySpecDays[j].hoursEvning);
@@ -363,7 +365,7 @@ public getAvailability(day:Date):Date[]{
         return res;
       }
       else{
-        console.log("wrong value in DB!");
+        ////console.log("wrong value in DB!");
        return null;
       }
       
@@ -385,7 +387,7 @@ public getAvailability(day:Date):Date[]{
         return res;
       }
       else{
-        console.log("wrong value in DB!");
+        ////console.log("wrong value in DB!");
         return null;
       }
     }
@@ -396,14 +398,14 @@ public getAvailability(day:Date):Date[]{
 public convert_to_date(time_working:string, date:Date):Date{
   let time=time_working.split(":");
   if(time.length!=2){
-    console.log("error in time format");
+    //console.log("error in time format");
     return;
   }
-  console.log("time to convetr: "+time_working);
+  //console.log("time to convetr: "+time_working);
   let hour=parseInt(time[0]);
   let minutes=parseInt(time[1]);
   date.setHours(hour, minutes, 0);
-  console.log("converted "+date);
+  //console.log("converted "+date);
   return date;
 }
 
@@ -421,13 +423,13 @@ return ['false'];
 
 
 public compareDates(date1:Date, date2:Date):boolean{
-  console.log("year: "+date1.getFullYear() +"=?"+date2.getFullYear());
+  //console.log("year: "+date1.getFullYear() +"=?"+date2.getFullYear());
   if (date1.getFullYear()!=date2.getFullYear())
     return false;
-  console.log("month: "+date1.getMonth() +"=?"+date2.getMonth());
+  //console.log("month: "+date1.getMonth() +"=?"+date2.getMonth());
   if(date1.getMonth()!==date2.getMonth())
     return false;
-  console.log("day: "+date1.getDate() +"=?"+date2.getDate());
+  //console.log("day: "+date1.getDate() +"=?"+date2.getDate());
   if (date1.getDate()!=date2.getDate())
     return false;
   return true;
