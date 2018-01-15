@@ -287,8 +287,8 @@ console.log("i am here");
 //check if cosmetician cam work in this day..
 let timeToWork: appoi[];
 let ansToWork:Date[];
-let startEvening=null;
-let endtEvening=null;
+let startEvening;
+let endtEvening;
 ansToWork=this.getAvailability(time);//get array of start:end,start:end
 if(ansToWork==null)
 {
@@ -305,17 +305,19 @@ timeToWork.push(new_appoi);
 }
     let startMorning=timeToWork[0].start;
     let endMorning=timeToWork[0].end;
+    
+    
     if(timeToWork.length==2)
     {
-    let startEvening=timeToWork[1].start;
-    let endtEvening=timeToWork[1].end;
+     startEvening=timeToWork[1].start;
+     endtEvening=timeToWork[1].end;
     }
     let durationWorkA = this.getDist(startMorning,endMorning);
 
     let durationWorkB =0;
     if(timeToWork.length == 2)
     {
-    this.getDist(startEvening,endtEvening);
+      durationWorkB =this.getDist(startEvening,endtEvening);
     }
     if ((duration >durationWorkA)&&
             (duration >durationWorkB))
@@ -324,6 +326,34 @@ timeToWork.push(new_appoi);
     }
 
 let appoi_in_time:appoi[]=[];
+
+ //prepare array to checking..
+
+ let newValidApp =new appoi();
+ newValidApp.start = startMorning;
+ newValidApp.end   = startMorning;
+ appoi_in_time.push(newValidApp);
+
+ newValidApp =new appoi();
+ newValidApp.start = endMorning;
+ newValidApp.end = endMorning;
+ appoi_in_time.push(newValidApp);
+
+
+ if(timeToWork.length==2)
+ {
+ let newValidApp =new appoi();
+ newValidApp.start = startEvening;
+ newValidApp.end   = startEvening;
+ appoi_in_time.push(newValidApp);
+  newValidApp =new appoi();
+ newValidApp.start = endtEvening;
+ newValidApp.end   = endtEvening;
+ appoi_in_time.push(newValidApp);
+ }
+
+
+
 let sort_appoi:appoi[]=[];
 let appointmensArray=this.myAppois;
 let j=0;
@@ -332,8 +362,15 @@ let j=0;
       let newValidApp =new appoi();
       newValidApp.start = startMorning;
       newValidApp.end   = endMorning;
-      //return also evening
       valid_time_array.push(newValidApp);
+      if(timeToWork.length==2)
+      {
+        let newValidApp =new appoi();
+        newValidApp.start = startEvening;
+        newValidApp.end   = endtEvening;
+        valid_time_array.push(newValidApp);
+      }
+      
       return valid_time_array;
     }
     for(let i=0; i<appointmensArray.length; i++)
@@ -346,8 +383,8 @@ let j=0;
                 (appoi_time.getMonth()==time.getMonth())&&
                 (appoi_time.getFullYear()==time.getFullYear()))
         {
-            appoi_in_time[j]=appointmensArray[i];
-            j++;
+            appoi_in_time.push(appointmensArray[i]);
+            
         }
 
     }
@@ -357,10 +394,20 @@ let j=0;
       let newValidApp =new appoi();
       newValidApp.start = startMorning;
       newValidApp.end   = endMorning;
-      //return also evening
       valid_time_array.push(newValidApp);
+      if(timeToWork.length==2)
+      {
+        let newValidApp =new appoi();
+        newValidApp.start = startEvening;
+        newValidApp.end   = endtEvening;
+        valid_time_array.push(newValidApp);
+      }
       return valid_time_array;
     }
+
+   
+
+
     sort_appoi=this.sortTime(appoi_in_time);
     for(let i=1; i<sort_appoi.length; i++) { //run startB-endA>=duration->push to array of times..
         if((this.getDist(sort_appoi[i-1].end,sort_appoi[i].start) >=duration)&&
