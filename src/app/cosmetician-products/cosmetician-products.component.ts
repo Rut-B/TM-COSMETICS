@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import {DatabaseFirebaseService} from '../database-firebase.service'
+import {DatabaseFirebaseService} from '../database-firebase.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 export interface event{
   date: string;
   hoursEvning:string;
@@ -25,13 +26,14 @@ export class CosmeticianProductsComponent implements OnInit {
   private col:AngularFirestoreCollection<any>;
   private colUsers:AngularFirestoreCollection<any>;  
   public myUsers:users[];
+  public picture:any;  
   
   public appointments:event[];
   public settingDaysRef;
   public users:users[];
   public usersRef;
  
- constructor(private afs: AngularFirestore ){
+ constructor(private afs: AngularFirestore,public afAuth: AngularFireAuth ){
  
   this.settingDaysRef = this.afs.collection("Setting Days");  
   let res=this.settingDaysRef.valueChanges().subscribe(res=>{
@@ -48,7 +50,7 @@ export class CosmeticianProductsComponent implements OnInit {
         this.users=res1;
       });
       
-      
+      this.getPicture();      
   }
   a()
   {
@@ -70,6 +72,14 @@ b()
            console.log(this.myUsers);
             document.getElementById("allUsers").style.display = "block"; 
            
+}
+getPicture()
+{
+  if (this.afAuth.auth.currentUser)
+  this.picture = this.afAuth.auth.currentUser.photoURL;
+else
+  this.picture = "";
+
 }
   ngOnInit() {
   }
