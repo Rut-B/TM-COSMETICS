@@ -1,69 +1,31 @@
-<div class="title">store</div>
-    <!--  <div>
-    <h3>add Products</h3>
-      <input type="text" [(ngModel)]="databaseFirebase.productName" placeholder="name" >
-      <input type="text" [(ngModel)]="databaseFirebase.quantity" placeholder="quantity" >
-      <input type="text" [(ngModel)]="databaseFirebase.code" placeholder="code" >
-      <input type="text" [(ngModel)]="databaseFirebase.price" placeholder="price" >
-      <input type="text" [(ngModel)]="databaseFirebase.supplier" placeholder="supplier" >   
-      <input name="upload_image" type="file"  class="upload_input" placeholder="image" (change)="uploadImage($event.target?.files)" accept="image/*"/>
-      <button (click)="addProducts()">add</button>
-      </div>
 
-      <div>
-      <h3>add Treatment</h3>
-      <input type="text" [(ngModel)]="databaseFirebase.treatmentName" placeholder="treatment name" >
-      <input type="text" [(ngModel)]="databaseFirebase.treatmentCode" placeholder="code" >
-      <input type="text" [(ngModel)]="databaseFirebase.treatmentPrice" placeholder="price" >
-      <input type="text" [(ngModel)]="databaseFirebase.treatmentDuration" placeholder="treatment Duration in minutes" >
-      <button (click)="addTreatment()">add</button>
-      </div>
-      
-      <div>
-      <h3>add location</h3>
-      <input type="text" [(ngModel)]="databaseFirebase.city" placeholder="city" >
-      <input type="text" [(ngModel)]="databaseFirebase.address" placeholder="address" >
-      <input type="text" [(ngModel)]="databaseFirebase.phone" placeholder="phone" >
-      <button (click)="addLocation()">add</button>
-      </div>
-      
-      <div>
-              <h3>add customer</h3>
-              <input type="text" [(ngModel)]="databaseFirebase.customerId" placeholder="id" >
-              <input type="text" [(ngModel)]="databaseFirebase.customerFirstName" placeholder="firstName" >
-              <input type="text" [(ngModel)]="databaseFirebase.customerLastName" placeholder="lastName" >
-              <input type="text" [(ngModel)]="databaseFirebase.customerPhone" placeholder="phone" >
-              <input type="text" [(ngModel)]="databaseFirebase.customerAddress" placeholder="address" >
-              <input type="text" [(ngModel)]="databaseFirebase.customerPermissionLevel" placeholder="PermissionLevel" >
-              <button (click)="addCustomer()">add</button>
-      </div>
-      <div>
-        <h3>add appointment</h3>
-        <input type="text" [(ngModel)]="databaseFirebase.appointmentTime" placeholder="time" >
-        <input type="text" [(ngModel)]="databaseFirebase.appointmentDuration" placeholder="duration" >
-        <input type="text" [(ngModel)]="databaseFirebase.appointmentPrice" placeholder="price" >
-        <input type="text" [(ngModel)]="databaseFirebase.appointmentLocation" placeholder="Location" >
-        <button (click)="addAppointment()">add</button>
-</div>-->
+<mat-card id="load"*ngIf="appointments==null">
+        <a id="he" class="spin">loading</a>
+       <mat-spinner class="spin" >
+       </mat-spinner>
+       </mat-card>
+<button *ngIf="appointments!=null" (click)="a()">view all Days</button>
+<div id="allDays" >
+<div  *ngFor="let appoi of appointments">
+    <p  >
+    <a>{{ appoi.date}}</a><br/>
+    <a>hoursMorning:{{ appoi.hoursMorning}}</a><br/>
+    <a>hoursEvning:{{ appoi.hoursEvning}}</a><br/>
+    </p>
+</div>
+</div>
+<button *ngIf="users!=null" (click)="b()">view all users</button>
+<div id="allUsers" >
+<div *ngFor="let appoi of myUsers">
+    <p  >
+  <img src="{{ picture}}" class="photos" />
+    <a>name:{{ appoi.first_name}}</a><br/>
+    <a>last name:{{ appoi.last_name}}</a><br/>
+    <a>email:{{ appoi.email}}</a><br/>
+    <a>address:{{ appoi.address}}</a><br/>
+    <a>phone_number:{{ appoi.phone_number}}</a><br/>
+    <a>is_customer:{{ appoi.is_customer}}</a><br/>
+    </p>
+</div>
 
-
-      
-    <!--  <div>
-              <h3>add cosmetician</h3>
-              <input type="text" [(ngModel)]="databaseFirebase.cosmeticianId" placeholder="id" >
-              <input type="text" [(ngModel)]="databaseFirebase.cosmeticianFirstName" placeholder="firstName" >
-              <input type="text" [(ngModel)]="databaseFirebase.cosmeticianLastName" placeholder="lastName" >
-              <input type="text" [(ngModel)]="databaseFirebase.cosmeticianPhone" placeholder="phone" >
-              <input type="text" [(ngModel)]="databaseFirebase.cosmeticianPermissionLevel" placeholder="PermissionLevel" >
-              <input type="text" [(ngModel)]="databaseFirebase.cosmeticianAvailability" placeholder="availability" >
-              <button (click)="addCosmetician()">add</button>
-      </div>
-      
-      <div>
-              <h3> add Message Manager</h3>
-              <input type="mail" [(ngModel)]="databaseFirebase.from" placeholder="from" >
-              <input type="mail" [(ngModel)]="databaseFirebase.to" placeholder="to" >
-              <input type="text" [(ngModel)]="databaseFirebase.content" placeholder="content" >
-              <button (click)="addMessageManager()">add</button>
-      </div>-->
-  
+</div>

@@ -4,7 +4,8 @@ import { CalendarEvent, } from "angular-calendar";
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2/firestore';
 import { query } from '@angular/core/src/animation/dsl';
-import {DataService} from '../data.service'
+import {DataService} from '../data.service';
+import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
 
 /*export class appointment{
   event:CalendarEvent;
@@ -75,6 +76,8 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
   this.addEvent(this.clickedDate);
+  let yu=this.getAvailability(new Date());
+  console.log(yu);
   alert(this.dataService.totalDuration)
   alert(this.dataService.selected_treatments);
   }
@@ -92,18 +95,8 @@ export class CalendarComponent implements OnInit {
          secondary: "#afafaf"
        }   
      };  
- /*this.userName="noamijofen";
- this.treatment="laser";
-    let appoi: appointment={
-      event:cevent,
-     userName:this.userName,
-     treatment:this.treatment
-    }*/
-    
-  // this.messageService.sendMessage(event);
     this.col.add(event).then(res => {
     })
- // alert("!!");
   }
 
   ngOnInit() {
@@ -200,11 +193,191 @@ for(i;i<=t+daysInMonth;i++){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   return(arr[i]);
 }
-public scheduleTime(day:Date, duration:number):boolean{
-return false;
+
+/* aother:Rut */
+public getDist(startTime:Date,endTime:Date):number
+{
+  var diff = endTime.getTime() - startTime.getTime();
+//return duration in --->min<----.endTIme-startTime
+return (diff / 60000);
 }
+
+public sortTime(arrayAppoi:appoi[]):appoi[]{
+return null; 
+}
+
+
+/***********************************************************
+* this function return array of the time that can make appoinmtments.
+
+Assumption: duration in min. 
+*************************************************************/
+
+public scheduleTime(time:Date, duration:number):appoi[]
+{
+let valid_time_array: appoi[]=null;
+//validation
+
+    if (duration <= 0)
+    {
+        return valid_time_array;//true;
+    }
+
+
+//check if cosmetician cam work in this day..
+let timeToWork: appoi[];
+  //  timeToWork= this.getAvailability(time);//get array of start:end,start:end
+    let startMorning=timeToWork[0].start;
+    let endMorning=timeToWork[0].end;
+    let startEvening=timeToWork[1].start;
+    let endtEvening=timeToWork[1].end;
+    let durationWorkA = this.getDist(startMorning,endMorning);
+    let durationWorkB = this.getDist(startEvening,endtEvening);
+
+    if ((duration >durationWorkA)&&
+            (duration >durationWorkB))
+    {
+        return null;
+    }
+
+let appoi_in_time:appoi[];
+let sort_appoi:appoi[];
+let appointmensArray:appoi[];
+
+    this.myAppCol=this.afs.collection("myApointments");
+    this.myAppCol.valueChanges().subscribe(res=> {
+        appointmensArray=res;
+    });
+    let j=0;
+    if(appointmensArray.length == 0)
+    {
+      let newValidApp =new appoi();
+      newValidApp.start = startMorning;
+      newValidApp.end   = endMorning;
+      valid_time_array.push(newValidApp);
+      return valid_time_array;
+    }
+    for(let i=0; i<appointmensArray.length; i++)
+    {
+        let appoi_time =appointmensArray[i].start;
+        let appoi_date_start=appointmensArray[i].start.getDay;
+        let appoi_date_end=appointmensArray[i].end.getDay;
+        if(  (appoi_date_end==appoi_date_start)&&
+                (appoi_date_start==time.getDay)&&
+                (appoi_time.getMonth==time.getMonth)&&
+                (appoi_time.getFullYear==time.getFullYear))
+        {
+            appoi_in_time[j]=appointmensArray[i];
+            j++;
+        }
+
+    }
+    sort_appoi=this.sortTime(appoi_in_time);
+    for(let i=1; i<sort_appoi.length; i++) { //run startB-endA>=duration->push to array of times..
+        if((this.getDist(sort_appoi[i-1].end,sort_appoi[i].start) >=duration)&&
+           (sort_appoi[i].start != startEvening))
+         {
+            let newValidApp =new appoi();
+            newValidApp.start =sort_appoi[i-1].end;
+            newValidApp.end =sort_appoi[i].start;
+            valid_time_array.push(newValidApp);
+        }
+
+    }
+
+    return valid_time_array;
+}
+
 public getAvailability(day:Date):string[]{
-  
-return ['start','end'];
+//this function gets a specific date and returns the hours the cosmetician works on that day.
+  this.mySpecDays[0];
+  this.myDays[0];
+  let dayInTheWeek:string;
+  dayInTheWeek=this.check(day.getDay())
+  console.log(this.mySpecDays);
+  let spec_date;
+  let res=[];
+  for(let j=0;j<this.mySpecDays.length;j++){
+    spec_date=new Date(this.mySpecDays[j].date);
+    let is_same=this.compareDates(spec_date,day);
+    console.log("is same= "+is_same);
+    if(is_same){
+      let start=this.split_hours(this.mySpecDays[j].hoursMorning);
+      let end=this.split_hours(this.mySpecDays[j].hoursEvning);
+      if ((start.length==2)&&(end.length==2)){
+        let start_time=new Date(this.convert_to_date(start[0],spec_date));
+        res.push(start_time);
+        let end_time=new Date(this.convert_to_date(start[1],spec_date));
+        res.push(end_time);
+        let start_time_ev=new Date(this.convert_to_date(end[0],spec_date));
+        res.push(start_time_ev);
+        let end_time_ev=new Date(this.convert_to_date(end[1],spec_date));
+        res.push(end_time_ev);
+        return res;
+      }
+      else{
+        console.log("wrong value in DB!");
+        return['0','0'];
+      }
+      
+    }
+  }
+  for(let i=0;i<this.myDays.length;i++){
+    if(this.myDays[i].date==dayInTheWeek){
+      let start=this.split_hours(this.myDays[i].hoursMorning);
+      let end=this.split_hours(this.myDays[i].hoursEvning);
+      if ((start.length==2)&&(end.length==2)){
+        let start_time=new Date(this.convert_to_date(start[0],day));
+        res.push(start_time);
+        let end_time=new Date(this.convert_to_date(start[1],day));
+        res.push(end_time);
+        let start_time_ev=new Date(this.convert_to_date(end[0],day));
+        res.push(start_time_ev);
+        let end_time_ev=new Date(this.convert_to_date(end[1],day));
+        res.push(end_time_ev);
+        return res;
+      }
+      else{
+        console.log("wrong value in DB!");
+        return ['0','0'];
+      }
+    }
+  }
+  return ['0','0'];
+}
+public convert_to_date(time_working:string, date:Date):Date{
+  let time=time_working.split(":");
+  if(time.length!=2){
+    console.log("error in time format");
+    return;
+  }
+  console.log("time to convetr: "+time_working);
+  let hour=parseInt(time[0]);
+  let minutes=parseInt(time[1]);
+  date.setHours(hour, minutes, 0);
+  console.log("converted "+date);
+  return date;
+}
+public split_hours(hour:string):string[]{
+  let range=hour.split("-");
+  if(range.length==2){
+    return [range[0],range[1]];
+  }
+  if (range[0]=="vacation"){
+    return ['0','0'];
+}
+return ['false'];
+}
+public compareDates(date1:Date, date2:Date):boolean{
+  console.log("year: "+date1.getFullYear() +"=?"+date2.getFullYear());
+  if (date1.getFullYear()!=date2.getFullYear())
+    return false;
+  console.log("month: "+date1.getMonth() +"=?"+date2.getMonth());
+  if(date1.getMonth()!==date2.getMonth())
+    return false;
+  console.log("day: "+date1.getDate() +"=?"+date2.getDate());
+  if (date1.getDate()!=date2.getDate())
+    return false;
+  return true;
 }
 }
