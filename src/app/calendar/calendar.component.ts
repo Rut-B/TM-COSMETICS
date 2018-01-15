@@ -44,6 +44,7 @@ export class CalendarComponent implements OnInit {
   myDays:aDay[];
   clickedDate: Date; 
   available:appoi[] ;
+  chosen:number;
   //appoi:appointment;
     private col:AngularFirestoreCollection<any>;
     private myAppCol:AngularFirestoreCollection<any>;
@@ -77,11 +78,13 @@ export class CalendarComponent implements OnInit {
      }
 
   dayClicked(){
+    this.chosen =1;
+ //   var t=document.getElementById("choose");
   this.addEvent(this.clickedDate);
   let yu=this.getAvailability(new Date());
-  console.log(yu);
-  alert(this.dataService.totalDuration)
-  alert(this.dataService.selected_treatments);
+  //console.log(yu);
+  //alert(this.dataService.totalDuration)
+  //alert(this.dataService.selected_treatments);
   }
   
   addEvent(date){
@@ -135,38 +138,46 @@ public iterate(){
 
   var dontDays=[];
   var t=i;
-  var l=0;
+  var l=0; 
+  var tt=[];
 for(i;i<=t+daysInMonth;i++){ 
    for(var j=0;j<this.mySpecDays.length;j++){//run on specific days
+    //tt.push(j);
      var curr=new Date(this.mySpecDays[j].date);//the day
      if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){//if in current month
        var cday=curr.getDate().toString(); 
-      if(cc[i].getElementsByTagName("span")[1]!=null){
+      if(cc[i].getElementsByTagName("span")[1]!=null){ 
+
         if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
-      //  alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[1].innerText);
         dontDays[l]=cday;
         l++; 
        /* this.available=this.scheduleTime(curr,this.dataService.totalDuration);
         if(this.available!=null){
        cc[i].className="a";
         }*/
+       //tt.push(cday+" "+j);
+        i--;
         cc[i].className="a";
       }
      }
      else{
+      // tt.push(cc[i].getElementsByTagName("span")[0].innerText+" iii "+i)
        if(cc[i].getElementsByTagName("span")[0].innerText==cday){
-       // alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[0].innerText);
+      // tt.push(cday+" "+j);
         dontDays[l]=cday;
         l++;
-       this.available=this.scheduleTime(curr,this.dataService.totalDuration);
-      /*  if(this.available!=null){
+      /* this.available=this.scheduleTime(curr,this.dataService.totalDuration);
+       tt.push(this.dataService.totalDuration+" "+this.available+" "+cday);
+        if(this.available!=null){
        cc[i].className="a";
         }*/
-       // cc[i].className="a";
+        cc[i].className="a";
+         i--;
      }   
     }
    }
    }//end for mySpecDays 
+
    if(this.mySpecDays.length==dontDays.length){
      break;
    }
@@ -198,6 +209,8 @@ for(i;i<=t+daysInMonth;i++){
    }
   }//end k
 }//end cc
+
+console.log(tt);
 }
  public check(i){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];

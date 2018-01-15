@@ -11,7 +11,10 @@ Click on a day on the view.
 [events]="events"
 (dayClicked)="clickedDate = $event.day.date; dayClicked()" >
 </mwl-calendar-month-view>
-
+<div id="choose" *ngIf="chosen==1">
+  <label>select a time:</label>
+  
+</div>
 
 </div>
 
