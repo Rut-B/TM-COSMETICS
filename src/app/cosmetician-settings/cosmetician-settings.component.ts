@@ -72,24 +72,6 @@ export class CosmeticianSettingsComponent implements OnInit {
     public addOtherDate(){
       this.databaseFirebase.addOtherDate();
     }
-<<<<<<< HEAD
-
-  public  addManager(){}
- public uploadImage(image) {
-//   //this.res_im=this.databaseFirebase.uploadImage(image);
-//   if (image.length!=0){
-//   this.databaseFirebase.uploadImage(image).then(res => {
-//     this.res_im = res.downloadURL;
-//   });
-//   }
-
-//   // public addOtherDate(){
-//   //   this.databaseFirebase.addOtherDate();
-//   // }
-}
-}
-  
-=======
   }
 
 
@@ -103,4 +85,3 @@ export class CosmeticianSettingsComponent implements OnInit {
     //   }
     // }
   
->>>>>>> dcc07873fe4cfc471862a84289654a4115c845e3

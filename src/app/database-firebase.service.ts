@@ -35,7 +35,7 @@ export class DatabaseFirebaseService {
   // public cosmeticianPermissionLevel:number;
   // public  cosmeticianAvailability:string[];
 
-  public customerId: string = this.auth.current_user.email;//key--email
+  public customerId: string ;// this.auth.current_user.email;//key--email
   public customerFirstName: string = "";
   public customerLastName: string = "";
   public customerPhone: number = null;
