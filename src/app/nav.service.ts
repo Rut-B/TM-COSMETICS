@@ -19,7 +19,7 @@ constructor(private auth:AuthService)
       new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","calendar",'/assets/4.png'),
       new NavItem("profile","profile",'/assets/5.png'),
-      new NavItem("instagram","instagram",'/assets/ins.png'),
+     
     ]
   }
   else
