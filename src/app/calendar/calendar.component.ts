@@ -13,7 +13,8 @@ import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module'
   treatment:string;
 }*/
 export class appoi{
-  userName: string;
+  cosmeticianName:string;//Rut added according DB
+  email: string;//replace to Email
   type:string;
   start:Date;
   end:Date;
@@ -204,16 +205,27 @@ for(i;i<=t+daysInMonth;i++){
 }
 
 /* aother:Rut */
+
 public getDist(startTime:Date,endTime:Date):number
-{
+{//return duration in --->min<----.endTIme-startTime-->it work,
+ 
   var diff = endTime.getTime() - startTime.getTime();
-//return duration in --->min<----.endTIme-startTime
-return (diff / 60000);
+  return (diff / 60000);
+}
+
+public sortFunction(  a: appoi,b: appoi ){  
+  var dateA = new Date(a.start).getTime();
+  var dateB = new Date(b.start).getTime();
+  return dateA > dateB ? 1 : -1;  
 }
 
 public sortTime(arrayAppoi:appoi[]):appoi[]{
-return null; 
+arrayAppoi.sort(this.sortFunction);​
+return arrayAppoi; 
 }
+
+
+
 
 
 /***********************************************************
@@ -235,14 +247,35 @@ let valid_time_array: appoi[]=null;
 
 //check if cosmetician cam work in this day..
 let timeToWork: appoi[];
-  //  timeToWork= this.getAvailability(time);//get array of start:end,start:end
+let ansToWork:Date[];
+let startEvening=null;
+let endtEvening=null;
+ansToWork=this.getAvailability(time);//get array of start:end,start:end
+if(ansToWork==null)
+{
+  return null;
+}
+for(let i=0;i<ansToWork.length/2;i=i+2)
+{
+let new_appoi=new appoi;
+new_appoi.start=ansToWork[i];
+new_appoi.end=ansToWork[i+1];
+timeToWork.push(new_appoi);
+}
     let startMorning=timeToWork[0].start;
     let endMorning=timeToWork[0].end;
+    if(timeToWork.length==2)
+    {
     let startEvening=timeToWork[1].start;
     let endtEvening=timeToWork[1].end;
+    }
     let durationWorkA = this.getDist(startMorning,endMorning);
-    let durationWorkB = this.getDist(startEvening,endtEvening);
 
+    let durationWorkB =0;
+    if(timeToWork.length == 2)
+    {
+    this.getDist(startEvening,endtEvening);
+    }
     if ((duration >durationWorkA)&&
             (duration >durationWorkB))
     {
@@ -251,18 +284,14 @@ let timeToWork: appoi[];
 
 let appoi_in_time:appoi[];
 let sort_appoi:appoi[];
-let appointmensArray:appoi[];
-
-    this.myAppCol=this.afs.collection("myApointments");
-    this.myAppCol.valueChanges().subscribe(res=> {
-        appointmensArray=res;
-    });
-    let j=0;
+let appointmensArray=this.myAppois;
+let j=0;
     if(appointmensArray.length == 0)
     {
       let newValidApp =new appoi();
       newValidApp.start = startMorning;
       newValidApp.end   = endMorning;
+      //return also evening
       valid_time_array.push(newValidApp);
       return valid_time_array;
     }
@@ -297,7 +326,15 @@ let appointmensArray:appoi[];
     return valid_time_array;
 }
 
-public getAvailability(day:Date):string[]{
+
+
+
+
+
+
+
+
+public getAvailability(day:Date):Date[]{
 //this function gets a specific date and returns the hours the cosmetician works on that day.
   this.mySpecDays[0];
   this.myDays[0];
@@ -326,7 +363,7 @@ public getAvailability(day:Date):string[]{
       }
       else{
         console.log("wrong value in DB!");
-        return['0','0'];
+       return null;
       }
       
     }
@@ -348,12 +385,13 @@ public getAvailability(day:Date):string[]{
       }
       else{
         console.log("wrong value in DB!");
-        return ['0','0'];
+        return null;
       }
     }
   }
-  return ['0','0'];
+  return null;
 }
+
 public convert_to_date(time_working:string, date:Date):Date{
   let time=time_working.split(":");
   if(time.length!=2){
@@ -367,6 +405,8 @@ public convert_to_date(time_working:string, date:Date):Date{
   console.log("converted "+date);
   return date;
 }
+
+
 public split_hours(hour:string):string[]{
   let range=hour.split("-");
   if(range.length==2){
@@ -377,6 +417,8 @@ public split_hours(hour:string):string[]{
 }
 return ['false'];
 }
+
+
 public compareDates(date1:Date, date2:Date):boolean{
   console.log("year: "+date1.getFullYear() +"=?"+date2.getFullYear());
   if (date1.getFullYear()!=date2.getFullYear())

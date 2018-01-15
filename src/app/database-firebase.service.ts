@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import{AuthService} from './auth.service';
 import * as firebase from "firebase";
 
 export interface event{
   date: string;
-  hoursMorning:string;
-  hoursEvning:string;
- }
+  hoursMorning: string;
+  hoursEvning: string;
+}
 //  @Injectable() 
 // import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseFirebaseService {
-public selected: string[]=[];
-public flag:number;
+  public selected: string[] = [];
+  public flag: number;
   public appointmentRef;
   public customerRef;
   public treatmentRef;
@@ -34,12 +35,11 @@ public flag:number;
   // public cosmeticianPermissionLevel:number;
   // public  cosmeticianAvailability:string[];
 
- 
-  public customerId: string="";//key--email
-  public customerFirstName: string="";
-  public customerLastName: string="";
-  public customerPhone: number=null;
-  public customerAddress: string="";
+  public customerId: string ;// this.auth.current_user.email;//key--email
+  public customerFirstName: string = "";
+  public customerLastName: string = "";
+  public customerPhone: number = null;
+  public customerAddress: string = "";
   public customer_rank: boolean;
 
   public treatmentName:string;
@@ -79,21 +79,21 @@ public managerPhone:number;
   public Thursday: string;
   public ThursdayMorning: string;
   public ThursdayEvening: string;
-  
-  public Friday:string;
-  public fridayMorning:string;
-  public fridayEvening:string;
 
-  public other:string;
-  public otherMorning:string;
-  public otherEvening:string;
+  public Friday: string;
+  public fridayMorning: string;
+  public fridayEvening: string;
 
-  private col:AngularFirestoreCollection<any>;
-  public days:event[];
-  public myDay:event[];
+  public other: string;
+  public otherMorning: string;
+  public otherEvening: string;
+
+  private col: AngularFirestoreCollection<any>;
+  public days: event[];
+  public myDay: event[];
 
 
-  constructor(private afs: AngularFirestore){
+  constructor(private afs: AngularFirestore,public auth:AuthService) {
     this.appointmentRef = this.afs.collection("appointment");
     this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
@@ -384,7 +384,7 @@ addOtherDate()
 }*/
 
 
-  
+
 
 
 
@@ -409,7 +409,7 @@ addOtherDate()
 
 
 // export class ProfileComponent implements OnInit {
- 
+
 
 //  public myCosmetician:event[];
 //  public d:Date;
@@ -418,7 +418,7 @@ addOtherDate()
 //  dateFilter: BehaviorSubject<string | null>;
 
 // constructor(private afs: AngularFirestore) { 
-  
+
 //   }
 
 
@@ -427,7 +427,7 @@ addOtherDate()
 
 
 
-  
+
     //this.col=this.afs.collection('users');
     //this.prod=this.afs.collection('products');
     //this.prod.valueChanges().subscribe(res=>{
@@ -440,7 +440,7 @@ addOtherDate()
     //  this.users=res;
    // });
   // this.ob=this.col.valueChanges();
-  
+
  /* 
   constructor(private afs: AngularFirestore){
     this.itemDoc = this.afs.doc('users/1');
