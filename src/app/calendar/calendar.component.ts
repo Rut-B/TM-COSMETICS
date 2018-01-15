@@ -296,9 +296,9 @@ if(ansToWork==null)
 }
 timeToWork=[];
 valid_time_array=[];
-for(let i=0;i<ansToWork.length/2;i=i+2)
+for(let i=0;i<ansToWork.length;i=i+2)
 {
-let new_appoi=new appoi;
+let new_appoi = new appoi;
 new_appoi.start=ansToWork[i];
 new_appoi.end=ansToWork[i+1];
 timeToWork.push(new_appoi);
@@ -350,6 +350,16 @@ let j=0;
             j++;
         }
 
+    }
+
+    if(appoi_in_time.length == 0)
+    {
+      let newValidApp =new appoi();
+      newValidApp.start = startMorning;
+      newValidApp.end   = endMorning;
+      //return also evening
+      valid_time_array.push(newValidApp);
+      return valid_time_array;
     }
     sort_appoi=this.sortTime(appoi_in_time);
     for(let i=1; i<sort_appoi.length; i++) { //run startB-endA>=duration->push to array of times..

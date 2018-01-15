@@ -50,7 +50,15 @@ export class CosmeticianSettingsComponent implements OnInit {
   public addSettingFridayDay() {
     this.databaseFirebase.addSettingFridayDay()
   }
-
+  public addCustomer() {
+    this.databaseFirebase.addCustomer();
+  }
+  public addTreatment() {
+    this.databaseFirebase.addTreatment();
+  }
+  public addManager() {
+    this.databaseFirebase.addManager();
+  }
   public uploadImage(event) {
     let file_pic=this.upload_input.nativeElelement;
 
