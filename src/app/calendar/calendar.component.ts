@@ -41,7 +41,8 @@ export class CalendarComponent implements OnInit {
   myAppois:appoi[]; 
   mySpecDays:aDay[];
   myDays:aDay[];
-  clickedDate: Date;  
+  clickedDate: Date; 
+  available:appoi[] ;
   //appoi:appointment;
     private col:AngularFirestoreCollection<any>;
     private myAppCol:AngularFirestoreCollection<any>;
@@ -135,16 +136,20 @@ public iterate(){
   var t=i;
   var l=0;
 for(i;i<=t+daysInMonth;i++){ 
-   for(var j=0;j<this.mySpecDays.length;j++){
-     var curr=new Date(this.mySpecDays[j].date);
-     if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){
+   for(var j=0;j<this.mySpecDays.length;j++){//run on specific days
+     var curr=new Date(this.mySpecDays[j].date);//the day
+     if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){//if in current month
        var cday=curr.getDate().toString(); 
       if(cc[i].getElementsByTagName("span")[1]!=null){
-        if(cc[i].getElementsByTagName("span")[1].innerText==cday){
+        if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
       //  alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[1].innerText);
         dontDays[l]=cday;
-        l++;
+        l++; 
+       /* this.available=this.scheduleTime(curr,this.dataService.totalDuration);
+        if(this.available!=null){
        cc[i].className="a";
+        }*/
+        cc[i].className="a";
       }
      }
      else{
@@ -152,7 +157,11 @@ for(i;i<=t+daysInMonth;i++){
        // alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[0].innerText);
         dontDays[l]=cday;
         l++;
-        cc[i].className="a";
+       this.available=this.scheduleTime(curr,this.dataService.totalDuration);
+      /*  if(this.available!=null){
+       cc[i].className="a";
+        }*/
+       // cc[i].className="a";
      }   
     }
    }
