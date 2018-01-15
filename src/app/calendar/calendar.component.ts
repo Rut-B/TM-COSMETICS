@@ -45,7 +45,9 @@ export class CalendarComponent implements OnInit {
   clickedDate: Date; 
   available:appoi[] ;
   chosen:number;
+  turns=[];
   //appoi:appointment;
+ choice;
     private col:AngularFirestoreCollection<any>;
     private myAppCol:AngularFirestoreCollection<any>;
     private mySpeDays:AngularFirestoreCollection<any>;
@@ -79,12 +81,28 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
     this.chosen =1;
- //   var t=document.getElementById("choose");
-  this.addEvent(this.clickedDate);
-  let yu=this.getAvailability(new Date());
+ var t=document.getElementsByClassName("choose");
+  /* var s=document.createElement('input');
+   s.type="radio" ;
+   s.name="times";
+  s.value="12:00-2:00";
+  s.setAttribute('value','4');
+  s.setAttribute('ngModel','choice');
+  var s=document.createElement('div'); 
+  var r='<input type="radio" name="times" [(ngModel)]="choice" [value]="4" />';
+  s.innerHTML=r;  
+  t[0].insertBefore(s,document.getElementById("n"));*/
+   this.turns.push("10:00");
+   this.turns.push("12:00");
+   
+ // this.addEvent(this.clickedDate);
+  //let yu=this.getAvailability(new Date());
   //console.log(yu);
   //alert(this.dataService.totalDuration)
   //alert(this.dataService.selected_treatments);
+  }
+ see(){
+    alert(this.choice);
   }
   
   addEvent(date){
@@ -147,7 +165,6 @@ for(i;i<=t+daysInMonth;i++){
      if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){//if in current month
        var cday=curr.getDate().toString(); 
       if(cc[i].getElementsByTagName("span")[1]!=null){ 
-
         if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
         dontDays[l]=cday;
         l++; 
@@ -158,8 +175,15 @@ for(i;i<=t+daysInMonth;i++){
        cc[i].className="a";
         }
        //tt.push(cday+" "+j);
-        i--;
+      this.available=this.scheduleTime(curr,10);
+       tt.push(this.available+" "+cday+" "+curr);
+        if(this.available!=null){
         cc[i].className="a";
+         i--;
+        }
+       /*  cc[i].className="a";
+        i--;*/
+      
       }
      }
      else{
@@ -168,13 +192,13 @@ for(i;i<=t+daysInMonth;i++){
       // tt.push(cday+" "+j);
         dontDays[l]=cday;
         l++;
-      /* this.available=this.scheduleTime(curr,this.dataService.totalDuration);
-       tt.push(this.dataService.totalDuration+" "+this.available+" "+cday);
+       this.available=this.scheduleTime(curr,10);
+      // tt.push(this.available+" "+cday);
         if(this.available!=null){
-       cc[i].className="a";
-        }*/
+          tt.push("a"+this.available+" b "+cday);
         cc[i].className="a";
          i--;
+        }
      }   
     }
    }
@@ -271,6 +295,7 @@ if(ansToWork==null)
   return null;
 }
 timeToWork=[];
+valid_time_array=[];
 for(let i=0;i<ansToWork.length/2;i=i+2)
 {
 let new_appoi=new appoi;
@@ -314,12 +339,12 @@ let j=0;
     for(let i=0; i<appointmensArray.length; i++)
     {
         let appoi_time =appointmensArray[i].start;
-        let appoi_date_start=appointmensArray[i].start.getDay;
-        let appoi_date_end=appointmensArray[i].end.getDay;
+        let appoi_date_start=appointmensArray[i].start.getDate();
+        let appoi_date_end=appointmensArray[i].end.getDate();
         if(  (appoi_date_end==appoi_date_start)&&
-                (appoi_date_start==time.getDay)&&
-                (appoi_time.getMonth==time.getMonth)&&
-                (appoi_time.getFullYear==time.getFullYear))
+                (appoi_date_start==time.getDate())&&
+                (appoi_time.getMonth()==time.getMonth())&&
+                (appoi_time.getFullYear()==time.getFullYear()))
         {
             appoi_in_time[j]=appointmensArray[i];
             j++;
