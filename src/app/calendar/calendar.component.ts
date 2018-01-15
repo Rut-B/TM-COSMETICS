@@ -45,7 +45,9 @@ export class CalendarComponent implements OnInit {
   clickedDate: Date; 
   available:appoi[] ;
   chosen:number;
-  turns=[];
+  turns=[]; 
+  c; 
+  pop=false;
   //appoi:appointment;
  choice;
     private col:AngularFirestoreCollection<any>;
@@ -80,20 +82,15 @@ export class CalendarComponent implements OnInit {
      }
 
   dayClicked(){
+     this.choice=null;
     this.chosen =1;
- var t=document.getElementsByClassName("choose");
-  /* var s=document.createElement('input');
-   s.type="radio" ;
-   s.name="times";
-  s.value="12:00-2:00";
-  s.setAttribute('value','4');
-  s.setAttribute('ngModel','choice');
-  var s=document.createElement('div'); 
-  var r='<input type="radio" name="times" [(ngModel)]="choice" [value]="4" />';
-  s.innerHTML=r;  
-  t[0].insertBefore(s,document.getElementById("n"));*/
+    var s=document.getElementById("hide");
+    this.c=s.className;
+    s.className="n";
+    this.pop=true;
    this.turns.push("10:00");
    this.turns.push("12:00");
+
    
  // this.addEvent(this.clickedDate);
   //let yu=this.getAvailability(new Date("01.19.2018"));
@@ -103,6 +100,11 @@ export class CalendarComponent implements OnInit {
   }
  see(){
     alert(this.choice);
+  } 
+  closeM(){ 
+    var s=document.getElementById("hide");
+    s.className=this.c;
+    this.pop=false;
   }
   
   addEvent(date){
