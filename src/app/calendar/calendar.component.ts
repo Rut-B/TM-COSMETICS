@@ -401,20 +401,24 @@ public getAvailability(day:Date):Date[]{
     if(is_same){
       let start=this.split_hours(this.mySpecDays[j].hoursMorning);
       let end=this.split_hours(this.mySpecDays[j].hoursEvning);
-      if ((start.length==2)&&(end.length==2)){
-        let start_time=new Date(this.convert_to_date(start[0],spec_date));
-        res.push(start_time);
-        let end_time=new Date(this.convert_to_date(start[1],spec_date));
-        res.push(end_time);
-        let start_time_ev=new Date(this.convert_to_date(end[0],spec_date));
-        res.push(start_time_ev);
-        let end_time_ev=new Date(this.convert_to_date(end[1],spec_date));
-        res.push(end_time_ev);
+      if ((start.length==2)||(end.length==2)){
+        if(start.length==2){
+          let start_time=new Date(this.convert_to_date(start[0],spec_date));
+          res.push(start_time);
+          let end_time=new Date(this.convert_to_date(start[1],spec_date));
+          res.push(end_time);
+        }
+        if (end.length==2){
+          let start_time_ev=new Date(this.convert_to_date(end[0],spec_date));
+          res.push(start_time_ev);
+          let end_time_ev=new Date(this.convert_to_date(end[1],spec_date));
+          res.push(end_time_ev);
+        }
         return res;
       }
       else{
-        ////console.log("wrong value in DB!");
-       return null;
+        console.log("wrong value in DB!");
+        return null;
       }
       
     }
@@ -423,15 +427,19 @@ public getAvailability(day:Date):Date[]{
     if(this.myDays[i].date==dayInTheWeek){
       let start=this.split_hours(this.myDays[i].hoursMorning);
       let end=this.split_hours(this.myDays[i].hoursEvning);
-      if ((start.length==2)&&(end.length==2)){
-        let start_time=new Date(this.convert_to_date(start[0],day));
-        res.push(start_time);
-        let end_time=new Date(this.convert_to_date(start[1],day));
-        res.push(end_time);
-        let start_time_ev=new Date(this.convert_to_date(end[0],day));
-        res.push(start_time_ev);
-        let end_time_ev=new Date(this.convert_to_date(end[1],day));
-        res.push(end_time_ev);
+      if ((start.length==2)||(end.length==2)){
+        if(start.length==2){
+          let start_time=new Date(this.convert_to_date(start[0],day));
+          res.push(start_time);
+          let end_time=new Date(this.convert_to_date(start[1],day));
+          res.push(end_time);
+        }
+        if(end.length==2){
+          let start_time_ev=new Date(this.convert_to_date(end[0],day));
+          res.push(start_time_ev);
+          let end_time_ev=new Date(this.convert_to_date(end[1],day));
+          res.push(end_time_ev);
+        }
         return res;
       }
       else{
