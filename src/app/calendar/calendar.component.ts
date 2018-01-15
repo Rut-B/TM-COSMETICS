@@ -253,22 +253,17 @@ public getDist(startTime:Date,endTime:Date):number
   var diff = endTime.getTime() - startTime.getTime();
   return (diff / 60000);
 }
-
+//*********************************************/
 public sortFunction(  a: appoi,b: appoi ){  
   var dateA = new Date(a.start).getTime();
   var dateB = new Date(b.start).getTime();
   return dateA > dateB ? 1 : -1;  
 }
-
+//*********************************************/
 public sortTime(arrayAppoi:appoi[]):appoi[]{
 arrayAppoi.sort(this.sortFunction);​
 return arrayAppoi; 
 }
-
-
-
-
-
 /***********************************************************
 * this function return array of the time that can make appoinmtments.
 
@@ -425,15 +420,7 @@ let j=0;
 
     return valid_time_array;
 }
-
-
-
-
-
-
-
-
-
+//**********************************/
 public getAvailability(day:Date):Date[]{
 //this function gets a specific date and returns the hours the cosmetician works on that day.
   this.mySpecDays[0];
