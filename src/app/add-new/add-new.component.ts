@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseFirebaseService } from '../database-firebase.service';
 import { Router } from "@angular/router";
 import{AuthService} from '../auth.service';
-
+import { NavService}from '../nav.service'
 @Component({
   selector: 'app-add-new',
   templateUrl: './add-new.component.html',
@@ -10,7 +10,8 @@ import{AuthService} from '../auth.service';
 })
 export class AddNewComponent implements OnInit {
 
-  constructor(public databaseFirebase: DatabaseFirebaseService, private router: Router,public auth:AuthService) {
+  constructor(public databaseFirebase: DatabaseFirebaseService, private router: Router,public auth:AuthService,public nav:NavService) {
+  
   }
   ngOnInit() {
   }
@@ -23,10 +24,11 @@ export class AddNewComponent implements OnInit {
        this.auth.current_user.first_name  = this.databaseFirebase.customerFirstName;
        this.auth.current_user.last_name   = this.databaseFirebase.customerLastName;
        this.auth.current_user.email       = this.databaseFirebase.customerId;
-       this.auth.current_user.is_customer = this.databaseFirebase.customer_rank;
+       this.auth.current_user.is_customer = true;
        this.auth.current_user.phone       = this.databaseFirebase.customerPhone;
       
       this.auth.isLogin=true;
+      this.nav.create_nav();
       this.router.navigate(["home"]);
     }
   }

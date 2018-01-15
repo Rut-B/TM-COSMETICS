@@ -52,8 +52,6 @@ constructor(private afs: AngularFirestore) {
       this.createTuple(i);
     }*/
   });
-  
-
   this.col=this.afs.collection<event>("myApointments"); 
   this.col.valueChanges(). subscribe(res=>{
       this.appointments=res;
@@ -69,7 +67,7 @@ constructor(private afs: AngularFirestore) {
        }
      }
   }
-  getTurnByCosmetician()
+ /*getTurnByCosmetician()
   {
     this.myAppointments=[];
     for(var i=0,j=0;i<this.appointments.length;i++){      

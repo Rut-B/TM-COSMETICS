@@ -13,7 +13,8 @@ import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module'
   treatment:string;
 }*/
 export class appoi{
-  userName: string;
+  cosmeticianName:string;//Rut added according DB
+  email: string;//replace to Email
   type:string;
   start:Date;
   end:Date;
@@ -41,7 +42,9 @@ export class CalendarComponent implements OnInit {
   myAppois:appoi[]; 
   mySpecDays:aDay[];
   myDays:aDay[];
-  clickedDate: Date;  
+  clickedDate: Date; 
+  available:appoi[] ;
+  chosen:number;
   //appoi:appointment;
     private col:AngularFirestoreCollection<any>;
     private myAppCol:AngularFirestoreCollection<any>;
@@ -75,9 +78,13 @@ export class CalendarComponent implements OnInit {
      }
 
   dayClicked(){
+    this.chosen =1;
+ //   var t=document.getElementById("choose");
   this.addEvent(this.clickedDate);
-  alert(this.dataService.totalDuration)
-  alert(this.dataService.selected_treatments);
+  let yu=this.getAvailability(new Date());
+  //console.log(yu);
+  //alert(this.dataService.totalDuration)
+  //alert(this.dataService.selected_treatments);
   }
   
   addEvent(date){
@@ -131,30 +138,46 @@ public iterate(){
 
   var dontDays=[];
   var t=i;
-  var l=0;
+  var l=0; 
+  var tt=[];
 for(i;i<=t+daysInMonth;i++){ 
-   for(var j=0;j<this.mySpecDays.length;j++){
-     var curr=new Date(this.mySpecDays[j].date);
-     if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){
+   for(var j=0;j<this.mySpecDays.length;j++){//run on specific days
+    //tt.push(j);
+     var curr=new Date(this.mySpecDays[j].date);//the day
+     if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){//if in current month
        var cday=curr.getDate().toString(); 
-      if(cc[i].getElementsByTagName("span")[1]!=null){
-        if(cc[i].getElementsByTagName("span")[1].innerText==cday){
-      //  alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[1].innerText);
+      if(cc[i].getElementsByTagName("span")[1]!=null){ 
+
+        if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
         dontDays[l]=cday;
-        l++;
+        l++; 
+       /* this.available=this.scheduleTime(curr,this.dataService.totalDuration);
+        if(this.available!=null){
        cc[i].className="a";
+        }*/
+       //tt.push(cday+" "+j);
+        i--;
+        cc[i].className="a";
       }
      }
      else{
+      // tt.push(cc[i].getElementsByTagName("span")[0].innerText+" iii "+i)
        if(cc[i].getElementsByTagName("span")[0].innerText==cday){
-       // alert("hay!!!"+" "+cc[i].getElementsByTagName("span")[0].innerText);
+      // tt.push(cday+" "+j);
         dontDays[l]=cday;
         l++;
+      /* this.available=this.scheduleTime(curr,this.dataService.totalDuration);
+       tt.push(this.dataService.totalDuration+" "+this.available+" "+cday);
+        if(this.available!=null){
+       cc[i].className="a";
+        }*/
         cc[i].className="a";
+         i--;
      }   
     }
    }
    }//end for mySpecDays 
+
    if(this.mySpecDays.length==dontDays.length){
      break;
    }
@@ -186,6 +209,8 @@ for(i;i<=t+daysInMonth;i++){
    }
   }//end k
 }//end cc
+
+console.log(tt);
 }
  public check(i){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -193,16 +218,27 @@ for(i;i<=t+daysInMonth;i++){
 }
 
 /* aother:Rut */
+
 public getDist(startTime:Date,endTime:Date):number
-{
+{//return duration in --->min<----.endTIme-startTime-->it work,
+ 
   var diff = endTime.getTime() - startTime.getTime();
-//return duration in --->min<----.endTIme-startTime
-return (diff / 60000);
+  return (diff / 60000);
+}
+
+public sortFunction(  a: appoi,b: appoi ){  
+  var dateA = new Date(a.start).getTime();
+  var dateB = new Date(b.start).getTime();
+  return dateA > dateB ? 1 : -1;  
 }
 
 public sortTime(arrayAppoi:appoi[]):appoi[]{
-return null; 
+arrayAppoi.sort(this.sortFunction);​
+return arrayAppoi; 
 }
+
+
+
 
 
 /***********************************************************
@@ -224,34 +260,52 @@ let valid_time_array: appoi[]=null;
 
 //check if cosmetician cam work in this day..
 let timeToWork: appoi[];
-  //  timeToWork= this.getAvailability(time);//get array of start:end,start:end
+let ansToWork:Date[];
+let startEvening=null;
+let endtEvening=null;
+ansToWork=this.getAvailability(time);//get array of start:end,start:end
+if(ansToWork==null)
+{
+  return null;
+}
+timeToWork=[];
+for(let i=0;i<ansToWork.length/2;i=i+2)
+{
+let new_appoi=new appoi;
+new_appoi.start=ansToWork[i];
+new_appoi.end=ansToWork[i+1];
+timeToWork.push(new_appoi);
+}
     let startMorning=timeToWork[0].start;
     let endMorning=timeToWork[0].end;
+    if(timeToWork.length==2)
+    {
     let startEvening=timeToWork[1].start;
     let endtEvening=timeToWork[1].end;
+    }
     let durationWorkA = this.getDist(startMorning,endMorning);
-    let durationWorkB = this.getDist(startEvening,endtEvening);
 
+    let durationWorkB =0;
+    if(timeToWork.length == 2)
+    {
+    this.getDist(startEvening,endtEvening);
+    }
     if ((duration >durationWorkA)&&
             (duration >durationWorkB))
     {
         return null;
     }
 
-let appoi_in_time:appoi[];
-let sort_appoi:appoi[];
-let appointmensArray:appoi[];
-
-    this.myAppCol=this.afs.collection("myApointments");
-    this.myAppCol.valueChanges().subscribe(res=> {
-        appointmensArray=res;
-    });
-    let j=0;
+let appoi_in_time:appoi[]=[];
+let sort_appoi:appoi[]=[];
+let appointmensArray=this.myAppois;
+let j=0;
     if(appointmensArray.length == 0)
     {
       let newValidApp =new appoi();
       newValidApp.start = startMorning;
       newValidApp.end   = endMorning;
+      //return also evening
       valid_time_array.push(newValidApp);
       return valid_time_array;
     }
@@ -286,48 +340,44 @@ let appointmensArray:appoi[];
     return valid_time_array;
 }
 
-public getAvailability(day:Date):string[]{
+
+
+
+
+
+
+
+
+public getAvailability(day:Date):Date[]{
 //this function gets a specific date and returns the hours the cosmetician works on that day.
   this.mySpecDays[0];
   this.myDays[0];
   let dayInTheWeek:string;
-  switch(day.getDay()){
-    case 0:
-    dayInTheWeek="Sunday";
-    break;
-    case 1:
-    dayInTheWeek="Monday";
-    break;
-    case 2:
-    dayInTheWeek="Tuesday";
-    break;
-    case 3:
-    dayInTheWeek="Wednesday";
-    break;
-    case 4:
-    dayInTheWeek="Thursday";
-    break;
-    case 5:
-    dayInTheWeek="Friday";
-    break;
-  }
-  console.log(this.myDays);
+  dayInTheWeek=this.check(day.getDay())
+  console.log(this.mySpecDays);
   let spec_date;
   let res=[];
   for(let j=0;j<this.mySpecDays.length;j++){
     spec_date=new Date(this.mySpecDays[j].date);
     let is_same=this.compareDates(spec_date,day);
+    console.log("is same= "+is_same);
     if(is_same){
       let start=this.split_hours(this.mySpecDays[j].hoursMorning);
       let end=this.split_hours(this.mySpecDays[j].hoursEvning);
       if ((start.length==2)&&(end.length==2)){
-        res.push(start);
-        res.push(end);
+        let start_time=new Date(this.convert_to_date(start[0],spec_date));
+        res.push(start_time);
+        let end_time=new Date(this.convert_to_date(start[1],spec_date));
+        res.push(end_time);
+        let start_time_ev=new Date(this.convert_to_date(end[0],spec_date));
+        res.push(start_time_ev);
+        let end_time_ev=new Date(this.convert_to_date(end[1],spec_date));
+        res.push(end_time_ev);
         return res;
       }
       else{
         console.log("wrong value in DB!");
-        return['0','0'];
+       return null;
       }
       
     }
@@ -337,18 +387,40 @@ public getAvailability(day:Date):string[]{
       let start=this.split_hours(this.myDays[i].hoursMorning);
       let end=this.split_hours(this.myDays[i].hoursEvning);
       if ((start.length==2)&&(end.length==2)){
-        res.push(start);
-        res.push(end);
+        let start_time=new Date(this.convert_to_date(start[0],day));
+        res.push(start_time);
+        let end_time=new Date(this.convert_to_date(start[1],day));
+        res.push(end_time);
+        let start_time_ev=new Date(this.convert_to_date(end[0],day));
+        res.push(start_time_ev);
+        let end_time_ev=new Date(this.convert_to_date(end[1],day));
+        res.push(end_time_ev);
         return res;
       }
       else{
         console.log("wrong value in DB!");
-        return ['0','0'];
+        return null;
       }
     }
   }
-  return ['0','0'];
+  return null;
 }
+
+public convert_to_date(time_working:string, date:Date):Date{
+  let time=time_working.split(":");
+  if(time.length!=2){
+    console.log("error in time format");
+    return;
+  }
+  console.log("time to convetr: "+time_working);
+  let hour=parseInt(time[0]);
+  let minutes=parseInt(time[1]);
+  date.setHours(hour, minutes, 0);
+  console.log("converted "+date);
+  return date;
+}
+
+
 public split_hours(hour:string):string[]{
   let range=hour.split("-");
   if(range.length==2){
@@ -359,11 +431,16 @@ public split_hours(hour:string):string[]{
 }
 return ['false'];
 }
+
+
 public compareDates(date1:Date, date2:Date):boolean{
+  console.log("year: "+date1.getFullYear() +"=?"+date2.getFullYear());
   if (date1.getFullYear()!=date2.getFullYear())
     return false;
+  console.log("month: "+date1.getMonth() +"=?"+date2.getMonth());
   if(date1.getMonth()!==date2.getMonth())
     return false;
+  console.log("day: "+date1.getDate() +"=?"+date2.getDate());
   if (date1.getDate()!=date2.getDate())
     return false;
   return true;
