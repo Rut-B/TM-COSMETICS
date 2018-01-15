@@ -255,6 +255,7 @@ if(ansToWork==null)
 {
   return null;
 }
+timeToWork=[];
 for(let i=0;i<ansToWork.length/2;i=i+2)
 {
 let new_appoi=new appoi;
@@ -282,8 +283,8 @@ timeToWork.push(new_appoi);
         return null;
     }
 
-let appoi_in_time:appoi[];
-let sort_appoi:appoi[];
+let appoi_in_time:appoi[]=[];
+let sort_appoi:appoi[]=[];
 let appointmensArray=this.myAppois;
 let j=0;
     if(appointmensArray.length == 0)
