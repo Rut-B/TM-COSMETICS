@@ -96,7 +96,7 @@ export class CalendarComponent implements OnInit {
    this.turns.push("12:00");
    
  // this.addEvent(this.clickedDate);
-  //let yu=this.getAvailability(new Date());
+  //let yu=this.getAvailability(new Date("01.19.2018"));
   //console.log(yu);
   //alert(this.dataService.totalDuration)
   //alert(this.dataService.selected_treatments);
@@ -405,6 +405,14 @@ public getAvailability(day:Date):Date[]{
         return res;
       }
       else{
+        if ((start.length==1)&&
+            (end.length==1)&&
+            (start[0]=="vacation")&&
+            (end[0]=="vacation")){
+              return null;
+              //in case of vacation day returns null.
+            }
+            console.log(start.length +"end "+end.length+" start "+start[0]+" end "+end[0]);
         console.log("wrong value in DB!");
         return null;
       }
@@ -431,6 +439,13 @@ public getAvailability(day:Date):Date[]{
         return res;
       }
       else{
+        if ((start.length==1)&&
+        (end.length==1)&&
+        (start[0]=="vacation")&&
+        (end[0]=="vacation")){
+          return null;
+          //in case of vacation day returns null.
+        }
         console.log("wrong value in DB!");
         return null;
       }
@@ -460,7 +475,7 @@ public split_hours(hour:string):string[]{
     return [range[0],range[1]];
   }
   if (range[0]=="vacation"){
-    return ['0','0'];
+    return ['vacation'];
 }
 return ['false'];
 }
