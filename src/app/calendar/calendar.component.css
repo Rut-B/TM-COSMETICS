@@ -11,9 +11,8 @@ margin-left:2vw;
     background-color: rgb(216, 197, 197);
 
 }
-#choose{
+.choose{
     background-color:beige;
-    height:3vh;
-    width: 10vw;
-    border-style: solid;
+    border-style: solid; 
+    width:20vw;
 }

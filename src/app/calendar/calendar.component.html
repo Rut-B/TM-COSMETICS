@@ -11,12 +11,28 @@ Click on a day on the view.
 [events]="events"
 (dayClicked)="clickedDate = $event.day.date; dayClicked()" >
 </mwl-calendar-month-view>
-<div id="choose" *ngIf="chosen==1">
-  <label>select a time:</label>
-  
+<!--<form class="choose" *ngIf="chosen==1">
+        <label>select a time:</label>
+        <div  *ngFor="let t of turns">
+        <input  type="radio" name="times"  [(ngModel)]="choice" [value]="t"> {{t}}<br></div>
+       <!-- <input type="radio" name="times" [(ngModel)]="choice" [value]="2"> 10:00-11:00<br>
+        <input type="radio" name="times" [(ngModel)]="choice"  [value]="3"> 10:00-11:00<br>-->
+<!--<button id="n" (click)="see()">see</button>
+  </form>-->
 </div>
-
-</div>
+<button (click)="myModal.open()">nnn bb</button>
+<modal #myModal>
+<modal-content>
+    <form class="choose" *ngIf="chosen==1">
+        <label>select a time:</label>
+        <div  *ngFor="let t of turns">
+        <input  type="radio" name="times"  [(ngModel)]="choice" [value]="t"> {{t}}<br></div>
+       <!-- <input type="radio" name="times" [(ngModel)]="choice" [value]="2"> 10:00-11:00<br>
+        <input type="radio" name="times" [(ngModel)]="choice"  [value]="3"> 10:00-11:00<br>-->
+<button id="n" (click)="see()">see</button>
+  </form>
+</modal-content>
+</modal>
 
 <!--(dayClicked)="clickedDate = $event.day.date; dayClicked()"-->
 <!--<mwl-calendar-week-view
