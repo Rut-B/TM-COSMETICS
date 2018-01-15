@@ -1,13 +1,14 @@
 .title{
-    color: #CC2572;
+    color: rgb(217,28,  92);
     text-align: center;
     width: 100%;
     font-family: Copperplate Gothic Light;
     font-size: 2vw;
-    color: #CC2572;
+    color: rgb(217,28,  92);
 }  
- h3{
-   color:#CC2572;
+ h2{
+   color:rgb(217,28,  92);
+   
 
 } 
 .mat-input-element {
@@ -18,13 +19,14 @@
 }
 
 #main{
+    margin-top:3%;
     max-width: 98%;
-    width:25vw;  
+    width:98%;  
     min-width: 240px; 
-    height: 60%;
+    height: 300px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(245, 216, 216);
+    color:rgb(217,28,  92);
     font-family: 'Yantramanav', sans-serif;
     text-align: center;
     
@@ -40,12 +42,7 @@
     font-weight: bold;
    
 }
-button {
-color:#CC2572;
-background-color:white;
-font-size:1vw;
-font-weight: bold;
-} 
+
 /*
 #add_new_card{
     height: 15vh;
@@ -57,22 +54,53 @@ font-weight: bold;
 }
 */
 .wel{
-    color: #CC2572;
+    color: rgb(217,28,  92);
 
 }
 
 
 .box{
-    height: 280px;
-    width: 14vw;  
-    min-width: 230px; 
-    background-color: rgb(255, 221, 237);
-    box-shadow: 0px 0px 1px 1px #CC2572;
-    float: left;
-
-    position: absolute;
- 
-    margin-left: 30px;
-    margin-top: 3vh;
-    
+   margin-top:3%;
+    height: 220px;
+    width: 10%; 
+   // float: left;
+    min-width: 200px; 
+   margin-right: auto;
+   margin-left: auto;
 }
+input{
+    margin-bottom: 1vh;
+    display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid;
+        border-width: 0.5px;
+        border-top: none;
+        border-left: none;
+        border-right: none;    
+        border-bottom-color: rgb(217,28,  92);
+        text-align: center;
+}
+
+button {
+    color:rgb(230, 230, 230);
+    background-color:rgb(217,28,  92);
+    border-color: rgb(217,28,  92);
+    border-width: 0.5px;
+    margin-left: 12%;
+    margin-top: 2px;
+    width:160px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor:pointer;
+} 
+    button:hover{
+        color:rgb(217,28,  92);
+        background-color:rgb(230, 230, 230);
+        border: solid;
+        border-color: rgb(217,28,  92);
+        border-width: 0.5px;
+        cursor:pointer;
+        
+    }

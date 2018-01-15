@@ -8,7 +8,7 @@ export class NavService
   
 constructor(private auth:AuthService) 
 {
-  let tmp =false;//Eran this is trmp that have to delete...
+  let tmp =true;//Eran this is trmp that have to delete...
   if (tmp/*auth.current_user.is_customer*/)
   {
     this.navItems=[
@@ -17,7 +17,7 @@ constructor(private auth:AuthService)
       new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","calendar",'/assets/4.png'),
       new NavItem("profile","profile",'/assets/5.png'),
-      new NavItem("instagram","instagram",'/assets/ins.png'),
+     
     ]
   }
   else

@@ -1,25 +1,36 @@
  #body{
-ime-mode: normal;
-padding: 0%;
-//width:100vw;
-height: 100vh;
+   
+   
+    padding: 0%;
+    width:100%;
+    height: 100%;
+    
 
  }
  #header{
     width:100%;
-    height: 30vh; 
+    
  }
- #logo{  
-     width: 380px;
-     margin-top: -8px;
-     height:192px;
+ .bglogo{
+     padding-top: 10px;
+     margin-right: 0px;
+     margin-top: 15px;
+     height: 120px;
+     width: 101%;
+     background-color: rgb(217,28,  92);
+ }
+ #logo{
+     margin-top: 0px;
+     width: 220px;
+    //  margin-top: -8px;
+     height:105px;
      background-repeat: no-repeat;
-     background-image: url('/assets/1.png');
+     background-image: url('/assets/logo.png');
      background-size: 100%;
      //position: absolute;
      display: block;
-     margin-left: auto;
-     margin-right: auto;
+     margin-left: 30px;
+    
     // left: 37%;
  }
 
@@ -32,3 +43,40 @@ left: 8%;
     width: 80%;
     height: 70%;
  }
+
+.arr{
+    font-family: 'Yantramanav', sans-serif;
+    color: #999999;
+    position: absolute;
+    bottom: 7px;
+    left: 10px;
+}
+
+.socialIcons{
+
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+}
+
+
+
+ .fa {
+    padding: 10px;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    text-decoration: none;
+    margin: 2px 2px;
+    border-radius: 50%;
+    background: rgb(217,28,  92);
+    color: #f2f2f2;
+  }
+  
+  .fa:hover {
+    background: #f2f2f2;
+    color: rgb(217,28,  92);
+    
+  }
+ 
