@@ -170,12 +170,12 @@ for(i;i<=t+daysInMonth;i++){
         if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
         dontDays[l]=cday;
         l++; 
-        console.log("*******:)****");
+        /*console.log("*******:)****");
         this.available=this.scheduleTime(curr,this.dataService.totalDuration);
        console.log("***"+this.available);
         if(this.available!=null){
        cc[i].className="a";
-        }
+        }*/
        //tt.push(cday+" "+j);
       this.available=this.scheduleTime(curr,10);
        tt.push(this.available+" "+cday+" "+curr);
