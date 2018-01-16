@@ -38,6 +38,7 @@ import { AddNewComponent } from './add-new/add-new.component'
 
 import {ModalModule} from "ng2-modal";
 
+
 export const environment = {
   production: false, 
   firebase: {
