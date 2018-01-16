@@ -11,3 +11,29 @@ margin-left:2vw;
     background-color: rgb(216, 197, 197);
 
 }
+.choose{
+    background-color:beige;
+    border-style: solid; 
+    width:20vw;
+}
+#myModal{
+   margin-left:40vw;
+   margin-top:2vh;
+   height: 60vh;
+}
+.n{
+    display:none;
+}
+#modal{
+    background-color:rgb(236, 228, 229);
+    
+}
+#select{
+     margin-top:2vw;
+     margin-left:45vw;
+    background-color:rgb(221, 192, 196);
+}
+#n{
+    margin-top:2vw;
+     background-color:rgb(221, 192, 196);
+}

@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -35,6 +34,9 @@ import { AngularFirestore } from "angularfire2/firestore";
 import {GuardAuthGuard}from './guard-auth.guard';
 import { DataService } from './data.service';
 import { AddNewComponent } from './add-new/add-new.component'
+
+import {ModalModule} from "ng2-modal";
+
 
 export const environment = {
   production: false, 
@@ -83,7 +85,8 @@ export const environment = {
     AngularFirestoreModule,
     CalendarModule.forRoot(),
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ModalModule
 
   ],
   providers: [

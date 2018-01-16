@@ -1,63 +1,53 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import{AuthService} from './auth.service';
+import * as firebase from "firebase";
+
 export interface event{
   date: string;
-  hoursMorning:string;
-  hoursEvning:string;
- }
+  hoursMorning: string;
+  hoursEvning: string;
+}
 //  @Injectable() 
 // import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseFirebaseService {
-public selected: string[]=[];
-public flag:number;
+  public selected: string[] = [];
+  public flag: number;
   public appointmentRef;
   public customerRef;
   public treatmentRef;
   public prodRef;
-  public locationtRef;
   public cosmeticiansRef;
-  public messageManagerRef;
+  public managerRef;
   public settingDayRef;
   public specificOfDate;
 
-  public quantity: number;
-  public productName: string;
-  public code: number;
-  public price: number;
-  public supplier: string;
-
-  public city: string;
-  public address: string;
-  public phone: number;
-
-  public cosmeticianId: string;
-  public cosmeticianFirstName: string;
-  public cosmeticianLastName: string;
-  public cosmeticianPhone: number;
-  public cosmeticianPermissionLevel: number;
-  public cosmeticianAvailability: string[];
-
-  public from: string;
-  public to: string;
-  public content: string;
+  public quantity:number;
+  public productName:string;
+  public code:number;
+  public price:number;
+  // public supplier: string;
 
 
+  // public cosmeticianFirstName:string;
+  // public cosmeticianPermissionLevel:number;
+  // public  cosmeticianAvailability:string[];
 
-
-  public customerId: string="";//key--email
-  public customerFirstName: string="";
-  public customerLastName: string="";
-  public customerPhone: number=null;
-  public customerAddress: string="";
+  public customerId: string ;// this.auth.current_user.email;//key--email
+  public customerFirstName: string = "";
+  public customerLastName: string = "";
+  public customerPhone: number = null;
+  public customerAddress: string = "";
   public customer_rank: boolean;
 
-  public treatmentName: string;
-  public treatmentCode: number;//key
-  public treatmentPrice: number;
-  public treatmentDuration: Date;
-  public treatmentPossibleCosmetician: string[];
+  public treatmentName:string;
+  public treatmentDescription:string
+  public treatmentCode:number;//key
+  public treatmentPrice:number;
+  public treatmentDuration:Date;
+  // public treatmentPossibleCosmetician:string[];
 
   public appointmentCustomer: string[];
   public appointmentTime: Date;
@@ -66,8 +56,9 @@ public flag:number;
   public appointmentPrice: number;
   public appointmentLocation: string;
 
-
-
+public managerFirstName:string;
+public managerLastName:string;
+public managerPhone:number;
 
   public Sunday: string;
   public sundayMorning: string;
@@ -88,32 +79,31 @@ public flag:number;
   public Thursday: string;
   public ThursdayMorning: string;
   public ThursdayEvening: string;
-  
-  public Friday:string;
-  public fridayMorning:string;
-  public fridayEvening:string;
 
-  public other:string;
-  public otherMorning:string;
-  public otherEvening:string;
+  public Friday: string;
+  public fridayMorning: string;
+  public fridayEvening: string;
 
-  private col:AngularFirestoreCollection<any>;
-  public days:event[];
-  public myDay:event[];
+  public other: string;
+  public otherMorning: string;
+  public otherEvening: string;
+
+  private col: AngularFirestoreCollection<any>;
+  public days: event[];
+  public myDay: event[];
 
 
-  constructor(private afs: AngularFirestore){
+  constructor(private afs: AngularFirestore,public auth:AuthService) {
     this.appointmentRef = this.afs.collection("appointment");
     this.customerRef = this.afs.collection("USERS");
     this.treatmentRef = this.afs.collection("treatments");
     this.prodRef = this.afs.collection("products");
-    this.locationtRef = this.afs.collection("locations");
-    this.cosmeticiansRef = this.afs.collection("cosmeticians");
-    this.messageManagerRef = this.afs.collection("messageManager");
+    // this.cosmeticiansRef = this.afs.collection("cosmeticians");
+    this.managerRef = this.afs.collection("manager");
     this.settingDayRef=this.afs.collection("Setting Days");
     this.specificOfDate=this.afs.collection("specificDays");
-    this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
-    this.cosmeticianAvailability=[];
+    // this.treatmentPossibleCosmetician=[];//צריך לאתחל אותו בכל השמות של הקוסמטיקאיות שנמצאות האיחסון
+    // this.cosmeticianAvailability=[];
     this.appointmentCustomer=[];
     this.appointmentCosmetician=[];
     this.Sunday="Sunday";
@@ -148,36 +138,26 @@ public flag:number;
     let item = {
       productName: this.productName,
       quantity: this.quantity,
-      code: this.code,
-      price: this.price,
-      supplier: this.supplier,
-      pic: url
-    }
-    this.prodRef.add(item).then(res => {
+      code: this.code, 
+      price:this.price,
+      // supplier:this.supplier,
+      pic:url
+    }  
+    this.prodRef.add(item).then(res=>{
     })
+}
+addTreatment(){
+  let treat={
+    name:this.treatmentName,
+    code:this.treatmentCode,
+    price:this.treatmentPrice,
+    Description:this.treatmentDescription,
+    duration:this.treatmentDuration+" minutes",
+    // PossibleCosmetician:this.treatmentPossibleCosmetician
   }
-  addTreatment() {
-    let treat = {
-      name: this.treatmentName,
-      code: this.treatmentCode,
-      price: this.treatmentPrice,
-      duration: this.treatmentDuration + " minutes",
-      PossibleCosmetician: this.treatmentPossibleCosmetician
-    }
-    this.treatmentRef.add(treat).then(res => {
-    })
-  }
-  addLocation() {
-    let loc = {
-      city: this.city,
-      address: this.address,
-      phone: this.phone
-    }
-    this.locationtRef.add(loc).then(res => {
-    })
-  }
-
-
+    this.treatmentRef.add(treat).then(res=>{
+    });
+}
   addCustomer() {
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
@@ -189,38 +169,37 @@ public flag:number;
       address: this.customerAddress,
       is_customer: true
     }
-    this.customerRef.add(cons).then(res => {
-    })
-  }
-  addCosmetician() {
-    this.treatmentPossibleCosmetician.push(this.cosmeticianId);
-    this.appointmentCosmetician.push(this.cosmeticianId);
-    console.log(this.treatmentPossibleCosmetician);
-    console.log(this.appointmentCosmetician);
-    let cosmet = {
-      cosmeticianId: this.cosmeticianId,
-      name: this.cosmeticianFirstName,
-      lname: this.cosmeticianLastName,
-      phone: this.cosmeticianPhone,
-      permissionLevel: this.cosmeticianPermissionLevel,
-      availability: this.cosmeticianAvailability
-    }
-    this.cosmeticiansRef.add(cosmet).then(res => {
+    this.customerRef.add(cons).then(res=>{
+})
+}
+// addCosmetician(){
+//     // this.treatmentPossibleCosmetician.push(this.cosmeticianId);
+//     // this.appointmentCosmetician.push(this.cosmeticianId);
+//     console.log(this.treatmentPossibleCosmetician);
+//     console.log(this.appointmentCosmetician);
+//     let cosmet={
+//       name: this.cosmeticianFirstName,
+//       permissionLevel:this.cosmeticianPermissionLevel,
+//       availability:this.cosmeticianAvailability
+//     }
+//     this.cosmeticiansRef.add(cosmet).then(res => {
 
-    })
+//     })
+//   }
+  addManager() {
+    let manage= {
+      name:this.managerFirstName,
+      lname:this.managerLastName,
+      phone:this.managerPhone
+    }
+    this.managerRef.add(manage).then(res => { 
+          });
   }
-  addMessageManager() {
-    this.messageManagerRef.doc(this.from).set({
-      from: this.from,
-      to: this.to,
-      content: this.content
-    });
-  }
-  /*
-  uploadImage(image) {
-    let storageRef = firebase.storage().ref();
-    return storageRef.put(image);
-  }*/
+  
+  // uploadImage(image) {
+  //    let storageRef = firebase.storage().ref();
+  //   return storageRef.put(image);
+  // }
 
   public IsNotEmpty(){
    if((this.customerId!="")     && 
@@ -230,6 +209,7 @@ public flag:number;
    (this.customerAddress!=""))
    {
      return true;
+
    }
    return false;
   }
@@ -249,12 +229,6 @@ addSettingSunDay(){
     hoursMorning: this.sundayMorning,
     hoursEvning:this.sundayEvening
   } 
-  // if(this.flag==0)
-  // {
-  //   console.log("not");
-  //     this.settingDayRef.doc(this.Sunday).set(hoursSunday);
-  // }
-  // else{
        this.settingDayRef.doc(this.Sunday).set(hoursSunday);
         this.settingDayRef=this.afs.doc("Setting Days/" +this.Sunday);           
         this.settingDayRef.valueChanges().subscribe(res=>{
@@ -262,9 +236,7 @@ addSettingSunDay(){
         this.sundayEvening=res.sundayEvening;
         this.sundayMorning=res.sundayMorning;
       });
-      this.settingDayRef=this.afs.collection("Setting Days");      
-  // }
-// this.flag=0;
+      this.settingDayRef=this.afs.collection("Setting Days");    
 }
 addSettingMondayDay()
 {
@@ -295,7 +267,7 @@ addSettingTuesdayDay()
                   this.settingDayRef.valueChanges().subscribe(res=>{
                   this.Tuesday=res.Tuesday;
                   this.tuesdayMorning=res.tuesdayMorning;
-                  this.tuesdayMorning=res.tuesdayMorning;
+                  this.tuesdayEvening=res.tuesdayEvening;
                 });
                 this.settingDayRef=this.afs.collection("Setting Days")
                 
@@ -319,21 +291,19 @@ addSettingWednesdayDay()
 }
 addSettingThursdayDay()
 {
-    let hoursThursday={
+  let hoursThursday={
     date: this.Thursday,
     hoursMorning: this.ThursdayMorning,
     hoursEvning:this.ThursdayEvening
   }  
-
-    this.settingDayRef.doc(this.Thursday).set(hoursThursday);
+  this.settingDayRef.doc(this.Thursday).set( hoursThursday);  
     this.settingDayRef=this.afs.doc("Setting Days/" +this.Thursday);           
     this.settingDayRef.valueChanges().subscribe(res=>{
     this.Thursday=res.Thursday;
-    this.ThursdayEvening=res.thursdayEvening;
-    this.ThursdayMorning=res.thursdayMorning;
+    this.ThursdayMorning=res.ThursdayMorning;
+    this.ThursdayEvening=res.ThursdayEvening;
   });
   this.settingDayRef=this.afs.collection("Setting Days");
-  
 }
 addSettingFridayDay()
 {
@@ -352,6 +322,13 @@ addSettingFridayDay()
   });
   this.settingDayRef=this.afs.collection("Setting Days");
 }
+public uploadImage(image) {
+  let storageRef = firebase.storage().ref();
+  return storageRef.put(image).then(img=>{
+    console.log(img)
+  });
+}
+
 addOtherDate()
       {
         let hoursOther={
@@ -361,9 +338,9 @@ addOtherDate()
           }  
           this.specificOfDate.add(hoursOther).then(res=>{
           });
-      
       }
 }
+
 
 
 /*getTurnByTime()
@@ -395,8 +372,12 @@ addOtherDate()
  this.settingDayRef=this.afs.collection("Setting Days");
  
 }
+<<<<<<< HEAD
 }
 getTurnByCosmetician()
+=======
+/*getTurnByCosmetician()
+>>>>>>> 3008c345b2c35eabf834f08df08ad90e2007cd74
 {
   this.myAppointments=[];
   for(var i=0,j=0;i<this.appointments.length;i++){
@@ -408,7 +389,7 @@ getTurnByCosmetician()
 }*/
 
 
-  
+
 
 
 
@@ -427,16 +408,13 @@ getTurnByCosmetician()
 
 
 
-// uploadImage(image) {
-//   let storageRef = firebase.storage().ref();
-//   return storageRef.put(image);
-// }
+
 
 
 
 
 // export class ProfileComponent implements OnInit {
- 
+
 
 //  public myCosmetician:event[];
 //  public d:Date;
@@ -445,7 +423,7 @@ getTurnByCosmetician()
 //  dateFilter: BehaviorSubject<string | null>;
 
 // constructor(private afs: AngularFirestore) { 
-  
+
 //   }
 
 
@@ -454,7 +432,7 @@ getTurnByCosmetician()
 
 
 
-  
+
     //this.col=this.afs.collection('users');
     //this.prod=this.afs.collection('products');
     //this.prod.valueChanges().subscribe(res=>{
@@ -467,7 +445,7 @@ getTurnByCosmetician()
     //  this.users=res;
    // });
   // this.ob=this.col.valueChanges();
-  
+
  /* 
   constructor(private afs: AngularFirestore){
     this.itemDoc = this.afs.doc('users/1');

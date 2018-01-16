@@ -34,4 +34,3 @@ export const appRoutes: Routes = [
     { path: "profile", component: ProfileComponent},
     { path: "**", redirectTo: "login" }
 ];
-

@@ -19,14 +19,15 @@ constructor(private auth:AuthService)
       new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","calendar",'/assets/4.png'),
       new NavItem("profile","profile",'/assets/5.png'),
-      new NavItem("instagram","instagram",'/assets/ins.png'),
+     
     ]
   }
   else
   {
     this.navItems=[
       new NavItem("settings","cosmetician-settings",'/assets/6.png'),
-      new NavItem("store","cosmetician-products",'/assets/3.png'),
+      new NavItem("information","cosmetician-products",'/assets/2.png'),
+      new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","cosmetician-calendar",'/assets/4.png')
     ]
   }
@@ -50,7 +51,8 @@ constructor(private auth:AuthService)
   {
     this.navItems=[
       new NavItem("settings","cosmetician-settings",'/assets/6.png'),
-      new NavItem("store","cosmetician-products",'/assets/3.png'),
+      new NavItem("information","cosmetician-products",'/assets/2.png'),
+      new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","cosmetician-calendar",'/assets/4.png')
     ]
   }

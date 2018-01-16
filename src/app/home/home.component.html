@@ -1,10 +1,27 @@
 
-<div id="btn"> 
 
-<app-nav-component *ngFor="let item of navService.navItems" [image]=item.image [url]=item.url> 
-
-</app-nav-component>
+ 
+<div style="overflow:auto">
+  <div class="menu">
    
+    <app-nav-component *ngFor="let item of navService.navItems" [image]=item.image [url]=item.url> </app-nav-component>
+  </div>
 
-    
+
+
+     <img src="assets/main.png" >
+
+
+
+  <!-- <div class="right">
+    <h2>What?</h2>
+    <p>The Pulpit Rock is a part of a mountain that looks like a pulpit.</p>
+    <h2>Where?</h2>
+    <p>The Pulpit Rock is in Norway.</p>
+    <h2>Price?</h2>
+    <p>The Walk is free!</p>
+  </div>  -->
+
 </div>
+
+

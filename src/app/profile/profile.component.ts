@@ -12,7 +12,7 @@ import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
 import { app } from 'firebase/app';
 import { Data } from '@angular/router/src/config';
 import { DatabaseFirebaseService } from '../database-firebase.service';
-
+import {AuthService } from '../auth.service'
 
 export interface event{
    userName: string;
@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
  public choosedDate:Date;
  dateFilter: BehaviorSubject<string | null>;
 
-constructor(private afs: AngularFirestore) {
+constructor(private afs: AngularFirestore, public auth:AuthService) {
   this.myAppointmentsRef = this.afs.collection("myApointments"); 
   let res=this.myAppointmentsRef.valueChanges().subscribe(res=>{
     console.log(res);
@@ -52,8 +52,6 @@ constructor(private afs: AngularFirestore) {
       this.createTuple(i);
     }*/
   });
-  
-
   this.col=this.afs.collection<event>("myApointments"); 
   this.col.valueChanges(). subscribe(res=>{
       this.appointments=res;
@@ -63,13 +61,13 @@ constructor(private afs: AngularFirestore) {
   { 
      this.myAppointments=[]; 
      for(var i=0,j=0;i<this.appointments.length;i++){
-       if(this.appointments[i].userName=="tamarkl"){
+       if(this.appointments[i].userName==this.auth.current_user.email){
         this.myAppointments[j]=this.appointments[i];
         j++;
        }
      }
   }
-  getTurnByCosmetician()
+ /*getTurnByCosmetician()
   {
     this.myAppointments=[];
     for(var i=0,j=0;i<this.appointments.length;i++){      
