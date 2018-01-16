@@ -337,18 +337,6 @@ addSettingThursdayDay()
 }
 addSettingFridayDay()
 {
-<<<<<<< HEAD
-  this.myDay=[];  
-  for(var i=0,j=0;i<this.days.length;i++){    
-    if(this.days[i].date=="Friday"){
-      this.flag=1;
-    this.myDay[j]=this.days[i];
-    j++;
-    }
-  }
-
-
-=======
     let hoursFriday={
     date: this.Friday,
     hoursMorning: this.fridayMorning,
@@ -391,7 +379,6 @@ addOtherDate()
      j++;
     }
   }
->>>>>>> 65e933b1c4bc7584e7cec5ed9da975e497682c8f
   let hoursFriday={
     date: this.Friday,
     hoursMorning: this.fridayMorning,
@@ -408,12 +395,8 @@ addOtherDate()
  this.settingDayRef=this.afs.collection("Setting Days");
  
 }
-<<<<<<< HEAD
-/*getTurnByCosmetician()
-=======
 }
 getTurnByCosmetician()
->>>>>>> 65e933b1c4bc7584e7cec5ed9da975e497682c8f
 {
   this.myAppointments=[];
   for(var i=0,j=0;i<this.appointments.length;i++){
