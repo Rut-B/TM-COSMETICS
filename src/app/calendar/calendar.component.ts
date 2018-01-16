@@ -159,47 +159,39 @@ public iterate(){
   var dontDays=[];
   var t=i;
   var l=0; 
-  var tt=[];
+  var tt=[]; 
 for(i;i<=t+daysInMonth;i++){ 
    for(var j=0;j<this.mySpecDays.length;j++){//run on specific days
     //tt.push(j);
      var curr=new Date(this.mySpecDays[j].date);//the day
      if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){//if in current month
-       var cday=curr.getDate().toString(); 
+       var cday=curr.getDate().toString();
       if(cc[i].getElementsByTagName("span")[1]!=null){ 
+        tt.push(curr+" "+i);
         if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
+       //tt.push(cc[i].getElementsByTagName("span")[1].innerText+" iii "+i)
+       
         dontDays[l]=cday;
         l++; 
-        /*console.log("*******:)****");
-        this.available=this.scheduleTime(curr,this.dataService.totalDuration);
-       console.log("***"+this.available);
-        if(this.available!=null){
-       cc[i].className="a";
-        }*/
        //tt.push(cday+" "+j);
       this.available=this.scheduleTime(curr,10);
-       tt.push(this.available+" "+cday+" "+curr);
+      //tt.push("11!!"+this.available+" "+cday);
         if(this.available!=null){
         cc[i].className="a";
-         i--;
-        }
-       /*  cc[i].className="a";
-        i--;*/
-      
+        // i--;
+        }  
       }
      }
      else{
-      // tt.push(cc[i].getElementsByTagName("span")[0].innerText+" iii "+i)
        if(cc[i].getElementsByTagName("span")[0].innerText==cday){
       // tt.push(cday+" "+j);
         dontDays[l]=cday;
         l++;
        this.available=this.scheduleTime(curr,10);
-      // tt.push(this.available+" "+cday);
+      //tt.push("22!!"+this.available+" "+cday+" "+i);
         if(this.available!=null){
-          tt.push("a"+this.available+" b "+cday);
         cc[i].className="a";
-         i--;
+        // i--;
         }
      }   
     }
@@ -215,14 +207,13 @@ for(i;i<=t+daysInMonth;i++){
  var s=[];
  n=0;
  var m;
- for( i=0,m=0;m<daysInMonth-dontDays.length;m++,i++){
+ for( i=0,m=0;m<=daysInMonth-dontDays.length;m++,i++){
    if(cc[(i+t)].getElementsByTagName("span")[1]!=null){
     n=cc[(i+t)].getElementsByTagName("span")[1].innerText;
   }
   else{
    n=cc[(i+t)].getElementsByTagName("span")[0].innerText;
   }  
-  s.push(n);
  // s.push(i+" "+n+"bb ");
   var d=new Date(cyear,cmonth,n); 
   for(var k=0;k<this.myDays.length;k++){ 
@@ -230,15 +221,21 @@ for(i;i<=t+daysInMonth;i++){
     var now=this.myDays[k].date;  
    if(this.check(d.getDay())==now){
     ////console.log(this.check(d.getDay())+","+now+" "+i);
-    cc[(i+t)].className="a2";
-    i--;
-     break;
+  
+    this.available=this.scheduleTime(d,10);
+    s.push (d+ " "+this.available);
+    //tt.push("22!!"+this.available+" "+cday+" "+i);
+      if(this.available!=null){
+        cc[(i+t)].className="a2";
+        i--;
+         break;
+      }
    // alert(this.check(d.getDay())+" "+i);
    }
   }//end k
 }//end cc
 
-console.log(tt);
+console.log(s);
 }
  public check(i){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
