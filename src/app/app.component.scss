@@ -19,7 +19,10 @@
      width: 101%;
      background-color: rgb(217,28,  92);
  }
+ 
  #logo{
+    &:focus {outline:0;}
+    
      margin-top: 0px;
      width: 220px;
     //  margin-top: -8px;
@@ -47,15 +50,15 @@ left: 8%;
 .arr{
     font-family: 'Yantramanav', sans-serif;
     color: #999999;
-    position: absolute;
-    bottom: 7px;
+    float: left;
+    
     left: 10px;
+    
 }
 
 .socialIcons{
 
-    position: absolute;
-    bottom: 7px;
+    float: right;
     right: 10px;
 }
 
@@ -79,4 +82,19 @@ left: 8%;
     color: rgb(217,28,  92);
     
   }
- 
+ .ftr{
+     width: 100%;
+     
+     position:fixed;
+    bottom: 7px;
+ }
+ @media only screen and (max-width:500px) {
+    /* For mobile phones: */
+   .arr{
+       display: none;
+   }
+   .ftr{
+       text-align: center;
+   }
+    
+  }

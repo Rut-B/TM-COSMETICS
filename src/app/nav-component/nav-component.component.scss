@@ -1,23 +1,44 @@
 
 .nav{
+   
     margin-top: 15%;
 }
 .btn_h{
+       &:focus {outline:0;}
     &:hover{ 
-        
         cursor: pointer;
-        margin-left: -48%;
+        margin-left: -45%;
         transition-timing-function: ease-in-out;
+        transition-duration: 0.3s;
         }
-
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.3s;
     float:left;
     margin-top:3%;
-    margin-left: -50%;
-    width: 130%;
+    margin-left: -48%;
+    width: 110%;
     min-width: 100px;
-    height: 10vh;
+    height: 9.5vh;
+    min-height: 72px;
     background-repeat: no-repeat;
     background-image: url('/assets/1.png');
     background-size: 100%;
-
  }
+
+
+ @media only screen and (max-width:500px) {
+    /* For mobile phones: */
+    .btn_h{ 
+        width: 110%;
+
+        margin-left: -40%;
+     
+    }
+    
+  }
+  @media only screen and (max-width:800px) {
+    /* For tablets: */
+    .btn_h{
+        width: 150%;
+    }
+  }
