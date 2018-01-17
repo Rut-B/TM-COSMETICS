@@ -3,6 +3,7 @@
     height: 100%;
 }
 button{
+    &:focus {outline:0;}
     clear: both;
    float: left;
    float: right;
@@ -60,10 +61,18 @@ margin-right: 5px;
 margin-left: 10px;
     background-color: #f2f2f2 ;
     color: rgb(217,28,  92);
+    text-decoration: none;
     
  }
  .a2{
      background-color: #f2f2f2 ;
     color: rgb(217,28,  92);
+    text-decoration: none;
 
+ }
+ @media only screen and (max-width:800px) {
+     img{
+        margin-top:10%;
+        margin-left: 20%;
+     }
  }
