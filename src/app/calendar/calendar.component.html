@@ -1,33 +1,33 @@
 
-<button (click)="iterate()" *ngIf="events">iterate</button>
-<div class="alert alert-info" id="head">
-Click on a day on the view.
-<strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
-</div>
-<div [ngSwitch]="view">
+<button (click)="iterate()" *ngIf="events && pop==false">iterate</button>
+<button mat-raised-button id="select" *ngIf="pop==true" (click)="myModal.open()" >select a time</button>
+
+<modal #myModal (onClose)="closeM()">
+<modal-content>
+  <mat-card id="modal">
+    <form *ngIf="chosen==1">
+        <label>select a time:</label>
+        <div  *ngFor="let t of turns">
+        <input  type="radio" name="times"  [(ngModel)]="choice" [value]="t"> {{t}}<br>
+      </div>
+<button mat-raised-button  id="n" (click)="see()">see</button>
+  </form>
+</mat-card>
+</modal-content>
+</modal>
+
+<div id="hide" [ngSwitch]="view">
+    <div class="alert alert-info" id="head">
+        Click on a day on the view.
+        <strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
+        </div>
 <mwl-calendar-month-view
 *ngSwitchCase="'month'"
 [(viewDate)]="viewDate"
 [events]="events"
 (dayClicked)="clickedDate = $event.day.date; dayClicked()" >
 </mwl-calendar-month-view>
-<div id="choose" *ngIf="chosen==1">
-  <label>select a time:</label>
-  
-</div>
 
 </div>
 
-<!--(dayClicked)="clickedDate = $event.day.date; dayClicked()"-->
-<!--<mwl-calendar-week-view
-  *ngSwitchCase="'week'"
-  [viewDate]="viewDate"
-  [events]="events"
-  (dayHeaderClicked)="clickedDate = $event.day.date">
-</mwl-calendar-week-view>
-<mwl-calendar-day-view
-  *ngSwitchCase="'day'"
-  [viewDate]="viewDate"
-  [events]="events">
-</mwl-calendar-day-view>-->
 

@@ -36,6 +36,9 @@ import {GuardAuthGuard}from './guard-auth.guard';
 import { DataService } from './data.service';
 import { AddNewComponent } from './add-new/add-new.component'
 
+import {ModalModule} from "ng2-modal";
+
+
 export const environment = {
   production: false, 
   firebase: {
@@ -83,7 +86,8 @@ export const environment = {
     AngularFirestoreModule,
     CalendarModule.forRoot(),
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ModalModule
 
   ],
   providers: [
