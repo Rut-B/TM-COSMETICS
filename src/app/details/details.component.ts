@@ -18,7 +18,7 @@ export class DetailsComponent {
   public treatmentRef;
   public treatmentDescription;
   public ELEMENT_DATA: Element[];
-  public selectedTreatments :string[]=[];
+ // public selectedTreatments :string[]=[];
   public dataSource: MatTableDataSource < Element > ;
   message:string;
   constructor(private afs: AngularFirestore, public databaseFirebase: DatabaseFirebaseService,public router: Router, public dataService:DataService){
@@ -74,12 +74,13 @@ public createTuple(iter:number){
 
 }
 public selectTreatment(event) {
+  let  selectedTreatments :string[]=[];
   let id_clicked=event.currentTarget.attributes.id.value;
   var tupleChecked=document.getElementById(id_clicked);
   if(tupleChecked.style.backgroundColor!="grey"){
      tupleChecked.style.backgroundColor="grey";
      let treat=tupleChecked.firstElementChild.innerHTML;
-     this.selectedTreatments[id_clicked]=treat;
+     selectedTreatments[id_clicked]=treat;
   }
   else{
     if (id_clicked%2==1){

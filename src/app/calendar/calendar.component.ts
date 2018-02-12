@@ -6,7 +6,6 @@ import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2
 import { query } from '@angular/core/src/animation/dsl';
 import {DataService} from '../data.service';
 import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
-import { AuthService } from "../auth.service";
 
 /*export class appointment{
   event:CalendarEvent;
@@ -14,7 +13,7 @@ import { AuthService } from "../auth.service";
   treatment:string;
 }*/
 export class appoi{
-  //cosmeticianName:string;//Rut added according DB
+  cosmeticianName:string;//Rut added according DB
   email: string;//replace to Email
   type:string;
   start:Date;
@@ -50,12 +49,12 @@ export class CalendarComponent implements OnInit {
   c; 
   pop=false;
   //appoi:appointment;
- choice;//the selected time;
+ choice;
     private col:AngularFirestoreCollection<any>;
     private myAppCol:AngularFirestoreCollection<any>;
     private mySpeDays:AngularFirestoreCollection<any>;
     private mySettDays:AngularFirestoreCollection<any>;
-      constructor(private afs: AngularFirestore ,private dataService:DataService,private authservice:AuthService) {
+      constructor(private afs: AngularFirestore ,private dataService:DataService) {
        //this.itemDoc =this.afs.doc("events/1"); 
        this.col=this.afs.collection("events"); 
        this.viewDate = new Date();  
@@ -83,32 +82,21 @@ export class CalendarComponent implements OnInit {
      }
 
   dayClicked(){
-    /* this.choice=null;
+     this.choice=null;
     this.chosen =1;
     var s=document.getElementById("hide");
     this.c=s.className;
     s.className="n";
     this.pop=true;
-    //this.turns.push("10:00");
-    //this.turns.push("12:00");
-
-   var a=this.scheduleTime(this.clickedDate,20);
-    if(a==null){
-    this.turns=[];
-    }
-    for(var i=0;i<a.length;i++)
-    this.turns[i]=this.time(a[i].start)+" - "+this.time(a[i].end);*/
+   this.turns.push("10:00");
+   this.turns.push("12:00");
 
    
-  this.addEvent(this.clickedDate);
-
+ // this.addEvent(this.clickedDate);
   //let yu=this.getAvailability(new Date("01.19.2018"));
   //console.log(yu);
   //alert(this.dataService.totalDuration)
   //alert(this.dataService.selected_treatments);
-  } 
-  time(time){
-    return(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
   }
  see(){
     alert(this.choice);
@@ -120,13 +108,12 @@ export class CalendarComponent implements OnInit {
   }
   
   addEvent(date){
-    date=this.format(date);
-    var d1=date+" 10:30:00";
-    var d2=date+" 13:00:00";
+     date=this.format(date);
+     date=date+" 10:30:00";
     this.viewDate = new Date();
     let event: CalendarEvent = {
-      start:new Date(d1),
-      end:new Date(d2),
+      start:new Date(date),
+      // end: new Date(),
        title: "appointment",
        color: {
          primary: "#00FF00",
@@ -135,15 +122,6 @@ export class CalendarComponent implements OnInit {
      };  
     this.col.add(event).then(res => {
     })
-  let app:appoi={
-     start:new Date(d1),
-    end:new Date(d2),
-    email:this.authservice.current_user.email,
-    type:this.dataService.selected_treatments.toString()
-  }
-    this.myAppCol.add(app).then(res=>{
-      console.log(res)
-    });
   }
 
   ngOnInit() {
@@ -200,10 +178,8 @@ for(i;i<=t+daysInMonth;i++){
       //tt.push("11!!"+this.available+" "+cday);
         if(this.available!=null){
         cc[i].className="a";
-        this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
         // i--;
-        } 
-      
+        }  
       }
      }
      else{
@@ -216,9 +192,7 @@ for(i;i<=t+daysInMonth;i++){
         if(this.available!=null){
         cc[i].className="a";
         // i--;
-        this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
         }
-      
      }   
     }
    }
@@ -261,7 +235,7 @@ for(i;i<=t+daysInMonth;i++){
   }//end k
 }//end cc
 
-console.log(/*s*/tt);
+console.log(s);
 }
  public check(i){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -522,7 +496,7 @@ public getAvailability(day:Date):Date[]{
       }
     }
   }
-  return null;
+ return null;
 }
 
 public convert_to_date(time_working:string, date:Date):Date{

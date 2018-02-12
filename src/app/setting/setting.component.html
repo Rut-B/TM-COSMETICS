@@ -1,4 +1,4 @@
-<div id="titleSetting">
+<!--div id="titleSetting">
 
   Hellow {{auth.current_user.first_name}},{{ auth.current_user.last_name}}
 
@@ -32,5 +32,37 @@
            
         </div>
    
-    </mat-card>
+    </mat-card>-->
+
+    <a  class="li" [routerLink]="['/home']">back</a>
+    <div id="main">
+            
+    <div class="wel">
+       <div id="txt">
+        <h2> Wellcome {{auth.current_user.first_name}} , {{ auth.current_user.last_name}}</h2>
+       this are your settings in the system:
+       <br/>
+       please press on "save settings"  to save  updated detalis,
+      </div>
+    </div>
+    
+    <div  class="box">
+          <h3>Your details:</h3>      
+          <div>
+              <label> your mail : </label>
+              <label id="current_email" >  {{auth.current_user.email}} </label>
+              <label> your first name : </label>
+              <input id="new_first_name" #abc type="text "  value={{auth.current_user.first_name}} >
+              <label> your last name : </label>
+              <input id="new_last_name" type="text"  value={{auth.current_user.last_name}} >
+              <label> your phone : </label>
+              <input id="new_phone" type="text"  value={{auth.current_user.phone}} >
+              <label> your address: </label>
+              <input id="new_address" type="text"  value={{auth.current_user.address}} >
+              <button (click)="save_new_settings()" class="add">save settings</button>  
+                
+          </div>
+    </div>
+
+    </div> 
  
