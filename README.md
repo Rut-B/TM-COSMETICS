@@ -12,7 +12,7 @@ Also, Customers bother the beautician outside of the office hours for queuing or
 ![project logo (this one for is taken from basecamp - a project management service)](https://github.com/Rut-B/new-idea/blob/master/LogoSample_ByTailorBrands.jpg)
 
 
-## Please visit our [live application](https://github.com/TamarKl/exe1/tree/master/src/index.html)
+## Please visit our [live application](https://tmcosm-48ed4.firebaseapp.com)
 - Alright, currently only a landing page...
 
 
