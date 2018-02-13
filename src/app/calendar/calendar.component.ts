@@ -496,7 +496,7 @@ public getAvailability(day:Date):Date[]{
       }
     }
   }
-  return null;
+ return null;
 }
 
 public convert_to_date(time_working:string, date:Date):Date{
