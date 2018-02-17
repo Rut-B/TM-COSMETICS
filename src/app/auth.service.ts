@@ -24,11 +24,18 @@ export  class USER {
 
 @Injectable()
 export class AuthService {
-  private users_list: AngularFirestoreCollection<any>;
+  public users_list: AngularFirestoreCollection<any>;
   private _user;
-  private users_details: USER[];
+  public users_details: USER[];
   public current_user: USER;
   public isLogin: boolean = false;
+
+
+
+  private itemsCollection: AngularFirestoreCollection<any>;
+  items: Observable<any[]>;
+  countItems = 0;
+
 
   constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore, public router: Router) {
     this.current_user = new USER;
@@ -36,7 +43,24 @@ export class AuthService {
     this.users_list.valueChanges().subscribe(res => {
       this.users_details = res;
     });
-  }
+
+//***************/
+
+        this.itemsCollection = this.afs.collection<any>('USERS');
+        this.items = this.itemsCollection.snapshotChanges()
+            .map(actions => {
+                this.countItems = actions.length;
+                return actions.map(action => ({ $key: action.payload.doc.id, ...action.payload.doc.data() }));
+            });
+console.log(this.items);
+
+
+
+    
+   
+}
+
+
 
   public exist_user(email: string) {
 
@@ -109,6 +133,13 @@ export class AuthService {
     return this._user ? this._user.displayName : "guest";
   }
 
+
+
+
+
+
+
+  
   logout() {
     this.afAuth.auth.signOut();
   }

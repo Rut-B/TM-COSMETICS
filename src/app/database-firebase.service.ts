@@ -142,7 +142,8 @@ public managerPhone:number;
       price:this.price,
       // supplier:this.supplier,
       pic:url
-    }  
+    } 
+    
     this.prodRef.add(item).then(res=>{
     })
 }
@@ -171,6 +172,8 @@ addTreatment(){
     }
     this.customerRef.add(cons).then(res=>{
 })
+
+
 }
 // addCosmetician(){
 //     // this.treatmentPossibleCosmetician.push(this.cosmeticianId);
