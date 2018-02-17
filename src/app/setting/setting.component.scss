@@ -40,3 +40,125 @@ font-weight: bold;
    border-style:double;
    background-color: #CC2572;
 }
+
+
+.title{
+    color: rgb(217,28,  92);
+    text-align: center;
+    width: 100%;
+    font-family: Copperplate Gothic Light;
+    font-size: 2vw;
+    color: rgb(217,28,  92);
+}  
+ h2{
+   color:rgb(217,28,  92);
+   
+
+} 
+.mat-input-element {
+    color: white;
+}
+.mat-input-element{
+    color: white;
+}
+
+#main{
+    margin-top:3%;
+    max-width: 98%;
+    width:98%;  
+    min-width: 240px; 
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    color:rgb(217,28,  92);
+    font-family: 'Yantramanav', sans-serif;
+    text-align: center;
+    
+ }
+
+
+
+#txt{
+    margin-top:2%;
+   
+  
+    font-size: 1.17em;
+    font-weight: bold;
+   
+}
+
+/*
+#add_new_card{
+    height: 15vh;
+    margin-top:1.5%;
+    width: 97%;
+    align-content: center;
+   //border-style:double;
+   background-color: #CC2572;
+}
+*/
+.wel{
+    color: rgb(217,28,  92);
+
+}
+
+
+.box{
+   margin-top:3%;
+    height: 220px;
+    width: 10%; 
+   // float: left;
+    min-width: 200px; 
+   margin-right: auto;
+   margin-left: auto;
+}
+input{
+    &:focus {outline:0;}
+    margin-bottom: 1vh;
+    display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid;
+        border-width: 0.5px;
+        border-top: none;
+        border-left: none;
+        border-right: none;    
+        border-bottom-color: rgb(217,28,  92);
+        text-align: center;
+}
+
+button {
+    color:rgb(230, 230, 230);
+    background-color:rgb(217,28,  92);
+    border-color: rgb(217,28,  92);
+    border-width: 0.5px;
+    margin-left: 12%;
+    margin-top: 2px;
+    width:160px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor:pointer;
+} 
+    button:hover{
+        color:rgb(217,28,  92);
+        background-color:rgb(230, 230, 230);
+        border: solid;
+        border-color: rgb(217,28,  92);
+        border-width: 0.5px;
+        cursor:pointer;  
+    }
+.li{
+    font-family: 'Yantramanav', sans-serif;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    background-color: #f2f2f2 ;
+    color: rgb(217,28,  92);
+    text-decoration: none;
+}
+
+#current_email{
+    color: black;
+    float:inherit;
+    }
