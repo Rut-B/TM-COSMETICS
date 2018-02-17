@@ -123,7 +123,7 @@ export class CalendarComponent implements OnInit {
     date=this.format(date);
     var d1=date+" 10:30:00";
     var d2=date+" 13:00:00";
-    this.viewDate = new Date();
+  //  this.viewDate = new Date();
     let event: CalendarEvent = {
       start:new Date(d1),
       end:new Date(d2),
@@ -166,7 +166,8 @@ public iterate(){
   var cc=document.getElementsByClassName("cal-cell");
   var cmonth=this.viewDate.getMonth();
   var cyear=this.viewDate.getFullYear();
-  var daysInMonth=new Date(cyear, cmonth, 0).getDate();
+  var daysInMonth=new Date(cyear, cmonth+1, 0).getDate();
+ 
   for(var i=7;i<38;i++){
     if(cc[i].getElementsByTagName("span")[1]!=null){
       if(cc[i].getElementsByTagName("span")[1].innerText=="1"){
@@ -182,42 +183,50 @@ public iterate(){
   var t=i;
   var l=0; 
   var tt=[]; 
-for(i;i<=t+daysInMonth;i++){ 
+  var p=[];
+for(i;i<t+daysInMonth-dontDays.length;i++){ 
    for(var j=0;j<this.mySpecDays.length;j++){//run on specific days
-    //tt.push(j);
      var curr=new Date(this.mySpecDays[j].date);//the day
      if(curr.getFullYear()==cyear&&curr.getMonth()==cmonth){//if in current month
        var cday=curr.getDate().toString();
       if(cc[i].getElementsByTagName("span")[1]!=null){ 
-        tt.push(curr+" "+i);
         if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
        //tt.push(cc[i].getElementsByTagName("span")[1].innerText+" iii "+i)
-       
+       p.push(" 1 "+i+" "+cday);
         dontDays[l]=cday;
         l++; 
-       //tt.push(cday+" "+j);
       this.available=this.scheduleTime(curr,10);
       //tt.push("11!!"+this.available+" "+cday);
         if(this.available!=null){
-        cc[i].className="a";
         this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
-        // i--;
-        } 
-      
+        cc[i].className="a";
+        j=-1;
+       // i--;
+        }
+            else {
+              cc[i].className="b";j=-1;//i--;
+          } 
+          p.push(" 11 "+i);
       }
      }
      else{
        if(cc[i].getElementsByTagName("span")[0].innerText==cday){
       // tt.push(cday+" "+j);
-        dontDays[l]=cday;
+        dontDays[l]="!! "+cday;
         l++;
        this.available=this.scheduleTime(curr,10);
+       p.push(" 2 "+i+" "+cday);
       //tt.push("22!!"+this.available+" "+cday+" "+i);
         if(this.available!=null){
+          this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
         cc[i].className="a";
-        // i--;
-        this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
+       //i--;
+       j=-1;
         }
+        else{ 
+          cc[i].className="b";j=-1;//i--;
+        }
+        p.push(" 22 "+i);
       
      }   
     }
@@ -227,13 +236,16 @@ for(i;i<=t+daysInMonth;i++){
    if(this.mySpecDays.length==dontDays.length){
      break;
    }
- }
+ }//end i
+ console.log(p);
+
  var cc=document.getElementsByClassName("cal-cell");
  var n; 
  var s=[];
  n=0;
  var m;
- for( i=0,m=0;m<=daysInMonth-dontDays.length;m++,i++){
+ console.log("dd"+dontDays);
+ for( i=0,m=0;m<daysInMonth-dontDays.length;m++,i++){
    if(cc[(i+t)].getElementsByTagName("span")[1]!=null){
     n=cc[(i+t)].getElementsByTagName("span")[1].innerText;
   }
@@ -249,10 +261,12 @@ for(i;i<=t+daysInMonth;i++){
     ////console.log(this.check(d.getDay())+","+now+" "+i);
   
     this.available=this.scheduleTime(d,10);
-    s.push (d+ " "+this.available);
+    s.push ("m"+m+" "+d+ " "+this.available);
     //tt.push("22!!"+this.available+" "+cday+" "+i);
+    cc[(i+t)].className="a2";
+       i--;
       if(this.available!=null){
-        cc[(i+t)].className="a2";
+       cc[(i+t)].className="a2";
         i--;
          break;
       }
@@ -261,7 +275,7 @@ for(i;i<=t+daysInMonth;i++){
   }//end k
 }//end cc
 
-console.log(/*s*/tt);
+console.log(tt);
 }
  public check(i){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
