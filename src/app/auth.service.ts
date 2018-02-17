@@ -24,19 +24,27 @@ export  class USER {
 
 @Injectable()
 export class AuthService {
-  private users_list: AngularFirestoreCollection<any>;
+  public users_list: AngularFirestoreCollection<any>;
   private _user;
-  private users_details: USER[];
+  public users_details: USER[];
   public current_user: USER;
   public isLogin: boolean = false;
+
+
+
 
   constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore, public router: Router) {
     this.current_user = new USER;
     this.users_list = this.afs.collection("USERS");
+    
     this.users_list.valueChanges().subscribe(res => {
       this.users_details = res;
     });
-  }
+
+   
+}
+
+
 
   public exist_user(email: string) {
 
@@ -58,6 +66,19 @@ export class AuthService {
     return false;
   }
 
+
+  public exist_user_no_change(email: string) {
+    
+        for (let i = 0; i < this.users_details.length; i++) {
+          if ((this.users_details[i].email == email)) {
+            //if exist create public user         
+            return true;
+          }
+    
+        }
+        return false;
+      }
+    
 
   public loginWithGoogle() {
     return new Promise((res, rej) => {
@@ -109,6 +130,13 @@ export class AuthService {
     return this._user ? this._user.displayName : "guest";
   }
 
+
+
+
+
+
+
+  
   logout() {
     this.afAuth.auth.signOut();
   }
