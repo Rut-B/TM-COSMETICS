@@ -32,31 +32,15 @@ export class AuthService {
 
 
 
-  private itemsCollection: AngularFirestoreCollection<any>;
-  items: Observable<any[]>;
-  countItems = 0;
-
 
   constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore, public router: Router) {
     this.current_user = new USER;
     this.users_list = this.afs.collection("USERS");
+    
     this.users_list.valueChanges().subscribe(res => {
       this.users_details = res;
     });
 
-//***************/
-
-        this.itemsCollection = this.afs.collection<any>('USERS');
-        this.items = this.itemsCollection.snapshotChanges()
-            .map(actions => {
-                this.countItems = actions.length;
-                return actions.map(action => ({ $key: action.payload.doc.id, ...action.payload.doc.data() }));
-            });
-console.log(this.items);
-
-
-
-    
    
 }
 
@@ -82,6 +66,19 @@ console.log(this.items);
     return false;
   }
 
+
+  public exist_user_no_change(email: string) {
+    
+        for (let i = 0; i < this.users_details.length; i++) {
+          if ((this.users_details[i].email == email)) {
+            //if exist create public user         
+            return true;
+          }
+    
+        }
+        return false;
+      }
+    
 
   public loginWithGoogle() {
     return new Promise((res, rej) => {

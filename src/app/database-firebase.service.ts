@@ -160,6 +160,8 @@ addTreatment(){
     });
 }
   addCustomer() {
+
+
     this.appointmentCustomer.push(this.customerId);
     console.log(this.appointmentCustomer);
     let cons = {
@@ -170,10 +172,20 @@ addTreatment(){
       address: this.customerAddress,
       is_customer: true
     }
-    this.customerRef.add(cons).then(res=>{
-})
 
+    if(this.auth.exist_user_no_change(this.customerId))
+    {
 
+      return;
+    }
+  /*  let i=this.customerRef.add(cons).then(res=>{
+     })*/
+     
+     this.customerRef.doc(this.customerId).set(cons).then(res=>{
+    });
+  
+
+//var setDoc =this.customerRef.doc('rut').set(cons);//to set RUT!!
 }
 // addCosmetician(){
 //     // this.treatmentPossibleCosmetician.push(this.cosmeticianId);
