@@ -14,21 +14,20 @@ constructor(private auth:AuthService)
   if (auth.current_user.is_customer)
   {
     this.navItems=[
-      new NavItem("settings","settings",'/assets/6.png'),
-      new NavItem("information","information",'/assets/2.png'),
-      new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","calendar",'/assets/4.png'),
+      new NavItem("store","store",'/assets/3.png'),
+      new NavItem("information","information",'/assets/2.png'),
       new NavItem("profile","profile",'/assets/5.png'),
-     
+      new NavItem("settings","settings",'/assets/6.png'),
     ]
   }
   else
   {
     this.navItems=[
-      new NavItem("settings","cosmetician-settings",'/assets/6.png'),
-      new NavItem("information","cosmetician-products",'/assets/2.png'),
+      new NavItem("calendar","cosmetician-calendar",'/assets/4.png'),
       new NavItem("store","store",'/assets/3.png'),
-      new NavItem("calendar","cosmetician-calendar",'/assets/4.png')
+      new NavItem("information","cosmetician-products",'/assets/2.png'),
+      new NavItem("settings","cosmetician-settings",'/assets/6.png'),
     ]
   }
 }
@@ -39,21 +38,22 @@ constructor(private auth:AuthService)
  if (this.auth.current_user.is_customer)
   {
     this.navItems=[
-      new NavItem("settings","settings",'/assets/6.png'),
-      new NavItem("information","information",'/assets/2.png'),
-      new NavItem("store","store",'/assets/3.png'),
       new NavItem("calendar","calendar",'/assets/4.png'),
+      new NavItem("store","store",'/assets/3.png'),
+      new NavItem("information","information",'/assets/2.png'),
       new NavItem("profile","profile",'/assets/5.png'),
-      new NavItem("instagram","instagram",'/assets/ins.png'),
+      new NavItem("settings","settings",'/assets/6.png'),
+     
     ]
   }
   else
   {
     this.navItems=[
-      new NavItem("settings","cosmetician-settings",'/assets/6.png'),
-      new NavItem("information","cosmetician-products",'/assets/2.png'),
+      new NavItem("calendar","cosmetician-calendar",'/assets/4.png'),
       new NavItem("store","store",'/assets/3.png'),
-      new NavItem("calendar","cosmetician-calendar",'/assets/4.png')
+      new NavItem("information","cosmetician-products",'/assets/2.png'),
+      new NavItem("settings","cosmetician-settings",'/assets/6.png'),
+      
     ]
   }
 

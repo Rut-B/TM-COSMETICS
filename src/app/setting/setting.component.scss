@@ -27,10 +27,12 @@
     width:97%;
 }
 button {
+    &:focus {outline:0;}
 color:#CC2572;
 background-color:white;
 font-size:1vw;
 font-weight: bold;
+
 } 
 #setting_page{
     height:38vh;

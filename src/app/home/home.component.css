@@ -20,7 +20,8 @@
   }
   .menu {
     float:left;
-    width:400px;
+    width:320px;
+   
   }
   .menuitem {
     padding:8px;
@@ -31,21 +32,21 @@
     float:left;
     width:60%;
     height: 80%;
-    padding:0 200px;
+    /*padding:0 200px;*/
     background-image: url('/assets/main.png');
     background-size: 100%;
-    
+  
     /* background-color:rgb(27, 147, 184); */
   }
   
   img{
-     margin-top:5%;
+    margin-top:5%;
     float:left;
-    width:25%;
+    width:30%;
     height: 60%;
-    min-width:400px;
-   
-    margin-left: 20%;
+    /*min-width:300px;*/
+   /* margin-right: 50%; */
+    margin-left: 20vw;
     
   }
  .right {
@@ -60,7 +61,7 @@
     /* For tablets: */
     .menu {
         float:left;
-        width:250px;
+        width:320px;
       }
     img{
         margin-top:5%;
@@ -69,7 +70,7 @@
         height: 60%;
         min-width:300px;
        margin-top:22%;
-        margin-left: 17%;
+        margin-left: 5%;
     }
     .main {
       width:80%;
@@ -82,7 +83,7 @@
     /* For mobile phones: */
     .menu {
         float:left;
-        width:300px;
+        width:320px;
       }
     .menu, .main , .right{ 
       width:100%;

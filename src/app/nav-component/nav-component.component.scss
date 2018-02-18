@@ -4,7 +4,7 @@
     margin-top: 15%;
 }
 .btn_h{
-       &:focus {outline:0;}
+    &:focus {outline:0;}
     &:hover{ 
         cursor: pointer;
         margin-left: -45%;
@@ -15,30 +15,39 @@
     transition-duration: 0.3s;
     float:left;
     margin-top:3%;
-    margin-left: -48%;
-    width: 110%;
+    margin-left: -50%;
+    width: 140%;
     min-width: 100px;
-    height: 9.5vh;
-    min-height: 72px;
+    height:10vh;
+    min-height: 78px;
     background-repeat: no-repeat;
     background-image: url('/assets/1.png');
     background-size: 100%;
  }
 
 
- @media only screen and (max-width:500px) {
-    /* For mobile phones: */
-    .btn_h{ 
-        width: 110%;
-
-        margin-left: -40%;
+//  @media only screen and (max-width:500px) {
+//     /* For mobile phones: */
+//     .btn_h{ 
+//         &:hover{ 
+//             cursor: pointer;
+//             margin-left: -45%;
+           
+//             }
+//             margin-top:1%;
+//         width: 20%;
+//         min-width: 30px;
+//         height: 5vh;
+//         min-height: 80px;
+//         margin-left: -40%;
+//         background-size: 100%;
      
-    }
+//     }
     
-  }
-  @media only screen and (max-width:800px) {
-    /* For tablets: */
-    .btn_h{
-        width: 150%;
-    }
-  }
+//   }
+//   @media only screen and (max-width:800px) {
+//     /* For tablets: */
+//     .btn_h{
+//         width: 150%;
+//     }
+//   }

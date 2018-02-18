@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseFirebaseService } from '../database-firebase.service';
 import { Router } from "@angular/router";
-import{AuthService} from '../auth.service';
+import { AuthService} from '../auth.service';
 import { NavService}from '../nav.service'
 @Component({
   selector: 'app-add-new',
