@@ -6,6 +6,7 @@ import { AngularFirestoreDocument,AngularFirestoreCollection} from 'angularfire2
 import { query } from '@angular/core/src/animation/dsl';
 import {DataService} from '../data.service';
 import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
+import {AuthService } from '../auth.service'
 
 /*export class appointment{
   event:CalendarEvent;
@@ -13,9 +14,9 @@ import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module'
   treatment:string;
 }*/
 export class appoi{
-  cosmeticianName:string;//Rut added according DB
+ //cosmeticianName:string;//Rut added according DB
   email: string;//replace to Email
-  type:string;
+  type:any[];
   start:Date;
   end:Date;
 }
@@ -54,7 +55,8 @@ export class CalendarComponent implements OnInit {
     private myAppCol:AngularFirestoreCollection<any>;
     private mySpeDays:AngularFirestoreCollection<any>;
     private mySettDays:AngularFirestoreCollection<any>;
-      constructor(private afs: AngularFirestore ,private dataService:DataService) {
+
+      constructor(private afs: AngularFirestore ,private dataService:DataService ,public auth:AuthService) {
        //this.itemDoc =this.afs.doc("events/1"); 
        this.col=this.afs.collection("events"); 
        this.viewDate = new Date();  
@@ -83,23 +85,52 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(){
      this.choice=null;
+     var t=new Date();
     this.chosen =1;
     var s=document.getElementById("hide");
     this.c=s.className;
     s.className="n";
-    this.pop=true;
-   this.turns.push("10:00");
-   this.turns.push("12:00");
-
-   
+    this.pop=true; 
+      var a=[];
+      this.turns=[];
+     a=this.scheduleTime(this.clickedDate,this.dataService.totalDuration)
+    a.forEach(el=>{
+    for(var i=el.start;i<el.end;){
+       t.setTime(i.getTime()+this.dataService.totalDuration*60000);
+      if(t.getTime()<=el.end.getTime()){
+        console.log(i+" "+t);
+      this.turns.push(this.getNiceTime(i)+" - "+this.getNiceTime(t));
+      i.setTime(i.getTime()+this.dataService.totalDuration*60000);
+      }
+      else 
+     break;
+    }
+    }   
+    ) ;
+ 
  // this.addEvent(this.clickedDate);
   //let yu=this.getAvailability(new Date("01.19.2018"));
   //console.log(yu);
   //alert(this.dataService.totalDuration)
   //alert(this.dataService.selected_treatments);
   }
+  getNiceTime(i){
+    var a=i.getHours();
+    if(a<10)
+    a='0'+a;
+    var b=i.getMinutes();
+    if(b<10)
+    b='0'+b;
+
+return(a+":"+b);
+  }
  see(){
     alert(this.choice);
+    var res=this.choice.split(" - ");
+    res[0]=res[0]+":00";
+    res[1]=res[1]+":00";
+   // console.log(res);
+   this.addEvent(this.clickedDate,res[0],res[1]);
   } 
   closeM(){ 
     var s=document.getElementById("hide");
@@ -107,20 +138,14 @@ export class CalendarComponent implements OnInit {
     this.pop=false;
   }
   
-  addEvent(date){
-<<<<<<< HEAD
+  addEvent(date,startTime,endTime){
     date=this.format(date);
-    var d1=date+" 10:30:00";
-    var d2=date+" 13:00:00";
+    var d1=date+" "+startTime;
+    var d2=date+" "+endTime;
   //  this.viewDate = new Date();
-=======
-     date=this.format(date);
-     date=date+" 10:30:00";
-    this.viewDate = new Date();
->>>>>>> 3141ea79164e3b9a5a3fa7f32117b88f04c974f7
     let event: CalendarEvent = {
-      start:new Date(date),
-      // end: new Date(),
+      start:new Date(d1),
+       end: new Date(d2),
        title: "appointment",
        color: {
          primary: "#00FF00",
@@ -128,6 +153,15 @@ export class CalendarComponent implements OnInit {
        }   
      };  
     this.col.add(event).then(res => {
+    })
+    let appoint: appoi={
+       email:this.auth.current_user.email,
+       start:new Date(d1),
+       end:new Date(d2),
+       type:this.dataService.selected_treatments
+    } ;
+    this.myAppCol.add(appoint).then(res=>{
+
     })
   }
 
@@ -176,43 +210,31 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
        var cday=curr.getDate().toString();
       if(cc[i].getElementsByTagName("span")[1]!=null){ 
         if(cc[i].getElementsByTagName("span")[1].innerText==cday){//if in current day
-       //tt.push(cc[i].getElementsByTagName("span")[1].innerText+" iii "+i)
        p.push(" 1 "+i+" "+cday);
         dontDays[l]=cday;
         l++; 
-      this.available=this.scheduleTime(curr,10);
-      //tt.push("11!!"+this.available+" "+cday);
+      this.available=this.scheduleTime(curr,this.dataService.totalDuration);
         if(this.available!=null){
-<<<<<<< HEAD
         this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
         cc[i].className="a";
         j=-1;
-       // i--;
         }
             else {
-              cc[i].className="b";j=-1;//i--;
+              cc[i].className="b";
+              j=-1;
           } 
           p.push(" 11 "+i);
-=======
-        cc[i].className="a";
-        // i--;
-        }  
->>>>>>> 3141ea79164e3b9a5a3fa7f32117b88f04c974f7
       }
      }
      else{
        if(cc[i].getElementsByTagName("span")[0].innerText==cday){
-      // tt.push(cday+" "+j);
         dontDays[l]="!! "+cday;
         l++;
-       this.available=this.scheduleTime(curr,10);
+       this.available=this.scheduleTime(curr,this.dataService.totalDuration);
        p.push(" 2 "+i+" "+cday);
-      //tt.push("22!!"+this.available+" "+cday+" "+i);
         if(this.available!=null){
-          this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
+       this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
         cc[i].className="a";
-<<<<<<< HEAD
-       //i--;
        j=-1;
         }
         else{ 
@@ -220,10 +242,6 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
         }
         p.push(" 22 "+i);
       
-=======
-        // i--;
-        }
->>>>>>> 3141ea79164e3b9a5a3fa7f32117b88f04c974f7
      }   
     }
    }
@@ -233,7 +251,7 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
      break;
    }
  }//end i
- console.log(p);
+// console.log(p);
 
  var cc=document.getElementsByClassName("cal-cell");
  var n; 
@@ -248,34 +266,26 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
   else{
    n=cc[(i+t)].getElementsByTagName("span")[0].innerText;
   }  
- // s.push(i+" "+n+"bb ");
+
   var d=new Date(cyear,cmonth,n); 
   for(var k=0;k<this.myDays.length;k++){ 
-    //s.push(i+" "+k+" "+n);  
     var now=this.myDays[k].date;  
    if(this.check(d.getDay())==now){
-    ////console.log(this.check(d.getDay())+","+now+" "+i);
-  
-    this.available=this.scheduleTime(d,10);
+    this.available=this.scheduleTime(d,this.dataService.totalDuration);
     s.push ("m"+m+" "+d+ " "+this.available);
-    //tt.push("22!!"+this.available+" "+cday+" "+i);
-    cc[(i+t)].className="a2";
-       i--;
+   //tt.push("22!!"+this.available+" "+n+" "+i);
+    
       if(this.available!=null){
+        this.available.forEach(el=>tt.push(n+" "+el.start+" "+el.end)) ;
        cc[(i+t)].className="a2";
         i--;
          break;
       }
-   // alert(this.check(d.getDay())+" "+i);
    }
   }//end k
 }//end cc
 
-<<<<<<< HEAD
 console.log(tt);
-=======
-console.log(s);
->>>>>>> 3141ea79164e3b9a5a3fa7f32117b88f04c974f7
 }
  public check(i){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
