@@ -17,28 +17,28 @@ h2{
     text-align: center;
       margin-top: 10%;    
  } 
-button {
-color:rgb(255, 238, 251);
-background-color:#CC2572;
-border-color: #CC2572;
-border-width: 0.5px;
-margin-left: 12%;
-margin-top: 2px;
-width:160px;
-display: block;
-margin-left: auto;
-margin-right: auto;
-cursor:pointer;
-} 
-button:hover{
-    color:#CC2572;
-    background-color:rgb(255, 238, 251);
-    border: solid;
-    border-color: #CC2572;
+ button {
+    &:focus {outline:0;}
+    color:rgb(230, 230, 230);
+    background-color:rgb(217,28,  92);
+    border-color: rgb(217,28,  92);
     border-width: 0.5px;
+    margin-left: 12%;
+    margin-top: 2px;
+    width:160px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     cursor:pointer;
-    
-}
+} 
+    button:hover{
+        color:rgb(217,28,  92);
+        background-color:rgb(230, 230, 230);
+        border: solid;
+        border-color: rgb(217,28,  92);
+        border-width: 0.5px;
+        cursor:pointer;  
+    }
 #main{
    max-width: 98%;
    width: 51vw;  
@@ -54,8 +54,8 @@ button:hover{
     height: 280px;
     width: 14vw;  
     min-width: 230px; 
-    background-color: rgb(255, 221, 237);
-    box-shadow: 0px 0px 1px 1px #CC2572;
+   
+    box-shadow: 0px 0px 1px 2px rgb(230, 230, 230);
     float: left;
     display: inline;
     margin-right:1vw;
@@ -66,21 +66,21 @@ button:hover{
 #main input{
     &:focus {outline:0;}
     margin-bottom: 1vh;
-display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border: solid;
-    border-width: 0.5px;
-    border-top: none;
-    border-left: none;
-    border-right: none;    
-    border-bottom-color: #CC2572;
-    text-align: center;
+    display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid;
+        border-width: 0.5px;
+        border-top: none;
+        border-left: none;
+        border-right: none;    
+        border-bottom-color: rgb(217,28,  92);
+        text-align: center;
     
 }
 
 input::placeholder {
-    color:#CC2572 ;
+    
     opacity: 0.7;
   }
 

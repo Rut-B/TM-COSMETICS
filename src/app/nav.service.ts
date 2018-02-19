@@ -43,7 +43,6 @@ constructor(private auth:AuthService)
       new NavItem("information","information",'/assets/2.png'),
       new NavItem("profile","profile",'/assets/5.png'),
       new NavItem("settings","settings",'/assets/6.png'),
-     
     ]
   }
   else
