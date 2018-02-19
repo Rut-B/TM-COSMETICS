@@ -129,6 +129,7 @@ input{
 }
 
 button {
+    &:focus {outline:0;}
     color:rgb(230, 230, 230);
     background-color:rgb(217,28,  92);
     border-color: rgb(217,28,  92);

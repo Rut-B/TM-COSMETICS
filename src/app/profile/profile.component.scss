@@ -1,0 +1,82 @@
+.title{
+    color: rgb(217,28,  92);
+    text-align: center;
+    width: 100%;
+    /* font-family: Copperplate Gothic Light; */
+    font-size: 2vw;
+}
+.in{
+    font-weight: initial;
+    font-family: 'Yantramanav', sans-serif;
+    width: 98%;
+    
+    margin-top: 1%;
+    margin-left:1;
+   
+  } 
+#disp{
+    color: rgb(217,28,  92);
+    text-align:center;
+    /* font-family:"Comic Sans MS", cursive, sans-serif; */
+    font-size: 1vw;
+    font-weight: bold;
+    margin-top:3vh;
+}
+a{
+    font-size: 1.3vw;
+    margin-right:4vw;
+}
+button{ 
+    margin-top:4vh;
+   margin-left:43%;
+    color:rgb(217,28,  92); 
+    font-size:20px;
+
+}
+#a1{  
+    font-size: 1.5vw;
+    margin-left:7vw;
+    /* font-family: Copperplate Gothic Light; */
+  
+}
+#load{
+width:20vw; 
+ height:30vh;
+margin-left:40vw;
+margin-top:3vw; 
+  /* background-color: rgb(250, 241, 245); */
+} 
+.spin{
+     margin-top:4vw;
+   margin-left: 6vw;
+}
+#he{
+    font-size: 2vw; 
+    font-weight: bold;
+    color:rgb(217,28,  92);
+}
+button {
+    &:focus {outline:0;}
+    color:#f2f2f2;
+    background-color:rgb(217,28,  92);
+    border: none;
+    // border-color: rgb(217,28,  92);
+    // border-width: 0.5px;
+    margin-left: 12%;
+    margin-top: 2px;
+    width:220px;
+    height: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor:pointer;
+} 
+    button:hover{
+        color:rgb(217,28,  92);
+        background-color:#f2f2f2;
+        // border: solid;
+        // border-color: rgb(217,28,  92);
+        // border-width: 0.5px;
+        cursor:pointer;  
+    }
+
