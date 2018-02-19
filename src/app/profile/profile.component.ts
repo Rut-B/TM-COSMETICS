@@ -15,9 +15,9 @@ import { DatabaseFirebaseService } from '../database-firebase.service';
 import {AuthService } from '../auth.service'
 
 export interface event{
-   userName: string;
-   cosmeticianName:string;
-   type:string;
+  // userName: string;
+  email:string;
+   type:any[];
    start:Date;
    end:Date;
  }
@@ -45,12 +45,7 @@ constructor(private afs: AngularFirestore, public auth:AuthService) {
   this.myAppointmentsRef = this.afs.collection("myApointments"); 
   let res=this.myAppointmentsRef.valueChanges().subscribe(res=>{
     console.log(res);
-    /*this.ELEMENT_DATA=res;
-    var table_curr=document.getElementById("content");
-    table_curr.innerHTML='';
-    for (let i=0;i<this.ELEMENT_DATA.length;i++){
-      this.createTuple(i);
-    }*/
+
   });
   this.col=this.afs.collection<event>("myApointments"); 
   this.col.valueChanges(). subscribe(res=>{
@@ -58,10 +53,10 @@ constructor(private afs: AngularFirestore, public auth:AuthService) {
     });
   }
   b()
-  { 
+  { //alert(this.auth.current_user.email);
      this.myAppointments=[]; 
      for(var i=0,j=0;i<this.appointments.length;i++){
-       if(this.appointments[i].userName==this.auth.current_user.email){
+       if(this.appointments[i].email==this.auth.current_user.email){
         this.myAppointments[j]=this.appointments[i];
         j++;
        }
