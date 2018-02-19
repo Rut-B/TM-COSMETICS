@@ -33,7 +33,12 @@
         </div>
    
     </mat-card>-->
+<script>
 
+function save_new_settings(){
+
+alert(i);}
+</script>
     <a  class="li" [routerLink]="['/home']">back</a>
     <div id="main">
             
@@ -52,7 +57,7 @@
               <label> your mail : </label>
               <label id="current_email" >  {{auth.current_user.email}} </label>
               <label> your first name : </label>
-              <input id="new_first_name" #abc type="text "  value={{auth.current_user.first_name}} >
+              <input id="new_first_name"  type="text "  value={{auth.current_user.first_name}} >
               <label> your last name : </label>
               <input id="new_last_name" type="text"  value={{auth.current_user.last_name}} >
               <label> your phone : </label>
