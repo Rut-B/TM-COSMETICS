@@ -37,13 +37,40 @@
       color:#CC2572;
       margin: 12%;
     }
-    button
+   /* button
     {
-      margin: 3%;
-    }
+    //  margin: 3%;
+    }*/
     img
     {
       width: 20%;
       height: 20%;
       margin: 3%;
+    }
+    /*.day{
+      height: 20%; 
+      width: 30%;
+      background-color:#CC2572; 
+    }*/
+    #day
+    {
+      font-size: 2vw;
+      position:absolute ;
+      left: 25%;
+      top: 22%;
+      height: 7vh; 
+      width: 17vw;
+      background-color: #d91c5c; 
+      color: #f1f2f2;
+    }
+    #user
+    {
+      font-size: 2vw;
+      position:absolute ;
+      left: 45%;
+      top: 22%;
+      height: 7vh; 
+      width: 17vw;
+      background-color: #d91c5c; 
+      color: #f1f2f2;
     }
