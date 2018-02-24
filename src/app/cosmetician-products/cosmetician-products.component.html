@@ -1,11 +1,12 @@
 
-<mat-card id="load"*ngIf="appointments==null">
-        <a id="he" class="spin">loading</a>
+<div id="load"*ngIf="appointments==null">
+        <a id="he" class="spin"></a>
        <mat-spinner class="spin" >
        </mat-spinner>
-       </mat-card>
-<button *ngIf="appointments!=null" (click)="a()">view all Days</button>
-<div id="allDays" >
+    </div>
+<button id="day"*ngIf="appointments!=null" (click)="a()">view all Days</button>
+<button id="user"*ngIf="users!=null" (click)="b()">view all users</button>
+<div id="allDays" >Days:
 <div  *ngFor="let appoi of appointments">
     <p  >
     <a>{{ appoi.date}}</a><br/>
@@ -14,11 +15,11 @@
     </p>
 </div>
 </div>
-<button *ngIf="users!=null" (click)="b()">view all users</button>
-<div id="allUsers" >
+
+<div id="allUsers" >Users:
 <div *ngFor="let appoi of myUsers">
     <p  >
-  <img src="{{ picture}}" class="photos" />
+ <!-- <img src="{{ picture}}" class="photos" /><br/>-->
     <a>name:{{ appoi.first_name}}</a><br/>
     <a>last name:{{ appoi.last_name}}</a><br/>
     <a>email:{{ appoi.email}}</a><br/>

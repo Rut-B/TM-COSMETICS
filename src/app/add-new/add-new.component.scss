@@ -6,6 +6,7 @@
     font-size: 2vw;
     color: rgb(217,28,  92);
 }  
+
  h2{
    color:rgb(217,28,  92);
    
@@ -84,6 +85,7 @@ input{
 }
 
 button {
+    &:focus {outline:0;}
     color:rgb(230, 230, 230);
     background-color:rgb(217,28,  92);
     border-color: rgb(217,28,  92);
@@ -108,7 +110,7 @@ button {
     font-family: 'Yantramanav', sans-serif;
     float: right;
     margin-top: 5px;
-    margin-right: 5px;
+    margin-right: 25px;
     background-color: #f2f2f2 ;
     color: rgb(217,28,  92);
     text-decoration: none;

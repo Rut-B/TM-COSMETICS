@@ -387,7 +387,12 @@ addOtherDate()
  this.settingDayRef=this.afs.collection("Setting Days");
  
 }
+<<<<<<< HEAD
+}
+getTurnByCosmetician()
+=======
 /*getTurnByCosmetician()
+>>>>>>> 3008c345b2c35eabf834f08df08ad90e2007cd74
 {
   this.myAppointments=[];
   for(var i=0,j=0;i<this.appointments.length;i++){

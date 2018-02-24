@@ -1,24 +1,21 @@
 <body id="body">
   <header id="header">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="bglogo">
-    <div id="logo" [routerLink]="['/home']" style="cursor:pointer"></div>
- </div>
-  </header> 
-   <router-outlet></router-outlet>
-<div class="ftr">
-   <div class="arr">© All rights reserved</div>
-<div class="socialIcons">
-<a href="https://www.facebook.com/" class="fa fa-facebook"></a>
-<a href="https://twitter.com/" class="fa fa-twitter"></a>
-<a href="https://www.google.co.il/" class="fa fa-google"></a>
-<a href="https://www.youtube.com/?hl=iw&gl=IL" class="fa fa-youtube"></a>
-<a href="https://www.instagram.com/" class="fa fa-instagram"></a>
-<a href="https://www.pinterest.com/" class="fa fa-pinterest"></a>
-</div>
-</div>
+      <div class="head" id="logo" [routerLink]="['/home']" style="cursor:pointer"></div>
+    </div>
+  </header>
+  <router-outlet class="inside"></router-outlet>
+  <div id="ftr" class="finality">
+    <div class="arr">© All rights reserved</div>
+    <div class="socialIcons">
+      <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+      <a href="https://twitter.com/" class="fa fa-twitter"></a>
+      <a href="https://www.google.co.il/" class="fa fa-google"></a>
+      <a href="https://www.youtube.com/?hl=iwgl=IL" class="fa fa-youtube"></a>
+      <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+      <a href="https://www.pinterest.com/" class="fa fa-pinterest"></a>
+    </div>
+  </div>
 </body>
-
-
-

@@ -1,8 +1,20 @@
 #head{
     background-color:lightgrey;
     border-radius:5px;  
-    height:5vh;
+    height:3.5vh;
+     font-weight: bolder;
+    font-family: 'Yantramanav', sans-serif;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+.in{
     font-weight: bolder;
+    font-family: 'Yantramanav', sans-serif;
+    width: 98%;
+    
+    margin-top: 1%;
+    margin-left:1;
+   
 } 
  #s{
 margin-left:2vw;

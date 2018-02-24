@@ -1,25 +1,27 @@
-<div class="title">profile</div>
+<div class="in">
+<!-- <div class="title">profile</div> -->
 <button *ngIf="appointments!=null" (click)="b()">view my appointments</button>
-<!--<button *ngIf="appointments!=null" (click)="getTurnByTime()">getTurnByTime</button> 
+<!--  <button *ngIf="appointments!=null" (click)="getTurnByTime()">getTurnByTime</button> 
 <input type="date" [(ngModel)]="choosedDate" />
 <button *ngIf="appointments!=null" (click)="getTurnByCosmetician()">getTurnByCosmetician</button>
 <input type="text" [(ngModel)]="CosmeticianName" placeholder="Cosmetician name" >-->
-<mat-card id="load"*ngIf="appointments==null">
-        <a id="he" class="spin">loading</a>
+<div id="load"*ngIf="appointments==null">
+        <a id="he" class="spin"></a>
        <mat-spinner class="spin" >
        </mat-spinner>
-       </mat-card>
+    </div>
 <div  id="disp" *ngFor="let appoi of myAppointments">
         <p>
-        <a id="a1">{{ appoi.type}} Appointment</a>
+        <a id="a1">{{ appoi.type}} Appointment </a>
         </p>
        <p>
-        <a>date:</a>{{appoi.start.getDate()}} / {{appoi.start.getMonth()}}
+        <a>date:</a>{{appoi.start.getDate()}} / {{appoi.start.getMonth()}} 
        </p>
         <p>
-               <a>start:</a>{{appoi.start.getHours()}}:{{appoi.start.getMinutes()}}
+               <a>start:</a>{{appoi.start.getHours()}}:{{appoi.start.getMinutes()}} 
         </p>
         <p>
-         <a>end:</a>{{appoi.end.getHours()}}:{{appoi.end.getMinutes()}}
+         <a>end:</a>{{appoi.end.getHours()}}:{{appoi.end.getMinutes()}} 
         </p>
     </div>
+</div>
