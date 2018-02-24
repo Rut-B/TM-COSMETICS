@@ -107,12 +107,6 @@ export class CalendarComponent implements OnInit {
     }
     }   
     ) ;
- 
- // this.addEvent(this.clickedDate);
-  //let yu=this.getAvailability(new Date("01.19.2018"));
-  //console.log(yu);
-  //alert(this.dataService.totalDuration)
-  //alert(this.dataService.selected_treatments);
   }
   getNiceTime(i){
     var a=i.getHours();
@@ -125,7 +119,6 @@ export class CalendarComponent implements OnInit {
 return(a+":"+b);
   }
  see(){
-    alert(this.choice);
     var res=this.choice.split(" - ");
     res[0]=res[0]+":00";
     res[1]=res[1]+":00";
@@ -146,7 +139,7 @@ return(a+":"+b);
     let event: CalendarEvent = {
       start:new Date(d1),
        end: new Date(d2),
-       title: "appointment",
+       title:this.dataService.selected_treatments.toString(), //"appointment",
        color: {
          primary: "#00FF00",
          secondary: "#afafaf"
@@ -215,7 +208,7 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
         l++; 
       this.available=this.scheduleTime(curr,this.dataService.totalDuration);
         if(this.available!=null){
-        this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
+     //   this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
         cc[i].className="a";
         j=-1;
         }
@@ -233,7 +226,7 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
        this.available=this.scheduleTime(curr,this.dataService.totalDuration);
        p.push(" 2 "+i+" "+cday);
         if(this.available!=null){
-       this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
+       //this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
         cc[i].className="a";
        j=-1;
         }
@@ -272,11 +265,11 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
     var now=this.myDays[k].date;  
    if(this.check(d.getDay())==now){
     this.available=this.scheduleTime(d,this.dataService.totalDuration);
-    s.push ("m"+m+" "+d+ " "+this.available);
-   //tt.push("22!!"+this.available+" "+n+" "+i);
+   // s.push ("m"+m+" "+d+ " "+this.available);
+     tt.push("22!!"+this.available+" "+n+" "+i);
     
       if(this.available!=null){
-        this.available.forEach(el=>tt.push(n+" "+el.start+" "+el.end)) ;
+      //  this.available.forEach(el=>tt.push(n+" "+el.start+" "+el.end)) ;
        cc[(i+t)].className="a2";
         i--;
          break;
