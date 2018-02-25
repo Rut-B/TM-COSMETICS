@@ -1,4 +1,5 @@
 
+<div class="in">
 <button (click)="iterate()" *ngIf="events && pop==false">iterate</button>
 <button mat-raised-button id="select" *ngIf="pop==true" (click)="myModal.open()" >select a time</button>
 
@@ -21,7 +22,7 @@
         Click on a day on the view.
         <strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
         </div>
-<mwl-calendar-month-view
+<mwl-calendar-month-view 
 *ngSwitchCase="'month'"
 [(viewDate)]="viewDate"
 [events]="events"
@@ -29,5 +30,5 @@
 </mwl-calendar-month-view>
 
 </div>
-
+</div>
 

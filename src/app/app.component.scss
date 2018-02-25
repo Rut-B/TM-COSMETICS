@@ -9,7 +9,7 @@
  }
  #header{
     width:100%;
-    
+    margin-left: -20px;
  }
  .bglogo{
      padding-top: 10px;
@@ -36,7 +36,9 @@
     
     // left: 37%;
  }
-
+.inside{
+    width: 20%;
+}
 
  #btn{
 
@@ -51,7 +53,8 @@ left: 8%;
     font-family: 'Yantramanav', sans-serif;
     color: #999999;
     float: left;
-    
+    margin-left: 20px;
+    margin-top: 15px;
     left: 10px;
     
 }
@@ -60,6 +63,7 @@ left: 8%;
 
     float: right;
     right: 10px;
+    margin-right: 35px;
 }
 
 
@@ -82,10 +86,12 @@ left: 8%;
     color: rgb(217,28,  92);
     
   }
- .ftr{
+ #ftr{
+     clear: both;
      width: 100%;
-     
-     position:fixed;
+     margin-right: 30px;
+   
+      position:fixed;
     bottom: 7px;
  }
  @media only screen and (max-width:500px) {
@@ -95,6 +101,9 @@ left: 8%;
    }
    .ftr{
        text-align: center;
+   }
+   .socialIcons{
+       position: inherit;
    }
     
   }

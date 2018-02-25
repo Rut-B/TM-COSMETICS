@@ -18,7 +18,7 @@ export class DetailsComponent {
   public treatmentRef;
   public treatmentDescription;
   public ELEMENT_DATA: Element[];
- // public selectedTreatments :string[]=[];
+  public selectedTreatments :string[]=[];
   public dataSource: MatTableDataSource < Element > ;
   message:string;
   constructor(private afs: AngularFirestore, public databaseFirebase: DatabaseFirebaseService,public router: Router, public dataService:DataService){
@@ -69,18 +69,21 @@ public createTuple(iter:number){
   if(iter%2==1){
     tuple.style.backgroundColor="white";
   }
+  else{
+    tuple.style.backgroundColor="rgb(236, 218, 232)";
+  }
   table1.appendChild(tuple);
 
 
 }
 public selectTreatment(event) {
-  let  selectedTreatments :string[]=[];
+this. selectedTreatments=[];
   let id_clicked=event.currentTarget.attributes.id.value;
   var tupleChecked=document.getElementById(id_clicked);
-  if(tupleChecked.style.backgroundColor!="grey"){
-     tupleChecked.style.backgroundColor="grey";
+  if(tupleChecked.style.backgroundColor!="gray"){
+     tupleChecked.style.backgroundColor="gray";
      let treat=tupleChecked.firstElementChild.innerHTML;
-     selectedTreatments[id_clicked]=treat;
+    this.selectedTreatments[id_clicked]=treat;
   }
   else{
     if (id_clicked%2==1){
@@ -94,11 +97,12 @@ public selectTreatment(event) {
   
 }
   public selectTime(){
+    this.dataService.selected_treatments=[];
     let tups=document.getElementsByClassName("tuple");
     let total_duration=0;
     for (let i=0;i<tups.length;i++){
       let tup_iter=document.getElementById(i.toString());
-      if(tup_iter.style.backgroundColor=="grey"){
+      if(tup_iter.style.backgroundColor=="gray"){
         this.dataService.selected_treatments.push(tups[i].firstElementChild.innerHTML);
         let dur=tup_iter.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
         if (dur.indexOf(" ")!=-1){
@@ -113,6 +117,8 @@ public selectTreatment(event) {
  // this.data.setTreatment(this.selectedTreatments);
     //alert(total_duration);
     //this.data.setDuration(total_duration);
+    this.selectedTreatments=[];
+    
     this.router.navigate(["calendar"]);
   }
   }

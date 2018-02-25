@@ -25,7 +25,7 @@ export interface event{
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 }) 
 
 export class ProfileComponent implements OnInit {
@@ -52,11 +52,14 @@ constructor(private afs: AngularFirestore, public auth:AuthService) {
       this.appointments=res;
     });
   }
+
   b()
   { //alert(this.auth.current_user.email);
      this.myAppointments=[]; 
      for(var i=0,j=0;i<this.appointments.length;i++){
        if(this.appointments[i].email==this.auth.current_user.email){
+        /* if(this.appointments[i].start.getMinutes()<10)
+this.appointments[i].start.setMinutes('0'+this.appointments[i].start.getMinutes());*/
         this.myAppointments[j]=this.appointments[i];
         j++;
        }

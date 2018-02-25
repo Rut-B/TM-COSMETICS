@@ -5,23 +5,41 @@
     font-family: Copperplate Gothic Light;
     font-size: 2vw;
 } 
+.in{
+    font-weight: bolder;
+    font-family: 'Yantramanav', sans-serif;
+    width: 98%;
+    margin-top: 1%;
+    margin-left:1;
+   
+} 
 #date{
+    height: 5vh;
     text-align:center;
-    font-size:2vw;
+    font-size:4vh;
     font-weight: bold;
     background-color: lightgray;
     margin-top:1vw;
-    color: #CC2572;
+    color: rgb(217,28,  92);
     font-family: 'Yantramanav', sans-serif;
     
     
 } 
+#a{
+    color:rgb(217,28,  92);//rgb(51, 162, 187);
+    float:left;
+    margin-top:0.35vw;
+    margin-left:0.5vw;
+    font-weight: normal;
+    font-size:3vh;
+}
 #a1{
-color:rgb(202, 69, 131);//rgb(51, 162, 187);
+color:rgb(217,28,  92);//rgb(51, 162, 187);
 float:left;
-margin-top:0.25vw;
+margin-top:0.35vw;
 margin-left:0.5vw;
-font-size:1vw;
+font-size:2vh;
+font-weight: normal;
 
 } #aa{
      margin-left:2vw;
@@ -31,28 +49,50 @@ font-size:1vw;
     margin-right:1vw;  
     margin-top:0.4%;
     float:right;
+    font-weight: normal;
 }
- .btn{
-    color: rgb(202, 69, 131);//black;
-    font-size: 1.5vw; 
-    padding-left:0.2vw; 
-    padding-right:0.2vw;
-    background-color:lightgrey;// rgb(170, 217, 236);
-    border-color:rgba(77, 70, 70, 0.26);
-    border-style: solid;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    &:hover{  
-        color:#CC2572;
-        background-color:rgb(255, 238, 251);
-        border: solid;
-        border-color: #CC2572;
-        border-width: 0.5px;
-        cursor:pointer;
-        } ; 
-}
+//  .btn{
+//     color: rgb(202, 69, 131);//black;
+//     font-size: 1.5vw; 
+//     padding-left:0.2vw; 
+//     padding-right:0.2vw;
+//     background-color:lightgrey;// rgb(170, 217, 236);
+//     border-color:rgba(77, 70, 70, 0.26);
+//     border-style: solid;
+//     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+//     &:hover{  
+//         color:#CC2572;
+//         background-color:rgb(255, 238, 251);
+//         border: solid;
+//         border-color: #CC2572;
+//         border-width: 0.5px;
+//         cursor:pointer;
+//         } ; 
+// }
 #b1{
     margin-left:1vw;
     float:left;
     margin-top:0.4%; 
-  
+    font-weight: normal;
+}
+.btn{
+    &:focus {outline:0;}
+    // margin-right: 20px;
+    // clear: both;
+//    float: left;
+//    float: right;
+    // margin-top: 7px;
+    background-color: rgb(217,28,  92);
+    color: #f2f2f2;
+    font-family: 'Yantramanav', sans-serif;
+    min-width: 20px;
+    height: 3.5vh;
+    width: 20vh;
+    border: none;
+    font-size:2.5vh;
+    &:hover{
+        cursor: pointer;
+        background-color:#f2f2f2 ;
+        color: rgb(217,28,  92);
+    }
 }
