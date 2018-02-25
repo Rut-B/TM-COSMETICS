@@ -57,6 +57,7 @@ export class CosmeticianProductsComponent implements OnInit {
     console.log(this.users);
     
     document.getElementById("allDays").style.display = "block"; 
+    document.getElementById("allUsers").style.display = "none"; 
     
   }
  
@@ -71,6 +72,7 @@ b()
             }
            console.log(this.myUsers);
             document.getElementById("allUsers").style.display = "block"; 
+            document.getElementById("allDays").style.display = "none"; 
            
 }
 getPicture()

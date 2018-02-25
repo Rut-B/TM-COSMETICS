@@ -41,7 +41,7 @@
       font-size: 1.5vw; 
       font-weight: bold;
       color:rgb(217,28,  92);
-      margin-left: 3%;
+      margin-left: 10%;
     }
    /* button
     {
@@ -64,49 +64,31 @@
      position:absolute ;
       margin-left: 35%;
       margin-top: 1%;
-      // height: 7vh; 
-      // width: 17vw;
-      // background-color: #d91c5c; 
-      // color: #f1f2f2;
+       height: 7vh; 
+       width: 17vw;
+       background-color: #d91c5c; 
+      color: #f1f2f2;
     }
     #user
     {
       //font-size: 2vw;
       position:absolute ;
-      margin-left:50%;
-      margin-top:1%;
-      // height: 7vh; 
-      // width: 17vw;
-      // background-color: #d91c5c; 
-      // color: #f1f2f2;
+      margin-left: 55%;
+      margin-top: 1%;
+
+
+      /*left: 55%;
+      top: 22%;*/
+      height: 7vh; 
+      width: 17vw;
+      background-color: #d91c5c; 
+      color: #f1f2f2;
     }
-    button {
-      &:focus {outline:0;}
-      font-size: 1.5vw;
-      color:#f2f2f2;
-      background-color:rgb(217,28,  92);
-      border: none;
-      // border-color: rgb(217,28,  92);
-      // border-width: 0.5px;
-      // margin-left: 12%;
-      // margin-top: 2px;
-      width:220px;
-      height: 40px;
+    /*#divday
+    {
+      display: none;
+    }
+    #divuser
+    {
       display: block;
-      // margin-left: auto;
-      // margin-right: auto;
-      cursor:pointer;
-  } 
-      button:hover{
-          color:rgb(217,28,  92);
-          background-color:#f2f2f2;
-          border: solid;
-          border-color: rgb(217,28,  92);
-          border-width: 0.1px;
-          // border: solid;
-          // border-color: rgb(217,28,  92);
-          // border-width: 0.5px;
-          cursor:pointer;  
-      }
-  
-  
+    }*/

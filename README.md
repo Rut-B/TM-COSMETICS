@@ -37,7 +37,7 @@ Please visit our wiki for furthur project info:
 - [Iteration 1 - MVP](https://github.com/Rut-B/TM-COSMETICS/wiki/MVP-iter-1)
 - [Iteration 2 - BFSC](https://github.com/Rut-B/TM-COSMETICS/wiki/Iter-2--Basic-Functional-Customers-Side-BFCS)
 - [Iteration 3 - BSNF](https://github.com/Rut-B/TM-COSMETICS/wiki/iter3--STF-summary)
-- [Iteration 4 - last iteration-complete app LICA]()
+- [Iteration 4 - last iteration-complete app LICA](https://github.com/Rut-B/TM-COSMETICS/wiki/last_iteration-LICA)
 
 
 
