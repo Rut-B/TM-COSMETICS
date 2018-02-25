@@ -1,10 +1,84 @@
+<div class="pics">
+    
+<img src="/assets/a1.jpg" class="a1" >
+<img src="/assets/a3.jpg" class="a1" >
+<img src="/assets/a4.jpg" class="a1" >
+<img src="/assets/a5.jpg" class="a1" >
+<img src="/assets/a6.jpg" class="a1" >
+
+
+
+</div>
+
+
 
 <div class="log">
   <button (click)="loginWithGoogle()">Login With Google</button>
-  <div class="link">
+  <div class="l" (click)="plusDivs(-1)">&#10094;</div>
+  <div class="r" (click)="plusDivs(1)">&#10095;</div>
+  <!-- <div id="pics"> -->
+        
+  <!-- </div> -->
+  <!-- <div class="link">
    
-</div>
-<div class="limg">
+</div> -->
+<!-- <div class="limg">
     <img src="assets/main.png" >
+</div> -->
 </div>
-</div>
+
+
+<script>
+        // var myIndex = 0;
+        // carousel();
+        
+        // function carousel() {
+        //     var i;
+        //     var x = document.getElementsByClassName("a1");
+        //     for (i = 0; i < x.length; i++) {
+        //        x[i].style.display = "none";  
+        //     }
+        //     myIndex++;
+        //     if (myIndex > x.length) {myIndex = 1}    
+        //     x[myIndex-1].style.display = "block";  
+        //     setTimeout(carousel, 2000); // Change image every 2 seconds
+        // }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        var slideIndex = 1;
+        showDivs(slideIndex);
+        
+        function plusDivs(n) {
+          showDivs(slideIndex += n);
+        }
+        
+        function currentDiv(n) {
+          showDivs(slideIndex = n);
+        }
+        
+        function showDivs(n) {
+          var i;
+          var x = document.getElementsByClassName("a1");
+        //   var dots = document.getElementsByClassName("demo");
+          if (n > x.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = x.length}
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";  
+          }
+        //   for (i = 0; i < dots.length; i++) {
+        //      dots[i].className = dots[i].className.replace(" w3-white", "");
+        //   }
+          x[slideIndex-1].style.display = "block";  
+        //   dots[slideIndex-1].className += " w3-white";
+        }
+        </script>

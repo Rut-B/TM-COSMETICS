@@ -5,7 +5,7 @@ import {MatTableDataSource} from '@angular/material';
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
-  styleUrls: ['./store.component.css'],
+  styleUrls: ['./store.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 

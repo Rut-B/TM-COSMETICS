@@ -45,15 +45,15 @@
   font-size: 2vw;
 }
 #button{
-  color: white;
+  // color: white;
   text-align: center;
-  background-color:rgb(217,28,  92);
-  width:13vw;
+  // background-color:rgb(217,28,  92);
+  // width:13vw;
   font-family: 'Yantramanav', sans-serif;
-  font-size:1.5vw;
-  font-weight: 900;
-  margin-left: 71.1vw;
-  height:7vh;
+  // font-size:1.5vw;
+  // font-weight: 900;
+   margin-left: 42vw;
+  // height:7vh;
 
 }
 
@@ -163,6 +163,34 @@
  
 }
 
+button {
+  &:focus {outline:0;}
+  font-size: 1.5vw;
+  color:#f2f2f2;
+  background-color:rgb(217,28,  92);
+  border: none;
+  // border-color: rgb(217,28,  92);
+  // border-width: 0.5px;
+  // margin-left: 12%;
+  // margin-top: 2px;
+  width:220px;
+  height: 40px;
+  display: block;
+  // margin-left: auto;
+  // margin-right: auto;
+  cursor:pointer;
+} 
+  button:hover{
+      color:rgb(217,28,  92);
+      background-color:#f2f2f2;
+      border: solid;
+      border-color: rgb(217,28,  92);
+      border-width: 0.1px;
+      // border: solid;
+      // border-color: rgb(217,28,  92);
+      // border-width: 0.5px;
+      cursor:pointer;  
+  }
 
 
 
