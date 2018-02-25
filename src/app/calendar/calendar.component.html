@@ -1,25 +1,26 @@
 
 <div class="in">
-<button (click)="iterate()" *ngIf="events && pop==false">iterate</button>
-<button mat-raised-button id="select" *ngIf="pop==true" (click)="myModal.open()" >select a time</button>
 
-<modal #myModal (onClose)="closeM()">
+<button  id="select" *ngIf="pop==true" (click)="myModal.open()" class="button">select a time</button>
+
+<modal #myModal (onClose)="closeM()" >
 <modal-content>
-  <mat-card id="modal">
+  <div id="modal">
     <form *ngIf="chosen==1">
         <label>select a time:</label>
         <div  *ngFor="let t of turns">
         <input  type="radio" name="times"  [(ngModel)]="choice" [value]="t"> {{t}}<br>
       </div>
-<button mat-raised-button  id="n" (click)="see()">book appointment</button>
+<button   id="n" (click)="see()"  class="button">book appointment</button>
   </form>
-</mat-card>
+</div>
 </modal-content>
 </modal>
 
 <div id="hide" [ngSwitch]="view">
     <div class="alert alert-info" id="head">
         Click on a day on the view.
+        <button (click)="iterate()" *ngIf="events && pop==false" class="btn" id="a2">view valid days</button>
         <strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
         </div>
 <mwl-calendar-month-view
