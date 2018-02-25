@@ -23,7 +23,7 @@
         <button (click)="iterate()" *ngIf="events && pop==false" class="btn" id="a2">view valid days</button>
         <strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
         </div>
-<mwl-calendar-month-view
+<mwl-calendar-month-view 
 *ngSwitchCase="'month'"
 [(viewDate)]="viewDate"
 [events]="events"
