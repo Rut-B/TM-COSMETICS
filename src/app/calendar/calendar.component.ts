@@ -154,7 +154,6 @@ return(a+":"+b);
        type:this.dataService.selected_treatments
     } ;
     this.myAppCol.add(appoint).then(res=>{
-
     })
   }
 
@@ -174,7 +173,13 @@ var today = mm+'/'+dd+'/'+yyyy;
 return today;
 }
 
-public iterate(){  
+public iterate(){ 
+  if(!(this.dataService.totalDuration>0))
+  if(!!this.dataService.selected_treatments) {
+  alert("you must select a treatment first");
+  return;
+  }
+
   var cc=document.getElementsByClassName("cal-cell");
   var cmonth=this.viewDate.getMonth();
   var cyear=this.viewDate.getFullYear();

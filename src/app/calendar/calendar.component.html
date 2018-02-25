@@ -22,7 +22,7 @@
         Click on a day on the view.
         <strong id="s" *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
         </div>
-<mwl-calendar-month-view
+<mwl-calendar-month-view 
 *ngSwitchCase="'month'"
 [(viewDate)]="viewDate"
 [events]="events"
