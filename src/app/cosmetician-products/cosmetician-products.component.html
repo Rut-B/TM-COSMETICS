@@ -5,7 +5,7 @@
        </mat-spinner>
     </div>
 <button id="day"*ngIf="appointments!=null" (click)="a()">view all Days</button>
-<button id="user"*ngIf="users!=null" (click)="b()">view all users</button>
+<button id="user"*ngIf="users!=null" (click)="b()">view all Users</button>
 <div id="allDays" >Days:
 <div  *ngFor="let appoi of appointments">
     <p  >
@@ -15,8 +15,8 @@
     </p>
 </div>
 </div>
-<button id="user"*ngIf="users!=null" (click)="b()">view all users</button>
-<div id="allUsers" >
+<!--<button id="user"*ngIf="users!=null" (click)="b()">view all Users</button>-->
+<div id="allUsers" >User:
 <div  *ngFor="let appoi of myUsers">
     <p  >
  <!-- <img src="{{ picture}}" class="photos" /><br/>-->
