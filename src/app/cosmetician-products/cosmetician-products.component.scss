@@ -66,8 +66,8 @@
       margin-top: 1%;
        height: 7vh; 
        width: 17vw;
-       background-color: #d91c5c; 
-      color: #f1f2f2;
+      //  background-color: #d91c5c; 
+      // color: #f1f2f2;
     }
     #user
     {
@@ -81,8 +81,8 @@
       top: 22%;*/
       height: 7vh; 
       width: 17vw;
-      background-color: #d91c5c; 
-      color: #f1f2f2;
+      // background-color: #d91c5c; 
+      // color: #f1f2f2;
     }
     /*#divday
     {
@@ -92,3 +92,30 @@
     {
       display: block;
     }*/
+
+    button{
+      &:focus {outline:0;}
+     // position: absolute;
+      margin-right: 1.5%;
+     
+       clear: both;
+  //    float: left;
+      float: right;
+      margin-top: -50px;
+      background-color:rgb(217,28,  92) ;
+      color: #f2f2f2;
+      font-family: 'Yantramanav', sans-serif;
+      min-width: 20px;
+      height: 5vh;
+      width: 24vh;
+      border: none;
+      font-size:2.5vh;
+      &:hover{
+          cursor: pointer;
+          background-color: #f2f2f2;
+          color: rgb(217,28,  92);
+          border: solid;
+          border-color:rgb(217,28,  92) ;
+          border-width: 0.1px;
+      }
+  }

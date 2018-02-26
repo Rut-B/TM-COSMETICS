@@ -17,10 +17,15 @@
     margin-left:1;
    
 } 
-#modal{
-padding: 2%;
-}
 
+#modal{
+    &:focus {outline:0;}
+padding: 2%;
+
+}
+modal-content{
+    &:focus {outline:0;}
+}
  #s{
 margin-left:2vw;
 }
@@ -86,6 +91,10 @@ margin-left:2vw;
     //margin-top:0.1%;
     float:right;
     font-weight: normal;
+}
+form{
+    &:focus {outline:0;}
+    outline: 0;
 }
 
 .button{
