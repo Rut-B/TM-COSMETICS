@@ -8,13 +8,8 @@ import {DataService} from '../data.service';
 import { _createDefaultCookieXSRFStrategy } from '@angular/http/src/http_module';
 import {AuthService } from '../auth.service'
 
-/*export class appointment{
-  event:CalendarEvent;
-  userName:string;
-  treatment:string;
-}*/
+
 export class appoi{
- //cosmeticianName:string;//Rut added according DB
   email: string;//replace to Email
   type:any[];
   start:Date;
@@ -36,10 +31,6 @@ export class CalendarComponent implements OnInit {
   view: string = 'month'; 
    viewDate: Date = new Date();
   events:CalendarEvent[]; 
-
-  /*treatment:string;
-  userName:string; 
-  apps:appointment[];*/
   myAppois:appoi[]; 
   mySpecDays:aDay[];
   myDays:aDay[];
@@ -49,7 +40,7 @@ export class CalendarComponent implements OnInit {
   turns=[]; 
   c; 
   pop=false;
-  //appoi:appointment;
+
  choice;
     private col:AngularFirestoreCollection<any>;
     private myAppCol:AngularFirestoreCollection<any>;
@@ -57,14 +48,10 @@ export class CalendarComponent implements OnInit {
     private mySettDays:AngularFirestoreCollection<any>;
 
       constructor(private afs: AngularFirestore ,private dataService:DataService ,public auth:AuthService) {
-       //this.itemDoc =this.afs.doc("events/1"); 
+     
        this.col=this.afs.collection("events"); 
        this.viewDate = new Date();  
        this.col.valueChanges().subscribe(res=>{
-       /*  this.apps=res;
-        for(var i=0;i<res.length;i++){
-          this.events[i]=res[i].event;
-        }*/
         this.events=res; 
        });  
        this.myAppCol=this.afs.collection("myApointments");
@@ -212,16 +199,15 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
         dontDays[l]=cday;
         l++; 
       this.available=this.scheduleTime(curr,this.dataService.totalDuration);
-        if(this.available!=null){
-     //   this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
-        cc[i].className="a";
+        if(this.available!=null&&this.available[0]!=null){
+          this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
+        cc[i].className="a2";
         j=-1;
         }
             else {
               cc[i].className="b";
               j=-1;
           } 
-          p.push(" 11 "+i);
       }
      }
      else{
@@ -229,16 +215,14 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
         dontDays[l]="!! "+cday;
         l++;
        this.available=this.scheduleTime(curr,this.dataService.totalDuration);
-       p.push(" 2 "+i+" "+cday);
-        if(this.available!=null){
-       //this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
-        cc[i].className="a";
+        if(this.available!=null&&this.available[0]!=null){
+         this.available.forEach(el=>tt.push(cday+" "+el.start+" "+el.end)) ;
+        cc[i].className="a2";
        j=-1;
         }
         else{ 
-          cc[i].className="b";j=-1;//i--;
+          cc[i].className="b";j=-1;
         }
-        p.push(" 22 "+i);
       
      }   
     }
@@ -249,7 +233,7 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
      break;
    }
  }//end i
-// console.log(p);
+
 
  var cc=document.getElementsByClassName("cal-cell");
  var n; 
@@ -270,11 +254,8 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
     var now=this.myDays[k].date;  
    if(this.check(d.getDay())==now){
     this.available=this.scheduleTime(d,this.dataService.totalDuration);
-   // s.push ("m"+m+" "+d+ " "+this.available);
-     tt.push("22!!"+this.available+" "+n+" "+i);
-    
-      if(this.available!=null){
-      //  this.available.forEach(el=>tt.push(n+" "+el.start+" "+el.end)) ;
+      if(this.available!=null&&this.available[0]!=null){
+         tt.push(n);
        cc[(i+t)].className="a2";
         i--;
          break;
@@ -283,7 +264,7 @@ for(i;i<t+daysInMonth-dontDays.length;i++){
   }//end k
 }//end cc
 
-console.log(tt);
+//console.log(tt);
 }
  public check(i){
   var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
